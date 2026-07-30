@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PUPU</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <main class="container">
+    <div class="speech-bubble-slot">
+      <div class="speech-bubble">
+        <p id="speech-text-en" class="speech-text-en">Hi, I'm PUPU!</p>
+        <p id="speech-text-ko" class="speech-text-ko speech-text-ko-hidden"></p>
+      </div>
+    </div>
+
+    <div class="pupu-stage">
+      <img class="pupu-shadow" src="images/pupu/effects/effect_shadow.png" alt="">
+      <!--
+        Fart Sequence effect layer (new, additive). Placed between the
+        shadow and the circle so plain DOM order keeps it visually
+        BEHIND PUPU's body, same trick .pupu-shadow already relies on.
+        Hidden by default via CSS; script.js toggles a class on it for
+        the ~1s the cloud is meant to be visible.
+      -->
+      <img class="pupu-fart-cloud" id="pupu-fart-cloud" src="images/pupu/effects/effect_fart.png" alt="" aria-hidden="true">
+      <div class="pupu-circle" id="pupu-circle">
+        <img class="pupu-body" id="pupu-body" src="images/pupu/body/body.png" alt="PUPU">
+        <img class="pupu-arm pupu-arm-left" id="pupu-arm-left" src="images/pupu/body/body_left_arm.png" alt="">
+        <img class="pupu-arm pupu-arm-right" id="pupu-arm-right" src="images/pupu/body/body_right_arm.png" alt="">
+        <img class="pupu-eye" id="pupu-eyes" src="images/pupu/eyes/eyes_open.png" alt="">
+        <img class="pupu-mouth" id="pupu-mouth" src="images/pupu/mouths/mouth_neutral.png" alt="">
+        <img class="pupu-button" id="pupu-button" src="images/pupu/buttons/button_unpressed.png" alt="Press PUPU's belly button" role="button" tabindex="0">
+      </div>
+
+      <!--
+        Effect Overlay System (new, additive). Sits as a sibling AFTER
+        .pupu-circle so plain DOM order keeps it visually ABOVE PUPU's
+        body/arms/eyes/mouth/button, the same stacking trick already used
+        elsewhere in this file (see the fart-cloud comment above). Empty
+        src and hidden via CSS by default; script.js's showEffect() sets
+        src and toggles a class on it to play one of the effect_*.png
+        overlays.
+      -->
+      <img class="pupu-effect-overlay" id="pupu-effect-overlay" src="" alt="" aria-hidden="true">
+    </div>
+
+    <!--
+      The old "Surprise Me" button has been removed from the UI -- the
+      belly button is now the only way to start an interaction. This
+      element is kept in the DOM (hidden via .surprise-btn-hidden in
+      style.css) only because script.js still looks it up by id to
+      track disabled state and its click listener; per the task scope,
+      script.js itself is not being modified.
+    -->
+    <button class="surprise-btn surprise-btn-hidden" id="surprise-btn" aria-hidden="true" tabindex="-1">Surprise Me</button>
+
+    <p class="copyright">© 2026 PUPU. All rights reserved.</p>
+  </main>
+
+  <script src="behaviors.js"></script>
+  <script src="missions.js"></script>
+  <script src="content-loader.js"></script>
+  <script src="brain.js"></script>
+  <script src="sound-manager.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

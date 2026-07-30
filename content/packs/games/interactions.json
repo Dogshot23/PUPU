@@ -1,0 +1,492 @@
+[
+  {
+    "id": "GAMES_0001",
+    "type": "game",
+    "subtype": "game",
+    "level": "B1",
+    "tags": [
+      "invention",
+      "silly"
+    ],
+    "emotion": "excited",
+    "animation": "bounce",
+    "english": [
+      "New game.",
+      "Invent a machine that does something completely useless.",
+      "Explain it to your teacher.",
+      "They have to guess who would buy it."
+    ],
+    "translations": {
+      "ko": [
+        "새로운 게임.",
+        "완전히 쓸모없는 기계를 하나 발명해봐.",
+        "선생님께 설명해줘.",
+        "선생님은 누가 그걸 살지 맞혀야 해."
+      ]
+    }
+  },
+  {
+    "id": "GAMES_0002",
+    "type": "game",
+    "subtype": "game",
+    "level": "B1",
+    "tags": [
+      "voice",
+      "performance"
+    ],
+    "emotion": "playful",
+    "animation": "wobble",
+    "english": [
+      "Say the word 'banana' like you're...",
+      "excited.",
+      "then terrified.",
+      "then bored.",
+      "Your teacher guesses the feeling."
+    ],
+    "translations": {
+      "ko": [
+        "'바나나'라는 단어를 말해봐...",
+        "신난 것처럼.",
+        "그 다음엔 무서운 것처럼.",
+        "그 다음엔 지루한 것처럼.",
+        "선생님이 감정을 맞혀야 해."
+      ]
+    }
+  },
+  {
+    "id": "GAMES_0003",
+    "type": "game",
+    "subtype": "game",
+    "level": "B1",
+    "tags": [
+      "storytelling",
+      "twist"
+    ],
+    "emotion": "mischievous",
+    "animation": "wink",
+    "english": [
+      "I'll say three words.",
+      "Cat. Rocket. Birthday.",
+      "Make one tiny story using all three.",
+      "Ten seconds. Go!"
+    ],
+    "translations": {
+      "ko": [
+        "세 단어를 말해줄게.",
+        "고양이. 로켓. 생일.",
+        "세 단어를 다 넣어서 짧은 이야기를 만들어봐.",
+        "10초 줄게. 시작!"
+      ]
+    }
+  },
+  {
+    "id": "GAMES_0004",
+    "type": "game",
+    "subtype": "game",
+    "level": "B1",
+    "tags": [
+      "opinion",
+      "rapid"
+    ],
+    "emotion": "determined",
+    "animation": "arms_cross",
+    "english": [
+      "Rapid opinions!",
+      "I say a word, you say 'good' or 'bad' instantly.",
+      "Ready?",
+      "Mondays!"
+    ],
+    "translations": {
+      "ko": [
+        "빠른 의견 게임!",
+        "내가 단어를 말하면 바로 '좋아' 또는 '나빠'라고 말해.",
+        "준비됐어?",
+        "월요일!"
+      ]
+    }
+  },
+  {
+    "id": "GAMES_0005",
+    "type": "game",
+    "subtype": "game",
+    "level": "B1",
+    "tags": [
+      "imagination",
+      "swap"
+    ],
+    "emotion": "curious",
+    "animation": "head_tilt",
+    "english": [
+      "Swap game.",
+      "If you swapped bodies with your teacher for a day...",
+      "what's the FIRST thing you'd do?",
+      "Tell them now."
+    ],
+    "translations": {
+      "ko": [
+        "몸 바꾸기 게임.",
+        "하루 동안 선생님과 몸을 바꾼다면...",
+        "제일 먼저 뭘 할 거야?",
+        "지금 선생님께 말해봐."
+      ]
+    }
+  },
+  {
+    "id": "GAMES_0006",
+    "type": "game",
+    "subtype": "game",
+    "level": "B1",
+    "tags": [
+      "sound",
+      "guessing"
+    ],
+    "emotion": "playful",
+    "animation": "laugh",
+    "english": [
+      "Make a noise for a feeling.",
+      "Not a word. Just a sound.",
+      "Your teacher has to guess what you're feeling."
+    ],
+    "translations": {
+      "ko": [
+        "감정에 맞는 소리를 내봐.",
+        "단어 말고, 그냥 소리로.",
+        "선생님이 어떤 감정인지 맞혀야 해."
+      ]
+    }
+  },
+  {
+    "id": "GAMES_0007",
+    "type": "game",
+    "subtype": "game",
+    "level": "B1",
+    "tags": [
+      "superlative",
+      "silly"
+    ],
+    "emotion": "amazed",
+    "animation": "eyes_widen",
+    "english": [
+      "Fastest answer wins.",
+      "What is the most annoying sound in the world?",
+      "Say it before I count to three!"
+    ],
+    "translations": {
+      "ko": [
+        "가장 빨리 대답하기.",
+        "세상에서 가장 짜증나는 소리는 뭐야?",
+        "내가 셋 세기 전에 말해!"
+      ]
+    }
+  },
+  {
+    "id": "GAMES_0008",
+    "type": "game",
+    "subtype": "game",
+    "level": "B1",
+    "tags": [
+      "debate",
+      "silly"
+    ],
+    "emotion": "playful",
+    "animation": "thinking",
+    "english": [
+      "One-word court case.",
+      "Is a hotdog a sandwich?",
+      "Yes or no. Now defend it in one sentence."
+    ],
+    "translations": {
+      "ko": [
+        "한 단어 재판 게임.",
+        "핫도그는 샌드위치일까?",
+        "예 또는 아니오. 이유를 한 문장으로 말해봐."
+      ]
+    }
+  },
+  {
+    "id": "GAMES_0009",
+    "type": "game",
+    "subtype": "game",
+    "level": "B1",
+    "tags": [
+      "mime",
+      "guessing"
+    ],
+    "emotion": "playful",
+    "animation": "wobble",
+    "english": [
+      "Act out an animal.",
+      "No sounds allowed.",
+      "Your teacher gets three guesses."
+    ],
+    "translations": {
+      "ko": [
+        "동물을 몸으로 표현해봐.",
+        "소리는 내면 안 돼.",
+        "선생님이 세 번 맞힐 기회가 있어."
+      ]
+    }
+  },
+  {
+    "id": "GAMES_0010",
+    "type": "game",
+    "subtype": "game",
+    "level": "B1",
+    "tags": [
+      "exaggeration",
+      "silly"
+    ],
+    "emotion": "excited",
+    "animation": "bounce",
+    "english": [
+      "Tell your teacher about your day.",
+      "But everything must sound TEN times more exciting than it really was."
+    ],
+    "translations": {
+      "ko": [
+        "오늘 하루에 대해 선생님께 말해봐.",
+        "하지만 실제보다 열 배는 더 신나게 말해야 해."
+      ]
+    }
+  },
+  {
+    "id": "GAMES_0011",
+    "type": "game",
+    "subtype": "game",
+    "level": "B1",
+    "tags": [
+      "memory",
+      "trick"
+    ],
+    "emotion": "mischievous",
+    "animation": "wink",
+    "english": [
+      "I'll say three animals.",
+      "Dog. Owl. Shark.",
+      "Now, without looking away... tell your teacher them backwards."
+    ],
+    "translations": {
+      "ko": [
+        "동물 세 개를 말해줄게.",
+        "개. 부엉이. 상어.",
+        "이제 눈을 돌리지 말고... 거꾸로 선생님께 말해봐."
+      ]
+    }
+  },
+  {
+    "id": "GAMES_0012",
+    "type": "game",
+    "subtype": "game",
+    "level": "B1",
+    "tags": [
+      "negotiation",
+      "silly"
+    ],
+    "emotion": "determined",
+    "animation": "arms_cross",
+    "english": [
+      "Negotiation game.",
+      "Convince your teacher that today should be a holiday.",
+      "You have ten seconds."
+    ],
+    "translations": {
+      "ko": [
+        "협상 게임.",
+        "오늘이 휴일이어야 한다고 선생님을 설득해봐.",
+        "10초 줄게."
+      ]
+    }
+  },
+  {
+    "id": "GAMES_0013",
+    "type": "game",
+    "subtype": "game",
+    "level": "B1",
+    "tags": [
+      "translation",
+      "silly"
+    ],
+    "emotion": "curious",
+    "animation": "thinking",
+    "english": [
+      "Weather report game.",
+      "Describe your mood today... like a weather forecast.",
+      "'Today, feelings are cloudy with a chance of...'"
+    ],
+    "translations": {
+      "ko": [
+        "날씨 예보 게임.",
+        "오늘 네 기분을 날씨 예보처럼 설명해봐.",
+        "'오늘 감정은 흐리고, ...할 확률이 있습니다.'"
+      ]
+    }
+  },
+  {
+    "id": "GAMES_0014",
+    "type": "game",
+    "subtype": "game",
+    "level": "B1",
+    "tags": [
+      "rhythm",
+      "silly"
+    ],
+    "emotion": "playful",
+    "animation": "clap",
+    "english": [
+      "Clap game.",
+      "I clap a rhythm.",
+      "You copy it AND say a word each time you clap."
+    ],
+    "translations": {
+      "ko": [
+        "박수 게임.",
+        "내가 리듬을 쳐볼게.",
+        "너는 따라 치면서 박수마다 단어를 하나씩 말해봐."
+      ]
+    }
+  },
+  {
+    "id": "GAMES_0015",
+    "type": "game",
+    "subtype": "game",
+    "level": "B1",
+    "tags": [
+      "storytelling",
+      "chain"
+    ],
+    "emotion": "curious",
+    "animation": "head_tilt",
+    "english": [
+      "Story chain.",
+      "I'll start: 'Yesterday, a strange cat knocked on my door...'",
+      "Now your teacher adds one sentence, then you add one."
+    ],
+    "translations": {
+      "ko": [
+        "이야기 이어가기.",
+        "내가 시작할게: '어제 이상한 고양이가 내 문을 두드렸어...'",
+        "선생님이 한 문장 추가하고, 그 다음 네가 추가해봐."
+      ]
+    }
+  },
+  {
+    "id": "GAMES_0016",
+    "type": "game",
+    "subtype": "game",
+    "level": "B1",
+    "tags": [
+      "silly",
+      "identity"
+    ],
+    "emotion": "mischievous",
+    "animation": "wink",
+    "english": [
+      "Secret identity game.",
+      "Pretend to be a famous object for ten seconds.",
+      "Your teacher must guess what you are."
+    ],
+    "translations": {
+      "ko": [
+        "비밀 정체 게임.",
+        "10초 동안 유명한 물건인 척 해봐.",
+        "선생님이 네가 뭔지 맞혀야 해."
+      ]
+    }
+  },
+  {
+    "id": "GAMES_0017",
+    "type": "game",
+    "subtype": "game",
+    "level": "B1",
+    "tags": [
+      "comparison",
+      "silly"
+    ],
+    "emotion": "playful",
+    "animation": "laugh",
+    "english": [
+      "This or that, super fast!",
+      "Ghosts or aliens?",
+      "Now explain your answer in one sentence."
+    ],
+    "translations": {
+      "ko": [
+        "이것 아니면 저것, 초스피드!",
+        "귀신 아니면 외계인?",
+        "이제 한 문장으로 이유를 설명해봐."
+      ]
+    }
+  },
+  {
+    "id": "GAMES_0018",
+    "type": "game",
+    "subtype": "game",
+    "level": "B1",
+    "tags": [
+      "silly",
+      "voice"
+    ],
+    "emotion": "excited",
+    "animation": "bounce",
+    "english": [
+      "Tiny news reporter game.",
+      "Report one exciting thing that happened in your house this week.",
+      "Use your most serious news voice."
+    ],
+    "translations": {
+      "ko": [
+        "작은 뉴스 리포터 게임.",
+        "이번 주에 너희 집에서 있었던 신나는 일을 보도해봐.",
+        "가장 진지한 뉴스 목소리로 말해봐."
+      ]
+    }
+  },
+  {
+    "id": "GAMES_0019",
+    "type": "game",
+    "subtype": "game",
+    "level": "B1",
+    "tags": [
+      "silly",
+      "reverse"
+    ],
+    "emotion": "mischievous",
+    "animation": "wink",
+    "english": [
+      "Reverse teacher game.",
+      "For the next ten seconds, YOU are the teacher.",
+      "Ask your teacher a question."
+    ],
+    "translations": {
+      "ko": [
+        "선생님 역할 바꾸기 게임.",
+        "앞으로 10초 동안 네가 선생님이야.",
+        "선생님한테 질문을 하나 해봐."
+      ]
+    }
+  },
+  {
+    "id": "GAMES_0020",
+    "type": "game",
+    "subtype": "game",
+    "level": "B1",
+    "tags": [
+      "silly",
+      "prediction"
+    ],
+    "emotion": "curious",
+    "animation": "head_tilt",
+    "english": [
+      "Prediction game.",
+      "Guess one thing your teacher will do right after this lesson.",
+      "They tell you if you're close."
+    ],
+    "translations": {
+      "ko": [
+        "예측 게임.",
+        "이 수업이 끝나고 선생님이 할 일 하나를 맞혀봐.",
+        "선생님이 맞았는지 알려줄 거야."
+      ]
+    }
+  }
+]

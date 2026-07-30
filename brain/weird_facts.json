@@ -1,0 +1,202 @@
+[
+  {
+    "id": "FACT_001",
+    "type": "fact",
+    "level": "B1",
+    "tags": ["animals"],
+    "emotion": "amazed",
+    "animation": "eyes_widen",
+    "english": ["Otters hold hands while they sleep.", "So they don't float away from each other.", "I think that's the sweetest thing I've ever heard."],
+    "korean": ["수달은 잠잘 때 서로 손을 잡아.", "떠내려가지 않으려고.", "내가 들어본 것 중 가장 사랑스러운 이야기 같아."]
+  },
+  {
+    "id": "FACT_002",
+    "type": "fact",
+    "level": "B1",
+    "tags": ["animals"],
+    "emotion": "curious",
+    "animation": "head_tilt",
+    "english": ["A shrimp's heart is in its head.", "Its head, not its chest.", "I keep imagining a tiny heart just... up there."],
+    "korean": ["새우의 심장은 머리에 있어.", "가슴이 아니라 머리에.", "작은 심장이 거기 위에 있는 걸 계속 상상하게 돼."]
+  },
+  {
+    "id": "FACT_003",
+    "type": "fact",
+    "level": "B1",
+    "tags": ["nature"],
+    "emotion": "amazed",
+    "animation": "sparkle_eyes",
+    "english": ["Bananas are berries.", "But strawberries aren't.", "I don't know who decided that, but I have questions."],
+    "korean": ["바나나는 베리류야.", "근데 딸기는 아니래.", "누가 정한 건지 모르겠지만, 궁금한 게 많아."]
+  },
+  {
+    "id": "FACT_004",
+    "type": "fact",
+    "level": "B1",
+    "tags": ["animals"],
+    "emotion": "playful",
+    "animation": "laugh",
+    "english": ["Cows have best friends.", "And they get stressed when they're separated.", "I wonder who my best friend would be if I were a cow."],
+    "korean": ["소는 단짝 친구가 있어.", "떨어지면 스트레스를 받는대.", "내가 소라면 누가 내 단짝일지 궁금해."]
+  },
+  {
+    "id": "FACT_005",
+    "type": "fact",
+    "level": "B1",
+    "tags": ["human_body"],
+    "emotion": "confused",
+    "animation": "scratch_head",
+    "english": ["You can't hum while holding your nose.", "Try it right now.", "I did this three times and I still don't understand it."],
+    "korean": ["코를 막으면 콧노래를 부를 수 없어.", "지금 한번 해봐.", "나는 세 번이나 해봤는데 아직도 이해가 안 돼."]
+  },
+  {
+    "id": "FACT_006",
+    "type": "fact",
+    "level": "B1",
+    "tags": ["animals"],
+    "emotion": "amazed",
+    "animation": "eyes_widen",
+    "english": ["Octopuses have three hearts.", "One of them stops beating when they swim.", "I feel very lazy in comparison."],
+    "korean": ["문어는 심장이 세 개야.", "헤엄칠 때 그중 하나는 멈춘대.", "그거에 비하면 난 정말 게으른 것 같아."]
+  },
+  {
+    "id": "FACT_007",
+    "type": "fact",
+    "level": "B1",
+    "tags": ["nature"],
+    "emotion": "thoughtful",
+    "animation": "slow_blink",
+    "english": ["Some trees are older than entire countries.", "They were already standing before some countries existed.", "That makes me feel very small."],
+    "korean": ["어떤 나무들은 나라보다도 나이가 많아.", "어떤 나라가 생기기도 전부터 서 있었대.", "그 생각을 하면 내가 아주 작게 느껴져."]
+  },
+  {
+    "id": "FACT_008",
+    "type": "fact",
+    "level": "B1",
+    "tags": ["animals"],
+    "emotion": "playful",
+    "animation": "bounce",
+    "english": ["Some dolphins give each other names.", "Special whistles just for one friend.", "I want a whistle name too."],
+    "korean": ["어떤 돌고래들은 서로에게 이름을 지어줘.", "한 친구만을 위한 특별한 휘파람 소리로.", "나도 휘파람 이름이 갖고 싶어."]
+  },
+  {
+    "id": "FACT_009",
+    "type": "fact",
+    "level": "B1",
+    "tags": ["nature"],
+    "emotion": "amazed",
+    "animation": "sparkle_eyes",
+    "english": ["Honey never really goes bad.", "People have found jars of it thousands of years old, still safe to eat.", "Honey is basically immortal."],
+    "korean": ["꿀은 거의 상하지 않아.", "수천 년 된 꿀 항아리도 아직 먹을 수 있는 상태로 발견됐대.", "꿀은 거의 불멸이나 다름없어."]
+  },
+  {
+    "id": "FACT_010",
+    "type": "fact",
+    "level": "B1",
+    "tags": ["human_body"],
+    "emotion": "curious",
+    "animation": "head_tilt",
+    "english": ["You blink about once every four seconds.", "Right now, you're probably thinking about blinking.", "Sorry about that."],
+    "korean": ["사람은 약 4초마다 한 번씩 눈을 깜빡여.", "지금 아마 깜빡이는 걸 의식하게 됐을 거야.", "미안."]
+  },
+  {
+    "id": "FACT_011",
+    "type": "fact",
+    "level": "B1",
+    "tags": ["animals"],
+    "emotion": "confused",
+    "animation": "scratch_head",
+    "english": ["A flamingo's knee actually bends the other way.", "What looks like its knee is really its ankle.", "I don't know where its real knee is hiding."],
+    "korean": ["플라밍고의 무릎은 사실 반대로 꺾여.", "무릎처럼 보이는 건 사실 발목이야.", "진짜 무릎이 어디 숨어있는지 모르겠어."]
+  },
+  {
+    "id": "FACT_012",
+    "type": "fact",
+    "level": "B1",
+    "tags": ["nature"],
+    "emotion": "amazed",
+    "animation": "eyes_widen",
+    "english": ["Sharks were swimming before trees existed.", "Sharks came first.", "Trees are actually the newer invention."],
+    "korean": ["상어는 나무가 생기기도 전부터 헤엄치고 있었어.", "상어가 더 먼저였어.", "나무가 오히려 나중에 생긴 발명품인 셈이야."]
+  },
+  {
+    "id": "FACT_013",
+    "type": "fact",
+    "level": "B1",
+    "tags": ["animals"],
+    "emotion": "playful",
+    "animation": "laugh",
+    "english": ["A group of flamingos is called a flamboyance.", "That feels like exactly the right word for them."],
+    "korean": ["플라밍고 무리를 'flamboyance'라고 불러.", "정말 딱 어울리는 단어인 것 같아."]
+  },
+  {
+    "id": "FACT_014",
+    "type": "fact",
+    "level": "B1",
+    "tags": ["nature"],
+    "emotion": "curious",
+    "animation": "thinking",
+    "english": ["Bananas float in water.", "Watermelons sink.", "I never knew fruit could be so different."],
+    "korean": ["바나나는 물에 뜨는데, 수박은 가라앉아.", "과일이 이렇게 다를 줄 몰랐어."]
+  },
+  {
+    "id": "FACT_015",
+    "type": "fact",
+    "level": "B1",
+    "tags": ["human_body"],
+    "emotion": "amazed",
+    "animation": "sparkle_eyes",
+    "english": ["Your nose can remember thousands of different smells.", "More than your eyes remember faces.", "I never knew my nose was so talented."],
+    "korean": ["코는 수천 가지 냄새를 기억할 수 있대.", "눈이 얼굴을 기억하는 것보다 더 많이.", "내 코가 이렇게 재능 있는 줄 몰랐어."]
+  },
+  {
+    "id": "FACT_016",
+    "type": "fact",
+    "level": "B1",
+    "tags": ["animals"],
+    "emotion": "thoughtful",
+    "animation": "slow_blink",
+    "english": ["Elephants can recognise themselves in a mirror.", "Not many animals can do that.", "I wonder what they think when they see themselves."],
+    "korean": ["코끼리는 거울 속 자기 자신을 알아볼 수 있어.", "그럴 수 있는 동물은 많지 않아.", "거울을 보면서 무슨 생각을 할지 궁금해."]
+  },
+  {
+    "id": "FACT_017",
+    "type": "fact",
+    "level": "B1",
+    "tags": ["nature"],
+    "emotion": "confused",
+    "animation": "scratch_head",
+    "english": ["Some clouds weigh more than an airplane.", "But they still float.", "Nothing about that makes sense to me."],
+    "korean": ["어떤 구름은 비행기보다 무거워.", "그런데도 하늘에 떠 있어.", "도무지 이해가 안 돼."]
+  },
+  {
+    "id": "FACT_018",
+    "type": "fact",
+    "level": "B1",
+    "tags": ["animals"],
+    "emotion": "playful",
+    "animation": "bounce",
+    "english": ["Kangaroos can't walk backwards.", "Only forward, always.", "I think I like their attitude."],
+    "korean": ["캥거루는 뒤로 걸을 수 없어.", "항상 앞으로만 갈 수 있어.", "그런 태도, 마음에 들어."]
+  },
+  {
+    "id": "FACT_019",
+    "type": "fact",
+    "level": "B1",
+    "tags": ["human_body"],
+    "emotion": "amazed",
+    "animation": "eyes_widen",
+    "english": ["Your ears never stop growing.", "Even when you're very old.", "So somewhere out there is a person with enormous ears, and they don't even know it."],
+    "korean": ["귀는 절대 성장을 멈추지 않아.", "아주 나이가 들어도 계속 자라.", "그래서 어딘가엔 자기도 모르게 귀가 엄청 큰 사람이 있을 거야."]
+  },
+  {
+    "id": "FACT_020",
+    "type": "fact",
+    "level": "B1",
+    "tags": ["nature"],
+    "emotion": "thoughtful",
+    "animation": "float_slowly",
+    "english": ["A single tree can produce enough oxygen for two people.", "Just one tree, quietly doing that all day.", "I don't think trees get enough credit."],
+    "korean": ["나무 한 그루가 두 사람이 쓸 산소를 만들어낼 수 있대.", "나무 한 그루가 하루 종일 조용히 그 일을 하는 거야.", "나무는 제대로 인정을 못 받는 것 같아."]
+  }
+]

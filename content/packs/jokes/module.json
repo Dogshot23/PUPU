@@ -1,0 +1,8 @@
+{
+  "id": "jokes",
+  "name": "Jokes",
+  "enabled": true,
+  "premium": false,
+  "season": null,
+  "language": "en"
+}

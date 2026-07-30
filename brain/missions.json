@@ -1,0 +1,202 @@
+[
+  {
+    "id": "MISSION_001",
+    "type": "conversation_mission",
+    "level": "B1",
+    "tags": ["food", "teacher"],
+    "emotion": "mischievous",
+    "animation": "thinking",
+    "english": ["I just noticed something.", "Ketchup goes on chips, but never on ice cream.", "Ask your teacher why they think that is."],
+    "korean": ["방금 뭔가 눈치챘어.", "케첩은 감자칩엔 뿌리는데, 아이스크림엔 절대 안 뿌려.", "선생님께 왜 그런지 물어보세요."]
+  },
+  {
+    "id": "MISSION_002",
+    "type": "conversation_mission",
+    "level": "B1",
+    "tags": ["time", "childhood"],
+    "emotion": "curious",
+    "animation": "head_tilt",
+    "english": ["Time moves slower in summer.", "I don't know why.", "Ask your teacher: does time feel different when you're on holiday?"],
+    "korean": ["여름엔 시간이 더 천천히 가.", "왜 그런지는 모르겠어.", "선생님께 물어보세요: 휴가 때는 시간이 다르게 느껴져요?"]
+  },
+  {
+    "id": "MISSION_003",
+    "type": "silly_thought",
+    "level": "B1",
+    "tags": ["animals", "silly"],
+    "emotion": "playful",
+    "animation": "laugh",
+    "english": ["I think penguins would make terrible waiters.", "They'd just fall over with the plates.", "Tell your teacher which animal would be the WORST waiter."],
+    "korean": ["펭귄은 웨이터로는 최악일 거야.", "접시 들고 그냥 넘어질 걸.", "선생님께 어떤 동물이 최악의 웨이터가 될지 말해보세요."]
+  },
+  {
+    "id": "MISSION_004",
+    "type": "child_challenge",
+    "level": "B1",
+    "tags": ["creativity", "sound"],
+    "emotion": "excited",
+    "animation": "bounce",
+    "english": ["Quick.", "Make a sound like Monday morning.", "Now try Friday afternoon.", "Show your teacher the difference."],
+    "korean": ["빨리.", "월요일 아침 같은 소리를 내봐.", "이번엔 금요일 오후 소리를 내봐.", "선생님께 차이를 보여주세요."]
+  },
+  {
+    "id": "MISSION_005",
+    "type": "teacher_challenge",
+    "level": "B1",
+    "tags": ["memory", "childhood"],
+    "emotion": "mischievous",
+    "animation": "wink",
+    "english": ["I bet your teacher can't remember their first day of school.", "Ask them.", "See if they remember anything at all."],
+    "korean": ["선생님은 첫 등교 날을 기억 못 할 것 같아.", "물어보세요.", "조금이라도 기억하는지 확인해보세요."]
+  },
+  {
+    "id": "MISSION_006",
+    "type": "debate",
+    "level": "B1",
+    "tags": ["opinion", "rules"],
+    "emotion": "determined",
+    "animation": "arms_cross",
+    "english": ["I think umbrellas should be free for everyone.", "Rain isn't fair.", "Do you agree? Tell your teacher why."],
+    "korean": ["우산은 모두에게 공짜여야 한다고 생각해.", "비는 불공평하잖아.", "동의해? 선생님께 이유를 말해보세요."]
+  },
+  {
+    "id": "MISSION_007",
+    "type": "impossible_situation",
+    "level": "B1",
+    "tags": ["hypothetical", "school"],
+    "emotion": "amazed",
+    "animation": "eyes_widen",
+    "english": ["What if your school bag could talk?", "What would it complain about?", "Ask your teacher too."],
+    "korean": ["가방이 말을 할 수 있다면?", "가방은 뭐라고 불평할까?", "선생님께도 물어보세요."]
+  },
+  {
+    "id": "MISSION_008",
+    "type": "riddle",
+    "level": "B1",
+    "tags": ["thinking"],
+    "emotion": "curious",
+    "animation": "thinking",
+    "english": ["I get shorter every time I speak.", "What am I?", "Guess, then explain your answer to your teacher."],
+    "korean": ["나는 말할 때마다 짧아져.", "나는 뭘까?", "맞춰보고 선생님께 이유를 설명해보세요."]
+  },
+  {
+    "id": "MISSION_009",
+    "type": "emotion",
+    "level": "B1",
+    "tags": ["feelings"],
+    "emotion": "nervous",
+    "animation": "shiver",
+    "english": ["I'm a bit nervous right now.", "I won't say why.", "Ask your teacher when they last felt nervous."],
+    "korean": ["나 지금 좀 긴장돼.", "이유는 말 안 할게.", "선생님께 마지막으로 긴장했던 게 언제인지 물어보세요."]
+  },
+  {
+    "id": "MISSION_010",
+    "type": "fact",
+    "level": "B1",
+    "tags": ["science", "space"],
+    "emotion": "amazed",
+    "animation": "sparkle_eyes",
+    "english": ["Some stars are already dead.", "We're still watching their old light.", "Ask your teacher if that surprises them too."],
+    "korean": ["어떤 별들은 이미 사라졌어.", "우리는 그 별의 옛날 빛을 아직 보고 있는 거야.", "선생님도 놀랐는지 물어보세요."]
+  },
+  {
+    "id": "MISSION_011",
+    "type": "kindness_moment",
+    "level": "B1",
+    "tags": ["kindness"],
+    "emotion": "thoughtful",
+    "animation": "smile_soft",
+    "english": ["Someone probably helped you today without you noticing.", "Think about it.", "Tell your teacher who it might have been."],
+    "korean": ["오늘 누군가 널 도와줬는데 몰랐을 수도 있어.", "생각해봐.", "누구였을지 선생님께 말해보세요."]
+  },
+  {
+    "id": "MISSION_012",
+    "type": "creative_game",
+    "level": "B1",
+    "tags": ["imagination", "invention"],
+    "emotion": "excited",
+    "animation": "bounce",
+    "english": ["Invent one new rule for your classroom.", "Any rule.", "Convince your teacher it's a good idea."],
+    "korean": ["교실에 새로운 규칙 하나를 만들어봐.", "아무 규칙이나.", "선생님께 그게 왜 좋은 생각인지 설득해보세요."]
+  },
+  {
+    "id": "MISSION_013",
+    "type": "observation",
+    "level": "B1",
+    "tags": ["everyday_life"],
+    "emotion": "confused",
+    "animation": "scratch_head",
+    "english": ["Socks always disappear in pairs.", "One is never enough for them.", "Ask your teacher where they think missing socks go."],
+    "korean": ["양말은 항상 짝으로 사라져.", "한 짝만으론 안 되나 봐.", "선생님께 사라진 양말이 어디로 갔을지 물어보세요."]
+  },
+  {
+    "id": "MISSION_014",
+    "type": "deep_question",
+    "level": "B1",
+    "tags": ["identity"],
+    "emotion": "thoughtful",
+    "animation": "float_slowly",
+    "english": ["If nobody had names...", "how would we recognise each other?", "Ask your teacher what they think."],
+    "korean": ["아무도 이름이 없다면...", "서로를 어떻게 알아볼까?", "선생님 생각은 어떤지 물어보세요."]
+  },
+  {
+    "id": "MISSION_015",
+    "type": "joke",
+    "level": "B1",
+    "tags": ["food", "silly"],
+    "emotion": "playful",
+    "animation": "laugh",
+    "english": ["Why did the sandwich go to school?", "...it wanted to be a little smarter.", "Now YOU make one up for your teacher."],
+    "korean": ["샌드위치가 왜 학교에 갔을까?", "...조금 더 똑똑해지고 싶어서.", "이번엔 네가 선생님을 위해 농담을 만들어봐."]
+  },
+  {
+    "id": "MISSION_016",
+    "type": "mini_story",
+    "level": "B1",
+    "tags": ["adventure"],
+    "emotion": "curious",
+    "animation": "thinking",
+    "english": ["A door appeared in my room last night.", "It wasn't there before.", "I haven't opened it yet.", "What do you think is behind it?"],
+    "korean": ["어젯밤 내 방에 문이 하나 생겼어.", "원래 없던 거야.", "아직 안 열어봤어.", "그 뒤에 뭐가 있을 것 같아?"]
+  },
+  {
+    "id": "MISSION_017",
+    "type": "child_challenge",
+    "level": "B1",
+    "tags": ["performance"],
+    "emotion": "playful",
+    "animation": "wobble",
+    "english": ["Can you say one sentence without moving your mouth much?", "Try it.", "Then ask your teacher to try too."],
+    "korean": ["입을 거의 안 움직이고 한 문장을 말할 수 있어?", "해봐.", "그리고 선생님께도 해보라고 해보세요."]
+  },
+  {
+    "id": "MISSION_018",
+    "type": "curious_question",
+    "level": "B1",
+    "tags": ["animals"],
+    "emotion": "curious",
+    "animation": "head_tilt",
+    "english": ["Do you think fish get bored?", "There isn't much to look at down there.", "Ask your teacher what they think."],
+    "korean": ["물고기도 심심할까?", "물속엔 볼 게 별로 없잖아.", "선생님 생각은 어떤지 물어보세요."]
+  },
+  {
+    "id": "MISSION_019",
+    "type": "random_moment",
+    "level": "B1",
+    "tags": ["surprise"],
+    "emotion": "confused",
+    "animation": "double_take",
+    "english": ["Wait.", "I forgot what I was going to say.", "...tell your teacher something YOU forgot recently."],
+    "korean": ["잠깐.", "무슨 말을 하려고 했는지 잊어버렸어.", "...최근에 네가 잊어버린 것을 선생님께 말해보세요."]
+  },
+  {
+    "id": "MISSION_020",
+    "type": "conversation_mission",
+    "level": "B1",
+    "tags": ["future", "school"],
+    "emotion": "amazed",
+    "animation": "sparkle_eyes",
+    "english": ["I wonder if robots will ever go to school.", "What subject would they be worst at?", "Ask your teacher what they think."],
+    "korean": ["로봇도 언젠가 학교에 다닐까?", "로봇은 어떤 과목을 제일 못할까?", "선생님 생각은 어떤지 물어보세요."]
+  }
+]

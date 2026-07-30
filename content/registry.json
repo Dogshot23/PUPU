@@ -1,0 +1,11 @@
+{
+  "modules": [
+    { "id": "core", "path": "core" },
+    { "id": "games", "path": "packs/games" },
+    { "id": "jokes", "path": "packs/jokes" },
+    { "id": "missions", "path": "packs/missions" },
+    { "id": "tiny_stories", "path": "packs/tiny_stories" },
+    { "id": "weird_facts", "path": "packs/weird_facts" },
+    { "id": "would_you_rather", "path": "packs/would_you_rather" }
+  ]
+}

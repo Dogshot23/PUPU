@@ -1,0 +1,455 @@
+[
+  {
+    "id": "JOKES_0001",
+    "type": "joke",
+    "subtype": "joke",
+    "level": "B1",
+    "tags": [
+      "food",
+      "silly"
+    ],
+    "emotion": "playful",
+    "animation": "laugh",
+    "english": [
+      "I tried to eat a clock yesterday.",
+      "It was very time-consuming."
+    ],
+    "translations": {
+      "ko": [
+        "어제 시계를 먹으려고 했어.",
+        "시간이 정말 많이 걸리더라."
+      ]
+    }
+  },
+  {
+    "id": "JOKES_0002",
+    "type": "joke",
+    "subtype": "joke",
+    "level": "B1",
+    "tags": [
+      "observation",
+      "animals"
+    ],
+    "emotion": "curious",
+    "animation": "head_tilt",
+    "english": [
+      "I saw a snail today.",
+      "It's probably still walking away from me."
+    ],
+    "translations": {
+      "ko": [
+        "오늘 달팽이를 봤어.",
+        "아마 아직도 나한테서 도망가고 있을 거야."
+      ]
+    }
+  },
+  {
+    "id": "JOKES_0003",
+    "type": "joke",
+    "subtype": "joke",
+    "level": "B1",
+    "tags": [
+      "silly",
+      "teacher"
+    ],
+    "emotion": "mischievous",
+    "animation": "wink",
+    "english": [
+      "I have a joke about teachers.",
+      "...I'll save it for later.",
+      "Ask your teacher if they're worried."
+    ],
+    "translations": {
+      "ko": [
+        "선생님에 대한 농담이 하나 있어.",
+        "...나중을 위해 아껴둘게.",
+        "선생님께 걱정되는지 물어보세요."
+      ]
+    }
+  },
+  {
+    "id": "JOKES_0004",
+    "type": "joke",
+    "subtype": "joke",
+    "level": "B1",
+    "tags": [
+      "nonsense"
+    ],
+    "emotion": "playful",
+    "animation": "bounce",
+    "english": [
+      "I told my shadow a joke.",
+      "It didn't laugh.",
+      "It never does."
+    ],
+    "translations": {
+      "ko": [
+        "내 그림자한테 농담을 했어.",
+        "안 웃더라.",
+        "원래 절대 안 웃어."
+      ]
+    }
+  },
+  {
+    "id": "JOKES_0005",
+    "type": "joke",
+    "subtype": "joke",
+    "level": "B1",
+    "tags": [
+      "food",
+      "silly"
+    ],
+    "emotion": "hungry",
+    "animation": "belly_rumble",
+    "english": [
+      "I asked a banana for advice.",
+      "It just went bad."
+    ],
+    "translations": {
+      "ko": [
+        "바나나한테 조언을 구했어.",
+        "그냥 상해버리더라."
+      ]
+    }
+  },
+  {
+    "id": "JOKES_0006",
+    "type": "joke",
+    "subtype": "joke",
+    "level": "B1",
+    "tags": [
+      "silly",
+      "numbers"
+    ],
+    "emotion": "playful",
+    "animation": "thinking",
+    "english": [
+      "I don't trust stairs.",
+      "They're always up to something."
+    ],
+    "translations": {
+      "ko": [
+        "나는 계단을 못 믿어.",
+        "항상 뭔가 꾸미고 있는 것 같아."
+      ]
+    }
+  },
+  {
+    "id": "JOKES_0007",
+    "type": "joke",
+    "subtype": "joke",
+    "level": "B1",
+    "tags": [
+      "silly",
+      "weather"
+    ],
+    "emotion": "sleepy",
+    "animation": "yawn",
+    "english": [
+      "Clouds never tell me their plans.",
+      "I just wake up and they're gone."
+    ],
+    "translations": {
+      "ko": [
+        "구름은 자기 계획을 절대 말해주지 않아.",
+        "그냥 일어나 보면 사라져 있어."
+      ]
+    }
+  },
+  {
+    "id": "JOKES_0008",
+    "type": "joke",
+    "subtype": "joke",
+    "level": "B1",
+    "tags": [
+      "silly",
+      "objects"
+    ],
+    "emotion": "confused",
+    "animation": "scratch_head",
+    "english": [
+      "My sock disappeared again.",
+      "I think it's living a secret life somewhere."
+    ],
+    "translations": {
+      "ko": [
+        "양말이 또 사라졌어.",
+        "어딘가에서 비밀스러운 삶을 살고 있는 것 같아."
+      ]
+    }
+  },
+  {
+    "id": "JOKES_0009",
+    "type": "joke",
+    "subtype": "joke",
+    "level": "B1",
+    "tags": [
+      "silly",
+      "self"
+    ],
+    "emotion": "embarrassed",
+    "animation": "cover_face",
+    "english": [
+      "I waved at someone today.",
+      "They weren't waving at me.",
+      "I'm still thinking about it."
+    ],
+    "translations": {
+      "ko": [
+        "오늘 누군가에게 손을 흔들었어.",
+        "근데 나한테 흔든 게 아니었어.",
+        "아직도 그 생각 중이야."
+      ]
+    }
+  },
+  {
+    "id": "JOKES_0010",
+    "type": "joke",
+    "subtype": "joke",
+    "level": "B1",
+    "tags": [
+      "silly",
+      "logic"
+    ],
+    "emotion": "proud",
+    "animation": "chest_puff",
+    "english": [
+      "I finally solved a mystery today.",
+      "Where do all the pens go?",
+      "...still working on that one, actually."
+    ],
+    "translations": {
+      "ko": [
+        "오늘 드디어 미스터리를 풀었어.",
+        "펜들이 다 어디로 가는지 말이야.",
+        "...사실 아직 풀고 있는 중이야."
+      ]
+    }
+  },
+  {
+    "id": "JOKES_0011",
+    "type": "joke",
+    "subtype": "joke",
+    "level": "B1",
+    "tags": [
+      "silly",
+      "food"
+    ],
+    "emotion": "playful",
+    "animation": "laugh",
+    "english": [
+      "I think popcorn is just corn.",
+      "Living its best life."
+    ],
+    "translations": {
+      "ko": [
+        "팝콘은 그냥 옥수수인 것 같아.",
+        "최고의 인생을 살고 있는 옥수수."
+      ]
+    }
+  },
+  {
+    "id": "JOKES_0012",
+    "type": "joke",
+    "subtype": "joke",
+    "level": "B1",
+    "tags": [
+      "silly",
+      "school"
+    ],
+    "emotion": "mischievous",
+    "animation": "wink",
+    "english": [
+      "I bet homework is scared of weekends.",
+      "Ask your teacher if they agree."
+    ],
+    "translations": {
+      "ko": [
+        "숙제는 주말을 무서워할 것 같아.",
+        "선생님도 동의하는지 물어보세요."
+      ]
+    }
+  },
+  {
+    "id": "JOKES_0013",
+    "type": "joke",
+    "subtype": "joke",
+    "level": "B1",
+    "tags": [
+      "silly",
+      "animals"
+    ],
+    "emotion": "amazed",
+    "animation": "eyes_widen",
+    "english": [
+      "A bird looked directly at me today.",
+      "I still don't know what it wanted."
+    ],
+    "translations": {
+      "ko": [
+        "오늘 새가 나를 똑바로 쳐다봤어.",
+        "아직도 뭘 원했는지 모르겠어."
+      ]
+    }
+  },
+  {
+    "id": "JOKES_0014",
+    "type": "joke",
+    "subtype": "joke",
+    "level": "B1",
+    "tags": [
+      "silly",
+      "self"
+    ],
+    "emotion": "confused",
+    "animation": "double_take",
+    "english": [
+      "I forgot what I was doing halfway through doing it.",
+      "I think I'm still doing it now."
+    ],
+    "translations": {
+      "ko": [
+        "뭔가를 하다가 중간에 뭘 하고 있었는지 잊어버렸어.",
+        "지금도 하고 있는 것 같아."
+      ]
+    }
+  },
+  {
+    "id": "JOKES_0015",
+    "type": "joke",
+    "subtype": "joke",
+    "level": "B1",
+    "tags": [
+      "silly",
+      "numbers"
+    ],
+    "emotion": "playful",
+    "animation": "bounce",
+    "english": [
+      "Seven felt like a strange number today.",
+      "I don't know why.",
+      "Numbers have moods too."
+    ],
+    "translations": {
+      "ko": [
+        "오늘따라 7이라는 숫자가 이상하게 느껴졌어.",
+        "왜인지는 모르겠어.",
+        "숫자도 기분이 있나 봐."
+      ]
+    }
+  },
+  {
+    "id": "JOKES_0016",
+    "type": "joke",
+    "subtype": "joke",
+    "level": "B1",
+    "tags": [
+      "silly",
+      "objects"
+    ],
+    "emotion": "thoughtful",
+    "animation": "slow_blink",
+    "english": [
+      "Mirrors always copy me.",
+      "Very rude, if you think about it."
+    ],
+    "translations": {
+      "ko": [
+        "거울은 항상 나를 따라해.",
+        "생각해보면 정말 무례해."
+      ]
+    }
+  },
+  {
+    "id": "JOKES_0017",
+    "type": "joke",
+    "subtype": "joke",
+    "level": "B1",
+    "tags": [
+      "silly",
+      "food"
+    ],
+    "emotion": "hungry",
+    "animation": "belly_rumble",
+    "english": [
+      "I opened the fridge just to say hello.",
+      "Then I got hungry again."
+    ],
+    "translations": {
+      "ko": [
+        "그냥 인사하려고 냉장고를 열었어.",
+        "근데 다시 배고파졌어."
+      ]
+    }
+  },
+  {
+    "id": "JOKES_0018",
+    "type": "joke",
+    "subtype": "joke",
+    "level": "B1",
+    "tags": [
+      "silly",
+      "teacher"
+    ],
+    "emotion": "playful",
+    "animation": "wobble",
+    "english": [
+      "I think your teacher secretly loves Mondays.",
+      "Ask them.",
+      "See their face."
+    ],
+    "translations": {
+      "ko": [
+        "선생님은 사실 월요일을 좋아하는 것 같아.",
+        "물어보세요.",
+        "표정을 봐보세요."
+      ]
+    }
+  },
+  {
+    "id": "JOKES_0019",
+    "type": "joke",
+    "subtype": "joke",
+    "level": "B1",
+    "tags": [
+      "silly",
+      "self"
+    ],
+    "emotion": "sleepy",
+    "animation": "yawn",
+    "english": [
+      "I tried counting sheep to fall asleep.",
+      "One of them stared back at me.",
+      "That was the end of that."
+    ],
+    "translations": {
+      "ko": [
+        "잠들려고 양을 세봤어.",
+        "양 한 마리가 나를 노려봤어.",
+        "그걸로 끝났어."
+      ]
+    }
+  },
+  {
+    "id": "JOKES_0020",
+    "type": "joke",
+    "subtype": "joke",
+    "level": "B1",
+    "tags": [
+      "silly",
+      "logic"
+    ],
+    "emotion": "playful",
+    "animation": "laugh",
+    "english": [
+      "I think Tuesdays don't try very hard.",
+      "They just show up."
+    ],
+    "translations": {
+      "ko": [
+        "화요일은 별로 열심히 노력 안 하는 것 같아.",
+        "그냥 나타나기만 해."
+      ]
+    }
+  }
+]

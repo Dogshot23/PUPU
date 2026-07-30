@@ -1,0 +1,202 @@
+[
+  {
+    "id": "STORY_001",
+    "type": "story",
+    "level": "B1",
+    "tags": ["mystery", "home"],
+    "emotion": "curious",
+    "animation": "head_tilt",
+    "english": ["I found a key under my pillow this morning.", "I don't own a key.", "I don't even know what door it opens.", "What do you think it opens?"],
+    "korean": ["오늘 아침 베개 밑에서 열쇠를 발견했어.", "난 열쇠가 없는데.", "이게 어떤 문을 여는 건지도 모르겠어.", "이게 어떤 문을 열 것 같아?"]
+  },
+  {
+    "id": "STORY_002",
+    "type": "story",
+    "level": "B1",
+    "tags": ["animals", "silly"],
+    "emotion": "amazed",
+    "animation": "eyes_widen",
+    "english": ["A cat followed me home yesterday.", "It sat outside my door all night.", "This morning, it left something on my step.", "What do you think it was?"],
+    "korean": ["어제 고양이 한 마리가 나를 따라 집까지 왔어.", "밤새 문 앞에 앉아 있더라.", "오늘 아침, 문 앞에 뭔가를 남겨놨어.", "그게 뭐였을 것 같아?"]
+  },
+  {
+    "id": "STORY_003",
+    "type": "story",
+    "level": "B1",
+    "tags": ["food", "surprise"],
+    "emotion": "confused",
+    "animation": "scratch_head",
+    "english": ["I opened my lunch box today.", "It wasn't my lunch.", "It was something much stranger.", "What do you think was inside?"],
+    "korean": ["오늘 도시락 통을 열었어.", "내 도시락이 아니었어.", "훨씬 더 이상한 게 들어있었어.", "안에 뭐가 있었을 것 같아?"]
+  },
+  {
+    "id": "STORY_004",
+    "type": "story",
+    "level": "B1",
+    "tags": ["nature", "wonder"],
+    "emotion": "thoughtful",
+    "animation": "slow_blink",
+    "english": ["I saw a light in the sky last night.", "It wasn't a star.", "It moved in a way stars don't move.", "What do you think it was?"],
+    "korean": ["어젯밤 하늘에서 빛을 봤어.", "별은 아니었어.", "별이 움직이는 방식이 아니었거든.", "그게 뭐였을 것 같아?"]
+  },
+  {
+    "id": "STORY_005",
+    "type": "story",
+    "level": "B1",
+    "tags": ["objects", "mystery"],
+    "emotion": "curious",
+    "animation": "head_tilt",
+    "english": ["I found an old letter inside a book at the library.", "It wasn't finished.", "The last sentence just stopped.", "How do you think it ends?"],
+    "korean": ["도서관 책 속에서 오래된 편지를 발견했어.", "다 끝나지 않은 편지였어.", "마지막 문장이 갑자기 멈췄어.", "어떻게 끝날 것 같아?"]
+  },
+  {
+    "id": "STORY_006",
+    "type": "story",
+    "level": "B1",
+    "tags": ["silly", "self"],
+    "emotion": "playful",
+    "animation": "wobble",
+    "english": ["I woke up speaking a different language this morning.", "Just for a few seconds.", "Then it disappeared completely.", "What language do you think it was?"],
+    "korean": ["오늘 아침 다른 언어로 말하며 일어났어.", "몇 초 동안만.", "그리고 완전히 사라졌어.", "무슨 언어였을 것 같아?"]
+  },
+  {
+    "id": "STORY_007",
+    "type": "story",
+    "level": "B1",
+    "tags": ["nature", "discovery"],
+    "emotion": "amazed",
+    "animation": "sparkle_eyes",
+    "english": ["I found a door hidden behind some trees.", "It looked very old.", "It was slightly open.", "Should I go in? What do you think is inside?"],
+    "korean": ["나무 뒤에 숨겨진 문을 발견했어.", "아주 오래돼 보였어.", "조금 열려 있었어.", "들어가야 할까? 안에 뭐가 있을 것 같아?"]
+  },
+  {
+    "id": "STORY_008",
+    "type": "story",
+    "level": "B1",
+    "tags": ["memory", "childhood"],
+    "emotion": "thoughtful",
+    "animation": "float_slowly",
+    "english": ["I remember one day when I was very small.", "Something happened that I still can't explain.", "I never told anyone about it.", "Should I tell you now?"],
+    "korean": ["아주 어렸을 때의 어느 날이 기억나.", "아직도 설명할 수 없는 일이 있었어.", "그동안 아무한테도 말 안 했어.", "지금 말해줄까?"]
+  },
+  {
+    "id": "STORY_009",
+    "type": "story",
+    "level": "B1",
+    "tags": ["objects", "silly"],
+    "emotion": "confused",
+    "animation": "scratch_head",
+    "english": ["My shoes were on the wrong feet this morning.", "But I didn't put them on wrong.", "Someone else must have moved them.", "Who do you think it was?"],
+    "korean": ["오늘 아침 신발이 반대로 신겨져 있었어.", "근데 내가 잘못 신은 게 아니었어.", "누군가 옮겨놓은 게 분명해.", "누구였을 것 같아?"]
+  },
+  {
+    "id": "STORY_010",
+    "type": "story",
+    "level": "B1",
+    "tags": ["dreams", "wonder"],
+    "emotion": "curious",
+    "animation": "head_tilt",
+    "english": ["I had a dream about a place I've never seen.", "But it felt familiar.", "There was a sound I still remember.", "What do you think the sound was?"],
+    "korean": ["한 번도 본 적 없는 장소에 대한 꿈을 꿨어.", "근데 왠지 익숙했어.", "아직도 기억나는 소리가 있었어.", "그 소리가 뭐였을 것 같아?"]
+  },
+  {
+    "id": "STORY_011",
+    "type": "story",
+    "level": "B1",
+    "tags": ["nature", "night"],
+    "emotion": "amazed",
+    "animation": "eyes_widen",
+    "english": ["Something knocked on my window last night.", "It wasn't rain.", "It wasn't wind either.", "What do you think it was?"],
+    "korean": ["어젯밤 창문을 두드리는 소리가 났어.", "비는 아니었어.", "바람도 아니었어.", "그게 뭐였을 것 같아?"]
+  },
+  {
+    "id": "STORY_012",
+    "type": "story",
+    "level": "B1",
+    "tags": ["silly", "objects"],
+    "emotion": "playful",
+    "animation": "laugh",
+    "english": ["I found a drawing under my bed.", "I didn't draw it.", "It looked exactly like me.", "Who do you think drew it?"],
+    "korean": ["침대 밑에서 그림을 발견했어.", "내가 그린 게 아니었어.", "근데 나랑 똑같이 생겼어.", "누가 그렸을 것 같아?"]
+  },
+  {
+    "id": "STORY_013",
+    "type": "story",
+    "level": "B1",
+    "tags": ["mystery", "school"],
+    "emotion": "curious",
+    "animation": "thinking",
+    "english": ["My classroom had an extra desk today.", "Nobody sat there.", "But the chair was warm.", "Who do you think was sitting there?"],
+    "korean": ["오늘 교실에 책상이 하나 더 있었어.", "아무도 거기 앉지 않았어.", "근데 의자가 따뜻했어.", "누가 앉아 있었을 것 같아?"]
+  },
+  {
+    "id": "STORY_014",
+    "type": "story",
+    "level": "B1",
+    "tags": ["silly", "friendship"],
+    "emotion": "playful",
+    "animation": "bounce",
+    "english": ["My best friend sent me a message with no words.", "Just one strange picture.", "I still don't understand it.", "What do you think it meant?"],
+    "korean": ["가장 친한 친구가 글자 없이 메시지를 보냈어.", "이상한 사진 하나만.", "아직도 이해가 안 돼.", "그게 무슨 뜻이었을 것 같아?"]
+  },
+  {
+    "id": "STORY_015",
+    "type": "story",
+    "level": "B1",
+    "tags": ["nature", "discovery"],
+    "emotion": "amazed",
+    "animation": "sparkle_eyes",
+    "english": ["I found footprints in my garden this morning.", "They weren't mine.", "They were much too big.", "Whose do you think they were?"],
+    "korean": ["오늘 아침 정원에서 발자국을 발견했어.", "내 발자국이 아니었어.", "훨씬 더 컸어.", "누구 발자국이었을 것 같아?"]
+  },
+  {
+    "id": "STORY_016",
+    "type": "story",
+    "level": "B1",
+    "tags": ["objects", "wonder"],
+    "emotion": "curious",
+    "animation": "head_tilt",
+    "english": ["I found a box in the attic.", "It had my name on it.", "But I never put it there.", "What do you think is inside?"],
+    "korean": ["다락방에서 상자를 발견했어.", "상자에 내 이름이 쓰여 있었어.", "근데 내가 놓은 게 아니었어.", "안에 뭐가 있을 것 같아?"]
+  },
+  {
+    "id": "STORY_017",
+    "type": "story",
+    "level": "B1",
+    "tags": ["silly", "self"],
+    "emotion": "confused",
+    "animation": "double_take",
+    "english": ["I checked the mirror this morning.", "For one second, I looked different.", "Then everything went back to normal.", "What do you think you saw?"],
+    "korean": ["오늘 아침 거울을 봤어.", "1초 동안 다르게 보였어.", "그리고 다시 원래대로 돌아갔어.", "뭘 봤을 것 같아?"]
+  },
+  {
+    "id": "STORY_018",
+    "type": "story",
+    "level": "B1",
+    "tags": ["memory", "family"],
+    "emotion": "thoughtful",
+    "animation": "slow_blink",
+    "english": ["My grandmother once told me a story.", "She never finished it.", "She said she'd tell me the rest one day.", "How do you think the story ends?"],
+    "korean": ["할머니가 예전에 이야기를 하나 해주셨어.", "끝까지 말해주진 않으셨어.", "언젠가 나머지를 말해주겠다고 하셨어.", "이야기가 어떻게 끝날 것 같아?"]
+  },
+  {
+    "id": "STORY_019",
+    "type": "story",
+    "level": "B1",
+    "tags": ["nature", "silly"],
+    "emotion": "playful",
+    "animation": "wobble",
+    "english": ["A bird landed on my windowsill this morning.", "It stayed there for a very long time.", "It seemed to be waiting for something.", "What do you think it was waiting for?"],
+    "korean": ["오늘 아침 새 한 마리가 창턱에 앉았어.", "아주 오랫동안 그대로 있었어.", "뭔가를 기다리는 것 같았어.", "뭘 기다리고 있었을 것 같아?"]
+  },
+  {
+    "id": "STORY_020",
+    "type": "story",
+    "level": "B1",
+    "tags": ["objects", "mystery"],
+    "emotion": "curious",
+    "animation": "thinking",
+    "english": ["I found a map drawn on the back of my notebook.", "I didn't draw it.", "It led somewhere in my own house.", "Should we follow it? Where do you think it leads?"],
+    "korean": ["공책 뒷면에 그려진 지도를 발견했어.", "내가 그린 게 아니었어.", "우리 집 어딘가로 이어지는 지도였어.", "따라가 볼까? 어디로 이어질 것 같아?"]
+  }
+]

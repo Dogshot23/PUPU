@@ -1,0 +1,242 @@
+[
+  {
+    "id": "MISSION_001",
+    "type": "thought",
+    "level": "B1",
+    "tags": ["food", "teacher_challenge"],
+    "emotion": "hungry",
+    "animation": "belly_rumble",
+    "english": ["I'm hungry...", "I wonder what teachers eat when nobody's watching.", "Ask your teacher: what's the weirdest thing you've eaten for breakfast?"],
+    "translations": {
+      "ko": ["나 배고파...", "선생님은 아무도 안 볼 때 뭘 먹을까?", "선생님께 물어보세요: 아침으로 먹어본 것 중 가장 이상한 건 뭐예요?"]
+    }
+  },
+  {
+    "id": "MISSION_002",
+    "type": "thought",
+    "level": "B1",
+    "tags": ["imagination", "animals"],
+    "emotion": "curious",
+    "animation": "head_tilt",
+    "english": ["Do you think animals dream?", "I bet dogs dream about running.", "Ask your teacher: what do you think you dreamed about last night?"],
+    "translations": {
+      "ko": ["동물들도 꿈을 꿀까?", "강아지는 아마 달리는 꿈을 꿀 거야.", "선생님께 물어보세요: 어젯밤에 무슨 꿈을 꿨을 것 같아요?"]
+    }
+  },
+  {
+    "id": "MISSION_003",
+    "type": "thought",
+    "level": "B1",
+    "tags": ["childhood", "teacher_challenge"],
+    "emotion": "mischievous",
+    "animation": "eyebrow_wiggle",
+    "english": ["I wonder if teachers were ever naughty children.", "Hmm... probably.", "Ask your teacher: what's the naughtiest thing you did at school?"],
+    "translations": {
+      "ko": ["선생님도 어릴 때 말썽쟁이였을까?", "음... 아마 그랬을 거야.", "선생님께 물어보세요: 학교 다닐 때 가장 말썽 부린 게 뭐예요?"]
+    }
+  },
+  {
+    "id": "MISSION_004",
+    "type": "thought",
+    "level": "B1",
+    "tags": ["silly", "hypothetical"],
+    "emotion": "playful",
+    "animation": "wobble",
+    "english": ["If you could turn into any animal for one day...", "which one would you pick?", "Ask each other!"],
+    "translations": {
+      "ko": ["하루 동안 어떤 동물로 변할 수 있다면...", "어떤 동물을 고를래?", "서로에게 물어보세요!"]
+    }
+  },
+  {
+    "id": "MISSION_005",
+    "type": "thought",
+    "level": "B1",
+    "tags": ["profound", "shared_conversation"],
+    "emotion": "thoughtful",
+    "animation": "slow_blink",
+    "english": ["I wonder if grown-ups still feel like kids sometimes.", "Ask your teacher: do you ever feel like a kid again?"],
+    "translations": {
+      "ko": ["어른들도 가끔 아이처럼 느껴질까?", "선생님께 물어보세요: 가끔 다시 어린아이처럼 느껴질 때가 있어요?"]
+    }
+  },
+  {
+    "id": "MISSION_006",
+    "type": "thought",
+    "level": "B1",
+    "tags": ["debate", "silly"],
+    "emotion": "confused",
+    "animation": "scratch_head",
+    "english": ["Wait... is a hot dog a sandwich?", "I genuinely don't know.", "You decide, and tell your teacher why."],
+    "translations": {
+      "ko": ["잠깐... 핫도그는 샌드위치일까?", "나도 진짜 모르겠어.", "네 생각을 정하고 선생님께 이유를 말해보세요."]
+    }
+  },
+  {
+    "id": "MISSION_007",
+    "type": "thought",
+    "level": "B1",
+    "tags": ["travel", "teacher_challenge"],
+    "emotion": "amazed",
+    "animation": "eyes_widen",
+    "english": ["Some people never leave their hometown.", "I find that amazing.", "Ask your teacher: what's the farthest place you've ever traveled?"],
+    "translations": {
+      "ko": ["어떤 사람들은 평생 고향을 떠나지 않아.", "그게 신기해.", "선생님께 물어보세요: 가장 멀리 가본 곳은 어디예요?"]
+    }
+  },
+  {
+    "id": "MISSION_008",
+    "type": "thought",
+    "level": "B1",
+    "tags": ["nonsense"],
+    "emotion": "sleepy",
+    "animation": "yawn",
+    "english": ["I think clouds would make terrible pillows.", "Too bumpy.", "..."],
+    "translations": {
+      "ko": ["구름은 베개로는 별로일 것 같아.", "너무 울퉁불퉁해.", "..."]
+    }
+  },
+  {
+    "id": "MISSION_009",
+    "type": "thought",
+    "level": "B1",
+    "tags": ["fear", "shared_conversation"],
+    "emotion": "worried",
+    "animation": "shiver",
+    "english": ["What's something small that scares you?", "For me... buttons falling off is scary.", "Tell each other your small fears."],
+    "translations": {
+      "ko": ["작지만 무서운 게 뭐야?", "나는... 단추 떨어지는 게 무서워.", "서로 작은 두려움을 이야기해보세요."]
+    }
+  },
+  {
+    "id": "MISSION_010",
+    "type": "thought",
+    "level": "B1",
+    "tags": ["memory", "teacher_challenge"],
+    "emotion": "proud",
+    "animation": "chest_puff",
+    "english": ["I'm proud of something I did today.", "I won't say what.", "Ask your teacher: what are you proud of this week?"],
+    "translations": {
+      "ko": ["오늘 뭔가를 해내서 뿌듯해.", "뭔지는 비밀이야.", "선생님께 물어보세요: 이번 주에 뿌듯했던 일이 뭐예요?"]
+    }
+  },
+  {
+    "id": "MISSION_011",
+    "type": "thought",
+    "level": "B1",
+    "tags": ["choice", "hypothetical"],
+    "emotion": "excited",
+    "animation": "bounce",
+    "english": ["If you found a magic door in your room...", "would you open it right away, or wait until morning?", "Discuss!"],
+    "translations": {
+      "ko": ["방에 마법의 문이 생긴다면...", "바로 열어볼래, 아니면 아침까지 기다릴래?", "이야기해보세요!"]
+    }
+  },
+  {
+    "id": "MISSION_012",
+    "type": "thought",
+    "level": "B1",
+    "tags": ["mystery"],
+    "emotion": "mischievous",
+    "animation": "wink",
+    "english": ["I've got a secret.", "...maybe later.", "Guess what it might be, and tell your teacher your best guess."],
+    "translations": {
+      "ko": ["나 비밀이 하나 있어.", "...나중에 말해줄게.", "무엇일지 추측해서 선생님께 말해보세요."]
+    }
+  },
+  {
+    "id": "MISSION_013",
+    "type": "thought",
+    "level": "B1",
+    "tags": ["observation", "teacher_challenge"],
+    "emotion": "curious",
+    "animation": "head_tilt",
+    "english": ["Nobody ever remembers Tuesdays.", "Isn't that strange?", "Ask your teacher: what's the most boring day of the week?"],
+    "translations": {
+      "ko": ["아무도 화요일은 기억 못 해.", "이상하지 않아?", "선생님께 물어보세요: 일주일 중 가장 심심한 요일이 언제예요?"]
+    }
+  },
+  {
+    "id": "MISSION_014",
+    "type": "thought",
+    "level": "B1",
+    "tags": ["embarrassment", "shared_conversation"],
+    "emotion": "embarrassed",
+    "animation": "cover_face",
+    "english": ["I once forgot my own name for a second.", "It was embarrassing.", "Ask your teacher: what's an embarrassing moment you remember?"],
+    "translations": {
+      "ko": ["한 번은 내 이름을 잠깐 잊어버렸어.", "너무 창피했어.", "선생님께 물어보세요: 기억나는 창피했던 순간이 있어요?"]
+    }
+  },
+  {
+    "id": "MISSION_015",
+    "type": "thought",
+    "level": "B1",
+    "tags": ["nonsense", "profound"],
+    "emotion": "thoughtful",
+    "animation": "float_slowly",
+    "english": ["I wonder what the world would sound like without birds.", "Just... quiet."],
+    "translations": {
+      "ko": ["새가 없다면 세상은 어떤 소리일까?", "그냥... 조용하겠지."]
+    }
+  },
+  {
+    "id": "MISSION_016",
+    "type": "thought",
+    "level": "B1",
+    "tags": ["debate", "teacher_challenge"],
+    "emotion": "determined",
+    "animation": "arms_cross",
+    "english": ["Pizza or ice cream. Forever. Pick one.", "There is no wrong answer.", "But you must defend your choice to your teacher."],
+    "translations": {
+      "ko": ["피자 아니면 아이스크림. 평생. 하나만 골라.", "정답은 없어.", "하지만 선생님께 이유를 설명해야 해."]
+    }
+  },
+  {
+    "id": "MISSION_017",
+    "type": "thought",
+    "level": "B1",
+    "tags": ["silly", "senses"],
+    "emotion": "playful",
+    "animation": "tongue_out",
+    "english": ["If colours had flavours...", "what would blue taste like?", "Tell your teacher your answer."],
+    "translations": {
+      "ko": ["색깔에 맛이 있다면...", "파란색은 무슨 맛일까?", "선생님께 네 대답을 말해보세요."]
+    }
+  },
+  {
+    "id": "MISSION_018",
+    "type": "thought",
+    "level": "B1",
+    "tags": ["fear", "brave"],
+    "emotion": "brave",
+    "animation": "chest_puff",
+    "english": ["Today I decided to be brave.", "I don't know why I'm telling you this.", "Ask your teacher: when did you last feel brave?"],
+    "translations": {
+      "ko": ["오늘 나는 용감해지기로 했어.", "왜 이 얘기를 하는지 모르겠지만.", "선생님께 물어보세요: 최근에 용감했던 순간이 언제예요?"]
+    }
+  },
+  {
+    "id": "MISSION_019",
+    "type": "thought",
+    "level": "B1",
+    "tags": ["change_of_mind", "surprise"],
+    "emotion": "confused",
+    "animation": "double_take",
+    "english": ["I was going to tell you a fact about the moon.", "...actually, never mind.", "What do YOU know about the moon?"],
+    "translations": {
+      "ko": ["달에 대한 사실을 말해주려고 했는데...", "...아, 됐다.", "너는 달에 대해 뭘 알고 있어?"]
+    }
+  },
+  {
+    "id": "MISSION_020",
+    "type": "thought",
+    "level": "B1",
+    "tags": ["shared_conversation", "future"],
+    "emotion": "amazed",
+    "animation": "sparkle_eyes",
+    "english": ["I wonder what school will be like in 100 years.", "Maybe no homework at all.", "Ask your teacher: what do you think school will be like in the future?"],
+    "translations": {
+      "ko": ["100년 후 학교는 어떨까?", "숙제가 아예 없을지도 몰라.", "선생님께 물어보세요: 미래의 학교는 어떤 모습일 것 같아요?"]
+    }
+  }
+]

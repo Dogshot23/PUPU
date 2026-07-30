@@ -1,0 +1,727 @@
+/* ---------- Reset ---------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #222;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 24px;
+  padding-bottom: 30px;
+
+  /* ---------- Retro CRT pastel background ----------
+     Four static, CSS-only layers (no images, no animation). Listed
+     top-to-bottom in painting order:
+       1. a faint grain/noise texture
+       2. extremely subtle horizontal scanlines
+       3. a soft vignette darkening the screen edges
+       4. a large soft-focus radial glow, centred behind PUPU, that
+          blends pale cyan into lavender, pink and warm cream
+     All four are plain gradients, so this costs nothing extra to
+     paint or repaint and stays perfectly still. */
+  background-color: #fdf6ec;
+  background-image:
+    repeating-radial-gradient(
+      circle at 0 0,
+      rgba(40, 30, 60, 0.035) 0,
+      rgba(40, 30, 60, 0.035) 1px,
+      transparent 1px,
+      transparent 2px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      rgba(30, 20, 50, 0.025) 0,
+      rgba(30, 20, 50, 0.025) 1px,
+      transparent 1px,
+      transparent 3px
+    ),
+    radial-gradient(
+      ellipse 120% 120% at 50% 50%,
+      transparent 55%,
+      rgba(60, 40, 80, 0.07) 100%
+    ),
+    radial-gradient(
+      ellipse 1000px 780px at 50% 42%,
+      #e7fbfa 0%,
+      #e6e3fa 32%,
+      #fbe1ef 58%,
+      #fdecd9 82%,
+      #fdf6ec 100%
+    );
+  background-repeat: repeat, repeat, no-repeat, no-repeat;
+  background-position: 0 0, 0 0, center, center;
+  background-size: auto, auto, 100% 100%, 100% 100%;
+}
+
+/* ---------- Layout ---------- */
+.container {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+  text-align: center;
+}
+
+/* ---------- Speech bubble ----------
+   Two-layer structure:
+   - .speech-bubble-slot has a FIXED height and stays in the normal
+     flex flow. This is what guarantees .pupu-stage (and the shadow
+     inside it) never moves, no matter how tall the bubble gets.
+   - .speech-bubble itself is height:auto and anchored to the bottom
+     of the slot, so it grows upward (overflowing the slot's fixed
+     box, which is fine since the slot allows visible overflow) and
+     always fully wraps its own text -- nothing ever spills outside
+     the bubble's rounded card. */
+.speech-bubble-slot {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  height: 58px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: visible;
+}
+
+.speech-bubble {
+  position: relative;
+  width: 100%;
+  background: linear-gradient(160deg, #e8fff2 0%, #f2fbf7 45%, #fcf6ff 100%);
+  border: 1.5px solid #b8e8d6;
+  border-radius: 20px;
+  padding: 20px 28px;
+  box-shadow: 0 4px 16px rgba(120, 100, 160, 0.1);
+}
+
+.speech-text-en {
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #333333;
+  text-align: center;
+}
+
+.speech-text-ko {
+  margin-top: 6px;
+  font-size: 0.85rem;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #6e6e6e;
+  text-align: center;
+}
+
+/* Hidden whenever there's no Korean line to show (idle text, special
+   events) so no empty gap appears under the English line. */
+.speech-text-ko.speech-text-ko-hidden {
+  display: none;
+}
+
+/* inflate reaction, applied temporarily via JS */
+.speech-bubble.pupu-inflate {
+  animation: pupu-bubble-inflate 0.5s ease-out;
+}
+
+@keyframes pupu-bubble-inflate {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.12);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.speech-bubble::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 10px 10px 0 10px;
+  border-style: solid;
+  border-color: #e8fff2 transparent transparent transparent;
+}
+
+/* ---------- PUPU stage ----------
+   Holds the shadow (bottom layer) and the animated PUPU circle
+   (top layer). Occupies the exact same footprint the old placeholder
+   circle used to, so the character stays centred in the same spot. */
+.pupu-stage {
+  position: relative;
+  width: 55vw;
+  height: 55vw;
+  max-width: 240px;
+  max-height: 240px;
+  min-width: 160px;
+  min-height: 160px;
+}
+
+/* Shadow sits underneath. It shares the same canvas alignment as
+   body.png, so it doesn't need its own animation -- it just stays
+   put while PUPU moves above it. */
+.pupu-shadow {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ---------- PUPU circle (now an animation wrapper, not a drawn shape) ----------
+   All the existing behaviour/thinking/event animation classes below
+   still target .pupu-circle exactly as before -- only now what's
+   visually inside it is the body artwork instead of a CSS circle. */
+.pupu-circle {
+  position: absolute;
+  inset: 0;
+
+  /* continuous idle breathing */
+  animation: pupu-breathe 3.2s ease-in-out infinite;
+  transform-origin: center;
+}
+
+/* The actual PUPU artwork, filling the circle wrapper. */
+.pupu-body {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ---------- PUPU arms ----------
+   left_arm.png and right_arm.png sit on the same shared 2048x2048
+   canvas as body.png, so (like the eyes/mouth/button layers) they
+   line up automatically with no manual offsets -- body stays the
+   anchor layer. Arms are otherwise still by default (idle); specific
+   behaviours below add a brief, subtle rotation and then remove it,
+   never a continuous/looping motion.
+
+   transform-origin is pinned to each arm's shoulder-attachment point
+   (measured from the source artwork) rather than the image center, so
+   rotation reads as swinging from the shoulder instead of spinning
+   the whole limb in place. */
+.pupu-arm {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+.pupu-arm-left {
+  transform-origin: 82.3% 57.4%;
+}
+
+.pupu-arm-right {
+  transform-origin: 13.2% 58.0%;
+}
+
+/* bounce reaction, applied temporarily via JS */
+.pupu-circle.pupu-bounce {
+  animation: pupu-bounce 0.6s ease-in-out;
+}
+
+/* Happy/excited/bounce reactions lift both arms a few degrees --
+   matches the 0.6s timing of the body's own bounce animation above. */
+.pupu-circle.pupu-bounce .pupu-arm-left {
+  animation: pupu-arm-up-left 0.6s ease-in-out;
+}
+
+.pupu-circle.pupu-bounce .pupu-arm-right {
+  animation: pupu-arm-up-right 0.6s ease-in-out;
+}
+
+/* Organic breathing: gentle inhale, a brief hold at full inhale, a
+   relaxed exhale, then a slightly longer pause before the next breath
+   -- instead of a perfectly symmetric pulse. Same animation name/
+   duration/class usage as before (see .pupu-circle above), only the
+   keyframe timing changed. */
+@keyframes pupu-breathe {
+  0% {
+    transform: scale(1);
+  }
+  35% {
+    transform: scale(1.04); /* gentle inhale */
+  }
+  42% {
+    transform: scale(1.04); /* brief hold at full inhale */
+  }
+  75% {
+    transform: scale(1); /* relaxed exhale, slower than the inhale */
+  }
+  100% {
+    transform: scale(1); /* longer pause before the next breath */
+  }
+}
+
+@keyframes pupu-bounce {
+  0% {
+    transform: scale(1) translateY(0);
+  }
+  30% {
+    transform: scale(1.08, 0.92) translateY(-14px);
+  }
+  55% {
+    transform: scale(0.95, 1.05) translateY(4px);
+  }
+  75% {
+    transform: scale(1.03, 0.97) translateY(-4px);
+  }
+  100% {
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* sneeze: quick sharp jolt */
+.pupu-circle.pupu-sneeze {
+  animation: pupu-sneeze 0.5s ease-in-out;
+}
+
+/* Sneeze also gives the arms a tiny outward flick that immediately
+   returns -- not a lingering pose, just a quick reflex. */
+.pupu-circle.pupu-sneeze .pupu-arm-left {
+  animation: pupu-arm-flick-left 0.5s ease-in-out;
+}
+
+.pupu-circle.pupu-sneeze .pupu-arm-right {
+  animation: pupu-arm-flick-right 0.5s ease-in-out;
+}
+
+@keyframes pupu-sneeze {
+  0%, 100% {
+    transform: scale(1) translateY(0);
+  }
+  30% {
+    transform: scale(0.94, 1.06) translateY(2px);
+  }
+  50% {
+    transform: scale(1.1, 0.9) translateY(-6px);
+  }
+  70% {
+    transform: scale(0.98, 1.02) translateY(2px);
+  }
+}
+
+/* distracted: slight head turn to one side */
+.pupu-circle.pupu-distracted {
+  animation: pupu-distracted-body 0.7s ease-in-out;
+}
+
+@keyframes pupu-distracted-body {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  30%, 70% {
+    transform: rotate(5deg);
+  }
+}
+
+/* Eyes intentionally have no transforms of their own -- distraction
+   motion comes entirely from the shared .pupu-circle wrapper
+   animation above, which already moves body and eyes together. */
+
+/* excited: quick eager wobble */
+.pupu-circle.pupu-excited {
+  animation: pupu-excited 0.6s ease-in-out;
+}
+
+.pupu-circle.pupu-excited .pupu-arm-left {
+  animation: pupu-arm-up-left 0.6s ease-in-out;
+}
+
+.pupu-circle.pupu-excited .pupu-arm-right {
+  animation: pupu-arm-up-right 0.6s ease-in-out;
+}
+
+@keyframes pupu-excited {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+  }
+  20% {
+    transform: scale(1.06) rotate(-6deg);
+  }
+  40% {
+    transform: scale(1.1) rotate(6deg);
+  }
+  60% {
+    transform: scale(1.06) rotate(-4deg);
+  }
+  80% {
+    transform: scale(1.08) rotate(4deg);
+  }
+}
+
+/* sleepy: slow droop to one side and back */
+.pupu-circle.pupu-sleepy {
+  animation: pupu-sleepy 1.4s ease-in-out;
+}
+
+.pupu-circle.pupu-sleepy .pupu-arm-left {
+  animation: pupu-arm-down-left 1.4s ease-in-out;
+}
+
+.pupu-circle.pupu-sleepy .pupu-arm-right {
+  animation: pupu-arm-down-right 1.4s ease-in-out;
+}
+
+@keyframes pupu-sleepy {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  40% {
+    transform: translateY(10px) rotate(6deg);
+  }
+  70% {
+    transform: translateY(12px) rotate(6deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+/* thinking: subtle head tilt + tiny body wobble, loops while PUPU thinks */
+.pupu-circle.pupu-thinking {
+  animation: pupu-thinking-body 1s ease-in-out infinite;
+}
+
+@keyframes pupu-thinking-body {
+  0%, 100% {
+    transform: rotate(0deg) translateY(0);
+  }
+  50% {
+    transform: rotate(-4deg) translateY(-2px);
+  }
+}
+
+/* finishing reaction: a quick small nod after PUPU speaks */
+.pupu-circle.pupu-finish {
+  animation: pupu-finish 0.35s ease-in-out;
+}
+
+@keyframes pupu-finish {
+  0%, 100% {
+    transform: scale(1) translateY(0);
+  }
+  40% {
+    transform: scale(1.03) translateY(-4px);
+  }
+}
+.pupu-circle.pupu-laugh {
+  animation: pupu-laugh 0.6s ease-in-out;
+}
+
+.pupu-circle.pupu-laugh .pupu-arm-left {
+  animation: pupu-arm-up-left 0.6s ease-in-out;
+}
+
+.pupu-circle.pupu-laugh .pupu-arm-right {
+  animation: pupu-arm-up-right 0.6s ease-in-out;
+}
+
+@keyframes pupu-laugh {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  15% {
+    transform: translateY(-6px) rotate(-3deg);
+  }
+  30% {
+    transform: translateY(0) rotate(3deg);
+  }
+  45% {
+    transform: translateY(-6px) rotate(-3deg);
+  }
+  60% {
+    transform: translateY(0) rotate(3deg);
+  }
+  80% {
+    transform: translateY(-3px) rotate(0deg);
+  }
+}
+
+/* ---------- Broken belly button (hidden behaviour) ----------
+   Purely additive: two new animation classes for a rare easter egg
+   that plays out on the third press after the button "jams" (see
+   script.js). Nothing above this point is touched or reused for
+   this behaviour -- it doesn't share classes or keyframes with any
+   existing reaction. */
+
+/* Payoff animation: rapid inflate -> brief hold at ~150% -> deflate.
+   Keyframe stops (22.2% / 61.1%) are sized to script.js's
+   BROKEN_BUTTON_INFLATE_MS / HOLD_MS / DEFLATE_MS (200 / 350 / 350,
+   totalling the 900ms BROKEN_BUTTON_PAYOFF_DURATION_MS below) -- if
+   those constants change, keep this split proportional to them. */
+.pupu-circle.pupu-broken-payoff {
+  animation: pupu-broken-payoff 0.9s ease-in-out;
+}
+
+@keyframes pupu-broken-payoff {
+  0% {
+    transform: scale(1);
+    /* Springy "pop" for the inflate segment only -- hold and deflate
+       fall back to the base ease-in-out set on .pupu-broken-payoff. */
+    animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  22.2% {
+    transform: scale(1.5);
+  }
+  61.1% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Soft finishing wobble, played immediately after the payoff above.
+   Duration must match script.js's BROKEN_BUTTON_WOBBLE_MS (500ms). */
+.pupu-circle.pupu-soft-wobble {
+  animation: pupu-soft-wobble 0.5s ease-in-out;
+}
+
+/* Subtle brightness pulse -- one of the small idle gestures played
+   occasionally alongside an idle sound (see playIdleGesture() in
+   script.js). Duration must match IDLE_GESTURE_BRIGHTNESS_MS (500ms). */
+.pupu-circle.pupu-idle-brightness-pulse {
+  animation: pupu-idle-brightness-pulse 0.5s ease-in-out;
+}
+
+@keyframes pupu-idle-brightness-pulse {
+  0%, 100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.08);
+  }
+}
+
+@keyframes pupu-soft-wobble {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-4deg);
+  }
+  55% {
+    transform: rotate(3deg);
+  }
+  80% {
+    transform: rotate(-1deg);
+  }
+}
+
+/* ---------- PUPU arm keyframes ----------
+   Shared by whichever behaviour/event triggers them (bounce, excited,
+   laugh, sleepy, sneeze -- see the .pupu-circle.pupu-* rules above).
+   Each arm rotates from its own shoulder-pinned transform-origin, and
+   every keyframe returns to rotate(0deg) by 100% -- these are brief,
+   one-shot reactions, never a continuous idle motion. Left and right
+   use mirrored (opposite-sign) angles since the arms sit on opposite
+   sides of the body. */
+
+/* happy/excited/laugh: arms lift a few degrees, then settle back */
+@keyframes pupu-arm-up-left {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-8deg);
+  }
+}
+
+@keyframes pupu-arm-up-right {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(8deg);
+  }
+}
+
+/* sleepy: arms droop slightly downward, matching the body's own
+   40%/70% droop-and-hold timing before both settle back to rest */
+@keyframes pupu-arm-down-left {
+  0% {
+    transform: rotate(0deg);
+  }
+  40% {
+    transform: rotate(6deg);
+  }
+  70% {
+    transform: rotate(6deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes pupu-arm-down-right {
+  0% {
+    transform: rotate(0deg);
+  }
+  40% {
+    transform: rotate(-6deg);
+  }
+  70% {
+    transform: rotate(-6deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+/* sneeze: a tiny outward flick that immediately snaps back */
+@keyframes pupu-arm-flick-left {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  30% {
+    transform: rotate(10deg);
+  }
+}
+
+@keyframes pupu-arm-flick-right {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  30% {
+    transform: rotate(-10deg);
+  }
+}
+
+/* ---------- PUPU eyes ----------
+   A single eyes.png layer, on the same 2048x2048 canvas as body.png,
+   so it lines up automatically with no manual offsets. The open/
+   closed blink state is a straight image swap done in script.js;
+   this element itself is purely a positioned image layer. */
+.pupu-eye {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+  transform-origin: center;
+}
+
+/* Eyes have no transform of their own here either -- the "thinking"
+   tilt/wobble already comes from .pupu-circle.pupu-thinking on the
+   shared parent wrapper, which moves body and eyes together. */
+
+/* ---------- PUPU mouth ----------
+   Same treatment as the eyes: a single image layer on the shared
+   2048x2048 canvas, so it lines up with body.png automatically. The
+   expression shown (normal/smile/blow) is a straight image swap done
+   in script.js -- no animation of its own. */
+.pupu-mouth {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ---------- PUPU chest button ----------
+   Another image layer on the same shared canvas as body.png -- shows
+   the belly-button artwork pressed or unpressed. The state swap is a
+   straight image swap done in script.js, tied to the Surprise button
+   press/thinking/idle cycle; no animation of its own. */
+.pupu-button {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  /* This layer is now the clickable belly button, so (unlike the other
+     PUPU art layers) it needs pointer events enabled and a pointer
+     cursor to signal it's interactive. */
+  pointer-events: auto;
+  cursor: pointer;
+  user-select: none;
+  /* Resting transform + its transition live here (not on a "normal"
+     class) so the Broken Belly Button "jammed" effect below can rely
+     on plain CSS cascade/specificity to get an instant press-in and a
+     slow release, with no JS animation loop involved. Harmless for
+     every other existing interaction, since nothing else ever sets a
+     transform on this element. */
+  transform: translateY(0) scale(1);
+  transition: transform 600ms ease-out;
+}
+
+/* Disabled state mirrors .surprise-btn:disabled -- prevents clicking
+   the belly button while a reaction sequence is already playing. */
+.pupu-button.pupu-button-disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+/* Broken belly button "jammed" press feel (see script.js's
+   playBrokenButtonDud() and the BROKEN_BUTTON_JAM_* constants).
+   Adding this class presses the button in instantly -- its higher
+   specificity overrides the base .pupu-button transition above with
+   `transition: none` for the press itself. Removing the class leaves
+   only the base rule in effect, so the element eases back to its
+   resting transform over that rule's 600ms transition -- a slow,
+   physical-feeling release with no JS animation loop involved. */
+.pupu-button.pupu-button-jammed {
+  transform: translateY(4px) scale(0.94);
+  transition: none;
+}
+
+/* ---------- Button ----------
+   The "Surprise Me" button is no longer part of the visible UI -- the
+   belly button is now the only way to start an interaction. Its
+   element is kept in the DOM (see index.html) only so script.js's
+   existing lookups keep working unmodified; it's fully hidden and
+   taken out of layout/accessibility here. */
+.surprise-btn-hidden {
+  display: none;
+}
+
+.copyright {
+  font-size: 0.7rem;
+  color: #aaaaaa;
+  margin-top: -32px;
+}
+
+/* ---------- Responsive ---------- */
+@media (min-width: 600px) {
+  .container {
+    gap: 64px;
+  }
+
+  .speech-bubble-slot {
+    height: 62px;
+  }
+
+  .speech-text-en {
+    font-size: 1.15rem;
+  }
+
+  .speech-text-ko {
+    font-size: 0.92rem;
+  }
+}
