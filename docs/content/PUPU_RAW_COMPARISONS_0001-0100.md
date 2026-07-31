@@ -3,6 +3,8 @@
 **Type:** Comparison
 **Status:** Raw Content
 
+**Migration status:** Not yet moved into `factory/raw-content/` — the Factory's raw-content parser currently supports Facts only (`SUPPORTED_RAW_TYPES` in `factory/vocabularies.js`). This file is a pending migration candidate; move it into `factory/raw-content/` once parser support for this format (Option A/Option B, not a single Content field) exists — see `factory/README.md`, "Adding the other five types".
+
 ---
 
 COMPARISON-0001

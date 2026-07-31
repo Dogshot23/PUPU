@@ -108,31 +108,38 @@ export function renderCardMarkdown(card, trace = null) {
 /**
  * Project one approved card into its runtime entry.
  *
- * Reduced per §15: the review fields — source, conversation goal, review
- * record — are stripped, "along with anything else no runtime behaviour
- * reads". Topic tags and lifecycle state go with them: tags exist for review,
- * balancing and theme pack curation and are "never surfaced to a child" (§9.2),
- * and no documented runtime behaviour reads either. Both are trivially
- * restorable if a behaviour ever needs them (§16, additions are additive).
+ * The shape here is not the Card Spec's own runtime sketch — it is the shape
+ * `content-loader.js` and every existing `content/packs/*` module already
+ * use, fixed by `PUPU_MIGRATION_SPEC.md` §9 (`id, type, subtype, level, tags,
+ * emotion, animation, english, translations`). Card Spec §15 deliberately
+ * leaves runtime format unspecified ("must be free to change without any
+ * card changing"), so matching the app's existing, working format rather
+ * than inventing a second one is a conforming choice, not a deviation.
  *
- * What remains is identity, classification, text and delivery.
+ * Source, conversation goal, review record and lifecycle state are still
+ * stripped per §15 — nothing about them is read by the app. Topic tags are
+ * the one deliberate exception: Card Spec §9.2 calls them review-only and
+ * "never surfaced to a child", but the existing runtime schema this compiler
+ * targets carries a `tags` field on every entry (Migration Spec §9), so they
+ * compile through as `tags` to match it. This is a conscious tradeoff in
+ * favour of one existing, working runtime shape over two competing ones —
+ * not an oversight.
  */
 export function toRuntimeEntry(card) {
-  const entry = {
+  return {
     id: card.id,
-    engine: card.engine,
+    type: card.engine === CHARACTER_MOMENT ? 'character_moment' : card.engine.toLowerCase(),
+    // No finer-grained per-entry category exists for a Factory-produced
+    // card the way it does for a migrated legacy pack, so this is always
+    // null — present per Migration Spec §7's "key structure always present".
+    subtype: null,
     level: card.level,
-    presentation_style: card.presentationStyle,
+    tags: [...card.topicTags],
     emotion: card.emotion,
-    text: {
-      en: [...card.text.en],
-      ko: [...card.text.ko],
-    },
+    animation: card.animationHint ?? null,
+    english: [...card.text.en],
+    translations: { ko: [...(card.text.ko ?? [])] },
   };
-  // Absence of a hint is a normal, common state (§8.3), so the key is omitted
-  // rather than emitted as null — the app reads "no hint" from its absence.
-  if (card.animationHint) entry.animation_hint = card.animationHint;
-  return entry;
 }
 
 /**

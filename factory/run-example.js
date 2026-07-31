@@ -27,7 +27,7 @@ import { validateCard } from './validate.js';
 import { compile, serialise, renderCardMarkdown } from './compiler.js';
 
 const RAW_FACTS = fileURLToPath(
-  new URL('./PUPU_RAW_FACTS.md', import.meta.url)
+  new URL('./raw-content/facts.md', import.meta.url)
 );
 
 const OUT = fileURLToPath(

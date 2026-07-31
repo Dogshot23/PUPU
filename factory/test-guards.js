@@ -236,13 +236,21 @@ console.log('\n--- Compiler (Architecture §11, Card Spec §15) ---\n');
   approved = attachTranslation(approved, ['하나.', '둘.', '셋.']);
   const { libraries } = compile([approved], { sourcesById: { 'FACT-0042': source } });
   const entry = libraries.share[0];
-  const stripped = ['sourceId', 'conversationGoal', 'reviewRecord', 'topicTags', 'lifecycleState'];
+  // sourceId, conversationGoal, reviewRecord and lifecycleState are stripped
+  // (nothing at runtime reads them). topicTags is NOT in this list: it
+  // compiles through as `tags`, matching the existing app schema on purpose
+  // (compiler.js's toRuntimeEntry() doc comment explains the tradeoff).
+  const stripped = ['sourceId', 'conversationGoal', 'reviewRecord', 'lifecycleState'];
   const leaked = stripped.filter((k) => k in entry);
-  if (leaked.length === 0) {
-    console.log(`ok    Review fields are stripped at compilation → keys: ${Object.keys(entry).join(', ')}`);
+  const hasTags = 'tags' in entry;
+  if (leaked.length === 0 && hasTags) {
+    console.log(`ok    Review fields are stripped at compilation (tags pass through by design) → keys: ${Object.keys(entry).join(', ')}`);
     pass++;
-  } else {
+  } else if (leaked.length > 0) {
     console.log(`FAIL  Review fields leaked into runtime: ${leaked.join(', ')}`);
+    fail++;
+  } else {
+    console.log('FAIL  tags did not compile through as expected');
     fail++;
   }
 }
