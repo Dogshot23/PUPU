@@ -12,3 +12,8 @@ The project combines authored educational content with a deterministic content f
 - Character animation system in development
 
 This repository contains the source code and authoring documents for the PUPU project.
+## Documentation
+
+- Architecture: `docs/architecture/`
+- Changelog: `CHANGELOG.md`
+- Releases: GitHub Releases
