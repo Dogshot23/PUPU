@@ -1,0 +1,294 @@
+/* ---------- Reset ---------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 24px;
+
+  /* ---------- Retro CRT pastel background ----------
+     Same four static, CSS-only layers as the main PUPU app's
+     style.css (grain, scanlines, vignette, soft radial glow) so the
+     MVP shares the identical background instead of a re-derived one. */
+  background-color: #fdf6ec;
+  background-image:
+    repeating-radial-gradient(
+      circle at 0 0,
+      rgba(40, 30, 60, 0.035) 0,
+      rgba(40, 30, 60, 0.035) 1px,
+      transparent 1px,
+      transparent 2px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      rgba(30, 20, 50, 0.025) 0,
+      rgba(30, 20, 50, 0.025) 1px,
+      transparent 1px,
+      transparent 3px
+    ),
+    radial-gradient(
+      ellipse 120% 120% at 50% 50%,
+      transparent 55%,
+      rgba(60, 40, 80, 0.07) 100%
+    ),
+    radial-gradient(
+      ellipse 1000px 780px at 50% 42%,
+      #e7fbfa 0%,
+      #e6e3fa 32%,
+      #fbe1ef 58%,
+      #fdecd9 82%,
+      #fdf6ec 100%
+    );
+  background-repeat: repeat, repeat, no-repeat, no-repeat;
+  background-position: 0 0, 0 0, center, center;
+  background-size: auto, auto, 100% 100%, 100% 100%;
+}
+
+/* ---------- Layout ---------- */
+.container {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  text-align: center;
+}
+
+/* ---------- Hero (speech bubble + PUPU) ----------
+   Column by default, so the bubble (first in the DOM) sits above
+   PUPU on narrow/mobile screens. The desktop media query below is
+   the one responsive change on top of the restored pastel visuals:
+   it switches this to a row so the bubble sits beside PUPU instead. */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  width: 100%;
+}
+
+/* ---------- Speech bubble ----------
+   Same gradient/border/shadow/tail treatment as .speech-bubble in
+   the main app's style.css, adapted to this app's existing
+   .bubble/.beat markup. */
+.bubble {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  background: linear-gradient(160deg, #e8fff2 0%, #f2fbf7 45%, #fcf6ff 100%);
+  border: 1.5px solid #b8e8d6;
+  border-radius: 20px;
+  padding: 20px 28px;
+  box-shadow: 0 4px 16px rgba(120, 100, 160, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+}
+
+.bubble .beat {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #333333;
+  text-align: center;
+}
+
+/* Restored from the main app's .speech-bubble.pupu-inflate reaction --
+   plays when app.js shows a new card, giving the bubble a small pop. */
+.bubble.pupu-inflate {
+  animation: pupu-bubble-inflate 0.5s ease-out;
+}
+
+@keyframes pupu-bubble-inflate {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.12);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Tail points down at PUPU by default (mobile: bubble above PUPU). */
+.bubble::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 10px 10px 0 10px;
+  border-style: solid;
+  border-color: #e8fff2 transparent transparent transparent;
+}
+
+/* ---------- PUPU ----------
+   Two nested wrappers keep the floating (position) and breathing
+   (scale) animations on separate elements -- two animations can't
+   both drive `transform` on the same element at once. The innermost
+   .pupu-image itself stays free of any animation so app.js's
+   press-squash inline transform (see app.js) is never fought by a
+   running CSS animation on that same element. */
+.pupu-float-wrap {
+  animation: pupu-float 4.4s ease-in-out infinite;
+}
+
+.pupu-visual {
+  animation: pupu-breathe 3.2s ease-in-out infinite;
+  transform-origin: center;
+}
+
+/* Restored from the main app's .pupu-circle.pupu-bounce press reaction
+   (see style.css at the repo root). Higher specificity than the base
+   rule above, so pressing PUPU swaps breathing for this squash-and-
+   stretch bounce for its duration, then falls back to breathing once
+   app.js removes the class. */
+.pupu-visual.pupu-bounce {
+  animation: pupu-bounce 0.6s ease-in-out;
+}
+
+@keyframes pupu-bounce {
+  0% {
+    transform: scale(1) translateY(0);
+  }
+  30% {
+    transform: scale(1.08, 0.92) translateY(-14px);
+  }
+  55% {
+    transform: scale(0.95, 1.05) translateY(4px);
+  }
+  75% {
+    transform: scale(1.03, 0.97) translateY(-4px);
+  }
+  100% {
+    transform: scale(1) translateY(0);
+  }
+}
+
+.pupu-image {
+  display: block;
+  width: 232px;
+  height: 232px;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+  transition: transform 0.08s ease;
+
+  /* PUPU's belly is now the only primary interaction (see index.html's
+     role="button" tabindex="0" and app.js's click/keydown handlers). */
+  cursor: pointer;
+}
+
+.pupu-image:focus-visible {
+  outline: 2.5px solid #b8e8d6;
+  outline-offset: 6px;
+  border-radius: 50%;
+}
+
+/* Organic breathing, identical timing to the main app's idle animation. */
+@keyframes pupu-breathe {
+  0% {
+    transform: scale(1);
+  }
+  35% {
+    transform: scale(1.04);
+  }
+  42% {
+    transform: scale(1.04);
+  }
+  75% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Subtle idle float -- new, since no separate floating animation
+   exists in the main app to restore; kept small so it reads as a
+   gentle bob rather than a bounce. */
+@keyframes pupu-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.status {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #999999;
+  min-height: 1em;
+}
+
+.install-button {
+  padding: 12px 24px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: 1.5px solid #b8e8d6;
+  border-radius: 999px;
+  background: linear-gradient(160deg, #e8fff2 0%, #f2fbf7 45%, #fcf6ff 100%);
+  color: #333333;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(120, 100, 160, 0.1);
+  transition: transform 0.08s ease, background 0.15s ease;
+}
+
+.install-button:hover {
+  background: linear-gradient(160deg, #d9f7e8 0%, #e6f4ee 45%, #f5e9ff 100%);
+}
+
+.install-button:active {
+  transform: scale(0.97);
+}
+
+/* ---------- Responsive: bubble beside PUPU on desktop ---------- */
+@media (min-width: 700px) {
+  .container {
+    max-width: 640px;
+    gap: 40px;
+  }
+
+  /* row-reverse keeps the bubble first in the DOM (so mobile's column
+     layout still puts it above PUPU) while visually placing PUPU on
+     the left and the bubble on the right. */
+  .hero {
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .bubble {
+    max-width: 280px;
+  }
+
+  /* Tail swings to point left at PUPU now that the bubble sits to PUPU's right. */
+  .bubble::after {
+    bottom: auto;
+    right: auto;
+    top: 50%;
+    left: -10px;
+    transform: translateY(-50%);
+    border-width: 10px 10px 10px 0;
+    border-color: transparent #e8fff2 transparent transparent;
+  }
+}
