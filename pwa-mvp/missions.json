@@ -1,0 +1,35 @@
+{
+  "surprising": [],
+  "guess": [
+    { "id": "true-or-false", "text": "Tell your teacher one thing that is true and one thing that is false." },
+    { "id": "guess-favourite-food", "text": "Challenge your teacher to guess your favourite food." },
+    { "id": "describe-animal", "text": "Describe an animal without saying its name." },
+    { "id": "guess-age", "text": "Ask your teacher to guess how old you were in your favourite memory." }
+  ],
+  "opinion": [
+    { "id": "childhood-question", "text": "Ask your teacher one question about their childhood." },
+    { "id": "broken-bone", "text": "Ask your teacher if they have ever broken a bone." },
+    { "id": "favourite-season", "text": "Ask your teacher what their favourite season is, and why." },
+    { "id": "favourite-holiday", "text": "Ask your teacher about their favourite holiday memory." },
+    { "id": "compliment-teacher", "text": "Give your teacher a genuine compliment." },
+    { "id": "weekend-plan", "text": "Tell your teacher one thing you're excited to do this weekend." },
+    { "id": "best-advice", "text": "Ask your teacher for one piece of advice." }
+  ],
+  "imagine": [
+    { "id": "choose-superpower", "text": "Ask your teacher what superpower they would choose." }
+  ],
+  "challenge": [
+    { "id": "make-laugh", "text": "Make your teacher laugh in under one minute." },
+    { "id": "teach-something", "text": "Teach your teacher how to do something." },
+    { "id": "act-out-animal", "text": "Act out an animal and let your teacher guess which one." },
+    { "id": "three-words", "text": "Describe today in exactly three words." },
+    { "id": "sing-a-line", "text": "Sing one line from your favourite song." }
+  ],
+  "funny": [
+    { "id": "teach-korean-word", "text": "Teach your teacher one Korean word." },
+    { "id": "funniest-dream", "text": "Tell your teacher your funniest dream." },
+    { "id": "invent-word", "text": "Invent a new word and explain what it means." }
+  ],
+  "strange": [],
+  "amazing": []
+}

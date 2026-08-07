@@ -91,21 +91,82 @@ body {
   background: linear-gradient(160deg, #e8fff2 0%, #f2fbf7 45%, #fcf6ff 100%);
   border: 1.5px solid #b8e8d6;
   border-radius: 20px;
-  padding: 20px 28px;
+  padding: 18px 24px;
   box-shadow: 0 4px 16px rgba(120, 100, 160, 0.1);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 6px;
 }
 
 .bubble .beat {
   margin: 0;
-  font-size: 1.05rem;
+  font-size: 0.98rem;
   font-weight: 600;
   line-height: 1.4;
   color: #333333;
   text-align: center;
+}
+
+/* ---------- Speech bubble sections ----------
+   Splits a card into three scannable beats -- fact, PUPU's reaction,
+   then the mission -- instead of one long run of text. Each section
+   gets its own playful emoji label and an accent colour; a dashed
+   rule plus vertical rhythm (not a bigger bubble) is what keeps them
+   feeling separate during a live lesson. */
+/* Sections are inserted into the DOM one at a time, staggered by
+   renderCard() in app.js, rather than all at once -- so this plays
+   automatically on each fresh .bubble-section as it appears. Slow and
+   gentle on purpose, so it reads as PUPU thinking rather than a UI
+   transition. The 1.8s duration below must match app.js's
+   SECTION_FADE_DURATION_MS constant (kept in sync manually). */
+@keyframes bubble-section-reveal {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.bubble-section {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 0;
+  animation: bubble-section-reveal 1.8s ease-out;
+}
+
+.bubble-section:first-child {
+  padding-top: 2px;
+}
+
+.bubble-section:last-child {
+  padding-bottom: 2px;
+}
+
+.bubble-section + .bubble-section {
+  border-top: 1.5px dashed rgba(120, 100, 160, 0.25);
+  padding-top: 14px;
+}
+
+.bubble-label {
+  margin: 0 0 2px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-align: center;
+  color: #5fae8f;
+}
+
+.bubble-section-weird .bubble-label {
+  color: #d97fb0;
+}
+
+.bubble-section-mission .bubble-label {
+  color: #8b7fd9;
 }
 
 /* Restored from the main app's .speech-bubble.pupu-inflate reaction --
@@ -138,29 +199,192 @@ body {
   border-color: #e8fff2 transparent transparent transparent;
 }
 
-/* ---------- PUPU ----------
-   Two nested wrappers keep the floating (position) and breathing
-   (scale) animations on separate elements -- two animations can't
-   both drive `transform` on the same element at once. The innermost
-   .pupu-image itself stays free of any animation so app.js's
-   press-squash inline transform (see app.js) is never fought by a
-   running CSS animation on that same element. */
+/* ---------- PUPU stage ----------
+   Restored from the main app's .pupu-stage: holds the static shadow
+   (bottom layer) and the animated PUPU circle (top layer). Fixed at
+   232px (matching the earlier size-increase request) rather than the
+   main app's viewport-relative sizing. */
+.pupu-stage {
+  position: relative;
+  width: 232px;
+  height: 232px;
+}
+
+/* Shadow sits underneath and never animates -- it shares the same
+   canvas alignment as body.png, so it just stays put while PUPU
+   floats/breathes above it. */
+.pupu-shadow {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* .pupu-float-wrap (new -- not in the main app, see the earlier size/
+   float request) and .pupu-circle (restored breathing wrapper) keep
+   the floating (position) and breathing (scale) animations on
+   separate elements, since two animations can't both drive
+   `transform` on the same element at once. */
 .pupu-float-wrap {
+  position: absolute;
+  inset: 0;
   animation: pupu-float 4.4s ease-in-out infinite;
 }
 
-.pupu-visual {
+.pupu-circle {
+  position: absolute;
+  inset: 0;
   animation: pupu-breathe 3.2s ease-in-out infinite;
   transform-origin: center;
 }
 
-/* Restored from the main app's .pupu-circle.pupu-bounce press reaction
-   (see style.css at the repo root). Higher specificity than the base
-   rule above, so pressing PUPU swaps breathing for this squash-and-
-   stretch bounce for its duration, then falls back to breathing once
-   app.js removes the class. */
-.pupu-visual.pupu-bounce {
+.pupu-body {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ---------- PUPU arms ----------
+   left_arm.png/right_arm.png share body.png's canvas, so they line up
+   automatically. transform-origin is pinned to each arm's shoulder
+   point (measured from the source artwork) so rotation reads as
+   swinging from the shoulder rather than spinning the whole limb. */
+.pupu-arm {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+.pupu-arm-left {
+  transform-origin: 82.3% 57.4%;
+}
+
+.pupu-arm-right {
+  transform-origin: 13.2% 58.0%;
+}
+
+/* ---------- PUPU eyes ----------
+   Open/closed blink state is a straight image swap done in app.js. */
+.pupu-eye {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+  transform-origin: center;
+}
+
+/* ---------- PUPU mouth ----------
+   Expression (normal/smile/blow/oh/wide) is a straight image swap
+   done in app.js -- no animation of its own. */
+.pupu-mouth {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ---------- PUPU chest button ----------
+   PUPU's belly is the only primary interaction (see index.html's
+   role="button" tabindex="0" and app.js's click/keydown handlers).
+   The resting transform + its transition live here (not on a
+   "normal" class) so the broken-belly-button "jammed" effect can rely
+   on plain CSS cascade/specificity for an instant press-in and a slow
+   release. */
+.pupu-button {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: auto;
+  cursor: pointer;
+  user-select: none;
+  transform: translateY(0) scale(1);
+  transition: transform 600ms ease-out;
+}
+
+.pupu-button:focus-visible {
+  outline: 2.5px solid #b8e8d6;
+  outline-offset: 6px;
+  border-radius: 50%;
+}
+
+/* Prevents pressing the belly button again mid-sequence. */
+.pupu-button.pupu-button-disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+/* Broken belly button "jammed" press feel (see app.js's
+   playBrokenButtonDud()). Adding this class presses the button in
+   instantly -- its higher specificity overrides the base transition
+   above with `transition: none`. Removing it lets the base rule ease
+   it back out slowly over 600ms. */
+.pupu-button.pupu-button-jammed {
+  transform: translateY(4px) scale(0.94);
+  transition: none;
+}
+
+/* ---------- Behaviour / event / gesture animations ----------
+   Restored verbatim from the main app's style.css. Each class is
+   applied via app.js and removed once its sequence step ends;
+   .pupu-circle's continuous breathing above is overridden for as
+   long as one of these is present, since only one `animation` value
+   can apply at a time on the same element. */
+
+@keyframes pupu-breathe {
+  0% {
+    transform: scale(1);
+  }
+  35% {
+    transform: scale(1.04);
+  }
+  42% {
+    transform: scale(1.04);
+  }
+  75% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes pupu-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.pupu-circle.pupu-bounce {
   animation: pupu-bounce 0.6s ease-in-out;
+}
+
+.pupu-circle.pupu-bounce .pupu-arm-left {
+  animation: pupu-arm-up-left 0.6s ease-in-out;
+}
+
+.pupu-circle.pupu-bounce .pupu-arm-right {
+  animation: pupu-arm-up-right 0.6s ease-in-out;
 }
 
 @keyframes pupu-bounce {
@@ -181,54 +405,282 @@ body {
   }
 }
 
-.pupu-image {
-  display: block;
-  width: 232px;
-  height: 232px;
-  object-fit: contain;
-  user-select: none;
-  -webkit-user-drag: none;
-  transition: transform 0.08s ease;
-
-  /* PUPU's belly is now the only primary interaction (see index.html's
-     role="button" tabindex="0" and app.js's click/keydown handlers). */
-  cursor: pointer;
+.pupu-circle.pupu-sneeze {
+  animation: pupu-sneeze 0.5s ease-in-out;
 }
 
-.pupu-image:focus-visible {
-  outline: 2.5px solid #b8e8d6;
-  outline-offset: 6px;
-  border-radius: 50%;
+.pupu-circle.pupu-sneeze .pupu-arm-left {
+  animation: pupu-arm-flick-left 0.5s ease-in-out;
 }
 
-/* Organic breathing, identical timing to the main app's idle animation. */
-@keyframes pupu-breathe {
+.pupu-circle.pupu-sneeze .pupu-arm-right {
+  animation: pupu-arm-flick-right 0.5s ease-in-out;
+}
+
+@keyframes pupu-sneeze {
+  0%, 100% {
+    transform: scale(1) translateY(0);
+  }
+  30% {
+    transform: scale(0.94, 1.06) translateY(2px);
+  }
+  50% {
+    transform: scale(1.1, 0.9) translateY(-6px);
+  }
+  70% {
+    transform: scale(0.98, 1.02) translateY(2px);
+  }
+}
+
+.pupu-circle.pupu-distracted {
+  animation: pupu-distracted-body 0.7s ease-in-out;
+}
+
+@keyframes pupu-distracted-body {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  30%, 70% {
+    transform: rotate(5deg);
+  }
+}
+
+.pupu-circle.pupu-excited {
+  animation: pupu-excited 0.6s ease-in-out;
+}
+
+.pupu-circle.pupu-excited .pupu-arm-left {
+  animation: pupu-arm-up-left 0.6s ease-in-out;
+}
+
+.pupu-circle.pupu-excited .pupu-arm-right {
+  animation: pupu-arm-up-right 0.6s ease-in-out;
+}
+
+@keyframes pupu-excited {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+  }
+  20% {
+    transform: scale(1.06) rotate(-6deg);
+  }
+  40% {
+    transform: scale(1.1) rotate(6deg);
+  }
+  60% {
+    transform: scale(1.06) rotate(-4deg);
+  }
+  80% {
+    transform: scale(1.08) rotate(4deg);
+  }
+}
+
+.pupu-circle.pupu-sleepy {
+  animation: pupu-sleepy 1.4s ease-in-out;
+}
+
+.pupu-circle.pupu-sleepy .pupu-arm-left {
+  animation: pupu-arm-down-left 1.4s ease-in-out;
+}
+
+.pupu-circle.pupu-sleepy .pupu-arm-right {
+  animation: pupu-arm-down-right 1.4s ease-in-out;
+}
+
+@keyframes pupu-sleepy {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  40% {
+    transform: translateY(10px) rotate(6deg);
+  }
+  70% {
+    transform: translateY(12px) rotate(6deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+.pupu-circle.pupu-thinking {
+  animation: pupu-thinking-body 1s ease-in-out infinite;
+}
+
+@keyframes pupu-thinking-body {
+  0%, 100% {
+    transform: rotate(0deg) translateY(0);
+  }
+  50% {
+    transform: rotate(-4deg) translateY(-2px);
+  }
+}
+
+.pupu-circle.pupu-finish {
+  animation: pupu-finish 0.35s ease-in-out;
+}
+
+@keyframes pupu-finish {
+  0%, 100% {
+    transform: scale(1) translateY(0);
+  }
+  40% {
+    transform: scale(1.03) translateY(-4px);
+  }
+}
+
+.pupu-circle.pupu-laugh {
+  animation: pupu-laugh 0.6s ease-in-out;
+}
+
+.pupu-circle.pupu-laugh .pupu-arm-left {
+  animation: pupu-arm-up-left 0.6s ease-in-out;
+}
+
+.pupu-circle.pupu-laugh .pupu-arm-right {
+  animation: pupu-arm-up-right 0.6s ease-in-out;
+}
+
+@keyframes pupu-laugh {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  15% {
+    transform: translateY(-6px) rotate(-3deg);
+  }
+  30% {
+    transform: translateY(0) rotate(3deg);
+  }
+  45% {
+    transform: translateY(-6px) rotate(-3deg);
+  }
+  60% {
+    transform: translateY(0) rotate(3deg);
+  }
+  80% {
+    transform: translateY(-3px) rotate(0deg);
+  }
+}
+
+/* ---------- Broken belly button (hidden behaviour) ---------- */
+.pupu-circle.pupu-broken-payoff {
+  animation: pupu-broken-payoff 0.9s ease-in-out;
+}
+
+@keyframes pupu-broken-payoff {
   0% {
     transform: scale(1);
+    animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
   }
-  35% {
-    transform: scale(1.04);
+  22.2% {
+    transform: scale(1.5);
   }
-  42% {
-    transform: scale(1.04);
-  }
-  75% {
-    transform: scale(1);
+  61.1% {
+    transform: scale(1.5);
   }
   100% {
     transform: scale(1);
   }
 }
 
-/* Subtle idle float -- new, since no separate floating animation
-   exists in the main app to restore; kept small so it reads as a
-   gentle bob rather than a bounce. */
-@keyframes pupu-float {
+.pupu-circle.pupu-soft-wobble {
+  animation: pupu-soft-wobble 0.5s ease-in-out;
+}
+
+@keyframes pupu-soft-wobble {
   0%, 100% {
-    transform: translateY(0);
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-4deg);
+  }
+  55% {
+    transform: rotate(3deg);
+  }
+  80% {
+    transform: rotate(-1deg);
+  }
+}
+
+.pupu-circle.pupu-idle-brightness-pulse {
+  animation: pupu-idle-brightness-pulse 0.5s ease-in-out;
+}
+
+@keyframes pupu-idle-brightness-pulse {
+  0%, 100% {
+    filter: brightness(1);
   }
   50% {
-    transform: translateY(-6px);
+    filter: brightness(1.08);
+  }
+}
+
+/* ---------- PUPU arm keyframes ----------
+   Shared by whichever behaviour/event triggers them. Every keyframe
+   returns to rotate(0deg) by 100% -- these are brief, one-shot
+   reactions, never a continuous idle motion. */
+@keyframes pupu-arm-up-left {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-8deg);
+  }
+}
+
+@keyframes pupu-arm-up-right {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(8deg);
+  }
+}
+
+@keyframes pupu-arm-down-left {
+  0% {
+    transform: rotate(0deg);
+  }
+  40% {
+    transform: rotate(6deg);
+  }
+  70% {
+    transform: rotate(6deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes pupu-arm-down-right {
+  0% {
+    transform: rotate(0deg);
+  }
+  40% {
+    transform: rotate(-6deg);
+  }
+  70% {
+    transform: rotate(-6deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes pupu-arm-flick-left {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  30% {
+    transform: rotate(10deg);
+  }
+}
+
+@keyframes pupu-arm-flick-right {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  30% {
+    transform: rotate(-10deg);
   }
 }
 
