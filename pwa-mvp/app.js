@@ -584,14 +584,33 @@ async function loadMissions() {
   }
 }
 
-// Picks a random mission from the given conversationType's pool. Falls
-// back to picking from every mission across all categories if that
-// category doesn't exist or is empty, so an unmapped or sparsely
-// populated category can never leave a card without a mission.
-function pickMission(conversationType) {
+// True if a mission's own wording references one of the card's topics
+// (e.g. topicTag "Animals" matching mission text ".. animal fact .."),
+// so a category pool that mixes topic-specific and generic missions
+// (like "strange": animal/body-specific missions alongside a fully
+// generic one) can be steered toward the ones that actually relate to
+// this card instead of a flat coin flip across the whole pool.
+function missionMatchesTopics(mission, topicTags) {
+  const text = mission.text.toLowerCase();
+  return topicTags.some((tag) =>
+    tag
+      .toLowerCase()
+      .split(/\s+/)
+      .some((word) => word.length > 3 && text.includes(word.replace(/s$/, "")))
+  );
+}
+
+// Picks a mission from the given conversationType's pool, preferring
+// ones that relate to the card's own topicTags when any exist in the
+// pool -- otherwise falls back to a plain random pick across the whole
+// pool (the original behaviour), same as when the category doesn't
+// exist or is empty, so an unmapped or sparsely populated category can
+// never leave a card without a mission.
+function pickMission(conversationType, topicTags) {
   const pool = state.missions[conversationType];
   if (pool && pool.length > 0) {
-    return pickRandomFrom(pool);
+    const topicMatches = pool.filter((mission) => missionMatchesTopics(mission, topicTags));
+    return pickRandomFrom(topicMatches.length > 0 ? topicMatches : pool);
   }
   return pickRandomFrom(Object.values(state.missions).flat());
 }
@@ -754,7 +773,7 @@ async function handleBellyPress() {
   // section above. renderCard() itself still just receives (card,
   // mission), same as before.
   const card = pickCard();
-  renderCard(card, pickMission(card.conversationType));
+  renderCard(card, pickMission(card.conversationType, card.topicTags));
   replayAnimation(bubbleEl, "pupu-inflate", 500);
 
   // Bridge until the typewriter effect is restored: hold the
