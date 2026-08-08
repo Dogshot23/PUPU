@@ -3,18 +3,18 @@
     { "id": "kid-belief-false", "text": "Tell your teacher something you believed as a kid that turned out to be false." },
     { "id": "true-but-fake-sounding", "text": "Tell your teacher one true fact that sounds completely made up." },
     { "id": "surprising-fact-about-me", "text": "Tell your teacher one surprising thing about yourself." },
-    { "id": "surprising-thing-learned", "text": "Tell your teacher the most surprising thing you've learned this month." },
+    { "id": "surprising-thing-learned", "text": "Tell your teacher the most surprising thing you've learned this month, and ask if they knew it already." },
     { "id": "rain-fish", "text": "Ask your teacher what they would do if something impossible happened right now." }
   ],
   "guess": [
     { "id": "true-or-false", "text": "Tell your teacher one thing that is true and one thing that is false." },
     { "id": "guess-favourite-food", "text": "Challenge your teacher to guess something you're really good at." },
     { "id": "describe-animal", "text": "Describe something without saying what it is, and let your teacher guess." },
-    { "id": "guess-age", "text": "Ask your teacher to guess how old you were in your favourite memory." }
+    { "id": "guess-age", "text": "Tell your teacher about your favourite memory, and ask them to guess how old you were." }
   ],
   "opinion": [
     { "id": "childhood-question", "text": "Ask your teacher one question about their childhood." },
-    { "id": "broken-bone", "text": "Ask your teacher if they have ever broken a bone." },
+    { "id": "broken-bone", "text": "Ask your teacher about a time they got hurt doing something silly." },
     { "id": "favourite-season", "text": "Ask your teacher what their favourite season is, and why." },
     { "id": "favourite-holiday", "text": "Ask your teacher about their favourite holiday memory." },
     { "id": "compliment-teacher", "text": "Give your teacher a genuine compliment, then ask them to give you one back." },
@@ -24,9 +24,9 @@
   "imagine": [
     { "id": "choose-superpower", "text": "Ask your teacher what superpower they would choose." },
     { "id": "invent-new-machine", "text": "Invent a brand new machine and tell your teacher what it does." },
-    { "id": "future-check-first", "text": "If you woke up 100 years in the future, what would you check first?" },
+    { "id": "future-check-first", "text": "If you woke up 100 years in the future, what would you check first? Ask your teacher what they'd check too." },
     { "id": "design-new-holiday", "text": "Design a new holiday and tell your teacher how people would celebrate it." },
-    { "id": "predict-10-years", "text": "Predict one thing that will be different about the world in 10 years." }
+    { "id": "predict-10-years", "text": "Predict one thing that will be different about the world in 10 years, then ask your teacher if they agree." }
   ],
   "challenge": [
     { "id": "make-laugh", "text": "Make your teacher laugh in under one minute." },
@@ -37,7 +37,7 @@
   ],
   "funny": [
     { "id": "teach-korean-word", "text": "Teach your teacher one fun fact they probably don't know." },
-    { "id": "funniest-dream", "text": "Tell your teacher your funniest dream." },
+    { "id": "funniest-dream", "text": "Tell your teacher your funniest dream, and ask them to tell you theirs." },
     { "id": "invent-word", "text": "Invent a funny new word for something silly, and explain what it means." },
     { "id": "funniest-english-word", "text": "Tell your teacher the silliest word you know, in any language." },
     { "id": "silly-late-excuse", "text": "Make up a silly excuse for being late, and tell it to your teacher." }
