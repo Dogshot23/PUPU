@@ -1,5 +1,10 @@
 {
-  "surprising": [],
+  "surprising": [
+    { "id": "kid-belief-false", "text": "Tell your teacher something you believed as a kid that turned out to be false." },
+    { "id": "true-but-fake-sounding", "text": "Tell your teacher one true fact that sounds completely made up." },
+    { "id": "surprising-fact-about-me", "text": "Tell your teacher one surprising thing about yourself." },
+    { "id": "surprising-thing-learned", "text": "Tell your teacher the most surprising thing you've learned this month." }
+  ],
   "guess": [
     { "id": "true-or-false", "text": "Tell your teacher one thing that is true and one thing that is false." },
     { "id": "guess-favourite-food", "text": "Challenge your teacher to guess your favourite food." },
@@ -16,7 +21,11 @@
     { "id": "best-advice", "text": "Ask your teacher for one piece of advice." }
   ],
   "imagine": [
-    { "id": "choose-superpower", "text": "Ask your teacher what superpower they would choose." }
+    { "id": "choose-superpower", "text": "Ask your teacher what superpower they would choose." },
+    { "id": "invent-new-machine", "text": "Invent a brand new machine and tell your teacher what it does." },
+    { "id": "future-check-first", "text": "If you woke up 100 years in the future, what would you check first?" },
+    { "id": "design-new-holiday", "text": "Design a new holiday and tell your teacher how people would celebrate it." },
+    { "id": "predict-10-years", "text": "Predict one thing that will be different about the world in 10 years." }
   ],
   "challenge": [
     { "id": "make-laugh", "text": "Make your teacher laugh in under one minute." },
@@ -28,8 +37,19 @@
   "funny": [
     { "id": "teach-korean-word", "text": "Teach your teacher one Korean word." },
     { "id": "funniest-dream", "text": "Tell your teacher your funniest dream." },
-    { "id": "invent-word", "text": "Invent a new word and explain what it means." }
+    { "id": "invent-word", "text": "Invent a new word and explain what it means." },
+    { "id": "funniest-english-word", "text": "Tell your teacher the funniest word you know in English." },
+    { "id": "silly-late-excuse", "text": "Make up a silly excuse for being late, and tell it to your teacher." }
   ],
-  "strange": [],
-  "amazing": []
+  "strange": [
+    { "id": "strangest-animal-fact", "text": "Tell your teacher the strangest animal fact you know." },
+    { "id": "strange-body-fact", "text": "Ask your teacher if they know anything strange about the human body." },
+    { "id": "weird-body-habit", "text": "Tell your teacher one weird thing your body does that you can't explain." },
+    { "id": "teacher-weirdest-fact", "text": "Ask your teacher to tell you the weirdest fact they know." }
+  ],
+  "amazing": [
+    { "id": "most-amazing-record", "text": "Tell your teacher the most amazing record you've ever heard of." },
+    { "id": "impossible-number-guess", "text": "Give your teacher an impossible number to guess, then reveal the real one." },
+    { "id": "world-record-to-break", "text": "Ask your teacher what world record they'd want to break." }
+  ]
 }
