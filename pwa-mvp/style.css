@@ -84,6 +84,7 @@ body {
    Same gradient/border/shadow/tail treatment as .speech-bubble in
    the main app's style.css, adapted to this app's existing
    .bubble/.beat markup. */
+
 .bubble {
   position: relative;
   width: 100%;
@@ -96,6 +97,41 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  cursor: pointer;
+  transition: transform 0.08s ease;
+}
+
+/* Gentle hover/press feedback -- the bubble itself is now the tap
+   target (see handleBubbleAdvance() in app.js), so it needs the same
+   kind of affordance a button would have, without looking like one. */
+.bubble:hover {
+  transform: scale(1.01);
+}
+
+.bubble:active {
+  transform: scale(0.98);
+}
+
+.bubble:focus-visible {
+  outline: 2px solid #b8e8d6;
+  outline-offset: 3px;
+}
+
+/* Applied while a section has finished typing and is waiting to
+   auto-advance -- a slow, subtle pulse hints the bubble can be tapped
+   right now instead of waiting out the full 10s. Removed the instant
+   a new section starts typing (see startTypingSection() in app.js). */
+@keyframes bubble-waiting-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.015);
+  }
+}
+
+.bubble.bubble-waiting {
+  animation: bubble-waiting-pulse 2.2s ease-in-out infinite;
 }
 
 .bubble .beat {

@@ -640,50 +640,173 @@ function appendBubbleLine(text) {
   bubbleEl.appendChild(p);
 }
 
-// Appends one labelled, visually separated section to the speech
-// bubble (used by renderCard() below). Presentation only -- card.english
-// and mission.text are unchanged data, just grouped and labelled so a
-// child can scan "the fact" vs. "PUPU's reaction" vs. "the mission" at
-// a glance instead of reading one long block.
-function appendBubbleSection(modifier, label, lines) {
-  const section = document.createElement("div");
-  section.className = `bubble-section bubble-section-${modifier}`;
-
-  const labelEl = document.createElement("p");
-  labelEl.className = "bubble-label";
-  labelEl.textContent = label;
-  section.appendChild(labelEl);
-
-  lines.forEach((line) => {
-    const p = document.createElement("p");
-    p.className = "beat";
-    p.textContent = line;
-    section.appendChild(p);
-  });
-
-  bubbleEl.appendChild(section);
-}
-
-// Presentation-only timing for renderCard()'s staggered reveal below.
-// Deliberately slow -- PUPU should read as "thinking of the next
-// thing to say," not as a UI transition -- so the gap between
-// sections is several seconds, not a snappy stagger.
+// ---------- Speech bubble typewriter + click-to-advance ----------
+// Each section's text types character by character (instead of
+// appearing all at once), and the whole reveal is one small state
+// machine (bubbleSequence) instead of several independent timers -- so
+// a tap on the bubble always has exactly one thing to cancel-and-
+// replace: whichever single timer is currently running, be that
+// "typing the next character" or "waiting before the next section."
 // SECTION_FADE_DURATION_MS must match the animation-duration on
 // .bubble-section in style.css (kept in sync manually; see the
 // comment there).
 const SECTION_REVEAL_DELAY_MS = 10000;
 const SECTION_FADE_DURATION_MS = 1800;
+const TYPE_CHAR_DELAY_MS = 28; // per-character typing speed (25-35ms range)
 
-// Timer IDs for a section reveal still in flight. A belly press that
-// lands before all three sections have appeared must cancel these
-// before scheduling its own, otherwise the old card's still-pending
-// timers would fire later and append its sections into the new
-// card's bubble.
-let pendingRevealTimerIds = [];
+// null until the first card is shown. Otherwise: { sections,
+// stageIndex, phase, timerId, lineEls, lineIndex, charIndex }.
+// phase is "typing" (a section's text is still being typed), "waiting"
+// (a section finished typing and the next one is scheduled to appear
+// automatically), or "done" (the last section finished -- tapping the
+// bubble here is a no-op; only PUPU's belly starts a new card).
+let bubbleSequence = null;
 
-function cancelPendingReveal() {
-  pendingRevealTimerIds.forEach((id) => clearTimeout(id));
-  pendingRevealTimerIds = [];
+function stopBubbleSequenceTimer() {
+  if (bubbleSequence && bubbleSequence.timerId !== null) {
+    clearTimeout(bubbleSequence.timerId);
+    bubbleSequence.timerId = null;
+  }
+}
+
+// Very quiet, occasional typing tick -- reuses the existing "bubbles"
+// idle sound (no new asset) at a much lower volume than its normal
+// idle-sound use, and only every few characters rather than every
+// character, so it reads as a soft typing texture instead of a loud
+// per-keystroke click. Fire-and-forget: a blocked/failed play() (e.g.
+// autoplay restrictions before any user gesture has happened yet)
+// only logs a warning via playRandomSound()'s existing rejection
+// handling -- it never touches the typing timer chain, so the
+// typewriter effect itself is entirely unaffected either way.
+const TYPE_SOUND_VOLUME = 0.16;
+const TYPE_SOUND_MIN_CHARS = 3;
+const TYPE_SOUND_MAX_CHARS = 5;
+let charsUntilNextTypeSound = 0;
+
+function resetTypeSoundCounter() {
+  charsUntilNextTypeSound =
+    TYPE_SOUND_MIN_CHARS + Math.floor(Math.random() * (TYPE_SOUND_MAX_CHARS - TYPE_SOUND_MIN_CHARS + 1));
+}
+
+function maybePlayTypeTick() {
+  charsUntilNextTypeSound--;
+  if (charsUntilNextTypeSound > 0) return;
+  resetTypeSoundCounter();
+
+  const file = BUBBLES_SOUND_FILES[Math.floor(Math.random() * BUBBLES_SOUND_FILES.length)];
+  const audio = new Audio(file);
+  audio.volume = TYPE_SOUND_VOLUME;
+  const playPromise = audio.play();
+  if (playPromise && typeof playPromise.catch === "function") {
+    playPromise.catch(() => {
+      // Autoplay/user-activation restrictions or a missing asset --
+      // silently skip. The typewriter timing itself never depends on
+      // this resolving.
+    });
+  }
+}
+
+// Creates one section's DOM immediately -- label plus one empty <p>
+// per line, so the existing .bubble-section CSS fade/slide-in
+// animation still plays on insertion exactly as before -- then starts
+// typing its lines in order.
+function startTypingSection(section) {
+  bubbleEl.classList.remove("bubble-waiting");
+
+  const el = document.createElement("div");
+  el.className = `bubble-section bubble-section-${section.modifier}`;
+
+  const labelEl = document.createElement("p");
+  labelEl.className = "bubble-label";
+  labelEl.textContent = section.label;
+  el.appendChild(labelEl);
+
+  const lineEls = section.lines.map((line) => {
+    const p = document.createElement("p");
+    p.className = "beat";
+    el.appendChild(p);
+    return { el: p, text: line };
+  });
+
+  bubbleEl.appendChild(el);
+
+  bubbleSequence.phase = "typing";
+  bubbleSequence.lineEls = lineEls;
+  bubbleSequence.lineIndex = 0;
+  bubbleSequence.charIndex = 0;
+  resetTypeSoundCounter();
+
+  typeNextChar();
+}
+
+function typeNextChar() {
+  const { lineEls } = bubbleSequence;
+  if (bubbleSequence.lineIndex >= lineEls.length) {
+    finishTypingSection();
+    return;
+  }
+
+  const current = lineEls[bubbleSequence.lineIndex];
+  bubbleSequence.charIndex++;
+  current.el.textContent = current.text.slice(0, bubbleSequence.charIndex);
+  maybePlayTypeTick();
+
+  if (bubbleSequence.charIndex >= current.text.length) {
+    bubbleSequence.lineIndex++;
+    bubbleSequence.charIndex = 0;
+  }
+
+  bubbleSequence.timerId = setTimeout(typeNextChar, TYPE_CHAR_DELAY_MS);
+}
+
+// Instantly fills in whatever text hasn't been typed yet in the
+// current section, then proceeds exactly as if typing had finished
+// naturally -- used when the user taps to skip ahead mid-type.
+function completeCurrentSectionText() {
+  bubbleSequence.lineEls.forEach(({ el, text }) => {
+    el.textContent = text;
+  });
+  finishTypingSection();
+}
+
+function finishTypingSection() {
+  bubbleSequence.timerId = null;
+
+  const isLastSection = bubbleSequence.stageIndex >= bubbleSequence.sections.length - 1;
+  if (isLastSection) {
+    bubbleSequence.phase = "done";
+    return;
+  }
+
+  bubbleSequence.phase = "waiting";
+  bubbleEl.classList.add("bubble-waiting"); // subtle pulse hinting the bubble can be tapped
+  bubbleSequence.timerId = setTimeout(advanceBubbleSequence, SECTION_REVEAL_DELAY_MS);
+}
+
+function advanceBubbleSequence() {
+  bubbleSequence.timerId = null;
+  bubbleSequence.stageIndex++;
+  startTypingSection(bubbleSequence.sections[bubbleSequence.stageIndex]);
+}
+
+// The single entry point for tapping/clicking (or Enter/Space-ing) the
+// bubble. Finishes the current section instantly if it's still typing
+// (does NOT advance yet); skips the 10s wait and starts the next
+// section immediately if the current one already finished; does
+// nothing once the whole card is done -- PUPU's belly remains the
+// only way to start a new card, so tapping a finished bubble can never
+// race a fresh belly press.
+function handleBubbleAdvance() {
+  if (!bubbleSequence) return;
+  if (bubbleSequence.phase === "done") return;
+
+  stopBubbleSequenceTimer();
+
+  if (bubbleSequence.phase === "typing") {
+    completeCurrentSectionText();
+  } else if (bubbleSequence.phase === "waiting") {
+    advanceBubbleSequence();
+  }
 }
 
 // card.english is always 4 lines: a fact headline + detail, then two
@@ -692,13 +815,13 @@ function cancelPendingReveal() {
 // sections below without inventing any new content or touching the
 // card data structure.
 //
-// The three sections are appended one at a time via setTimeout rather
-// than all at once -- and never removed, so the bubble grows instead
-// of replacing what's already shown. renderCard() itself stays a
-// plain (non-async) function that returns immediately -- callers that
-// don't await it (see handleBellyPress) are unaffected.
+// renderCard() itself stays a plain (non-async) function that returns
+// immediately -- callers that don't await it (see handleBellyPress)
+// are unaffected. It only ever kicks off the first section; the rest
+// of the sequence runs itself via bubbleSequence above.
 function renderCard(card, mission) {
-  cancelPendingReveal();
+  stopBubbleSequenceTimer();
+  bubbleEl.classList.remove("bubble-waiting");
   bubbleEl.innerHTML = "";
 
   const sections = [
@@ -707,12 +830,8 @@ function renderCard(card, mission) {
     { modifier: "mission", label: "🗣️ PUPU HAS AN IDEA...", lines: [mission.text] },
   ];
 
-  sections.forEach((section, index) => {
-    const timerId = setTimeout(() => {
-      appendBubbleSection(section.modifier, section.label, section.lines);
-    }, index * SECTION_REVEAL_DELAY_MS);
-    pendingRevealTimerIds.push(timerId);
-  });
+  bubbleSequence = { sections, stageIndex: 0, phase: "typing", timerId: null, lineEls: [], lineIndex: 0, charIndex: 0 };
+  startTypingSection(sections[0]);
 
   statusEl.textContent = `${card.sourceId} · ${card.engine} · Generated (not yet reviewed)`;
 }
@@ -776,9 +895,11 @@ async function handleBellyPress() {
   renderCard(card, pickMission(card.conversationType, card.topicTags));
   replayAnimation(bubbleEl, "pupu-inflate", 500);
 
-  // Bridge until the typewriter effect is restored: hold the
-  // behaviour's animation for its own duration (see the BEHAVIOURS
-  // comment above), then play the finishing nod.
+  // Holds the behaviour's own body animation for its own duration (see
+  // the BEHAVIOURS comment above), then plays the finishing nod. This
+  // is independent of the bubble's own typewriter sequence started by
+  // renderCard() just above, which keeps running itself on its own
+  // timers regardless of how long this animation takes.
   await wait(behaviour.duration);
 
   clearBehaviourAnimations();
@@ -800,15 +921,29 @@ async function handleBellyPress() {
   resumeIdleChatter();
 }
 
-// PUPU's belly is the only primary interaction now (the separate
-// "Press PUPU" button was removed); keydown handles Enter/Space since
-// the button is exposed as role="button" for accessibility, matching
-// how the main app's belly button already works (see script.js).
+// PUPU's belly starts a new card (the separate "Press PUPU" button was
+// removed); keydown handles Enter/Space since the button is exposed as
+// role="button" for accessibility, matching how the main app's belly
+// button already works (see script.js).
 pupuButton.addEventListener("click", handleBellyPress);
 pupuButton.addEventListener("keydown", (event) => {
   if (event.key === "Enter" || event.key === " ") {
     event.preventDefault();
     handleBellyPress();
+  }
+});
+
+// Tapping/clicking the bubble drives handleBubbleAdvance() above.
+// bubbleEl is a stable element that's never replaced (renderCard()
+// only ever clears/rebuilds its contents), so this listener is
+// attached once here rather than re-attached on every render. Keydown
+// gives the same behaviour to keyboard users, matching the belly
+// button's own role="button"/tabindex="0" pattern above.
+bubbleEl.addEventListener("click", handleBubbleAdvance);
+bubbleEl.addEventListener("keydown", (event) => {
+  if (event.key === "Enter" || event.key === " ") {
+    event.preventDefault();
+    handleBubbleAdvance();
   }
 });
 
