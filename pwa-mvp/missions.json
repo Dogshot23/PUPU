@@ -3,7 +3,8 @@
     { "id": "kid-belief-false", "text": "Tell your teacher something you believed as a kid that turned out to be false." },
     { "id": "true-but-fake-sounding", "text": "Tell your teacher one true fact that sounds completely made up." },
     { "id": "surprising-fact-about-me", "text": "Tell your teacher one surprising thing about yourself." },
-    { "id": "surprising-thing-learned", "text": "Tell your teacher the most surprising thing you've learned this month." }
+    { "id": "surprising-thing-learned", "text": "Tell your teacher the most surprising thing you've learned this month." },
+    { "id": "rain-fish", "text": "Ask your teacher what they would do if it rained fish." }
   ],
   "guess": [
     { "id": "true-or-false", "text": "Tell your teacher one thing that is true and one thing that is false." },
