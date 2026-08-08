@@ -4,12 +4,12 @@
     { "id": "true-but-fake-sounding", "text": "Tell your teacher one true fact that sounds completely made up." },
     { "id": "surprising-fact-about-me", "text": "Tell your teacher one surprising thing about yourself." },
     { "id": "surprising-thing-learned", "text": "Tell your teacher the most surprising thing you've learned this month." },
-    { "id": "rain-fish", "text": "Ask your teacher what they would do if it rained fish." }
+    { "id": "rain-fish", "text": "Ask your teacher what they would do if something impossible happened right now." }
   ],
   "guess": [
     { "id": "true-or-false", "text": "Tell your teacher one thing that is true and one thing that is false." },
-    { "id": "guess-favourite-food", "text": "Challenge your teacher to guess your favourite food." },
-    { "id": "describe-animal", "text": "Describe an animal without saying its name." },
+    { "id": "guess-favourite-food", "text": "Challenge your teacher to guess something you're really good at." },
+    { "id": "describe-animal", "text": "Describe something without saying what it is, and let your teacher guess." },
     { "id": "guess-age", "text": "Ask your teacher to guess how old you were in your favourite memory." }
   ],
   "opinion": [
@@ -17,7 +17,7 @@
     { "id": "broken-bone", "text": "Ask your teacher if they have ever broken a bone." },
     { "id": "favourite-season", "text": "Ask your teacher what their favourite season is, and why." },
     { "id": "favourite-holiday", "text": "Ask your teacher about their favourite holiday memory." },
-    { "id": "compliment-teacher", "text": "Give your teacher a genuine compliment." },
+    { "id": "compliment-teacher", "text": "Give your teacher a genuine compliment, then ask them to give you one back." },
     { "id": "weekend-plan", "text": "Tell your teacher one thing you're excited to do this weekend." },
     { "id": "best-advice", "text": "Ask your teacher for one piece of advice." }
   ],
@@ -31,21 +31,21 @@
   "challenge": [
     { "id": "make-laugh", "text": "Make your teacher laugh in under one minute." },
     { "id": "teach-something", "text": "Teach your teacher how to do something." },
-    { "id": "act-out-animal", "text": "Act out an animal and let your teacher guess which one." },
-    { "id": "three-words", "text": "Describe today in exactly three words." },
-    { "id": "sing-a-line", "text": "Sing one line from your favourite song." }
+    { "id": "act-out-animal", "text": "Act something out without speaking, and let your teacher guess what it is." },
+    { "id": "three-words", "text": "Describe today in exactly three words, then ask your teacher to choose their favourite." },
+    { "id": "sing-a-line", "text": "Perform something silly for your teacher for ten seconds — you choose how." }
   ],
   "funny": [
-    { "id": "teach-korean-word", "text": "Teach your teacher one Korean word." },
+    { "id": "teach-korean-word", "text": "Teach your teacher one fun fact they probably don't know." },
     { "id": "funniest-dream", "text": "Tell your teacher your funniest dream." },
-    { "id": "invent-word", "text": "Invent a new word and explain what it means." },
-    { "id": "funniest-english-word", "text": "Tell your teacher the funniest word you know in English." },
+    { "id": "invent-word", "text": "Invent a funny new word for something silly, and explain what it means." },
+    { "id": "funniest-english-word", "text": "Tell your teacher the silliest word you know, in any language." },
     { "id": "silly-late-excuse", "text": "Make up a silly excuse for being late, and tell it to your teacher." }
   ],
   "strange": [
-    { "id": "strangest-animal-fact", "text": "Tell your teacher the strangest animal fact you know." },
-    { "id": "strange-body-fact", "text": "Ask your teacher if they know anything strange about the human body." },
-    { "id": "weird-body-habit", "text": "Tell your teacher one weird thing your body does that you can't explain." },
+    { "id": "strangest-animal-fact", "text": "Tell your teacher the strangest fact you know." },
+    { "id": "strange-body-fact", "text": "Ask your teacher what the strangest thing they've ever seen was." },
+    { "id": "weird-body-habit", "text": "Tell your teacher something strange about yourself, and ask if they have anything similar." },
     { "id": "teacher-weirdest-fact", "text": "Ask your teacher to tell you the weirdest fact they know." }
   ],
   "amazing": [
