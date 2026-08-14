@@ -824,7 +824,7 @@ function renderCard(card, mission) {
 
   const sections = [
     { modifier: "fact", label: "💡 DID YOU KNOW?", lines: card.english.slice(0, 2) },
-    { modifier: "mission", label: "🗣️ SHARE IT!", lines: [mission.text] },
+    { modifier: "mission", label: "🗣️ SHARE IT!", lines: [card.sharePrompt || mission.text] },
   ];
 
   bubbleSequence = { sections, stageIndex: 0, phase: "typing", timerId: null, lineEls: [], lineIndex: 0, charIndex: 0 };
