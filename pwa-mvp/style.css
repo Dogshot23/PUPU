@@ -144,11 +144,11 @@ body {
 }
 
 /* ---------- Speech bubble sections ----------
-   Splits a card into three scannable beats -- fact, PUPU's reaction,
-   then the mission -- instead of one long run of text. Each section
-   gets its own playful emoji label and an accent colour; a dashed
-   rule plus vertical rhythm (not a bigger bubble) is what keeps them
-   feeling separate during a live lesson. */
+   Splits a card into two scannable beats -- the fact, then the
+   mission -- instead of one long run of text. Each section gets its
+   own playful emoji label and an accent colour; a dashed rule plus
+   vertical rhythm (not a bigger bubble) is what keeps them feeling
+   separate during a live lesson. */
 /* Sections are inserted into the DOM one at a time, staggered by
    renderCard() in app.js, rather than all at once -- so this plays
    automatically on each fresh .bubble-section as it appears. Slow and
@@ -195,10 +195,6 @@ body {
   text-transform: uppercase;
   text-align: center;
   color: #5fae8f;
-}
-
-.bubble-section-weird .bubble-label {
-  color: #d97fb0;
 }
 
 .bubble-section-mission .bubble-label {

@@ -809,11 +809,9 @@ function handleBubbleAdvance() {
   }
 }
 
-// card.english is always 4 lines: a fact headline + detail, then two
-// short lines of PUPU's own reaction to it (see cards.json). Splitting
-// the array in half groups those into "the fact" vs. "PUPU's reaction"
-// sections below without inventing any new content or touching the
-// card data structure.
+// card.english is always 4 lines (fact headline + detail, then two
+// unused lines pending a content rewrite -- see cards.json). Only the
+// first 2 lines are shown, as "the fact" section below.
 //
 // renderCard() itself stays a plain (non-async) function that returns
 // immediately -- callers that don't await it (see handleBellyPress)
@@ -826,8 +824,7 @@ function renderCard(card, mission) {
 
   const sections = [
     { modifier: "fact", label: "💡 DID YOU KNOW?", lines: card.english.slice(0, 2) },
-    { modifier: "weird", label: "😊 I THINK...", lines: card.english.slice(2) },
-    { modifier: "mission", label: "🗣️ PUPU HAS AN IDEA...", lines: [mission.text] },
+    { modifier: "mission", label: "🗣️ SHARE IT!", lines: [mission.text] },
   ];
 
   bubbleSequence = { sections, stageIndex: 0, phase: "typing", timerId: null, lineEls: [], lineIndex: 0, charIndex: 0 };
