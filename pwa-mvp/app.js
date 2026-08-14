@@ -809,9 +809,24 @@ function handleBubbleAdvance() {
   }
 }
 
-// card.english is always 4 lines (fact headline + detail, then two
-// unused lines pending a content rewrite -- see cards.json). Only the
-// first 2 lines are shown, as "the fact" section below.
+// Per-type box labels for the two-bubble sequence. "fact" is the
+// original/default type -- the existing 100 cards have no `type`
+// field at all, so they fall back to it below. The other four types
+// reuse the exact same two-box mechanic, just with english[0]/
+// english[1] as a plain setup/payoff pair instead of a fact+share
+// prompt pair (no mission involved).
+const CONTENT_TYPE_LABELS = {
+  fact: { box1: "💡 DID YOU KNOW?", box2: "🗣️ SHARE IT!" },
+  joke: { box1: "😂 JOKE TIME!", box2: "😂 THE PUNCHLINE" },
+  riddle: { box1: "🤔 CAN YOU GUESS?", box2: "💡 THE ANSWER" },
+  story: { box1: "📖 STORY TIME", box2: "❓ WHAT HAPPENS NEXT?" },
+  question: { box1: "💭 YOUR TURN", box2: "🗣️ TELL ME MORE" },
+};
+
+// card.english is always 4 lines for "fact"-type cards (fact headline
+// + detail, then two unused lines pending a content rewrite -- see
+// cards.json). Only the first 2 lines are shown, as "the fact"
+// section below. Non-fact types only ever use english[0]/english[1].
 //
 // renderCard() itself stays a plain (non-async) function that returns
 // immediately -- callers that don't await it (see handleBellyPress)
@@ -822,10 +837,19 @@ function renderCard(card, mission) {
   bubbleEl.classList.remove("bubble-waiting");
   bubbleEl.innerHTML = "";
 
-  const sections = [
-    { modifier: "fact", label: "💡 DID YOU KNOW?", lines: card.english.slice(0, 2) },
-    { modifier: "mission", label: "🗣️ SHARE IT!", lines: [card.sharePrompt || mission.text] },
-  ];
+  const type = card.type || "fact";
+  const labels = CONTENT_TYPE_LABELS[type];
+
+  const sections =
+    type === "fact"
+      ? [
+          { modifier: "fact", label: labels.box1, lines: card.english.slice(0, 2) },
+          { modifier: "mission", label: labels.box2, lines: [card.sharePrompt || mission.text] },
+        ]
+      : [
+          { modifier: "fact", label: labels.box1, lines: [card.english[0]] },
+          { modifier: "mission", label: labels.box2, lines: [card.english[1]] },
+        ];
 
   bubbleSequence = { sections, stageIndex: 0, phase: "typing", timerId: null, lineEls: [], lineIndex: 0, charIndex: 0 };
   startTypingSection(sections[0]);
