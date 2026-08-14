@@ -646,6 +646,153 @@ body {
   }
 }
 
+/* ---------- Between-bubble reactions ----------
+   A separate small pool of short flourishes from the belly-press
+   BEHAVIOURS above -- played via app.js's playBubbleReaction() when
+   the child advances from box 1 to box 2, so PUPU feels like it's
+   reacting to the interaction. Same plain-transform pattern as every
+   animation above; nothing new architecturally. */
+
+.pupu-circle.pupu-spin {
+  animation: pupu-spin 0.7s ease-in-out;
+}
+
+@keyframes pupu-spin {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  60% {
+    transform: rotate(360deg) scale(1.05);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+.pupu-circle.pupu-puff {
+  animation: pupu-puff 0.9s ease-in-out;
+}
+
+@keyframes pupu-puff {
+  0%, 100% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.18);
+  }
+  70% {
+    transform: scale(0.92);
+  }
+}
+
+.pupu-circle.pupu-look-around {
+  animation: pupu-look-around 0.8s ease-in-out;
+}
+
+@keyframes pupu-look-around {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-8deg);
+  }
+  60% {
+    transform: rotate(8deg);
+  }
+  85% {
+    transform: rotate(-3deg);
+  }
+}
+
+.pupu-circle.pupu-yawn {
+  animation: pupu-yawn 1.3s ease-in-out;
+}
+
+@keyframes pupu-yawn {
+  0%, 100% {
+    transform: scale(1, 1) translateY(0);
+  }
+  40%, 60% {
+    transform: scale(1.05, 1.08) translateY(-4px);
+  }
+}
+
+.pupu-circle.pupu-surprised {
+  animation: pupu-surprised 0.55s ease-in-out;
+}
+
+@keyframes pupu-surprised {
+  0% {
+    transform: scale(1) translateY(0);
+  }
+  30% {
+    transform: scale(1.15) translateY(-6px);
+  }
+  60% {
+    transform: scale(0.97) translateY(1px);
+  }
+  100% {
+    transform: scale(1) translateY(0);
+  }
+}
+
+.pupu-circle.pupu-silly-dance {
+  animation: pupu-silly-dance 1.4s ease-in-out;
+}
+
+@keyframes pupu-silly-dance {
+  0%, 100% {
+    transform: translateX(0) rotate(0deg);
+  }
+  15% {
+    transform: translateX(-6px) rotate(-6deg);
+  }
+  30% {
+    transform: translateX(6px) rotate(6deg);
+  }
+  45% {
+    transform: translateX(-6px) rotate(-6deg);
+  }
+  60% {
+    transform: translateX(6px) rotate(6deg);
+  }
+  75% {
+    transform: translateX(-3px) rotate(-3deg);
+  }
+  90% {
+    transform: translateX(3px) rotate(3deg);
+  }
+}
+
+.pupu-circle.pupu-wake-up {
+  animation: pupu-wake-up 0.7s ease-in-out;
+}
+
+@keyframes pupu-wake-up {
+  0% {
+    transform: translateY(10px) rotate(6deg) scale(1);
+  }
+  50% {
+    transform: translateY(-8px) rotate(-4deg) scale(1.08);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+}
+
+.pupu-circle.pupu-exaggerated-float {
+  animation: pupu-exaggerated-float 1.2s ease-in-out;
+}
+
+@keyframes pupu-exaggerated-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-16px);
+  }
+}
+
 /* ---------- PUPU arm keyframes ----------
    Shared by whichever behaviour/event triggers them. Every keyframe
    returns to rotate(0deg) by 100% -- these are brief, one-shot

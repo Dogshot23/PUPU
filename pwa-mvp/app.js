@@ -39,7 +39,10 @@ const MOUTH_BY_ANIMATION = {
   excited: "smile",
   laugh: "smile",
   sneeze: "blow",
-  blow: "blow"
+  blow: "blow",
+  yawn: "wide",
+  surprised: "oh",
+  "wake-up": "oh"
 };
 
 // Sets the mouth artwork for a given expression; anything
@@ -72,6 +75,30 @@ const BEHAVIOURS = [
   { id: "excited", message: "I have an idea!", animation: "excited", duration: 1400 },
   { id: "sleepy", message: "Oops... I nearly fell asleep.", animation: "sleepy", duration: 1600 },
   { id: "laugh", message: "Hehehe!", animation: "laugh", duration: 1200 }
+];
+
+// ---------- Between-bubble reactions ----------
+// A separate, smaller pool from BEHAVIOURS above -- played by
+// playBubbleReaction() (defined further below, near
+// advanceBubbleSequence()) each time the child advances from box 1 to
+// box 2, so PUPU feels like it's reacting to the interaction instead
+// of just standing there. Kept as its own array/system rather than
+// merged into BEHAVIOURS so the existing, already-tuned belly-press
+// sequence stays untouched. Reuses "bounce" and "sleepy" (existing
+// animations above) and "soft-wobble" (existing idle-gesture
+// animation) alongside 8 new short flourishes.
+const BUBBLE_REACTIONS = [
+  { id: "spin", animation: "spin", duration: 700 },
+  { id: "puff", animation: "puff", duration: 900 },
+  { id: "lookAround", animation: "look-around", duration: 800 },
+  { id: "yawn", animation: "yawn", duration: 1300 },
+  { id: "surprised", animation: "surprised", duration: 550 },
+  { id: "sillyDance", animation: "silly-dance", duration: 1400 },
+  { id: "wakeUp", animation: "wake-up", duration: 700 },
+  { id: "exaggeratedFloat", animation: "exaggerated-float", duration: 1200 },
+  { id: "bounce", animation: "bounce", duration: 600 },
+  { id: "wobble", animation: "soft-wobble", duration: 500 },
+  { id: "sleepy", animation: "sleepy", duration: 1400 }
 ];
 
 // ---------- Special event data ----------
@@ -114,6 +141,9 @@ function pickRandomFrom(list) {
 function clearBehaviourAnimations() {
   BEHAVIOURS.forEach((behaviour) => {
     pupuCircle.classList.remove(`pupu-${behaviour.animation}`);
+  });
+  BUBBLE_REACTIONS.forEach((reaction) => {
+    pupuCircle.classList.remove(`pupu-${reaction.animation}`);
   });
   pupuCircle.classList.remove("pupu-thinking");
   pupuCircle.classList.remove("pupu-finish");
@@ -783,10 +813,38 @@ function finishTypingSection() {
   bubbleSequence.timerId = setTimeout(advanceBubbleSequence, SECTION_REVEAL_DELAY_MS);
 }
 
+// Fire-and-forget: picks a random BUBBLE_REACTIONS entry and plays it
+// on PUPU, then cleans itself up after its own duration. Never
+// awaited by its caller and never touches `isBusy` itself (only reads
+// it, to bail out) -- so it can never delay or block advancing the
+// bubble sequence. Skipped entirely while `isBusy` is true so it can
+// never interrupt or get interrupted by the belly-press behaviour
+// sequence, which owns pupuCircle's animation during that window.
+let bubbleReactionTimeoutId = null;
+
+function playBubbleReaction() {
+  if (isBusy) return;
+
+  const reaction = pickRandomFrom(BUBBLE_REACTIONS);
+
+  clearBehaviourAnimations();
+  void pupuCircle.offsetWidth; // force reflow so back-to-back reactions always restart cleanly
+  pupuCircle.classList.add(`pupu-${reaction.animation}`);
+  setMouth(MOUTH_BY_ANIMATION[reaction.animation]);
+
+  if (bubbleReactionTimeoutId !== null) clearTimeout(bubbleReactionTimeoutId);
+  bubbleReactionTimeoutId = setTimeout(() => {
+    pupuCircle.classList.remove(`pupu-${reaction.animation}`);
+    setMouth("normal");
+    bubbleReactionTimeoutId = null;
+  }, reaction.duration);
+}
+
 function advanceBubbleSequence() {
   bubbleSequence.timerId = null;
   bubbleSequence.stageIndex++;
   startTypingSection(bubbleSequence.sections[bubbleSequence.stageIndex]);
+  playBubbleReaction();
 }
 
 // The single entry point for tapping/clicking (or Enter/Space-ing) the
