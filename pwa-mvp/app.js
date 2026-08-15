@@ -31,18 +31,33 @@ const ghostOverlayEl = document.getElementById("ghost-overlay");
 // ---------- Artwork ----------
 const EYES_OPEN_SRC = "images/pupu/eyes/eyes_open.png";
 const EYES_CLOSED_SRC = "images/pupu/eyes/eyes_closed.png";
+const EYES_SMILING_SRC = "images/pupu/eyes/eyes_smiling.png";
+const EYES_DOTS_SRC = "images/pupu/eyes/eyes_dots.png";
+const EYES_SLITS_SRC = "images/pupu/eyes/eyes_slits.png";
+const EYES_CIRCLES_SRC = "images/pupu/eyes/eyes_circles.png";
+const EYES_PUPU_SRC = "images/pupu/eyes/eyes_pupu.png";
 const BUTTON_UNPRESSED_SRC = "images/pupu/buttons/button_unpressed.png";
 const BUTTON_PRESSED_SRC = "images/pupu/buttons/button_pressed.png";
+const BODY_NORMAL_SRC = "images/pupu/body/body.png";
 const MOUTH_NORMAL_SRC = "images/pupu/mouths/mouth_neutral.png";
 const MOUTH_SMILE_SRC = "images/pupu/mouths/mouth_smile.png";
 const MOUTH_BLOW_SRC = "images/pupu/mouths/mouth_blow.png";
 // Used by the idle chatter mouth cycle (see CHATTER_MOUTH_SEQUENCE).
 const MOUTH_OH_SRC = "images/pupu/mouths/mouth_oh.png";
 const MOUTH_WIDE_SRC = "images/pupu/mouths/mouth_wide.png";
+const MOUTH_LIPS_SRC = "images/pupu/mouths/mouth_lips.png";
+const MOUTH_TONGUE_SRC = "images/pupu/mouths/mouth_tongue.png";
+const MOUTH_SHOUT_SRC = "images/pupu/mouths/mouth_shout.png";
+const MOUTH_CLOSED_SMILE_SRC = "images/pupu/mouths/mouth_closed_smile.png";
+const MOUTH_SING_SRC = "images/pupu/mouths/mouth_sing.png";
+const MOUTH_SAD_SRC = "images/pupu/mouths/mouth_sad.png";
 
-// Maps an animation identifier (behaviour.animation, or an event's id)
-// to the mouth expression that should show while it plays. Ported
-// verbatim from script.js's MOUTH_BY_ANIMATION.
+// Maps an animation identifier (behaviour.animation, reaction.animation,
+// or an event's id) to the mouth expression that should show while it
+// plays. Ported verbatim from script.js's MOUTH_BY_ANIMATION, plus
+// "silly-dance" -> "lips" added this pass (see the expressiveness
+// proposal) so the love/silly-dance reaction shows an affectionate
+// mouth instead of falling back to "normal".
 const MOUTH_BY_ANIMATION = {
   bounce: "smile",
   excited: "smile",
@@ -51,12 +66,14 @@ const MOUTH_BY_ANIMATION = {
   blow: "blow",
   yawn: "wide",
   surprised: "oh",
-  "wake-up": "oh"
+  "wake-up": "oh",
+  "silly-dance": "lips"
 };
 
 // Sets the mouth artwork for a given expression; anything
 // unrecognised falls back to "normal". Restored from script.js's
-// setMouth().
+// setMouth(), extended this pass with lips/tongue/shout/closedSmile/
+// sing/sad for the new expressiveness pairings.
 function setMouth(expression) {
   if (expression === "smile") {
     mouth.src = MOUTH_SMILE_SRC;
@@ -66,9 +83,60 @@ function setMouth(expression) {
     mouth.src = MOUTH_OH_SRC;
   } else if (expression === "wide") {
     mouth.src = MOUTH_WIDE_SRC;
+  } else if (expression === "lips") {
+    mouth.src = MOUTH_LIPS_SRC;
+  } else if (expression === "tongue") {
+    mouth.src = MOUTH_TONGUE_SRC;
+  } else if (expression === "shout") {
+    mouth.src = MOUTH_SHOUT_SRC;
+  } else if (expression === "closedSmile") {
+    mouth.src = MOUTH_CLOSED_SMILE_SRC;
+  } else if (expression === "sing") {
+    mouth.src = MOUTH_SING_SRC;
+  } else if (expression === "sad") {
+    mouth.src = MOUTH_SAD_SRC;
   } else {
     mouth.src = MOUTH_NORMAL_SRC;
   }
+}
+
+// Maps the same animation identifiers to an eyes expression, mirroring
+// MOUTH_BY_ANIMATION exactly -- only the four "obvious" pairings from
+// the expressiveness proposal are included (surprise/curious/sleepy);
+// anything else keeps the plain open eyes it always had.
+const EYES_BY_ANIMATION = {
+  "wake-up": "circles",
+  surprised: "circles",
+  "look-around": "dots",
+  sleepy: "slits"
+};
+
+// Tracks the current *base* eyes expression (i.e. what the eyes should
+// show when not mid-blink), so blink()/gestureBlink() can restore the
+// correct expression afterward instead of always hardcoding back to
+// plain open eyes -- needed now that eyes can be something other than
+// open/closed. Updated only by setEyes(); the closeEyes event path
+// (playEvent()) deliberately bypasses setEyes()/this variable, same as
+// before this pass -- see the comment there.
+let currentEyesSrc = EYES_OPEN_SRC;
+
+// Sets the eyes artwork for a given expression; anything unrecognised
+// falls back to "normal" (plain open eyes). Mirrors setMouth() above.
+function setEyes(expression) {
+  if (expression === "smiling") {
+    currentEyesSrc = EYES_SMILING_SRC;
+  } else if (expression === "dots") {
+    currentEyesSrc = EYES_DOTS_SRC;
+  } else if (expression === "slits") {
+    currentEyesSrc = EYES_SLITS_SRC;
+  } else if (expression === "circles") {
+    currentEyesSrc = EYES_CIRCLES_SRC;
+  } else if (expression === "pupu") {
+    currentEyesSrc = EYES_PUPU_SRC;
+  } else {
+    currentEyesSrc = EYES_OPEN_SRC;
+  }
+  eyes.src = currentEyesSrc;
 }
 
 // ---------- Visual-effects layer system ----------
@@ -288,7 +356,7 @@ const BLINK_MAX_MS = 8000;
 function blink() {
   eyes.src = EYES_CLOSED_SRC;
   setTimeout(() => {
-    eyes.src = EYES_OPEN_SRC;
+    eyes.src = currentEyesSrc; // restore whichever expression was active, not always plain open
   }, BLINK_DURATION_MS);
 
   scheduleNextBlink();
@@ -603,6 +671,45 @@ function playSad() {
   playRandomSound(SAD_SOUND_FILES, "sad");
 }
 
+// How long the joy/sad idle-vocal expressions below hold before
+// reverting to normal.
+const IDLE_VOCAL_EXPRESSION_MS = 900;
+
+// Pairs the existing playJoy()/playSad() ambient idle vocals (see
+// IDLE_SOUND_CHANCES below) with a matching face -- previously these
+// sounds played with no expression at all. Reuses idleGestureActive as
+// its guard/lock: setting it true here means the playIdleGesture()
+// call right after chance.action() in runIdleSoundCheck() sees it's
+// already busy and cleanly skips itself, so this never collides with an
+// unrelated random gesture. Skipped (sound plays, face doesn't) if
+// PUPU is busy, chattering, or already mid-gesture, same guard every
+// other idle flourish uses.
+function playJoyWithExpression() {
+  playJoy();
+  if (isBusy || chatterInProgress || idleGestureActive) return;
+
+  idleGestureActive = true;
+  setMouth("sing");
+  setEyes("smiling");
+  setTimeout(() => {
+    setMouth("normal");
+    setEyes("normal");
+    idleGestureActive = false;
+  }, IDLE_VOCAL_EXPRESSION_MS);
+}
+
+function playSadWithExpression() {
+  playSad();
+  if (isBusy || chatterInProgress || idleGestureActive) return;
+
+  idleGestureActive = true;
+  setMouth("sad");
+  setTimeout(() => {
+    setMouth("normal");
+    idleGestureActive = false;
+  }, IDLE_VOCAL_EXPRESSION_MS);
+}
+
 function playFart() {
   playRandomSound(FART_SOUND_FILES, "fart");
 }
@@ -706,8 +813,8 @@ const IDLE_SOUND_CHANCES = [
   { upTo: 0.86, action: () => playBreathIn() },
   { upTo: 0.89, action: () => playCrackle() },
   { upTo: 0.91, action: () => playDroplet() },
-  { upTo: 0.925, action: () => playJoy() },
-  { upTo: 0.935, action: () => playSad() },
+  { upTo: 0.925, action: () => playJoyWithExpression() },
+  { upTo: 0.935, action: () => playSadWithExpression() },
   { upTo: 0.945, action: () => playFart() },
   { upTo: 0.955, action: () => playBurp() },
   { upTo: 0.965, action: () => playEating() },
@@ -763,6 +870,7 @@ function runIdleSoundCheck() {
 // in style.css.
 const IDLE_GESTURE_SKIP_CHANCE = 0.5; // 50% chance of doing nothing
 const IDLE_GESTURE_SMILE_MS = 400; // brief smile-flash duration
+const IDLE_GESTURE_CONTENT_SMILE_MS = 400; // brief content-smile duration, same length as the smile flash above
 const IDLE_GESTURE_BRIGHTNESS_MS = 500; // must match .pupu-idle-brightness-pulse in style.css
 // Must match .pupu-soft-wobble in style.css. Named independently of
 // the original's BROKEN_BUTTON_WOBBLE_MS (same value, 500ms) since the
@@ -782,7 +890,7 @@ let idleGestureActive = false;
 function gestureBlink() {
   eyes.src = EYES_CLOSED_SRC;
   setTimeout(() => {
-    eyes.src = EYES_OPEN_SRC;
+    eyes.src = currentEyesSrc; // restore whichever expression was active, not always plain open
     idleGestureActive = false;
   }, BLINK_DURATION_MS);
 }
@@ -794,6 +902,18 @@ function gestureSmile() {
     setMouth("normal");
     idleGestureActive = false;
   }, IDLE_GESTURE_SMILE_MS);
+}
+
+// Softer, quieter cousin of gestureSmile() above -- a brief content/
+// pleased look (mouth_closed_smile, one of the previously-unused
+// assets) rather than the bigger open smile. Same shape as
+// gestureSmile(), just a different expression and asset.
+function gestureContentSmile() {
+  setMouth("closedSmile");
+  setTimeout(() => {
+    setMouth("normal");
+    idleGestureActive = false;
+  }, IDLE_GESTURE_CONTENT_SMILE_MS);
 }
 
 // Tiny body wobble -- reuses the exact .pupu-soft-wobble class/timing
@@ -822,11 +942,17 @@ function gestureBrightnessPulse() {
 
 // Weighted so the selection feels more natural (small movements more
 // likely than the brightness pulse). Same cumulative-threshold pattern
-// already used by IDLE_SOUND_CHANCES above.
+// already used by IDLE_SOUND_CHANCES above. gestureContentSmile was
+// added this pass by carving a slice out of the existing weights
+// (wobble 40->35, blink 30->25, smile unchanged at 20, +15 new) rather
+// than changing the overall IDLE_GESTURE_SKIP_CHANCE above -- so the
+// total rate of "something happens" during an idle check is unchanged,
+// only the mix of what that something can be.
 const IDLE_GESTURES = [
-  { upTo: 0.40, gesture: gestureWobble },
-  { upTo: 0.70, gesture: gestureBlink },
-  { upTo: 0.90, gesture: gestureSmile },
+  { upTo: 0.35, gesture: gestureWobble },
+  { upTo: 0.60, gesture: gestureBlink },
+  { upTo: 0.80, gesture: gestureSmile },
+  { upTo: 0.95, gesture: gestureContentSmile },
   { upTo: 1.00, gesture: gestureBrightnessPulse }
 ];
 
@@ -976,6 +1102,8 @@ async function playEvent(event) {
   }
   if (event.closeEyes) {
     eyes.src = EYES_CLOSED_SRC;
+  } else {
+    setEyes(EYES_BY_ANIMATION[event.id]);
   }
   setMouth(MOUTH_BY_ANIMATION[event.id]);
   playBehaviourExtras(event);
@@ -989,6 +1117,8 @@ async function playEvent(event) {
   clearBehaviourAnimations();
   if (event.closeEyes) {
     eyes.src = EYES_OPEN_SRC;
+  } else {
+    setEyes("normal");
   }
   setMouth("normal");
 }
@@ -1243,21 +1373,55 @@ function finishTypingSection() {
 // sequence, which owns pupuCircle's animation during that window.
 let bubbleReactionTimeoutId = null;
 
+// Card-type-aware weighting for playBubbleReaction() below: each
+// type's favoured reaction ids get extra entries in the pool they're
+// picked from (rather than a full weighting engine), so PUPU's
+// between-bubble reaction leans toward reactions that actually suit
+// what's on screen -- a joke gets more bounce/silly-dance, a riddle or
+// question gets more curious look-around/spin, a story gets more
+// wide-eyed surprised/wake-up -- instead of a flat uniform pick every
+// time. "fact" (the original/default type) and any unrecognised type
+// intentionally have no entry here, so they keep using the plain
+// unweighted pool exactly as before this pass.
+const CONTENT_TYPE_FAVOURED_REACTIONS = {
+  joke: ["bounce", "sillyDance"],
+  riddle: ["lookAround", "spin"],
+  question: ["lookAround", "spin"],
+  story: ["surprised", "wakeUp"]
+};
+const FAVOURED_REACTION_EXTRA_WEIGHT = 2; // how many extra times a favoured reaction appears in the weighted pool
+
+function pickBubbleReaction(cardType) {
+  const favouredIds = CONTENT_TYPE_FAVOURED_REACTIONS[cardType];
+  if (!favouredIds) return pickRandomFrom(BUBBLE_REACTIONS);
+
+  const pool = BUBBLE_REACTIONS.slice();
+  BUBBLE_REACTIONS.forEach((reaction) => {
+    if (favouredIds.includes(reaction.id)) {
+      for (let i = 0; i < FAVOURED_REACTION_EXTRA_WEIGHT; i++) pool.push(reaction);
+    }
+  });
+  return pickRandomFrom(pool);
+}
+
 function playBubbleReaction() {
   if (isBusy) return;
 
-  const reaction = pickRandomFrom(BUBBLE_REACTIONS);
+  const cardType = bubbleSequence ? bubbleSequence.cardType : undefined;
+  const reaction = pickBubbleReaction(cardType);
 
   clearBehaviourAnimations();
   void pupuCircle.offsetWidth; // force reflow so back-to-back reactions always restart cleanly
   pupuCircle.classList.add(`pupu-${reaction.animation}`);
   setMouth(MOUTH_BY_ANIMATION[reaction.animation]);
+  setEyes(EYES_BY_ANIMATION[reaction.animation]);
   playBehaviourExtras(reaction);
 
   if (bubbleReactionTimeoutId !== null) clearTimeout(bubbleReactionTimeoutId);
   bubbleReactionTimeoutId = setTimeout(() => {
     pupuCircle.classList.remove(`pupu-${reaction.animation}`);
     setMouth("normal");
+    setEyes("normal");
     bubbleReactionTimeoutId = null;
   }, reaction.duration);
 }
@@ -1332,7 +1496,7 @@ function renderCard(card, mission) {
           { modifier: "mission", label: labels.box2, lines: [card.english[1]] },
         ];
 
-  bubbleSequence = { sections, stageIndex: 0, phase: "typing", timerId: null, lineEls: [], lineIndex: 0, charIndex: 0 };
+  bubbleSequence = { sections, stageIndex: 0, phase: "typing", timerId: null, lineEls: [], lineIndex: 0, charIndex: 0, cardType: type };
   startTypingSection(sections[0]);
 
   statusEl.textContent = `${card.sourceId} · ${card.engine} · Generated (not yet reviewed)`;
@@ -1362,6 +1526,42 @@ let brokenButtonDudsLeft = 0;
 // toward BROKEN_BUTTON_CHANCE_MAX over time and resets back to
 // BROKEN_BUTTON_CHANCE_START the instant the broken state begins.
 let brokenButtonChance = BROKEN_BUTTON_CHANCE_START;
+
+// ---------- Engagement tracking (milestone / streak reactions) ----------
+// Two small, content-aware reactions that respond to what the user is
+// actually doing during this sitting, rather than a flat percentage
+// roll -- see the expressiveness proposal. Both piggyback on
+// handleBellyPress()'s existing normal-press path below rather than
+// adding a new system: sessionPressCount/lastIdleTime/fastPressStreak
+// are the only new state this pass introduces.
+let sessionPressCount = 0; // successful normal presses this sitting (browser session)
+let lastIdleTime = 0; // Date.now() the moment PUPU last became idle again
+let fastPressStreak = 0; // consecutive presses that started within STREAK_WINDOW_MS of the previous idle moment
+
+const MILESTONE_INTERVAL = 10; // every 10th successful press gets the flourish -- earned, not random
+const MILESTONE_EYES_MS = 1200;
+
+// Rare "proud" flourish for sustained engagement: eyes_pupu (previously
+// unused) plus the existing celebration sound. Fire-and-forget, called
+// alongside maybeShowHat()/maybeStartBrokenButton() at the very end of
+// a normal press -- see handleBellyPress().
+function maybeShowMilestone() {
+  if (sessionPressCount === 0 || sessionPressCount % MILESTONE_INTERVAL !== 0) return;
+
+  playCelebration();
+  setEyes("pupu");
+  setTimeout(() => {
+    setEyes("normal");
+  }, MILESTONE_EYES_MS);
+}
+
+const STREAK_WINDOW_MS = 4000; // a press starting within this long after PUPU went idle counts as "fast"
+const STREAK_THRESHOLD = 3; // this many fast presses in a row sparks a guaranteed happy reaction
+// The "happy family" of BEHAVIOURS -- reused, not reinvented, for the
+// streak spark below.
+const HAPPY_BEHAVIOURS = BEHAVIOURS.filter((behaviour) =>
+  ["bounce", "excited", "laugh"].includes(behaviour.animation)
+);
 
 // Hats have no obvious existing-behaviour match (no "pirate"/"santa"/
 // "wizard" reaction exists, nor should one be invented just to host
@@ -1531,6 +1731,7 @@ async function playBrokenButtonDud() {
   pupuButton.src = BUTTON_PRESSED_SRC;
   pupuButton.classList.add("pupu-button-jammed"); // instant "stuck" press -- see .pupu-button-jammed in style.css
   playButtonBroken();
+  setMouth("tongue"); // a teasing tongue-out look while the button stays jammed on the user
 
   await wait(BROKEN_BUTTON_JAM_HOLD_MS);
 
@@ -1545,6 +1746,7 @@ async function playBrokenButtonDud() {
   pupuCircle.classList.add("pupu-soft-wobble");
   await wait(BROKEN_BUTTON_WOBBLE_MS);
   pupuCircle.classList.remove("pupu-soft-wobble");
+  setMouth("normal");
 }
 
 // The payoff on the third press: celebratory sound, rapid
@@ -1557,6 +1759,7 @@ async function playBrokenButtonPayoff() {
   await wait(BROKEN_BUTTON_PAYOFF_PAUSE_MS); // comedic beat before the payoff lands
 
   playCelebration();
+  setMouth("shout"); // startled "whoa!" face for the big inflate payoff
 
   clearBehaviourAnimations();
   void pupuCircle.offsetWidth; // force reflow so the animation can restart
@@ -1568,6 +1771,7 @@ async function playBrokenButtonPayoff() {
   pupuCircle.classList.add("pupu-soft-wobble");
   await wait(BROKEN_BUTTON_WOBBLE_MS);
   pupuCircle.classList.remove("pupu-soft-wobble");
+  setMouth("normal");
 
   pupuButton.src = BUTTON_UNPRESSED_SRC;
 }
@@ -1605,6 +1809,20 @@ async function handleBellyPress() {
     return;
   }
   isBusy = true;
+  sessionPressCount++;
+
+  // Streak spark: several presses in quick succession (each one
+  // starting within STREAK_WINDOW_MS of PUPU's last idle moment) reads
+  // as enthusiasm, so the next behaviour is guaranteed from the happy
+  // family instead of a flat random pick -- see HAPPY_BEHAVIOURS above.
+  // A press that isn't fast resets the count to 0 (not counted) so an
+  // ordinary slow press never inherits a stale streak; hitting the
+  // threshold sparks immediately and resets so it takes a fresh streak
+  // to spark again.
+  const isFastPress = Date.now() - lastIdleTime < STREAK_WINDOW_MS;
+  fastPressStreak = isFastPress ? fastPressStreak + 1 : 0;
+  const isStreakSpark = fastPressStreak >= STREAK_THRESHOLD;
+  if (isStreakSpark) fastPressStreak = 0;
 
   playSquish();
 
@@ -1631,11 +1849,12 @@ async function handleBellyPress() {
   // triggering the matching arm animation via the CSS selectors on
   // .pupu-circle.pupu-<animation> .pupu-arm-left/right -- and the
   // mouth expression that goes with it.
-  const behaviour = pickRandomFrom(BEHAVIOURS);
+  const behaviour = isStreakSpark ? pickRandomFrom(HAPPY_BEHAVIOURS) : pickRandomFrom(BEHAVIOURS);
   clearBehaviourAnimations();
   void pupuCircle.offsetWidth; // force reflow so the animation can restart
   pupuCircle.classList.add(`pupu-${behaviour.animation}`);
   setMouth(MOUTH_BY_ANIMATION[behaviour.animation]);
+  setEyes(isStreakSpark ? "smiling" : EYES_BY_ANIMATION[behaviour.animation]);
   playBehaviourExtras(behaviour);
 
   // The card is picked first so its conversationType can steer which
@@ -1657,6 +1876,7 @@ async function handleBellyPress() {
   void pupuCircle.offsetWidth; // force reflow so the animation can restart
   pupuCircle.classList.add("pupu-finish");
   setMouth("normal");
+  setEyes("normal");
   await wait(FINISH_DURATION_MS);
 
   await wait(HOLD_MESSAGE_MS);
@@ -1674,6 +1894,7 @@ async function handleBellyPress() {
 
   pupuButton.classList.remove("pupu-button-disabled");
   isBusy = false;
+  lastIdleTime = Date.now(); // marks the moment PUPU became idle again, for the streak spark above
 
   // Restored from script.js's playReaction(): only now that PUPU is
   // idle again do idle sounds/gestures and idle chatter resume.
@@ -1681,6 +1902,7 @@ async function handleBellyPress() {
   resumeIdleChatter();
   maybeShowHat(); // rare surprise: small independent chance of a temporary hat
   maybeStartBrokenButton(); // hidden easter egg: small chance the button "jams" for the next couple of presses
+  maybeShowMilestone(); // earned surprise: a proud flourish every MILESTONE_INTERVAL-th press
 }
 
 // PUPU's belly starts a new card (the separate "Press PUPU" button was
