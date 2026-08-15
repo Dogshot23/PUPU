@@ -18,6 +18,9 @@ const pupuCircle = document.getElementById("pupu-circle");
 const pupuButton = document.getElementById("pupu-button");
 const eyes = document.getElementById("pupu-eyes");
 const mouth = document.getElementById("pupu-mouth");
+const hatEl = document.getElementById("pupu-hat");
+const itemEl = document.getElementById("pupu-item");
+const effectEl = document.getElementById("pupu-effect");
 
 // ---------- Artwork ----------
 const EYES_OPEN_SRC = "images/pupu/eyes/eyes_open.png";
@@ -62,6 +65,76 @@ function setMouth(expression) {
   }
 }
 
+// ---------- Visual-effects layer system ----------
+// A generic, reusable stack of overlay layers -- see index.html's
+// #pupu-hat/#pupu-item/#pupu-effect (each a plain <img class="pupu-layer">,
+// hidden by default via style.css's .pupu-layer { display: none }) and
+// the images/pupu/<folder>/ asset library. This intentionally does NOT
+// touch the existing body/eyes/mouth system above (still its own
+// direct .src assignments) -- those already work, so they're left
+// alone; this registry exists so *new* layers/assets never need new
+// one-off code, only a new entry here (or, for a single asset within
+// an existing category, no code at all -- just the file on disk).
+//
+// Nothing calls setLayer()/showLayerTemporarily() yet. This step only
+// builds the reusable plumbing; deciding *when* a hat, item, or effect
+// should actually appear is future work (see the folder-per-category
+// asset library under images/pupu/).
+const LAYERS = {
+  hat: { el: hatEl, folder: "hats" },
+  item: { el: itemEl, folder: "items" },
+  effect: { el: effectEl, folder: "effects" },
+};
+
+// One pending auto-hide timer per layer, keyed by layer name, so
+// re-triggering the same layer (or explicitly clearing it) can cancel
+// any timer already running for it without touching the other layers.
+const layerHideTimeouts = {};
+
+// Shows `assetName` (its filename without the .png extension) on the
+// given layer immediately, replacing whatever that layer was
+// showing -- stays visible until clearLayer() or
+// showLayerTemporarily() is called again for that same layer. Layers
+// are independent of each other, so e.g. a hat and an item can both
+// be visible at once without affecting one another.
+function setLayer(layer, assetName) {
+  const { el, folder } = LAYERS[layer];
+  if (layerHideTimeouts[layer]) {
+    clearTimeout(layerHideTimeouts[layer]);
+    layerHideTimeouts[layer] = null;
+  }
+  el.src = `images/pupu/${folder}/${assetName}.png`;
+  el.classList.add("pupu-layer-visible");
+}
+
+// Hides the given layer and cancels any pending auto-hide timer for
+// it. Clearing `src` (rather than just hiding) avoids briefly showing
+// a stale image the next time this layer is shown before its new
+// `src` finishes loading.
+function clearLayer(layer) {
+  const { el } = LAYERS[layer];
+  if (layerHideTimeouts[layer]) {
+    clearTimeout(layerHideTimeouts[layer]);
+    layerHideTimeouts[layer] = null;
+  }
+  el.classList.remove("pupu-layer-visible");
+  el.removeAttribute("src");
+}
+
+// Shows `assetName` on the given layer, then automatically hides it
+// again after `durationMs` -- for transient overlays like the comic-
+// style effects (fart/shock/exclamation/love/question/dazed) rather
+// than persistent ones like hats/items. Safe to call again on the
+// same layer before it's finished: setLayer() above already cancels
+// any previous pending hide, so back-to-back calls always restart
+// cleanly instead of the earlier timer hiding the newer image early.
+function showLayerTemporarily(layer, assetName, durationMs) {
+  setLayer(layer, assetName);
+  layerHideTimeouts[layer] = setTimeout(() => {
+    clearLayer(layer);
+  }, durationMs);
+}
+
 // ---------- Behaviour data ----------
 // Restored verbatim from behaviors.js. `message` is kept for fidelity
 // but, same as in the original app, is never displayed -- the speech
@@ -73,7 +146,7 @@ function setMouth(expression) {
 const BEHAVIOURS = [
   { id: "hello", message: "Hello!", animation: "bounce", duration: 1200 },
   { id: "excited", message: "I have an idea!", animation: "excited", duration: 1400 },
-  { id: "sleepy", message: "Oops... I nearly fell asleep.", animation: "sleepy", duration: 1600 },
+  { id: "sleepy", message: "Oops... I nearly fell asleep.", animation: "sleepy", duration: 1600, sound: "sleeping" },
   { id: "laugh", message: "Hehehe!", animation: "laugh", duration: 1200 }
 ];
 
@@ -91,14 +164,14 @@ const BUBBLE_REACTIONS = [
   { id: "spin", animation: "spin", duration: 700 },
   { id: "puff", animation: "puff", duration: 900 },
   { id: "lookAround", animation: "look-around", duration: 800 },
-  { id: "yawn", animation: "yawn", duration: 1300 },
+  { id: "yawn", animation: "yawn", duration: 1300, sound: "breathIn" },
   { id: "surprised", animation: "surprised", duration: 550 },
-  { id: "sillyDance", animation: "silly-dance", duration: 1400 },
+  { id: "sillyDance", animation: "silly-dance", duration: 1400, sound: "celebration" },
   { id: "wakeUp", animation: "wake-up", duration: 700 },
   { id: "exaggeratedFloat", animation: "exaggerated-float", duration: 1200 },
   { id: "bounce", animation: "bounce", duration: 600 },
-  { id: "wobble", animation: "soft-wobble", duration: 500 },
-  { id: "sleepy", animation: "sleepy", duration: 1400 }
+  { id: "wobble", animation: "soft-wobble", duration: 500, sound: "wobble" },
+  { id: "sleepy", animation: "sleepy", duration: 1400, sound: "sleeping" }
 ];
 
 // ---------- Special event data ----------
@@ -111,7 +184,7 @@ const EVENTS = [
   { id: "sneeze", message: "Achoo!", bodyClass: "pupu-sneeze", closeEyes: false, duration: 500 },
   { id: "laugh", message: "Hehehe!", bodyClass: "pupu-laugh", closeEyes: false, duration: 600 },
   { id: "distracted", message: "Oh...", bodyClass: "pupu-distracted", closeEyes: false, duration: 700 },
-  { id: "sleep", message: "Zzz...", bodyClass: null, closeEyes: true, duration: 1000 }
+  { id: "sleep", message: "Zzz...", bodyClass: null, closeEyes: true, duration: 1000, sound: "sleeping" }
 ];
 
 // Restored from brain.js's EVENT_CHANCE: chance a special event happens
@@ -120,6 +193,47 @@ const EVENT_CHANCE = 0.2;
 
 const FINISH_DURATION_MS = 350; // must match the CSS finish animation length
 const HOLD_MESSAGE_MS = 900; // how long the finished message stays before idle
+
+// ---------- Broken belly button (hidden easter egg) ----------
+// Restored verbatim from script.js (values unchanged): after a normal
+// successful belly press, there's a small chance the belly button
+// "jams" for the next two presses (no reaction, just a dull sound),
+// then pays off on the third press with an exaggerated inflate/
+// deflate and a soft finishing wobble. Progressive chance: starts low,
+// climbs by a fixed step after every successful normal press that
+// doesn't trigger it (capped), and resets back to the start value the
+// instant the broken state actually begins. See brokenButtonChance /
+// maybeStartBrokenButton() further below.
+const BROKEN_BUTTON_CHANCE_START = 0.02; // 2% to begin with, and what it resets to once broken state starts
+const BROKEN_BUTTON_CHANCE_STEP = 0.02; // +2 percentage points per successful normal press that doesn't trigger it
+const BROKEN_BUTTON_CHANCE_MAX = 0.15; // hard cap at 15%
+// NOTE: script.js (the original) sets this to 2, but combined with the
+// decrement-before-check in handleBrokenButtonPress() below, that only
+// ever produces ONE dud press before the payoff (not two), despite its
+// own comment above describing "the next two presses" jamming. Set to
+// 3 here so the actual behaviour matches that documented intent: two
+// dud presses, then the payoff on the third.
+const BROKEN_BUTTON_DUD_PRESSES = 3; // how many "no reaction" presses happen before the payoff
+
+// "Jammed" dud-press feel: the button presses in instantly, stays
+// fully pressed for a short hold, then eases back up slowly. The
+// easing itself is done in CSS (see .pupu-button-jammed in
+// style.css) -- these two constants only control the JS-side timing
+// of when to add/remove that class.
+const BROKEN_BUTTON_JAM_HOLD_MS = 250; // how long the button stays fully pressed before releasing
+const BROKEN_BUTTON_JAM_RELEASE_MS = 600; // must match the CSS transition duration on .pupu-button
+
+const BROKEN_BUTTON_PAYOFF_PAUSE_MS = 150; // comedic beat of silence before the payoff sound/animation starts
+
+const BROKEN_BUTTON_INFLATE_MS = 200; // rapid inflate phase
+const BROKEN_BUTTON_HOLD_MS = 350; // hold at peak size
+const BROKEN_BUTTON_DEFLATE_MS = 350; // deflate back to normal
+// Total payoff duration -- must match the CSS .pupu-broken-payoff
+// animation length (0.9s), and its keyframe stops (22.2% / 61.1%) are
+// sized to the three phases above. Keep all four in sync if changed.
+const BROKEN_BUTTON_PAYOFF_DURATION_MS =
+  BROKEN_BUTTON_INFLATE_MS + BROKEN_BUTTON_HOLD_MS + BROKEN_BUTTON_DEFLATE_MS;
+const BROKEN_BUTTON_WOBBLE_MS = 500; // must match the CSS .pupu-soft-wobble animation length
 
 // ---------- Small helpers (restored from script.js / brain.js) ----------
 function wait(ms) {
@@ -225,6 +339,7 @@ const SQUISH_SOUND_FILES = [
   "sounds/squish/squish1.wav",
   "sounds/squish/squish2.wav",
   "sounds/squish/squish3.wav",
+  "sounds/squish/sqush344.wav",
 ];
 
 function playSquish() {
@@ -232,28 +347,210 @@ function playSquish() {
 }
 
 // ---------- Idle sounds/chatter sound categories ----------
-// Restored verbatim (same files, same categories) from SOUND_FILES in
-// sound-manager.js -- only the 5 categories the idle systems below
-// actually call (bubbles, wobble, pupu, droplet, chatter). The many
-// other SoundManager categories (burp, eating, fart, etc.) belong to
-// systems this MVP doesn't have (idle chatter's mouth cycle aside) and
-// aren't pulled in.
+// Full variation lists for every category in the expanded sound
+// library (see sounds/ -- same 22 categories sound-manager.js already
+// names at the repo root, just with far more variations per category
+// than that file's older, smaller list). Two known files are
+// deliberately left out of their category's array below rather than
+// deleted from disk, so a future pass can still use them:
+// - typing/typing1.wav..typing4.wav are ~20s each (every other typing
+//   file is ~1s) -- clearly a different use case, not a per-character
+//   tick. Only the ~1s variations are listed in TYPING_SOUND_FILES.
+// - masticating/masticating.mp3 is ~14s vs. its sibling's 8s; only the
+//   shorter .wav is listed in EATING_SOUND_FILES.
+// button/button_broken.wav has no home here either (a root-app-only
+// "broken belly button" Easter egg this MVP never built) and isn't
+// listed anywhere.
 const BUBBLES_SOUND_FILES = [
+  "sounds/bubbles/bubble2222222.wav",
+  "sounds/bubbles/bubbles00000.wav",
   "sounds/bubbles/bubbles1.wav",
   "sounds/bubbles/bubbles2.wav",
+  "sounds/bubbles/bubbles223.wav",
+  "sounds/bubbles/bubbles2848.wav",
   "sounds/bubbles/bubbles3.wav",
+  "sounds/bubbles/bubbles332.wav",
+  "sounds/bubbles/bubbles332323345.wav",
+  "sounds/bubbles/bubbles333221.wav",
+  "sounds/bubbles/bubbles3333334.wav",
+  "sounds/bubbles/bubbles34567893.wav",
+  "sounds/bubbles/bubbles666767.wav",
+  "sounds/bubbles/bubbles82837373.wav",
+  "sounds/bubbles/bubbles8888989898.wav",
+  "sounds/bubbles/bubbles928347.wav",
+  "sounds/bubbles/bubbles9876.wav",
+  "sounds/bubbles/bubbles99827222.wav",
+  "sounds/bubbles/bubbles99873.wav",
+  "sounds/bubbles/bubbles998888.wav",
+  "sounds/bubbles/bubbles9988888.wav",
 ];
-const WOBBLE_SOUND_FILES = ["sounds/wobble/wobble1.wav"];
-const PUPU_SOUND_FILES = ["sounds/pupu/pupu1.wav", "sounds/pupu/pupu2.wav"];
+const WOBBLE_SOUND_FILES = [
+  "sounds/wobble/wobble1.wav",
+  "sounds/wobble/wobble2222222222223.wav",
+  "sounds/wobble/wobble2332233445.wav",
+  "sounds/wobble/wobble384857.wav",
+  "sounds/wobble/wobble38934857.wav",
+  "sounds/wobble/wobble393847.mp3",
+];
+const PUPU_SOUND_FILES = [
+  "sounds/pupu/pupu.wav",
+  "sounds/pupu/pupu1.wav",
+  "sounds/pupu/pupu2.wav",
+  "sounds/pupu/pupu3455.wav",
+  "sounds/pupu/pupu383737.wav",
+  "sounds/pupu/pupu38374.wav",
+  "sounds/pupu/pupu38474.wav",
+  "sounds/pupu/pupu38475.wav",
+  "sounds/pupu/pupu485475.wav",
+  "sounds/pupu/pupu524243536.wav",
+  "sounds/pupu/pupu74465.wav",
+  "sounds/pupu/pupu8.wav",
+  "sounds/pupu/pupu83884.wav",
+  "sounds/pupu/pupu8882.wav",
+  "sounds/pupu/pupu89929.wav",
+];
 const DROPLET_SOUND_FILES = ["sounds/droplet/droplet1.wav"];
 const CHATTER_SOUND_FILES = [
   "sounds/chatter/chatter1.wav",
   "sounds/chatter/chatter2.wav",
   "sounds/chatter/chatter3.wav",
+  "sounds/chatter/chatter3333.wav",
   "sounds/chatter/chatter4.wav",
   "sounds/chatter/chatter5.wav",
   "sounds/chatter/chatter6.wav",
   "sounds/chatter/chatter7.wav",
+  "sounds/chatter/chatter88383.wav",
+  "sounds/chatter/chatter89828.wav",
+  "sounds/chatter/chatterx.wav",
+  "sounds/chatter/chatterxx.wav",
+];
+const IDLE_VOCAL_SOUND_FILES = [
+  "sounds/idle/idle004.wav",
+  "sounds/idle/idle1.wav",
+  "sounds/idle/idle2.wav",
+  "sounds/idle/idle22333.wav",
+  "sounds/idle/idle29283.wav",
+  "sounds/idle/idle2974.wav",
+  "sounds/idle/idle3332.wav",
+  "sounds/idle/idle33444.wav",
+  "sounds/idle/idle345678.wav",
+  "sounds/idle/idle45554.wav",
+  "sounds/idle/idle8272625.wav",
+  "sounds/idle/idle92826354.wav",
+  "sounds/idle/idle928383.wav",
+  "sounds/idle/idle9838383.wav",
+  "sounds/idle/idle98784.wav",
+  "sounds/idle/idle992826.wav",
+  "sounds/idle/idle9982.wav",
+];
+const WET_SOUND_FILES = [
+  "sounds/wet/wet1.mp3",
+  "sounds/wet/wet49483.wav",
+  "sounds/wet/wet882.wav",
+  "sounds/wet/wet88883.wav",
+  "sounds/wet/wet9909.wav",
+  "sounds/wet/wet9999.wav",
+];
+const BREATH_IN_SOUND_FILES = ["sounds/breath_in/breath_in.wav"];
+const CRACKLE_SOUND_FILES = [
+  "sounds/crackle/crackle.wav",
+  "sounds/crackle/crackle1.wav",
+  "sounds/crackle/crackle3333.wav",
+  "sounds/crackle/crackle394854.wav",
+];
+const JOY_SOUND_FILES = [
+  "sounds/joy/joy1.wav",
+  "sounds/joy/joy8283844.wav",
+  "sounds/joy/joy837374.wav",
+  "sounds/joy/joy8882.wav",
+];
+const SAD_SOUND_FILES = [
+  "sounds/sad/sad1.wav",
+  "sounds/sad/sad2.wav",
+  "sounds/sad/sad29292929.wav",
+  "sounds/sad/sad384847.wav",
+  "sounds/sad/sad48463.wav",
+];
+// "Surprise character event" categories -- deliberately kept much
+// rarer than the ambient categories above, see IDLE_SOUND_CHANCES.
+const FART_SOUND_FILES = [
+  "sounds/fart/fart1.wav",
+  "sounds/fart/fart2.wav",
+  "sounds/fart/fart3.wav",
+  "sounds/fart/fart34884.wav",
+  "sounds/fart/fart37374.wav",
+  "sounds/fart/fart38475.wav",
+  "sounds/fart/fart3994.wav",
+  "sounds/fart/fart834754.wav",
+  "sounds/fart/fart83873.wav",
+  "sounds/fart/fart9484745.wav",
+  "sounds/fart/fart958573.wav",
+];
+const BURP_SOUND_FILES = [
+  "sounds/burp/burp1.wav",
+  "sounds/burp/burp2.wav",
+  "sounds/burp/burp2938.wav",
+  "sounds/burp/burp3.wav",
+  "sounds/burp/burp4.wav",
+  "sounds/burp/burpx.wav",
+  "sounds/burp/burpxx.wav",
+  "sounds/burp/burpxxx.wav",
+  "sounds/burp/burpxxxxxxx.wav",
+];
+// eating + masticating share one pool -- same "chewing" character,
+// and masticating only contributes one usable (non-20s) file anyway.
+const EATING_SOUND_FILES = [
+  "sounds/eating/eating1.wav",
+  "sounds/eating/eating2.wav",
+  "sounds/eating/eating3.wav",
+  "sounds/eating/eating4.wav",
+  "sounds/eating/eating5.wav",
+  "sounds/eating/eating6.wav",
+  "sounds/masticating/masticating83882.wav",
+];
+const CELEBRATION_SOUND_FILES = [
+  "sounds/celebration/celebration1.wav",
+  "sounds/celebration/celebration2.wav",
+  "sounds/celebration/celebration3.wav",
+];
+const FLIP_SOUND_FILES = ["sounds/flip/flip1.wav", "sounds/flip/flip2.wav"];
+const SPLASH_SOUND_FILES = ["sounds/splash/splash1.wav", "sounds/splash/splash2.wav"];
+
+// Interaction-sound categories (see playBubbleTapSound()/typing tick
+// further below). BUBBLE_TAP_SOUND_FILES is deliberately limited to
+// these 6 button/*.wav files only -- key_tap was tried here initially
+// but sounded wrong for a button press, so it was removed.
+// button_broken.wav is deliberately NOT in this pool -- it's reserved
+// exclusively for the broken-button easter egg (see
+// BUTTON_BROKEN_SOUND_FILES / playBrokenButtonDud() further below).
+const BUBBLE_TAP_SOUND_FILES = [
+  "sounds/button/button82882.wav",
+  "sounds/button/button82883.wav",
+  "sounds/button/button233.wav",
+  "sounds/button/button2223.wav",
+  "sounds/button/button2344.wav",
+  "sounds/button/button29484.wav",
+];
+const BUTTON_BROKEN_SOUND_FILES = ["sounds/button/button_broken.wav"];
+const TYPING_SOUND_FILES = [
+  "sounds/typing/typing.wav",
+  "sounds/typing/typing38347.wav",
+  "sounds/typing/typing385.wav",
+  "sounds/typing/typing39938282.wav",
+  "sounds/typing/typing82828282.wav",
+  "sounds/typing/typing8373.wav",
+  "sounds/typing/typing8838.wav",
+  "sounds/typing/typing9837.wav",
+];
+const SLEEPING_SOUND_FILES = [
+  "sounds/sleeping/sleeping1.wav",
+  "sounds/sleeping/sleeping2.wav",
+  "sounds/sleeping/sleeping3.wav",
+  "sounds/sleeping/sleeping3322.wav",
+  "sounds/sleeping/sleeping88282.wav",
+  "sounds/sleeping/sleeping887.wav",
+  "sounds/sleeping/sleeping88828.wav",
+  "sounds/sleeping/sleeping909.wav",
 ];
 
 function playBubbles() {
@@ -276,6 +573,86 @@ function playChatterSound() {
   playRandomSound(CHATTER_SOUND_FILES, "chatter");
 }
 
+function playIdleVocal() {
+  playRandomSound(IDLE_VOCAL_SOUND_FILES, "idle");
+}
+
+function playWet() {
+  playRandomSound(WET_SOUND_FILES, "wet");
+}
+
+function playBreathIn() {
+  playRandomSound(BREATH_IN_SOUND_FILES, "breath_in");
+}
+
+function playCrackle() {
+  playRandomSound(CRACKLE_SOUND_FILES, "crackle");
+}
+
+function playJoy() {
+  playRandomSound(JOY_SOUND_FILES, "joy");
+}
+
+function playSad() {
+  playRandomSound(SAD_SOUND_FILES, "sad");
+}
+
+function playFart() {
+  playRandomSound(FART_SOUND_FILES, "fart");
+}
+
+function playBurp() {
+  playRandomSound(BURP_SOUND_FILES, "burp");
+}
+
+function playEating() {
+  playRandomSound(EATING_SOUND_FILES, "eating");
+}
+
+function playCelebration() {
+  playRandomSound(CELEBRATION_SOUND_FILES, "celebration");
+}
+
+function playFlip() {
+  playRandomSound(FLIP_SOUND_FILES, "flip");
+}
+
+function playSplash() {
+  playRandomSound(SPLASH_SOUND_FILES, "splash");
+}
+
+function playBubbleTapSound() {
+  playRandomSound(BUBBLE_TAP_SOUND_FILES, "bubble-tap");
+}
+
+function playButtonBroken() {
+  playRandomSound(BUTTON_BROKEN_SOUND_FILES, "button-broken");
+}
+
+function playSleeping() {
+  playRandomSound(SLEEPING_SOUND_FILES, "sleeping");
+}
+
+// Looked up by category name from BEHAVIOURS/EVENTS/BUBBLE_REACTIONS
+// entries' optional `.sound` field (see playBehaviourSound() below) --
+// one shared table instead of a switch/if-chain at each of the three
+// trigger sites.
+const SOUND_CATEGORY_PLAYERS = {
+  sleeping: playSleeping,
+  wobble: playWobble,
+  breathIn: playBreathIn,
+  celebration: playCelebration,
+};
+
+// Plays the sound named by an optional `.sound` field on a
+// BEHAVIOURS/EVENTS/BUBBLE_REACTIONS entry, if any -- a no-op for
+// entries that don't have one, which is most of them on purpose (not
+// every animation needs a paired sound).
+function playBehaviourSound(item) {
+  const player = item.sound && SOUND_CATEGORY_PLAYERS[item.sound];
+  if (player) player();
+}
+
 // ---------- Idle sound system ----------
 // Restored from script.js's idle sound system: while PUPU is idle (not
 // thinking, typing, showing an event, or mid-reaction), an occasional
@@ -287,14 +664,32 @@ function playChatterSound() {
 const IDLE_SOUND_CHECK_MIN_MS = 10000; // 10s
 const IDLE_SOUND_CHECK_MAX_MS = 80000; // 80s
 
-// Cumulative probability thresholds (roll is a random 0-1 value):
-// 50% nothing, 30% bubbles, 10% wobble, 7% pupu, 3% droplet.
+// Cumulative probability thresholds (roll is a random 0-1 value). Only
+// one category (or nothing) ever plays per check, and checks are
+// naturally spaced IDLE_SOUND_CHECK_MIN/MAX_MS apart -- that's what
+// keeps ambient sounds from ever overlapping each other. The last 7
+// entries (fart..splash) are the "surprise character event" sounds --
+// kept substantially rarer (1-1.5% each) than the regular ambient
+// categories (2-10% each) so they read as an occasional surprise, not
+// background noise.
 const IDLE_SOUND_CHANCES = [
   { upTo: 0.50, action: null },
-  { upTo: 0.80, action: () => playBubbles() },
-  { upTo: 0.90, action: () => playWobble() },
-  { upTo: 0.97, action: () => playPupuSound() },
-  { upTo: 1.00, action: () => playDroplet() }
+  { upTo: 0.61, action: () => playBubbles() },
+  { upTo: 0.68, action: () => playIdleVocal() },
+  { upTo: 0.74, action: () => playWobble() },
+  { upTo: 0.79, action: () => playPupuSound() },
+  { upTo: 0.83, action: () => playWet() },
+  { upTo: 0.86, action: () => playBreathIn() },
+  { upTo: 0.89, action: () => playCrackle() },
+  { upTo: 0.91, action: () => playDroplet() },
+  { upTo: 0.925, action: () => playJoy() },
+  { upTo: 0.935, action: () => playSad() },
+  { upTo: 0.945, action: () => playFart() },
+  { upTo: 0.955, action: () => playBurp() },
+  { upTo: 0.965, action: () => playEating() },
+  { upTo: 0.975, action: () => playCelebration() },
+  { upTo: 0.985, action: () => playFlip() },
+  { upTo: 1.00, action: () => playSplash() }
 ];
 
 // Only one idle-sound timer may exist at a time; this holds its id so
@@ -559,6 +954,7 @@ async function playEvent(event) {
     eyes.src = EYES_CLOSED_SRC;
   }
   setMouth(MOUTH_BY_ANIMATION[event.id]);
+  playBehaviourSound(event);
 
   bubbleEl.innerHTML = "";
   appendBubbleLine(event.message);
@@ -699,11 +1095,12 @@ function stopBubbleSequenceTimer() {
   }
 }
 
-// Very quiet, occasional typing tick -- reuses the existing "bubbles"
-// idle sound (no new asset) at a much lower volume than its normal
-// idle-sound use, and only every few characters rather than every
-// character, so it reads as a soft typing texture instead of a loud
-// per-keystroke click. Fire-and-forget: a blocked/failed play() (e.g.
+// Very quiet, occasional typing tick -- uses the dedicated "typing"
+// category (short ~1s variations only; see TYPING_SOUND_FILES) at a
+// much lower volume than that category's other uses, and only every
+// few characters rather than every character, so it reads as a soft
+// typing texture instead of a loud per-keystroke click.
+// Fire-and-forget: a blocked/failed play() (e.g.
 // autoplay restrictions before any user gesture has happened yet)
 // only logs a warning via playRandomSound()'s existing rejection
 // handling -- it never touches the typing timer chain, so the
@@ -723,7 +1120,7 @@ function maybePlayTypeTick() {
   if (charsUntilNextTypeSound > 0) return;
   resetTypeSoundCounter();
 
-  const file = BUBBLES_SOUND_FILES[Math.floor(Math.random() * BUBBLES_SOUND_FILES.length)];
+  const file = TYPING_SOUND_FILES[Math.floor(Math.random() * TYPING_SOUND_FILES.length)];
   const audio = new Audio(file);
   audio.volume = TYPE_SOUND_VOLUME;
   const playPromise = audio.play();
@@ -831,6 +1228,7 @@ function playBubbleReaction() {
   void pupuCircle.offsetWidth; // force reflow so back-to-back reactions always restart cleanly
   pupuCircle.classList.add(`pupu-${reaction.animation}`);
   setMouth(MOUTH_BY_ANIMATION[reaction.animation]);
+  playBehaviourSound(reaction);
 
   if (bubbleReactionTimeoutId !== null) clearTimeout(bubbleReactionTimeoutId);
   bubbleReactionTimeoutId = setTimeout(() => {
@@ -858,6 +1256,7 @@ function handleBubbleAdvance() {
   if (!bubbleSequence) return;
   if (bubbleSequence.phase === "done") return;
 
+  playBubbleTapSound();
   stopBubbleSequenceTimer();
 
   if (bubbleSequence.phase === "typing") {
@@ -931,8 +1330,108 @@ function replayAnimation(el, className, durationMs) {
 // sequence on top of one already playing.
 let isBusy = false;
 
+// 0 = normal button behaviour. Any positive number = broken state
+// active, counting down the dud presses remaining before the payoff.
+let brokenButtonDudsLeft = 0;
+
+// Current roll chance for the next successful normal press -- climbs
+// toward BROKEN_BUTTON_CHANCE_MAX over time and resets back to
+// BROKEN_BUTTON_CHANCE_START the instant the broken state begins.
+let brokenButtonChance = BROKEN_BUTTON_CHANCE_START;
+
+// Rolls the small chance of starting the broken state. Only ever
+// called after a normal reaction finishes, and only takes effect if
+// the broken state isn't already running (so it can't restack).
+function maybeStartBrokenButton() {
+  if (brokenButtonDudsLeft > 0) return;
+
+  if (Math.random() < brokenButtonChance) {
+    brokenButtonDudsLeft = BROKEN_BUTTON_DUD_PRESSES;
+    brokenButtonChance = BROKEN_BUTTON_CHANCE_START; // reset the instant the broken state begins
+  } else {
+    brokenButtonChance = Math.min(brokenButtonChance + BROKEN_BUTTON_CHANCE_STEP, BROKEN_BUTTON_CHANCE_MAX);
+  }
+}
+
+// A single "dud" press: the button visually presses and releases,
+// and a dull sound plays -- no reaction, no behaviour, no card.
+async function playBrokenButtonDud() {
+  pupuButton.src = BUTTON_PRESSED_SRC;
+  pupuButton.classList.add("pupu-button-jammed"); // instant "stuck" press -- see .pupu-button-jammed in style.css
+  playButtonBroken();
+
+  await wait(BROKEN_BUTTON_JAM_HOLD_MS);
+
+  pupuButton.classList.remove("pupu-button-jammed"); // removing it lets the base CSS transition ease it back slowly
+  await wait(BROKEN_BUTTON_JAM_RELEASE_MS);
+
+  pupuButton.src = BUTTON_UNPRESSED_SRC;
+
+  // Small comedic flinch once the jam finally lets go -- reuses the
+  // same wobble class/duration the payoff already uses below.
+  void pupuCircle.offsetWidth; // force reflow so the wobble can restart cleanly
+  pupuCircle.classList.add("pupu-soft-wobble");
+  await wait(BROKEN_BUTTON_WOBBLE_MS);
+  pupuCircle.classList.remove("pupu-soft-wobble");
+}
+
+// The payoff on the third press: celebratory sound, rapid
+// inflate/hold/deflate, then a soft finishing wobble. Uses the same
+// clear -> reflow -> add class -> wait -> remove class pattern every
+// existing reaction/event already uses.
+async function playBrokenButtonPayoff() {
+  pupuButton.src = BUTTON_PRESSED_SRC;
+
+  await wait(BROKEN_BUTTON_PAYOFF_PAUSE_MS); // comedic beat before the payoff lands
+
+  playCelebration();
+
+  clearBehaviourAnimations();
+  void pupuCircle.offsetWidth; // force reflow so the animation can restart
+  pupuCircle.classList.add("pupu-broken-payoff");
+  await wait(BROKEN_BUTTON_PAYOFF_DURATION_MS);
+  pupuCircle.classList.remove("pupu-broken-payoff");
+
+  void pupuCircle.offsetWidth; // force reflow so the wobble can restart cleanly
+  pupuCircle.classList.add("pupu-soft-wobble");
+  await wait(BROKEN_BUTTON_WOBBLE_MS);
+  pupuCircle.classList.remove("pupu-soft-wobble");
+
+  pupuButton.src = BUTTON_UNPRESSED_SRC;
+}
+
+// Handles a single press while the broken state is active. Disables
+// the button for whichever sub-animation plays (dud or payoff), just
+// like a normal reaction does, so it can't be interrupted or stacked
+// -- then re-enables it. Once brokenButtonDudsLeft reaches 0 (the
+// payoff press), the broken state has already ended by construction.
+async function handleBrokenButtonPress() {
+  isBusy = true;
+  pupuButton.classList.add("pupu-button-disabled");
+  pauseIdleSounds();
+  pauseIdleChatter();
+
+  brokenButtonDudsLeft--;
+
+  if (brokenButtonDudsLeft > 0) {
+    await playBrokenButtonDud();
+  } else {
+    await playBrokenButtonPayoff();
+  }
+
+  isBusy = false;
+  pupuButton.classList.remove("pupu-button-disabled");
+  resumeIdleSounds();
+  resumeIdleChatter();
+}
+
 async function handleBellyPress() {
   if (isBusy || state.cards.length === 0 || Object.keys(state.missions).length === 0) return;
+
+  if (brokenButtonDudsLeft > 0) {
+    await handleBrokenButtonPress();
+    return;
+  }
   isBusy = true;
 
   playSquish();
@@ -965,6 +1464,7 @@ async function handleBellyPress() {
   void pupuCircle.offsetWidth; // force reflow so the animation can restart
   pupuCircle.classList.add(`pupu-${behaviour.animation}`);
   setMouth(MOUTH_BY_ANIMATION[behaviour.animation]);
+  playBehaviourSound(behaviour);
 
   // The card is picked first so its conversationType can steer which
   // mission pool pickMission() draws from -- see the Mission Engine
@@ -998,6 +1498,7 @@ async function handleBellyPress() {
   // idle again do idle sounds/gestures and idle chatter resume.
   resumeIdleSounds();
   resumeIdleChatter();
+  maybeStartBrokenButton(); // hidden easter egg: small chance the button "jams" for the next couple of presses
 }
 
 // PUPU's belly starts a new card (the separate "Press PUPU" button was

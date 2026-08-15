@@ -331,6 +331,33 @@ body {
   user-select: none;
 }
 
+/* ---------- PUPU visual-effects layers (hat / item / effect) ----------
+   Reusable overlay layers -- same full-bleed/shared-canvas convention
+   as every layer above, controlled generically via app.js's
+   setLayer()/clearLayer()/showLayerTemporarily() rather than one-off
+   code per asset. All three start with no `src` and are hidden by
+   default (via .pupu-layer's display:none) until JS assigns one and
+   reveals it, so an empty img never flashes a broken-image icon.
+   Painted in DOM order above eyes/mouth so hats/items/effects sit
+   visually on top of the face, but below .pupu-button so the belly
+   stays clickable and visible at all times. Hat/item are independent
+   elements/state from each other (and from effect), so any
+   combination of the three can be visible at once. */
+.pupu-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+  display: none;
+}
+
+.pupu-layer.pupu-layer-visible {
+  display: block;
+}
+
 /* ---------- PUPU chest button ----------
    PUPU's belly is the only primary interaction (see index.html's
    role="button" tabindex="0" and app.js's click/keydown handlers).
