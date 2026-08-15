@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="ghost-overlay" id="ghost-overlay"></div>
   <main class="container">
     <div class="hero">
       <div class="bubble" id="bubble" role="button" tabindex="0" aria-label="PUPU's speech bubble. Tap to skip typing or continue to the next part.">
@@ -18,11 +19,12 @@
       </div>
 
       <div class="pupu-stage">
-        <img class="pupu-shadow" src="images/pupu/effects/effect_shadow.png" alt="">
+        <img class="pupu-shadow" id="pupu-shadow" src="images/pupu/effects/effect_shadow.png" alt="">
 
         <div class="pupu-float-wrap">
           <div class="pupu-circle" id="pupu-circle">
             <img class="pupu-body" id="pupu-body" src="images/pupu/body/body.png" alt="PUPU">
+            <img class="pupu-body pupu-body-ghost" id="pupu-body-ghost" src="images/pupu/body/body_ghost.png" alt="">
             <img class="pupu-arm pupu-arm-left" id="pupu-arm-left" src="images/pupu/body/body_left_arm.png" alt="">
             <img class="pupu-arm pupu-arm-right" id="pupu-arm-right" src="images/pupu/body/body_right_arm.png" alt="">
             <img class="pupu-eye" id="pupu-eyes" src="images/pupu/eyes/eyes_open.png" alt="">

@@ -56,6 +56,30 @@ body {
   background-size: auto, auto, 100% 100%, 100% 100%;
 }
 
+/* ---------- Ghost PUPU spooky-mode overlay ----------
+   A temporary full-viewport tint, NOT a change to body's own
+   background above -- toggled by app.js's maybeShowGhost() via the
+   .ghost-overlay-active class. position:fixed + z-index:-1 as a
+   direct child of <body> (see index.html) places it behind body's own
+   background/border (tier 1 of the stacking order) is impossible for
+   a child, but ahead of it -- and behind every other (static, tier 3)
+   piece of UI in .container, since z-index:-1 descendants of body
+   paint before any non-negative-z-index content regardless of DOM
+   order. Fully transparent and inert until the class is added. */
+.ghost-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-color: #2a1145;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+}
+
+.ghost-overlay.ghost-overlay-active {
+  opacity: 1;
+}
+
 /* ---------- Layout ---------- */
 .container {
   width: 100%;
@@ -253,6 +277,7 @@ body {
   object-fit: contain;
   pointer-events: none;
   user-select: none;
+  transition: opacity 0.45s ease;
 }
 
 /* .pupu-float-wrap (new -- not in the main app, see the earlier size/
@@ -280,6 +305,45 @@ body {
   object-fit: contain;
   pointer-events: none;
   user-select: none;
+  transition: opacity 0.45s ease;
+}
+
+/* Ghost PUPU shares .pupu-body's positioning/sizing above (same
+   canvas, see index.html) but stays fully transparent until
+   app.js's maybeShowGhost() adds .pupu-body-ghost-visible, and gets
+   its own (slightly different) fade timing plus a subtle bob while
+   visible -- both independent of .pupu-body's own opacity transition
+   above since this is a separate element. */
+.pupu-body-ghost {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.pupu-body-ghost.pupu-body-ghost-visible {
+  opacity: 1;
+  animation: pupu-ghost-bob 2.4s ease-in-out infinite;
+}
+
+@keyframes pupu-ghost-bob {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* Shared "fade out for the ghost event" toggle -- applied to
+   .pupu-shadow and the normal-PUPU group (body/arms/eyes/mouth/
+   button) by app.js's maybeShowGhost(). Each of those elements
+   already has its own transition/opacity handling above (or, for
+   .pupu-button, further below), so this class only needs to set the
+   target opacity; the transition timing comes from each element's own
+   rule. */
+.pupu-ghost-hidden {
+  opacity: 0;
 }
 
 /* ---------- PUPU arms ----------
@@ -295,6 +359,7 @@ body {
   object-fit: contain;
   pointer-events: none;
   user-select: none;
+  transition: opacity 0.45s ease;
 }
 
 .pupu-arm-left {
@@ -316,6 +381,7 @@ body {
   pointer-events: none;
   user-select: none;
   transform-origin: center;
+  transition: opacity 0.45s ease;
 }
 
 /* ---------- PUPU mouth ----------
@@ -329,6 +395,7 @@ body {
   object-fit: contain;
   pointer-events: none;
   user-select: none;
+  transition: opacity 0.45s ease;
 }
 
 /* ---------- PUPU visual-effects layers (hat / item / effect) ----------
@@ -358,6 +425,76 @@ body {
   display: block;
 }
 
+/* Hat-only grow/pop transform, driven by app.js's
+   showHatWithAnimation() -- .pupu-hat is still just a .pupu-layer
+   underneath (same position/sizing/hidden-by-default rules above),
+   these two classes only add a transform+z-index animation on top,
+   scoped to .pupu-hat specifically so items/effects stay plain
+   instant show/hide. Only the hat <img> itself scales/moves -- PUPU's
+   own body/circle transforms are completely untouched.
+
+   Neither .pupu-body nor any other layer has an explicit z-index (all
+   are position:absolute with z-index:auto, so they simply paint in
+   DOM order -- body, arms, eyes, mouth, hat, item, effect, button).
+   That's what lets a plain z-index:-1 here drop the hat behind every
+   sibling including the body, and z-index:0 return it to its normal
+   DOM-order slot (already above body/eyes/mouth, below item/effect/
+   button) without needing to touch any other element's stacking. */
+.pupu-hat.pupu-hat-growing {
+  animation: pupu-hat-grow 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.pupu-hat.pupu-hat-popping {
+  animation: pupu-hat-pop 0.3s ease-in forwards;
+}
+
+/* Rises up from behind/below PUPU (small, translated down, z-index
+   behind the body) then crosses in front partway through as it
+   finishes growing and settles with a small bounce. */
+@keyframes pupu-hat-grow {
+  0% {
+    transform: scale(0) translateY(20%);
+    z-index: -1;
+  }
+  50% {
+    z-index: -1;
+  }
+  51% {
+    z-index: 0;
+  }
+  70% {
+    transform: scale(1.12) translateY(-4%);
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    z-index: 0;
+  }
+}
+
+/* Reverse of the above: a small bounce up while still in front, then
+   drops behind the body as it shrinks and sinks back down out of
+   sight, rather than shrinking away in front of PUPU. */
+@keyframes pupu-hat-pop {
+  0% {
+    transform: scale(1) translateY(0);
+    z-index: 0;
+  }
+  30% {
+    transform: scale(1.12) translateY(-4%);
+    z-index: 0;
+  }
+  45% {
+    z-index: 0;
+  }
+  46% {
+    z-index: -1;
+  }
+  100% {
+    transform: scale(0) translateY(20%);
+    z-index: -1;
+  }
+}
+
 /* ---------- PUPU chest button ----------
    PUPU's belly is the only primary interaction (see index.html's
    role="button" tabindex="0" and app.js's click/keydown handlers).
@@ -375,7 +512,7 @@ body {
   cursor: pointer;
   user-select: none;
   transform: translateY(0) scale(1);
-  transition: transform 600ms ease-out;
+  transition: transform 600ms ease-out, opacity 0.45s ease;
 }
 
 .pupu-button:focus-visible {

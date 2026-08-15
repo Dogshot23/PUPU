@@ -21,6 +21,12 @@ const mouth = document.getElementById("pupu-mouth");
 const hatEl = document.getElementById("pupu-hat");
 const itemEl = document.getElementById("pupu-item");
 const effectEl = document.getElementById("pupu-effect");
+const bodyEl = document.getElementById("pupu-body");
+const armLeftEl = document.getElementById("pupu-arm-left");
+const armRightEl = document.getElementById("pupu-arm-right");
+const shadowEl = document.getElementById("pupu-shadow");
+const ghostBodyEl = document.getElementById("pupu-body-ghost");
+const ghostOverlayEl = document.getElementById("ghost-overlay");
 
 // ---------- Artwork ----------
 const EYES_OPEN_SRC = "images/pupu/eyes/eyes_open.png";
@@ -145,7 +151,7 @@ function showLayerTemporarily(layer, assetName, durationMs) {
 // duration until that's restored.
 const BEHAVIOURS = [
   { id: "hello", message: "Hello!", animation: "bounce", duration: 1200 },
-  { id: "excited", message: "I have an idea!", animation: "excited", duration: 1400 },
+  { id: "excited", message: "I have an idea!", animation: "excited", duration: 1400, item: "item_shades", itemDuration: 4000, chance: 0.15 },
   { id: "sleepy", message: "Oops... I nearly fell asleep.", animation: "sleepy", duration: 1600, sound: "sleeping" },
   { id: "laugh", message: "Hehehe!", animation: "laugh", duration: 1200 }
 ];
@@ -162,12 +168,12 @@ const BEHAVIOURS = [
 // animation) alongside 8 new short flourishes.
 const BUBBLE_REACTIONS = [
   { id: "spin", animation: "spin", duration: 700 },
-  { id: "puff", animation: "puff", duration: 900 },
-  { id: "lookAround", animation: "look-around", duration: 800 },
+  { id: "puff", animation: "puff", duration: 900, sound: "fart", effect: "effect_fart", effectDuration: 1500, chance: 0.25 },
+  { id: "lookAround", animation: "look-around", duration: 800, effect: "effect_question", effectDuration: 1500 },
   { id: "yawn", animation: "yawn", duration: 1300, sound: "breathIn" },
-  { id: "surprised", animation: "surprised", duration: 550 },
-  { id: "sillyDance", animation: "silly-dance", duration: 1400, sound: "celebration" },
-  { id: "wakeUp", animation: "wake-up", duration: 700 },
+  { id: "surprised", animation: "surprised", duration: 550, effect: "effect_exclamation", effectDuration: 1200 },
+  { id: "sillyDance", animation: "silly-dance", duration: 1400, sound: "celebration", effect: "effect_love", effectDuration: 1800 },
+  { id: "wakeUp", animation: "wake-up", duration: 700, effect: "effect_shock", effectDuration: 1300 },
   { id: "exaggeratedFloat", animation: "exaggerated-float", duration: 1200 },
   { id: "bounce", animation: "bounce", duration: 600 },
   { id: "wobble", animation: "soft-wobble", duration: 500, sound: "wobble" },
@@ -183,7 +189,7 @@ const BUBBLE_REACTIONS = [
 const EVENTS = [
   { id: "sneeze", message: "Achoo!", bodyClass: "pupu-sneeze", closeEyes: false, duration: 500 },
   { id: "laugh", message: "Hehehe!", bodyClass: "pupu-laugh", closeEyes: false, duration: 600 },
-  { id: "distracted", message: "Oh...", bodyClass: "pupu-distracted", closeEyes: false, duration: 700 },
+  { id: "distracted", message: "Oh...", bodyClass: "pupu-distracted", closeEyes: false, duration: 700, effect: "effect_dazed", effectDuration: 1300 },
   { id: "sleep", message: "Zzz...", bodyClass: null, closeEyes: true, duration: 1000, sound: "sleeping" }
 ];
 
@@ -634,7 +640,7 @@ function playSleeping() {
 }
 
 // Looked up by category name from BEHAVIOURS/EVENTS/BUBBLE_REACTIONS
-// entries' optional `.sound` field (see playBehaviourSound() below) --
+// entries' optional `.sound` field (see playBehaviourExtras() below) --
 // one shared table instead of a switch/if-chain at each of the three
 // trigger sites.
 const SOUND_CATEGORY_PLAYERS = {
@@ -642,15 +648,33 @@ const SOUND_CATEGORY_PLAYERS = {
   wobble: playWobble,
   breathIn: playBreathIn,
   celebration: playCelebration,
+  fart: playFart,
 };
 
-// Plays the sound named by an optional `.sound` field on a
-// BEHAVIOURS/EVENTS/BUBBLE_REACTIONS entry, if any -- a no-op for
-// entries that don't have one, which is most of them on purpose (not
-// every animation needs a paired sound).
-function playBehaviourSound(item) {
-  const player = item.sound && SOUND_CATEGORY_PLAYERS[item.sound];
-  if (player) player();
+// Plays whichever sound/effect/item are attached to a
+// BEHAVIOURS/EVENTS/BUBBLE_REACTIONS entry via its optional `.sound`/
+// `.effect`/`.item` fields -- a no-op for any field that isn't
+// present, which is most entries on purpose (not every animation
+// needs paired extras; see the "Do not invent an animation purely
+// because an image exists" rule these fields were added under).
+//
+// `.chance` (0-1, omitted = always) gates the WHOLE bundle as a
+// single roll, so a combo like puff's fart pairing either happens
+// completely (sound + effect together) or not at all -- never just
+// half of it from two independent rolls landing differently.
+//
+// `.effect`/`.item` are exact asset basenames (e.g. "effect_love",
+// "item_shades") passed straight to showLayerTemporarily(), which
+// already handles cancelling/restarting its own timer cleanly on
+// repeat triggers -- nothing extra needed here for that.
+function playBehaviourExtras(item) {
+  if (item.chance !== undefined && Math.random() >= item.chance) return;
+
+  const soundPlayer = item.sound && SOUND_CATEGORY_PLAYERS[item.sound];
+  if (soundPlayer) soundPlayer();
+
+  if (item.effect) showLayerTemporarily("effect", item.effect, item.effectDuration || 1500);
+  if (item.item) showLayerTemporarily("item", item.item, item.itemDuration || 4000);
 }
 
 // ---------- Idle sound system ----------
@@ -954,7 +978,7 @@ async function playEvent(event) {
     eyes.src = EYES_CLOSED_SRC;
   }
   setMouth(MOUTH_BY_ANIMATION[event.id]);
-  playBehaviourSound(event);
+  playBehaviourExtras(event);
 
   bubbleEl.innerHTML = "";
   appendBubbleLine(event.message);
@@ -1228,7 +1252,7 @@ function playBubbleReaction() {
   void pupuCircle.offsetWidth; // force reflow so back-to-back reactions always restart cleanly
   pupuCircle.classList.add(`pupu-${reaction.animation}`);
   setMouth(MOUTH_BY_ANIMATION[reaction.animation]);
-  playBehaviourSound(reaction);
+  playBehaviourExtras(reaction);
 
   if (bubbleReactionTimeoutId !== null) clearTimeout(bubbleReactionTimeoutId);
   bubbleReactionTimeoutId = setTimeout(() => {
@@ -1338,6 +1362,154 @@ let brokenButtonDudsLeft = 0;
 // toward BROKEN_BUTTON_CHANCE_MAX over time and resets back to
 // BROKEN_BUTTON_CHANCE_START the instant the broken state begins.
 let brokenButtonChance = BROKEN_BUTTON_CHANCE_START;
+
+// Hats have no obvious existing-behaviour match (no "pirate"/"santa"/
+// "wizard" reaction exists, nor should one be invented just to host
+// them -- see the visual-asset rules this was built under), so unlike
+// every other new asset this session, they're not attached to any
+// BEHAVIOURS/EVENTS/BUBBLE_REACTIONS entry. Instead they're a genuinely
+// rare, independent spontaneous event rolled once per normal belly
+// press (same call site as the broken-button easter egg below), so
+// they stay a surprise rather than becoming predictable or attached
+// to any one mood.
+const HAT_ASSETS = ["hat_pirate", "hat_santa", "hat_wizard"];
+const HAT_CHANCE = 0.04; // ~1 in 25 belly presses
+const HAT_MIN_DURATION_MS = 3000; // how long the hat stays fully visible, same range as before
+const HAT_MAX_DURATION_MS = 5000;
+// Must match style.css's .pupu-hat-growing/.pupu-hat-popping animation
+// lengths (0.35s / 0.3s) -- these are how long the grow-in/pop-out
+// transforms themselves take, separate from HAT_MIN/MAX_DURATION_MS
+// above, which is the hold time in between.
+const HAT_GROW_MS = 350;
+const HAT_POP_MS = 300;
+
+// Two hat-specific timers (grow-hold -> start pop, and pop -> actually
+// hide), kept separate from the generic layerHideTimeouts used by
+// showLayerTemporarily() -- hats no longer go through that generic
+// instant show/hide path at all, see showHatWithAnimation() below.
+let hatPopTimeoutId = null;
+let hatHideTimeoutId = null;
+
+// Shows a hat with a rapid "grows onto PUPU's head" scale-up (0 ->
+// slight overshoot -> 1, via .pupu-hat-growing), holds it fully
+// visible for `holdMs`, then plays a matching "pops off" scale-down
+// (1 -> slight overshoot -> 0, via .pupu-hat-popping) before actually
+// hiding the layer -- unlike item/effect, which just appear/disappear
+// instantly. Re-triggering mid-sequence (grow, hold, or pop) cancels
+// whatever was pending and restarts the grow cleanly, the same
+// stale-timer-safety every other layer already has.
+function showHatWithAnimation(asset, holdMs) {
+  if (hatPopTimeoutId !== null) {
+    clearTimeout(hatPopTimeoutId);
+    hatPopTimeoutId = null;
+  }
+  if (hatHideTimeoutId !== null) {
+    clearTimeout(hatHideTimeoutId);
+    hatHideTimeoutId = null;
+  }
+
+  setLayer("hat", asset); // sets src + reveals the layer (display:block)
+  hatEl.classList.remove("pupu-hat-popping");
+  void hatEl.offsetWidth; // force reflow so the grow animation restarts cleanly on repeat triggers
+  hatEl.classList.add("pupu-hat-growing");
+
+  hatPopTimeoutId = setTimeout(() => {
+    hatPopTimeoutId = null;
+    hatEl.classList.remove("pupu-hat-growing");
+    void hatEl.offsetWidth; // force reflow so the pop animation always plays
+    hatEl.classList.add("pupu-hat-popping");
+
+    hatHideTimeoutId = setTimeout(() => {
+      hatHideTimeoutId = null;
+      clearLayer("hat");
+      hatEl.classList.remove("pupu-hat-popping");
+    }, HAT_POP_MS);
+  }, HAT_GROW_MS + holdMs);
+}
+
+function maybeShowHat() {
+  if (Math.random() >= HAT_CHANCE) return;
+  const asset = pickRandomFrom(HAT_ASSETS);
+  showHatWithAnimation(asset, randomRange(HAT_MIN_DURATION_MS, HAT_MAX_DURATION_MS));
+}
+
+// ---------- Ghost PUPU (rare spooky special event) ----------
+// Like hats, this has no matching BEHAVIOURS/EVENTS/BUBBLE_REACTIONS
+// entry to attach to and isn't given one -- it's a fully independent,
+// coordinated multi-layer sequence (background tint + normal-PUPU
+// fade + ghost-body fade + hold + reverse), rolled once per
+// successful normal belly press at the same call site as the hat/
+// broken-button rare-event rolls (see handleBellyPress() below).
+//
+// Unlike hats (fire-and-forget), maybeShowGhost() is `await`-ed by
+// handleBellyPress() before it re-enables the belly button/resumes
+// idle sounds+chatter -- so isBusy (and pauseIdleSounds()/
+// pauseIdleChatter(), already active from the normal sequence that
+// just finished) stay in effect for the entire ghost sequence too.
+// That's also what makes this automatically interrupt-safe for free:
+// a new belly press can never reach this function while a previous
+// ghost event is still running, because isBusy already blocks it --
+// the exact same guarantee the broken-button system already relies
+// on, reused rather than reinvented.
+const GHOST_CHANCE = 0.02; // ~2% per successful normal belly press
+const GHOST_COOLDOWN_MS = 30000; // minimum real time between ghost events, measured from when the previous one finished
+const GHOST_HOLD_MIN_MS = 2000;
+const GHOST_HOLD_MAX_MS = 4000;
+// Must match style.css's corresponding transition/animation durations.
+const GHOST_OVERLAY_LEAD_MS = 150; // background starts darkening just before PUPU begins fading
+const GHOST_NORMAL_FADE_MS = 450; // normal PUPU (body/arms/eyes/mouth/button) + shadow fade out/in -- matches their transition: opacity rules
+const GHOST_BODY_FADE_MS = 500; // ghost body fade in/out -- matches .pupu-body-ghost's transition
+const GHOST_OVERLAY_FADE_MS = 600; // purple overlay fade in/out -- matches .ghost-overlay's transition
+
+// The "normal PUPU" group that fades out/in together as one unit --
+// deliberately includes the belly button and arms (not just body/
+// eyes/mouth) so nothing is left floating disconnected over the ghost.
+const GHOST_NORMAL_GROUP = [bodyEl, armLeftEl, armRightEl, eyes, mouth, pupuButton];
+
+// Timestamp (ms) the most recent ghost event finished at, so the next
+// one can't roll until GHOST_COOLDOWN_MS has genuinely elapsed --
+// independent of (and in addition to) the isBusy re-entrancy
+// guarantee above, which only prevents *overlapping* events, not
+// closely-spaced ones.
+let lastGhostEventEndTime = 0;
+
+async function maybeShowGhost() {
+  if (Math.random() >= GHOST_CHANCE) return;
+  if (Date.now() - lastGhostEventEndTime < GHOST_COOLDOWN_MS) return;
+
+  // 1. Background gradually becomes dark purple.
+  ghostOverlayEl.classList.add("ghost-overlay-active");
+  await wait(GHOST_OVERLAY_LEAD_MS);
+
+  // 2. Normal PUPU (including eyes, mouth, arms, belly button) and
+  //    the ground shadow fade away together.
+  shadowEl.classList.add("pupu-ghost-hidden");
+  GHOST_NORMAL_GROUP.forEach((el) => el.classList.add("pupu-ghost-hidden"));
+  await wait(GHOST_NORMAL_FADE_MS);
+
+  // 3. Ghost PUPU fades in (and starts its own subtle bob via the
+  //    same class, see .pupu-body-ghost-visible in style.css).
+  ghostBodyEl.classList.add("pupu-body-ghost-visible");
+  await wait(GHOST_BODY_FADE_MS);
+
+  // 4. Hold, floating/bobbing, for a few seconds.
+  await wait(randomRange(GHOST_HOLD_MIN_MS, GHOST_HOLD_MAX_MS));
+
+  // 5. Reverse it all: ghost fades out, then normal PUPU + shadow
+  //    fade back in, then the background clears last -- mirroring the
+  //    entry order so nothing pops in/out abruptly.
+  ghostBodyEl.classList.remove("pupu-body-ghost-visible");
+  await wait(GHOST_BODY_FADE_MS);
+
+  GHOST_NORMAL_GROUP.forEach((el) => el.classList.remove("pupu-ghost-hidden"));
+  shadowEl.classList.remove("pupu-ghost-hidden");
+  await wait(GHOST_NORMAL_FADE_MS);
+
+  ghostOverlayEl.classList.remove("ghost-overlay-active");
+  await wait(GHOST_OVERLAY_FADE_MS);
+
+  lastGhostEventEndTime = Date.now();
+}
 
 // Rolls the small chance of starting the broken state. Only ever
 // called after a normal reaction finishes, and only takes effect if
@@ -1464,7 +1636,7 @@ async function handleBellyPress() {
   void pupuCircle.offsetWidth; // force reflow so the animation can restart
   pupuCircle.classList.add(`pupu-${behaviour.animation}`);
   setMouth(MOUTH_BY_ANIMATION[behaviour.animation]);
-  playBehaviourSound(behaviour);
+  playBehaviourExtras(behaviour);
 
   // The card is picked first so its conversationType can steer which
   // mission pool pickMission() draws from -- see the Mission Engine
@@ -1491,6 +1663,15 @@ async function handleBellyPress() {
 
   clearBehaviourAnimations();
   pupuButton.src = BUTTON_UNPRESSED_SRC;
+
+  // Rare surprise: small independent chance of a full ghost-
+  // transformation sequence. Awaited (unlike maybeShowHat() below) so
+  // isBusy and the paused idle systems stay in effect for its entire
+  // duration -- see maybeShowGhost()'s own comment for why that's also
+  // what makes it interrupt-safe. Resolves almost instantly on the
+  // (overwhelming majority of) presses where it doesn't trigger.
+  await maybeShowGhost();
+
   pupuButton.classList.remove("pupu-button-disabled");
   isBusy = false;
 
@@ -1498,6 +1679,7 @@ async function handleBellyPress() {
   // idle again do idle sounds/gestures and idle chatter resume.
   resumeIdleSounds();
   resumeIdleChatter();
+  maybeShowHat(); // rare surprise: small independent chance of a temporary hat
   maybeStartBrokenButton(); // hidden easter egg: small chance the button "jams" for the next couple of presses
 }
 
