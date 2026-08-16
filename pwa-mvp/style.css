@@ -419,10 +419,21 @@ body {
   pointer-events: none;
   user-select: none;
   display: none;
+  transition: opacity 1.8s ease-out;
 }
 
 .pupu-layer.pupu-layer-visible {
   display: block;
+}
+
+/* Slow fade-out for effects that should gradually disperse (currently
+   just effect_fart -- see fadeOutLayer() in app.js) instead of vanishing
+   instantly like clearLayer()'s default. display:block stays on
+   (.pupu-layer-visible isn't removed yet) so the opacity transition
+   above is actually visible; clearLayer() removes both classes once the
+   fade finishes. */
+.pupu-layer.pupu-layer-fading {
+  opacity: 0;
 }
 
 /* Hat-only grow/pop transform, driven by app.js's

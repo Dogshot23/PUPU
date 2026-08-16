@@ -177,6 +177,7 @@ function setLayer(layer, assetName) {
     clearTimeout(layerHideTimeouts[layer]);
     layerHideTimeouts[layer] = null;
   }
+  el.classList.remove("pupu-layer-fading"); // cancel any in-progress fade (see fadeOutLayer()) if this layer is reused before it finished
   el.src = `images/pupu/${folder}/${assetName}.png`;
   el.classList.add("pupu-layer-visible");
 }
@@ -192,6 +193,7 @@ function clearLayer(layer) {
     layerHideTimeouts[layer] = null;
   }
   el.classList.remove("pupu-layer-visible");
+  el.classList.remove("pupu-layer-fading");
   el.removeAttribute("src");
 }
 
@@ -202,11 +204,33 @@ function clearLayer(layer) {
 // same layer before it's finished: setLayer() above already cancels
 // any previous pending hide, so back-to-back calls always restart
 // cleanly instead of the earlier timer hiding the newer image early.
-function showLayerTemporarily(layer, assetName, durationMs) {
+// Optional `fadeMs`: instead of vanishing instantly once `durationMs`
+// elapses, the layer fades out over `fadeMs` first (see fadeOutLayer()
+// below) before actually being hidden/reset. Omitted (undefined) for
+// every existing caller except the fart effect, so every other
+// hat/item/effect keeps its exact current instant-hide behaviour.
+function showLayerTemporarily(layer, assetName, durationMs, fadeMs) {
   setLayer(layer, assetName);
   layerHideTimeouts[layer] = setTimeout(() => {
-    clearLayer(layer);
+    if (fadeMs) {
+      fadeOutLayer(layer, fadeMs);
+    } else {
+      clearLayer(layer);
+    }
   }, durationMs);
+}
+
+// Fades a layer's opacity to 0 over `fadeMs` (via the .pupu-layer-fading
+// CSS transition), then fully hides/resets it once the fade finishes --
+// a slower alternative to clearLayer()'s instant hide. Only reached via
+// showLayerTemporarily()'s optional fadeMs above.
+function fadeOutLayer(layer, fadeMs) {
+  const { el } = LAYERS[layer];
+  void el.offsetWidth; // force reflow so the fade restarts cleanly on repeat triggers
+  el.classList.add("pupu-layer-fading");
+  layerHideTimeouts[layer] = setTimeout(() => {
+    clearLayer(layer);
+  }, fadeMs);
 }
 
 // ---------- Behaviour data ----------
@@ -236,7 +260,7 @@ const BEHAVIOURS = [
 // animation) alongside 8 new short flourishes.
 const BUBBLE_REACTIONS = [
   { id: "spin", animation: "spin", duration: 700 },
-  { id: "puff", animation: "puff", duration: 900, sound: "fart", effect: "effect_fart", effectDuration: 1500, chance: 0.25 },
+  { id: "puff", animation: "puff", duration: 900, sound: "fart", effect: "effect_fart", effectDuration: 1500, effectFadeMs: 1800, chance: 0.25 },
   { id: "lookAround", animation: "look-around", duration: 800, effect: "effect_question", effectDuration: 1500 },
   { id: "yawn", animation: "yawn", duration: 1300, sound: "breathIn" },
   { id: "surprised", animation: "surprised", duration: 550, effect: "effect_exclamation", effectDuration: 1200 },
@@ -780,7 +804,7 @@ function playBehaviourExtras(item) {
   const soundPlayer = item.sound && SOUND_CATEGORY_PLAYERS[item.sound];
   if (soundPlayer) soundPlayer();
 
-  if (item.effect) showLayerTemporarily("effect", item.effect, item.effectDuration || 1500);
+  if (item.effect) showLayerTemporarily("effect", item.effect, item.effectDuration || 1500, item.effectFadeMs);
   if (item.item) showLayerTemporarily("item", item.item, item.itemDuration || 4000);
 }
 
