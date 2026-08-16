@@ -109,6 +109,19 @@ body {
    the main app's style.css, adapted to this app's existing
    .bubble/.beat markup. */
 
+/* Thin, non-visual wrapper around .bubble -- exists only so the
+   language toggle (see .language-toggle below) has somewhere to live
+   that survives renderCard() clearing #bubble's innerHTML on every
+   card, while still visually reading as "attached to the bubble".
+   Sized identically to .bubble itself (same width/max-width, including
+   the desktop override further down) so wrapping it changes nothing
+   about the bubble's own layout. */
+.bubble-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+}
+
 .bubble {
   position: relative;
   width: 100%;
@@ -223,6 +236,67 @@ body {
 
 .bubble-section-mission .bubble-label {
   color: #8b7fd9;
+}
+
+/* ---------- Language toggle ----------
+   Small pill attached to the bubble's top-right corner, sitting
+   slightly on top of it like a tab -- deliberately tiny/quiet so it
+   reads as part of the card rather than a separate tool. Built once at
+   startup from SUPPORTED_LANGUAGES in app.js (see buildLanguageToggle())
+   -- adding a language later is a data change there, not a style change
+   here, since every button shares these same rules regardless of which
+   language it represents. */
+.language-toggle {
+  position: absolute;
+  top: -10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: #ffffff;
+  border: 1.5px solid #b8e8d6;
+  border-radius: 999px;
+  padding: 3px 6px;
+  box-shadow: 0 2px 6px rgba(120, 100, 160, 0.12);
+  z-index: 1;
+}
+
+.lang-btn {
+  font: inherit;
+  font-size: 0.66rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #9a9a9a;
+  background: none;
+  border: none;
+  border-radius: 999px;
+  padding: 3px 6px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.lang-btn:hover {
+  color: #5fae8f;
+}
+
+/* The active language is the one visibly "on" -- filled pill, darker
+   text -- so it's obvious at a glance which version is showing. */
+.lang-btn.lang-active {
+  background: #e8fff2;
+  color: #3f8a6d;
+}
+
+.lang-sep {
+  color: #cccccc;
+  font-size: 0.6rem;
+}
+
+/* Inert (not hidden) while a section is actively typing, so switching
+   language can never race the typewriter effect -- see setLanguage()
+   in app.js. */
+.language-toggle.language-toggle-disabled {
+  opacity: 0.45;
+  pointer-events: none;
 }
 
 /* Restored from the main app's .speech-bubble.pupu-inflate reaction --
@@ -1145,6 +1219,7 @@ body {
     gap: 40px;
   }
 
+  .bubble-wrap,
   .bubble {
     max-width: 280px;
   }

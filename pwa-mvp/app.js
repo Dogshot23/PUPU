@@ -10,9 +10,11 @@ const state = {
   cards: [],
   recent: [], // sourceIds of the most recently shown cards, oldest first
   missions: {}, // grouped by conversationType, e.g. { "guess": [...] }
+  translations: {}, // { [card.sourceId]: { [langCode]: { fact: [...], sharePrompt: "..." } } } -- see loadTranslations()
 };
 
 const bubbleEl = document.getElementById("bubble");
+const languageToggleEl = document.getElementById("language-toggle");
 const statusEl = document.getElementById("status");
 const pupuCircle = document.getElementById("pupu-circle");
 const pupuButton = document.getElementById("pupu-button");
@@ -1188,6 +1190,22 @@ async function loadMissions() {
   }
 }
 
+// ---------- Language / translation system ----------
+// Static, reviewed translations only (see translations.json) -- no
+// external translation API. A missing/failed load just leaves
+// state.translations empty, which getSectionLines() below already
+// treats as "no translation available" and falls back to English, so
+// this can never break card rendering.
+async function loadTranslations() {
+  try {
+    const response = await fetch("translations.json");
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    state.translations = await response.json();
+  } catch (error) {
+    console.error("PUPU MVP: failed to load translations.json", error);
+  }
+}
+
 // True if a mission's own wording references one of the card's topics
 // (e.g. topicTag "Animals" matching mission text ".. animal fact .."),
 // so a category pool that mixes topic-specific and generic missions
@@ -1339,6 +1357,7 @@ function startTypingSection(section) {
   bubbleSequence.lineEls = lineEls;
   bubbleSequence.lineIndex = 0;
   bubbleSequence.charIndex = 0;
+  updateLanguageToggleEnabled(); // inert while typing -- see setLanguage()
   resetTypeSoundCounter();
 
   typeNextChar();
@@ -1380,10 +1399,12 @@ function finishTypingSection() {
   const isLastSection = bubbleSequence.stageIndex >= bubbleSequence.sections.length - 1;
   if (isLastSection) {
     bubbleSequence.phase = "done";
+    updateLanguageToggleEnabled();
     return;
   }
 
   bubbleSequence.phase = "waiting";
+  updateLanguageToggleEnabled();
   bubbleEl.classList.add("bubble-waiting"); // subtle pulse hinting the bubble can be tapped
   bubbleSequence.timerId = setTimeout(advanceBubbleSequence, SECTION_REVEAL_DELAY_MS);
 }
@@ -1453,7 +1474,12 @@ function playBubbleReaction() {
 function advanceBubbleSequence() {
   bubbleSequence.timerId = null;
   bubbleSequence.stageIndex++;
-  startTypingSection(bubbleSequence.sections[bubbleSequence.stageIndex]);
+  const section = bubbleSequence.sections[bubbleSequence.stageIndex];
+  // Refreshed against currentLanguage (not whatever renderCard() built
+  // it with) so a language switch made during the "waiting" phase of
+  // the first section carries through to the second one too.
+  section.lines = getSectionLines(bubbleSequence.card, bubbleSequence.mission, bubbleSequence.stageIndex, currentLanguage);
+  startTypingSection(section);
   playBubbleReaction();
 }
 
@@ -1492,11 +1518,133 @@ const CONTENT_TYPE_LABELS = {
   question: { box1: "💭 YOUR TURN", box2: "🗣️ TELL ME MORE" },
 };
 
-// card.english is always 4 lines for "fact"-type cards (fact headline
-// + detail, then two unused lines pending a content rewrite -- see
-// cards.json). Only the first 2 lines are shown, as "the fact"
-// section below. Non-fact types only ever use english[0]/english[1].
-//
+// ---------- Language toggle ----------
+// Config-driven on purpose: adding Chinese/Spanish/Japanese later means
+// adding an entry here plus supplying translations in translations.json
+// -- buildLanguageToggle() and getSectionLines() below both just
+// iterate/look up by code, no rendering-logic changes needed.
+const SUPPORTED_LANGUAGES = [
+  { code: "en", label: "English", flag: "🇬🇧" },
+  { code: "ko", label: "한국어", flag: "" }
+];
+
+// Resets to "en" at the start of every renderCard() (a new output
+// always starts in English); otherwise only changed by the student
+// tapping the toggle. Not persisted (no localStorage) -- this app has
+// no existing settings mechanism to extend, per the brief.
+let currentLanguage = "en";
+
+// Card-type-aware box shapes (label/modifier) -- these never translate,
+// only the lines inside them do (see the "what should be translated"
+// scope: fact text + Share It prompt, not the box labels).
+function getSectionShapes(card) {
+  const type = card.type || "fact";
+  const labels = CONTENT_TYPE_LABELS[type];
+  return [
+    { modifier: "fact", label: labels.box1 },
+    { modifier: "mission", label: labels.box2 },
+  ];
+}
+
+// English is always read straight from cards.json/missions.json --
+// never duplicated into translations.json -- so it's both the default
+// language and the fallback for anything untranslated. Restored
+// verbatim from renderCard()'s old inline ternary.
+function getEnglishLines(card, mission, sectionIndex) {
+  const type = card.type || "fact";
+  if (type === "fact") {
+    return sectionIndex === 0 ? card.english.slice(0, 2) : [card.sharePrompt || mission.text];
+  }
+  return [card.english[sectionIndex]];
+}
+
+// The single place that decides what text actually renders for a given
+// section + language. Falls back to English whenever the requested
+// language has no translations at all for this card, or no entry for
+// this specific section -- so a missing translation can never show
+// blank/broken text (translations.json currently only has "ko" entries
+// for fact-type cards; every other card/language combination falls
+// through to English here automatically, with no special-casing).
+function getSectionLines(card, mission, sectionIndex, lang) {
+  const englishLines = getEnglishLines(card, mission, sectionIndex);
+  if (lang === "en") return englishLines;
+
+  const entry = state.translations[card.sourceId] && state.translations[card.sourceId][lang];
+  if (!entry) return englishLines;
+
+  if (sectionIndex === 0) {
+    return Array.isArray(entry.fact) && entry.fact.length > 0 ? entry.fact : englishLines;
+  }
+  return entry.sharePrompt ? [entry.sharePrompt] : englishLines;
+}
+
+// Reflects which language is currently active on the toggle buttons
+// themselves (bold/filled pill -- see .lang-active in style.css).
+function updateLanguageToggleUI() {
+  languageToggleEl.querySelectorAll(".lang-btn").forEach((btn) => {
+    btn.classList.toggle("lang-active", btn.dataset.lang === currentLanguage);
+  });
+}
+
+// The toggle is inert (dimmed, not clickable) while a section is
+// actively typing -- see setLanguage()'s own guard below -- so
+// switching language can never race the typewriter effect's own
+// character-by-character writes into the same .beat elements.
+function updateLanguageToggleEnabled() {
+  const disabled = !bubbleSequence || bubbleSequence.phase === "typing";
+  languageToggleEl.classList.toggle("language-toggle-disabled", disabled);
+}
+
+// Built once at startup from SUPPORTED_LANGUAGES; the buttons
+// themselves never need rebuilding per-card, only their active state
+// does (see renderCard()/updateLanguageToggleUI()).
+function buildLanguageToggle() {
+  SUPPORTED_LANGUAGES.forEach((lang, i) => {
+    if (i > 0) {
+      const sep = document.createElement("span");
+      sep.className = "lang-sep";
+      sep.textContent = "|";
+      languageToggleEl.appendChild(sep);
+    }
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "lang-btn";
+    btn.dataset.lang = lang.code;
+    btn.textContent = lang.flag ? `${lang.flag} ${lang.label}` : lang.label;
+    btn.addEventListener("click", (event) => {
+      event.stopPropagation(); // the toggle sits outside #bubble, but this keeps it inert to any future ancestor handlers too
+      setLanguage(lang.code);
+    });
+    languageToggleEl.appendChild(btn);
+  });
+  updateLanguageToggleUI();
+  updateLanguageToggleEnabled();
+}
+
+// Swaps the currently-displayed section(s) to `lang` in place -- same
+// text area, no re-typing, no touch of bubbleSequence's phase/timerId/
+// lineIndex/charIndex, so it can never interfere with the typing/
+// auto-advance state machine. A no-op while typing (see
+// updateLanguageToggleEnabled() above) or before any card has rendered.
+function setLanguage(lang) {
+  if (lang === currentLanguage) return;
+  if (!bubbleSequence || bubbleSequence.phase === "typing") return;
+
+  currentLanguage = lang;
+
+  const sectionEls = bubbleEl.querySelectorAll(".bubble-section");
+  sectionEls.forEach((sectionEl, i) => {
+    const localizedLines = getSectionLines(bubbleSequence.card, bubbleSequence.mission, i, lang);
+    bubbleSequence.sections[i].lines = localizedLines; // keep in sync so a later advance/tap types the right language too
+    const lineEls = sectionEl.querySelectorAll(".beat");
+    lineEls.forEach((el, j) => {
+      el.textContent = localizedLines[j] || "";
+    });
+  });
+
+  updateLanguageToggleUI();
+}
+
 // renderCard() itself stays a plain (non-async) function that returns
 // immediately -- callers that don't await it (see handleBellyPress)
 // are unaffected. It only ever kicks off the first section; the rest
@@ -1506,21 +1654,16 @@ function renderCard(card, mission) {
   bubbleEl.classList.remove("bubble-waiting");
   bubbleEl.innerHTML = "";
 
+  currentLanguage = "en"; // a new output always starts in English
+  updateLanguageToggleUI();
+
   const type = card.type || "fact";
-  const labels = CONTENT_TYPE_LABELS[type];
+  const sections = getSectionShapes(card).map((shape, i) => ({
+    ...shape,
+    lines: getSectionLines(card, mission, i, currentLanguage),
+  }));
 
-  const sections =
-    type === "fact"
-      ? [
-          { modifier: "fact", label: labels.box1, lines: card.english.slice(0, 2) },
-          { modifier: "mission", label: labels.box2, lines: [card.sharePrompt || mission.text] },
-        ]
-      : [
-          { modifier: "fact", label: labels.box1, lines: [card.english[0]] },
-          { modifier: "mission", label: labels.box2, lines: [card.english[1]] },
-        ];
-
-  bubbleSequence = { sections, stageIndex: 0, phase: "typing", timerId: null, lineEls: [], lineIndex: 0, charIndex: 0, cardType: type };
+  bubbleSequence = { sections, stageIndex: 0, phase: "typing", timerId: null, lineEls: [], lineIndex: 0, charIndex: 0, cardType: type, card, mission };
   startTypingSection(sections[0]);
 
   statusEl.textContent = `${card.sourceId} · ${card.engine} · Generated (not yet reviewed)`;
@@ -1981,6 +2124,8 @@ bubbleEl.addEventListener("keydown", (event) => {
 scheduleNextBlink();
 loadCards();
 loadMissions();
+loadTranslations();
+buildLanguageToggle();
 
 // Restored from script.js's init(): arms both idle loops once at
 // startup, same as the belly-press handler re-arms them after every
