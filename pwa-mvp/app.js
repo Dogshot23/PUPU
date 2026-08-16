@@ -1749,10 +1749,32 @@ async function playBrokenButtonDud() {
   setMouth("normal");
 }
 
-// The payoff on the third press: celebratory sound, rapid
-// inflate/hold/deflate, then a soft finishing wobble. Uses the same
-// clear -> reflow -> add class -> wait -> remove class pattern every
-// existing reaction/event already uses.
+// Personality/unpredictability for the payoff animation itself -- which
+// of these plays is the only thing this varies. The dud/payoff press
+// counting, trigger frequency, sound, mouth, and finishing wobble below
+// are all untouched. Each variant is its own CSS class+keyframe pair
+// (see style.css) that starts and ends at PUPU's exact normal scale/
+// rotation, so nothing can accumulate across repeated triggers -- same
+// cumulative-weight-threshold pattern already used by IDLE_SOUND_CHANCES/
+// IDLE_GESTURES above. durationMs must match each variant's own CSS
+// animation length.
+const BROKEN_BUTTON_PAYOFF_VARIANTS = [
+  { upTo: 0.35, className: "pupu-broken-payoff", durationMs: BROKEN_BUTTON_PAYOFF_DURATION_MS }, // existing inflate, unchanged
+  { upTo: 0.6, className: "pupu-broken-payoff-shrink", durationMs: 700 },
+  { upTo: 0.8, className: "pupu-broken-payoff-spin", durationMs: 800 },
+  { upTo: 1.0, className: "pupu-broken-payoff-squash", durationMs: 700 }
+];
+
+function pickBrokenButtonPayoffVariant() {
+  const roll = Math.random();
+  return BROKEN_BUTTON_PAYOFF_VARIANTS.find((variant) => roll < variant.upTo);
+}
+
+// The payoff on the third press: celebratory sound, one randomly-picked
+// scale/rotation flourish (see BROKEN_BUTTON_PAYOFF_VARIANTS above),
+// then a soft finishing wobble. Uses the same clear -> reflow -> add
+// class -> wait -> remove class pattern every existing reaction/event
+// already uses.
 async function playBrokenButtonPayoff() {
   pupuButton.src = BUTTON_PRESSED_SRC;
 
@@ -1763,9 +1785,10 @@ async function playBrokenButtonPayoff() {
 
   clearBehaviourAnimations();
   void pupuCircle.offsetWidth; // force reflow so the animation can restart
-  pupuCircle.classList.add("pupu-broken-payoff");
-  await wait(BROKEN_BUTTON_PAYOFF_DURATION_MS);
-  pupuCircle.classList.remove("pupu-broken-payoff");
+  const payoffVariant = pickBrokenButtonPayoffVariant();
+  pupuCircle.classList.add(payoffVariant.className);
+  await wait(payoffVariant.durationMs);
+  pupuCircle.classList.remove(payoffVariant.className);
 
   void pupuCircle.offsetWidth; // force reflow so the wobble can restart cleanly
   pupuCircle.classList.add("pupu-soft-wobble");

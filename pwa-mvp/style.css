@@ -778,6 +778,67 @@ body {
   }
 }
 
+/* Broken-button payoff variants -- alternatives to the inflate above,
+   randomly picked by BROKEN_BUTTON_PAYOFF_VARIANTS in app.js. Each one
+   starts and ends at transform: scale(1)/rotate(0deg) (PUPU's normal
+   appearance) so nothing can accumulate between repeated triggers, same
+   as the inflate keyframe above. Durations here must match their
+   durationMs counterpart in app.js. */
+.pupu-circle.pupu-broken-payoff-shrink {
+  animation: pupu-broken-payoff-shrink 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes pupu-broken-payoff-shrink {
+  0% {
+    transform: scale(1);
+  }
+  35% {
+    transform: scale(0.28);
+  }
+  60% {
+    transform: scale(0.28);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.pupu-circle.pupu-broken-payoff-spin {
+  animation: pupu-broken-payoff-spin 0.8s cubic-bezier(0.45, 0, 0.55, 1);
+}
+
+@keyframes pupu-broken-payoff-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  85% {
+    /* 1080deg = exactly 3 full rotations, renders identically to 0deg */
+    transform: rotate(1080deg);
+  }
+  100% {
+    transform: rotate(1080deg);
+  }
+}
+
+.pupu-circle.pupu-broken-payoff-squash {
+  animation: pupu-broken-payoff-squash 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes pupu-broken-payoff-squash {
+  0% {
+    transform: scale(1, 1);
+  }
+  30% {
+    transform: scale(1.5, 0.55);
+  }
+  60% {
+    transform: scale(0.6, 1.45);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
 .pupu-circle.pupu-soft-wobble {
   animation: pupu-soft-wobble 0.5s ease-in-out;
 }
