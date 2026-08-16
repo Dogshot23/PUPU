@@ -10,7 +10,7 @@ const state = {
   cards: [],
   recent: [], // sourceIds of the most recently shown cards, oldest first
   missions: {}, // grouped by conversationType, e.g. { "guess": [...] }
-  translations: {}, // { [card.sourceId]: { [langCode]: { fact: [...], sharePrompt: "..." } } } -- see loadTranslations()
+  translations: {}, // { [card.sourceId]: { [langCode]: { sections: [[line0, line1?], [line0]] } } } -- see loadTranslations()
 };
 
 const bubbleEl = document.getElementById("bubble");
@@ -1562,20 +1562,19 @@ function getEnglishLines(card, mission, sectionIndex) {
 // section + language. Falls back to English whenever the requested
 // language has no translations at all for this card, or no entry for
 // this specific section -- so a missing translation can never show
-// blank/broken text (translations.json currently only has "ko" entries
-// for fact-type cards; every other card/language combination falls
-// through to English here automatically, with no special-casing).
+// blank/broken text. A translations.json entry looks like
+// { "ko": { "sections": [ [line0, line1?], [line0] ] } } -- sections[i]
+// mirrors getEnglishLines()'s own shape exactly (one line-array per
+// section), so this same lookup works unchanged for every content type
+// (fact's 2-line fact + 1-line share prompt, or joke/riddle/story/
+// question's 1-line + 1-line setup/answer) with no per-type branching.
 function getSectionLines(card, mission, sectionIndex, lang) {
   const englishLines = getEnglishLines(card, mission, sectionIndex);
   if (lang === "en") return englishLines;
 
   const entry = state.translations[card.sourceId] && state.translations[card.sourceId][lang];
-  if (!entry) return englishLines;
-
-  if (sectionIndex === 0) {
-    return Array.isArray(entry.fact) && entry.fact.length > 0 ? entry.fact : englishLines;
-  }
-  return entry.sharePrompt ? [entry.sharePrompt] : englishLines;
+  const lines = entry && entry.sections && entry.sections[sectionIndex];
+  return Array.isArray(lines) && lines.length > 0 ? lines : englishLines;
 }
 
 // Reflects which language is currently active on the toggle buttons
