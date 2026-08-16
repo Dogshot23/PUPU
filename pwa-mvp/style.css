@@ -1100,6 +1100,7 @@ body {
 }
 
 .status {
+  display: none; /* dev/admin-only metadata (fact ID, engine, review status) -- kept updated in app.js for internal use, just not shown to students */
   margin: 0;
   font-size: 0.8rem;
   color: #999999;
