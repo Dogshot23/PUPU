@@ -155,7 +155,7 @@
     "engine": "Question",
     "lifecycleState": "Generated",
     "english": [
-      "If PUPU could turn into any animal for one day, which animal should he pick?",
+      "If I could turn into any animal for one day, which animal should I pick?",
       "Why?"
     ]
   },
@@ -165,7 +165,7 @@
     "engine": "Question",
     "lifecycleState": "Generated",
     "english": [
-      "PUPU wants a superpower, but only for one hour a day. What power should he pick?",
+      "I want a superpower, but only for one hour a day. What power should I pick?",
       "Why?"
     ]
   },
@@ -175,7 +175,7 @@
     "engine": "Question",
     "lifecycleState": "Generated",
     "english": [
-      "If PUPU could only eat one food for a whole year, what should it be?",
+      "If I could only eat one food for a whole year, what should it be?",
       "Why?"
     ]
   },
@@ -185,7 +185,7 @@
     "engine": "Question",
     "lifecycleState": "Generated",
     "english": [
-      "If PUPU made a movie about your day, would it be an action movie, a comedy, or a monster movie?",
+      "If I made a movie about your day, would it be an action movie, a comedy, or a monster movie?",
       "Why?"
     ]
   },
@@ -415,7 +415,7 @@
     "engine": "Challenge",
     "lifecycleState": "Generated",
     "english": [
-      "Name three things PUPU should never put in a sandwich.",
+      "Name three things I should never put in a sandwich.",
       "Go!"
     ]
   },
@@ -425,7 +425,7 @@
     "engine": "Challenge",
     "lifecycleState": "Generated",
     "english": [
-      "Give PUPU a terrible name.",
+      "Give me a terrible name.",
       "Go!"
     ]
   },
@@ -435,7 +435,7 @@
     "engine": "Challenge",
     "lifecycleState": "Generated",
     "english": [
-      "Invent the worst ice cream flavour PUPU has ever tasted.",
+      "Invent the worst ice cream flavour you can imagine. I might actually try it.",
       "Go!"
     ]
   },
@@ -445,7 +445,7 @@
     "engine": "Challenge",
     "lifecycleState": "Generated",
     "english": [
-      "PUPU says there's a monster living under your bed. Give it a name.",
+      "I think there's a monster living under your bed. Give it a name.",
       "Go!"
     ]
   },
@@ -498,186 +498,6 @@
       "There is a strange noise coming from the closet. Is it a monster, PUPU, or your little sister hiding?",
       "Why?"
     ]
-  },
-  {
-    "sourceId": "FACT-0101",
-    "type": "fact",
-    "engine": "Share",
-    "conversationType": "amazing",
-    "level": "A1",
-    "emotion": "mischievous",
-    "conversationGoal": "Invite the child to react to PUPU's jealousy.",
-    "topicTags": [
-      "Animals"
-    ],
-    "lifecycleState": "Generated",
-    "english": [
-      "Octopuses have three hearts.",
-      "PUPU thinks that's showing off."
-    ],
-    "sharePrompt": "Go tell someone an octopus has three hearts!"
-  },
-  {
-    "sourceId": "FACT-0102",
-    "type": "fact",
-    "engine": "Share",
-    "conversationType": "funny",
-    "level": "A1",
-    "emotion": "mischievous",
-    "conversationGoal": "Invite the child to try it themselves.",
-    "topicTags": [
-      "Animals"
-    ],
-    "lifecycleState": "Generated",
-    "english": [
-      "A crocodile cannot stick out its tongue.",
-      "PUPU tried it too. Also impossible."
-    ],
-    "sharePrompt": "Did you just try sticking your tongue out?"
-  },
-  {
-    "sourceId": "FACT-0103",
-    "type": "fact",
-    "engine": "Share",
-    "conversationType": "funny",
-    "level": "A1",
-    "emotion": "happy",
-    "conversationGoal": "Invite the child to react to the group name.",
-    "topicTags": [
-      "Animals"
-    ],
-    "lifecycleState": "Generated",
-    "english": [
-      "A group of flamingos is called a flamboyance.",
-      "PUPU wants to join one."
-    ],
-    "sharePrompt": "What would you name a group of your friends?"
-  },
-  {
-    "sourceId": "FACT-0104",
-    "type": "fact",
-    "engine": "Share",
-    "conversationType": "surprising",
-    "level": "A1",
-    "emotion": "mischievous",
-    "conversationGoal": "Invite the child to react to PUPU's jealousy.",
-    "topicTags": [
-      "Animals"
-    ],
-    "lifecycleState": "Generated",
-    "english": [
-      "A snail can sleep for three years.",
-      "PUPU is extremely jealous."
-    ],
-    "sharePrompt": "What would you sleep through for three years?"
-  },
-  {
-    "sourceId": "FACT-0105",
-    "type": "fact",
-    "engine": "Share",
-    "conversationType": "strange",
-    "level": "A1",
-    "emotion": "surprised",
-    "conversationGoal": "Invite the child to react to the strange body fact.",
-    "topicTags": [
-      "Animals"
-    ],
-    "lifecycleState": "Generated",
-    "english": [
-      "Butterflies taste with their feet.",
-      "PUPU thinks that's disgusting. And amazing."
-    ],
-    "sharePrompt": "What's the strangest way to taste something?"
-  },
-  {
-    "sourceId": "FACT-0106",
-    "type": "fact",
-    "engine": "Share",
-    "conversationType": "funny",
-    "level": "A1",
-    "emotion": "mischievous",
-    "conversationGoal": "Invite the child to react to PUPU's own limits.",
-    "topicTags": [
-      "Animals"
-    ],
-    "lifecycleState": "Generated",
-    "english": [
-      "Elephants cannot jump.",
-      "PUPU has never tried either."
-    ],
-    "sharePrompt": "Could you jump if you were as big as an elephant?"
-  },
-  {
-    "sourceId": "FACT-0107",
-    "type": "fact",
-    "engine": "Share",
-    "conversationType": "amazing",
-    "level": "A1",
-    "emotion": "mischievous",
-    "conversationGoal": "Invite the child to react to the timeline.",
-    "topicTags": [
-      "Animals"
-    ],
-    "lifecycleState": "Generated",
-    "english": [
-      "Sharks are older than trees.",
-      "PUPU thinks that's very rude to trees."
-    ],
-    "sharePrompt": "What else do you think is older than trees?"
-  },
-  {
-    "sourceId": "FACT-0108",
-    "type": "fact",
-    "engine": "Share",
-    "conversationType": "strange",
-    "level": "A1",
-    "emotion": "confused",
-    "conversationGoal": "Invite the child to react to the gross fact.",
-    "topicTags": [
-      "Animals"
-    ],
-    "lifecycleState": "Generated",
-    "english": [
-      "A cockroach can live for a while without its head.",
-      "PUPU finds that deeply concerning."
-    ],
-    "sharePrompt": "What's the most concerning fact you've ever heard?"
-  },
-  {
-    "sourceId": "FACT-0109",
-    "type": "fact",
-    "engine": "Share",
-    "conversationType": "surprising",
-    "level": "A2",
-    "emotion": "surprised",
-    "conversationGoal": "Invite the child to react to the comparison.",
-    "topicTags": [
-      "Animals"
-    ],
-    "lifecycleState": "Generated",
-    "english": [
-      "A rhino's horn is made of the same stuff as your fingernails.",
-      "PUPU wants a horn like that."
-    ],
-    "sharePrompt": "What's the biggest fingernail you can imagine?"
-  },
-  {
-    "sourceId": "FACT-0110",
-    "type": "fact",
-    "engine": "Share",
-    "conversationType": "funny",
-    "level": "A1",
-    "emotion": "mischievous",
-    "conversationGoal": "Invite the child to react to PUPU trying it.",
-    "topicTags": [
-      "Animals"
-    ],
-    "lifecycleState": "Generated",
-    "english": [
-      "Cows can sleep standing up.",
-      "PUPU tried it. PUPU fell over."
-    ],
-    "sharePrompt": "Could you sleep standing up?"
   },
   {
     "sourceId": "MOMENT-0001",
@@ -1135,7 +955,7 @@
     "engine": "Challenge",
     "lifecycleState": "Generated",
     "english": [
-      "PUPU hates bad smells. Name three smelly things he should avoid.",
+      "I hate bad smells. Name three smelly things I should avoid.",
       "Go!"
     ]
   },
@@ -1145,7 +965,7 @@
     "engine": "Challenge",
     "lifecycleState": "Generated",
     "english": [
-      "PUPU met a monster today. Describe it in three words.",
+      "I met a monster today. Describe it in three words.",
       "Go!"
     ]
   },
@@ -1155,7 +975,7 @@
     "engine": "Challenge",
     "lifecycleState": "Generated",
     "english": [
-      "Say three foods PUPU should NOT eat.",
+      "Say three foods I should NOT eat.",
       "Go!"
     ]
   },
@@ -1248,5 +1068,545 @@
       "PUPU knows what you did.",
       "He isn't telling me."
     ]
+  },
+  {
+    "sourceId": "FACT-0201",
+    "type": "fact",
+    "engine": "Share",
+    "conversationType": "amazing",
+    "level": "A1",
+    "emotion": "mischievous",
+    "conversationGoal": "Invite the child to react to PUPU's low standards.",
+    "topicTags": [
+      "Animals"
+    ],
+    "lifecycleState": "Generated",
+    "english": [
+      "Octopuses have three hearts.",
+      "PUPU says one heart is enough trouble."
+    ],
+    "sharePrompt": "How many hearts would you want?"
+  },
+  {
+    "sourceId": "FACT-0202",
+    "type": "fact",
+    "engine": "Share",
+    "conversationType": "surprising",
+    "level": "A1",
+    "emotion": "sleepy",
+    "conversationGoal": "Invite the child to imagine sleeping for years.",
+    "topicTags": [
+      "Animals"
+    ],
+    "lifecycleState": "Generated",
+    "english": [
+      "A snail can sleep for three years.",
+      "PUPU is already planning a very long nap."
+    ],
+    "sharePrompt": "What would you do for three years if you could sleep through it?"
+  },
+  {
+    "sourceId": "FACT-0203",
+    "type": "fact",
+    "engine": "Share",
+    "conversationType": "funny",
+    "level": "A1",
+    "emotion": "mischievous",
+    "conversationGoal": "Invite the child to test the claim themselves.",
+    "topicTags": [
+      "Animals"
+    ],
+    "lifecycleState": "Generated",
+    "english": [
+      "Elephants cannot jump.",
+      "PUPU tried it. PUPU also cannot jump."
+    ],
+    "sharePrompt": "Try jumping right now. Easy, right?"
+  },
+  {
+    "sourceId": "FACT-0204",
+    "type": "fact",
+    "engine": "Share",
+    "conversationType": "amazing",
+    "level": "A1",
+    "emotion": "surprised",
+    "conversationGoal": "Invite the child to react to the timeline.",
+    "topicTags": [
+      "Animals"
+    ],
+    "lifecycleState": "Generated",
+    "english": [
+      "Sharks lived on Earth before trees did.",
+      "PUPU says that's very rude to trees."
+    ],
+    "sharePrompt": "Go tell the nearest tree it's younger than a shark."
+  },
+  {
+    "sourceId": "FACT-0205",
+    "type": "fact",
+    "engine": "Share",
+    "conversationType": "funny",
+    "level": "A1",
+    "emotion": "mischievous",
+    "conversationGoal": "Invite the child to test the claim themselves.",
+    "topicTags": [
+      "Animals"
+    ],
+    "lifecycleState": "Generated",
+    "english": [
+      "A crocodile cannot stick out its tongue.",
+      "PUPU tried it too. Also impossible."
+    ],
+    "sharePrompt": "Try it yourself right now."
+  },
+  {
+    "sourceId": "FACT-0206",
+    "type": "fact",
+    "engine": "Share",
+    "conversationType": "funny",
+    "level": "A1",
+    "emotion": "happy",
+    "conversationGoal": "Invite the child to invent their own group name.",
+    "topicTags": [
+      "Animals"
+    ],
+    "lifecycleState": "Generated",
+    "english": [
+      "A group of flamingos is called a flamboyance.",
+      "PUPU wants to join one immediately."
+    ],
+    "sharePrompt": "What would you call a group of your friends?"
+  },
+  {
+    "sourceId": "FACT-0207",
+    "type": "fact",
+    "engine": "Share",
+    "conversationType": "strange",
+    "level": "A1",
+    "emotion": "confused",
+    "conversationGoal": "Invite the child to react to the gross fact.",
+    "topicTags": [
+      "Animals"
+    ],
+    "lifecycleState": "Generated",
+    "english": [
+      "A cockroach can live for a while without its head.",
+      "I am now checking that I still have my head."
+    ],
+    "sharePrompt": "Should I be allowed to keep one as a pet?"
+  },
+  {
+    "sourceId": "FACT-0208",
+    "type": "fact",
+    "engine": "Share",
+    "conversationType": "strange",
+    "level": "A1",
+    "emotion": "surprised",
+    "conversationGoal": "Invite the child to react to the strange eyes.",
+    "topicTags": [
+      "Animals"
+    ],
+    "lifecycleState": "Generated",
+    "english": [
+      "A goat's eyes are shaped like a box, not a circle.",
+      "PUPU wants those eyes immediately."
+    ],
+    "sharePrompt": "What animal's eyes would you want to borrow?"
+  },
+  {
+    "sourceId": "FACT-0209",
+    "type": "fact",
+    "engine": "Share",
+    "conversationType": "funny",
+    "level": "A1",
+    "emotion": "mischievous",
+    "conversationGoal": "Invite the child to react to the gross ability.",
+    "topicTags": [
+      "Animals"
+    ],
+    "lifecycleState": "Generated",
+    "english": [
+      "A giraffe can clean its own ears with its tongue.",
+      "I have officially banned this idea for myself."
+    ],
+    "sharePrompt": "Would you ever try that if you could?"
+  },
+  {
+    "sourceId": "FACT-0210",
+    "type": "fact",
+    "engine": "Share",
+    "conversationType": "amazing",
+    "level": "A1",
+    "emotion": "surprised",
+    "conversationGoal": "Invite the child to react to the survival ability.",
+    "topicTags": [
+      "Animals"
+    ],
+    "lifecycleState": "Generated",
+    "english": [
+      "Some frogs can freeze solid in winter and come back to life in spring.",
+      "PUPU is now worried about winter."
+    ],
+    "sharePrompt": "Would you want to freeze and skip winter completely?"
+  },
+  {
+    "sourceId": "FACT-0211",
+    "type": "fact",
+    "engine": "Share",
+    "conversationType": "funny",
+    "level": "A1",
+    "emotion": "mischievous",
+    "conversationGoal": "Invite the child to test their own neck.",
+    "topicTags": [
+      "Animals"
+    ],
+    "lifecycleState": "Generated",
+    "english": [
+      "Owls cannot move their eyes. They turn their whole head instead.",
+      "I just tried it. My neck is not happy."
+    ],
+    "sharePrompt": "Try turning your head as far as you can right now."
+  },
+  {
+    "sourceId": "FACT-0212",
+    "type": "fact",
+    "engine": "Share",
+    "conversationType": "surprising",
+    "level": "A1",
+    "emotion": "confused",
+    "conversationGoal": "Invite the child to guess the reason.",
+    "topicTags": [
+      "Animals"
+    ],
+    "lifecycleState": "Generated",
+    "english": [
+      "A wombat's droppings come out as perfect little cubes.",
+      "I have been trying to make my own."
+    ],
+    "sharePrompt": "Why cubes? What is your best guess?"
+  },
+  {
+    "sourceId": "FACT-0213",
+    "type": "fact",
+    "engine": "Share",
+    "conversationType": "amazing",
+    "level": "A1",
+    "emotion": "proud",
+    "conversationGoal": "Invite the child to imagine a food that lasts forever.",
+    "topicTags": [
+      "Food"
+    ],
+    "lifecycleState": "Generated",
+    "english": [
+      "Honey can stay good for years and years.",
+      "PUPU has started hiding honey everywhere."
+    ],
+    "sharePrompt": "Where would you hide a jar of honey so I could never find it?"
+  },
+  {
+    "sourceId": "FACT-0214",
+    "type": "fact",
+    "engine": "Share",
+    "conversationType": "funny",
+    "level": "A1",
+    "emotion": "mischievous",
+    "conversationGoal": "Invite the child to imagine growing toward something.",
+    "topicTags": [
+      "Food"
+    ],
+    "lifecycleState": "Generated",
+    "english": [
+      "Bananas grow curved because they grow toward sunlight.",
+      "PUPU wants to grow toward pizza instead."
+    ],
+    "sharePrompt": "What would you grow toward if you were a plant?"
+  },
+  {
+    "sourceId": "FACT-0215",
+    "type": "fact",
+    "engine": "Share",
+    "conversationType": "surprising",
+    "level": "A1",
+    "emotion": "confused",
+    "conversationGoal": "Invite the child to guess another food surprise.",
+    "topicTags": [
+      "Food"
+    ],
+    "lifecycleState": "Generated",
+    "english": [
+      "An avocado is actually a type of berry.",
+      "PUPU refuses to call it a berry."
+    ],
+    "sharePrompt": "What food would you never trust again?"
+  },
+  {
+    "sourceId": "FACT-0216",
+    "type": "fact",
+    "engine": "Share",
+    "conversationType": "funny",
+    "level": "A1",
+    "emotion": "curious",
+    "conversationGoal": "Invite the child to try counting the seeds.",
+    "topicTags": [
+      "Food"
+    ],
+    "lifecycleState": "Generated",
+    "english": [
+      "A strawberry keeps all its seeds on the outside, not the inside.",
+      "I have been counting them. I lost count."
+    ],
+    "sharePrompt": "Have you ever actually counted them?"
+  },
+  {
+    "sourceId": "FACT-0217",
+    "type": "fact",
+    "engine": "Share",
+    "conversationType": "surprising",
+    "level": "A1",
+    "emotion": "confused",
+    "conversationGoal": "Invite the child to react to the food's true identity.",
+    "topicTags": [
+      "Food"
+    ],
+    "lifecycleState": "Generated",
+    "english": [
+      "Peanuts are not really nuts. They are part of the bean family.",
+      "PUPU feels personally betrayed."
+    ],
+    "sharePrompt": "What would you rename peanuts?"
+  },
+  {
+    "sourceId": "FACT-0218",
+    "type": "fact",
+    "engine": "Share",
+    "conversationType": "funny",
+    "level": "A1",
+    "emotion": "mischievous",
+    "conversationGoal": "Invite the child to test the claim themselves.",
+    "topicTags": [
+      "Human Body"
+    ],
+    "lifecycleState": "Generated",
+    "english": [
+      "You cannot tickle yourself.",
+      "PUPU has been trying for ten minutes."
+    ],
+    "sharePrompt": "Try it right now and see."
+  },
+  {
+    "sourceId": "FACT-0219",
+    "type": "fact",
+    "engine": "Share",
+    "conversationType": "strange",
+    "level": "A1",
+    "emotion": "mischievous",
+    "conversationGoal": "Invite the child to think of a memorable smell.",
+    "topicTags": [
+      "Human Body"
+    ],
+    "lifecycleState": "Generated",
+    "english": [
+      "Your nose can remember thousands of different smells.",
+      "My nose remembers every bad decision I've made."
+    ],
+    "sharePrompt": "What is the worst thing I have ever smelled?"
+  },
+  {
+    "sourceId": "FACT-0220",
+    "type": "fact",
+    "engine": "Share",
+    "conversationType": "surprising",
+    "level": "A1",
+    "emotion": "confused",
+    "conversationGoal": "Invite the child to imagine a brainless day.",
+    "topicTags": [
+      "Animals"
+    ],
+    "lifecycleState": "Generated",
+    "english": [
+      "A starfish does not have a brain.",
+      "That explains a few things about me."
+    ],
+    "sharePrompt": "What would you do all day without a brain?"
+  },
+  {
+    "sourceId": "FACT-0221",
+    "type": "fact",
+    "engine": "Share",
+    "conversationType": "funny",
+    "level": "A1",
+    "emotion": "mischievous",
+    "conversationGoal": "Invite the child to share a body-noise story.",
+    "topicTags": [
+      "Human Body"
+    ],
+    "lifecycleState": "Generated",
+    "english": [
+      "Your stomach can make loud noises even when you are not hungry.",
+      "My stomach is very loud right now. I blame the chair."
+    ],
+    "sharePrompt": "What is the strangest noise your stomach has ever made?"
+  },
+  {
+    "sourceId": "FACT-0222",
+    "type": "fact",
+    "engine": "Share",
+    "conversationType": "amazing",
+    "level": "A1",
+    "emotion": "surprised",
+    "conversationGoal": "Invite the child to imagine strange weather.",
+    "topicTags": [
+      "Nature"
+    ],
+    "lifecycleState": "Generated",
+    "english": [
+      "Sometimes it rains fish. Strong winds can lift them from water and drop them somewhere else.",
+      "PUPU is now checking the sky very carefully."
+    ],
+    "sharePrompt": "What is the strangest thing you would want to see fall from the sky?"
+  },
+  {
+    "sourceId": "FACT-0223",
+    "type": "fact",
+    "engine": "Share",
+    "conversationType": "amazing",
+    "level": "A1",
+    "emotion": "surprised",
+    "conversationGoal": "Invite the child to react to the weight comparison.",
+    "topicTags": [
+      "Nature"
+    ],
+    "lifecycleState": "Generated",
+    "english": [
+      "A single cloud can weigh more than 500 elephants.",
+      "PUPU does not trust clouds anymore."
+    ],
+    "sharePrompt": "How many elephants do you think YOU weigh?"
+  },
+  {
+    "sourceId": "FACT-0224",
+    "type": "fact",
+    "engine": "Share",
+    "conversationType": "amazing",
+    "level": "A1",
+    "emotion": "surprised",
+    "conversationGoal": "Invite the child to share a hot-thing memory.",
+    "topicTags": [
+      "Nature"
+    ],
+    "lifecycleState": "Generated",
+    "english": [
+      "Lightning is about five times hotter than the surface of the Sun.",
+      "PUPU has decided to stay inside forever."
+    ],
+    "sharePrompt": "Where do you think I would hide from lightning?"
+  },
+  {
+    "sourceId": "FACT-0225",
+    "type": "fact",
+    "engine": "Share",
+    "conversationType": "amazing",
+    "level": "A1",
+    "emotion": "excited",
+    "conversationGoal": "Invite the child to imagine a fast-growing plant.",
+    "topicTags": [
+      "Nature"
+    ],
+    "lifecycleState": "Generated",
+    "english": [
+      "Some bamboo can grow almost one metre in a single day.",
+      "PUPU is already planning to hide in it."
+    ],
+    "sharePrompt": "What would you do with a plant that grew that fast?"
+  },
+  {
+    "sourceId": "FACT-0226",
+    "type": "fact",
+    "engine": "Share",
+    "conversationType": "amazing",
+    "level": "A1",
+    "emotion": "surprised",
+    "conversationGoal": "Invite the child to try matching the speed.",
+    "topicTags": [
+      "Animals"
+    ],
+    "lifecycleState": "Generated",
+    "english": [
+      "A hummingbird's heart beats more than 1,000 times every minute.",
+      "I tried to copy the sound. I need a rest now."
+    ],
+    "sharePrompt": "Can you make a heartbeat sound as fast as that?"
+  },
+  {
+    "sourceId": "FACT-0227",
+    "type": "fact",
+    "engine": "Share",
+    "conversationType": "amazing",
+    "level": "A1",
+    "emotion": "excited",
+    "conversationGoal": "Invite the child to guess other floating things.",
+    "topicTags": [
+      "Space"
+    ],
+    "lifecycleState": "Generated",
+    "english": [
+      "If you put Saturn in a giant bath of water, it would float.",
+      "PUPU wants a bath exactly that size."
+    ],
+    "sharePrompt": "What in your house do you think would float?"
+  },
+  {
+    "sourceId": "FACT-0228",
+    "type": "fact",
+    "engine": "Share",
+    "conversationType": "strange",
+    "level": "A1",
+    "emotion": "curious",
+    "conversationGoal": "Invite the child to react to the strange ability.",
+    "topicTags": [
+      "Animals"
+    ],
+    "lifecycleState": "Generated",
+    "english": [
+      "One type of jellyfish never dies of old age. It can turn young again.",
+      "PUPU wants to know its secret."
+    ],
+    "sharePrompt": "Would you press a button to turn young again, right now?"
+  },
+  {
+    "sourceId": "FACT-0229",
+    "type": "fact",
+    "engine": "Share",
+    "conversationType": "surprising",
+    "level": "A1",
+    "emotion": "excited",
+    "conversationGoal": "Invite the child to react to the strange ability.",
+    "topicTags": [
+      "Animals"
+    ],
+    "lifecycleState": "Generated",
+    "english": [
+      "Butterflies taste with their feet.",
+      "PUPU wants to try walking on pizza."
+    ],
+    "sharePrompt": "What would you want to taste with your feet?"
+  },
+  {
+    "sourceId": "FACT-0230",
+    "type": "fact",
+    "engine": "Share",
+    "conversationType": "funny",
+    "level": "A1",
+    "emotion": "mischievous",
+    "conversationGoal": "Invite the child to imagine their own dance message.",
+    "topicTags": [
+      "Animals"
+    ],
+    "lifecycleState": "Generated",
+    "english": [
+      "Bees dance to show other bees where to find flowers.",
+      "I have been practising my own dance. It means nothing."
+    ],
+    "sharePrompt": "What would your dance tell other people?"
   }
 ]
