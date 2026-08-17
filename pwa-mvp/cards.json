@@ -5,8 +5,8 @@
     "engine": "Story",
     "lifecycleState": "Generated",
     "english": [
-      "You open your school bag and find a tiny door inside. Do you open it, ignore it, or show PUPU?",
-      "Why?"
+      "You open your school bag and find a tiny door inside. Do you open it, ignore it, or show me?",
+      "Why? Then invent what's really behind the door and tell your teacher."
     ]
   },
   {
@@ -16,7 +16,7 @@
     "lifecycleState": "Generated",
     "english": [
       "Your dog starts talking to you, but only about pizza. Does he want cheese pizza, or does he want your pizza?",
-      "Tell me!"
+      "Tell me what he says, then predict what he asks for next."
     ]
   },
   {
@@ -26,7 +26,7 @@
     "lifecycleState": "Generated",
     "english": [
       "You wake up and your family is speaking a language you have never heard. Do you ask them to stop, try to guess what they are saying, or quietly leave the room?",
-      "Why?"
+      "Why? Then invent three words in your new secret language for your teacher."
     ]
   },
   {
@@ -35,8 +35,8 @@
     "engine": "Story",
     "lifecycleState": "Generated",
     "english": [
-      "A letter arrives with no name on it, just your address. Is it from a friend, from a monster, or from PUPU?",
-      "Why?"
+      "A letter arrives with no name on it, just your address. Is it from a friend, from a monster, or from me?",
+      "Why? Then tell your teacher what the letter actually says."
     ]
   },
   {
@@ -45,8 +45,8 @@
     "engine": "Story",
     "lifecycleState": "Generated",
     "english": [
-      "You find a key that does not match any door in your house. Does it open a treasure box, a secret room, or PUPU's fridge?",
-      "Why?"
+      "You find a key that does not match any door in your house. Does it open a treasure box, a secret room, or my fridge?",
+      "Why? Then describe what you find when you open it."
     ]
   },
   {
@@ -56,7 +56,7 @@
     "lifecycleState": "Generated",
     "english": [
       "You open your school bag. There is a tiny green monster inside. Do you run away, feed it, or take it to class?",
-      "Why?"
+      "Why? Then describe what the monster looks like to your teacher."
     ]
   },
   {
@@ -66,7 +66,7 @@
     "lifecycleState": "Generated",
     "english": [
       "Someone ate the last cookie. The suspects are your dog, your sister, and your teacher. Who did it?",
-      "Why?"
+      "Tell your teacher your clues like a real detective."
     ]
   },
   {
@@ -76,7 +76,7 @@
     "lifecycleState": "Generated",
     "english": [
       "You find a robot in your garden. It only knows one word. Is the word hello, pizza, or help?",
-      "Why?"
+      "Why? Then predict what the robot does next."
     ]
   },
   {
@@ -86,7 +86,7 @@
     "lifecycleState": "Generated",
     "english": [
       "Your teacher turns into a dinosaur for one day. Is she a friendly dinosaur or a scary dinosaur?",
-      "Why?"
+      "Why? Then describe what your actual class would be like that day."
     ]
   },
   {
@@ -96,7 +96,7 @@
     "lifecycleState": "Generated",
     "english": [
       "You wake up and you can talk to animals, but only chickens understand you. Do you ask them for eggs, ask them to be your friend, or ask them a secret question?",
-      "Tell me!"
+      "Tell me what you ask first, then ask your teacher what animal they would choose."
     ]
   },
   {
@@ -106,7 +106,7 @@
     "lifecycleState": "Generated",
     "english": [
       "A ghost moves into your bedroom. Is it lazy, noisy, or shy?",
-      "Why?"
+      "Why? Then describe a normal day living with your new roommate."
     ]
   },
   {
@@ -116,7 +116,7 @@
     "lifecycleState": "Generated",
     "english": [
       "You find a box under your bed. Inside is a tiny dragon, a talking sock, or a slice of magic pizza. Which one is it?",
-      "Why?"
+      "Why? Then invent what happens next in the story."
     ]
   },
   {
@@ -126,7 +126,7 @@
     "lifecycleState": "Generated",
     "english": [
       "Your best friend turns into a zombie, but only at lunchtime. Does zombie-friend want to eat brains, eat pizza, or eat your homework?",
-      "Why?"
+      "Why? Then invent what your friend says when they see you."
     ]
   },
   {
@@ -135,8 +135,8 @@
     "engine": "Story",
     "lifecycleState": "Generated",
     "english": [
-      "PUPU knocks on your door and wants to borrow something strange. Does he want your sock, your lunch, or your bicycle?",
-      "Why?"
+      "I knock on your door. I want to borrow something strange. Do I want your sock, your lunch, or your bicycle?",
+      "Why? Then predict if you would actually say yes."
     ]
   },
   {
@@ -146,7 +146,7 @@
     "lifecycleState": "Generated",
     "english": [
       "You open the fridge and find a tiny alien eating your cheese. Do you shout, share your cheese, or make friends with it?",
-      "Why?"
+      "Why? Then invent what the alien says back to you."
     ]
   },
   {
@@ -156,7 +156,7 @@
     "lifecycleState": "Generated",
     "english": [
       "If I could turn into any animal for one day, which animal should I pick?",
-      "Why?"
+      "Which one would you pick? Tell your teacher why, then ask what THEY would pick."
     ]
   },
   {
@@ -166,7 +166,7 @@
     "lifecycleState": "Generated",
     "english": [
       "I want a superpower, but only for one hour a day. What power should I pick?",
-      "Why?"
+      "What would you do with your one hour? Tell your teacher, then ask their choice."
     ]
   },
   {
@@ -176,7 +176,7 @@
     "lifecycleState": "Generated",
     "english": [
       "If I could only eat one food for a whole year, what should it be?",
-      "Why?"
+      "Tell your teacher why your food would survive a whole year without getting boring."
     ]
   },
   {
@@ -186,7 +186,7 @@
     "lifecycleState": "Generated",
     "english": [
       "If I made a movie about your day, would it be an action movie, a comedy, or a monster movie?",
-      "Why?"
+      "Describe one scene from the movie to your teacher."
     ]
   },
   {
@@ -195,8 +195,8 @@
     "engine": "Question",
     "lifecycleState": "Generated",
     "english": [
-      "If you could switch lives with PUPU for one day, what would you do first?",
-      "Tell me!"
+      "If you could switch lives with me for one day, what would you do first?",
+      "Tell me! Then ask your teacher if they would want to switch lives with me too."
     ]
   },
   {
@@ -206,7 +206,7 @@
     "lifecycleState": "Generated",
     "english": [
       "Would you rather have a pet dinosaur, or have a pet shark?",
-      "Why?"
+      "Tell your teacher which one you would choose and why."
     ]
   },
   {
@@ -216,7 +216,7 @@
     "lifecycleState": "Generated",
     "english": [
       "Would you rather never eat pizza again, or never eat chocolate again?",
-      "Why?"
+      "Tell your teacher why. They might disagree!"
     ]
   },
   {
@@ -226,7 +226,7 @@
     "lifecycleState": "Generated",
     "english": [
       "Would you rather have super speed but fart every time you run, or have super strength but sneeze every time you use it?",
-      "Why?"
+      "Tell your teacher why, then ask which power they would pick."
     ]
   },
   {
@@ -236,7 +236,7 @@
     "lifecycleState": "Generated",
     "english": [
       "Would you rather eat a spider, or eat a worm?",
-      "Why?"
+      "Tell your teacher why, then ask which one THEY would eat."
     ]
   },
   {
@@ -246,7 +246,7 @@
     "lifecycleState": "Generated",
     "english": [
       "Would you rather have hands made of cheese, or have feet made of jelly?",
-      "Why?"
+      "Describe what a normal day would be like, then ask your teacher to imagine it too."
     ]
   },
   {
@@ -256,7 +256,7 @@
     "lifecycleState": "Generated",
     "english": [
       "Would you rather live in a house made of chocolate, or live in a house made of cheese?",
-      "Why?"
+      "Tell your teacher why, then invent a problem that house would have."
     ]
   },
   {
@@ -266,7 +266,7 @@
     "lifecycleState": "Generated",
     "english": [
       "Would you rather burp so loud your whole class hears it, or trip in front of your whole class?",
-      "Why?"
+      "Tell your teacher your reason, and ask if they would choose the same."
     ]
   },
   {
@@ -276,7 +276,7 @@
     "lifecycleState": "Generated",
     "english": [
       "Would you rather have a pet zombie, or have a pet ghost?",
-      "Why?"
+      "Tell your teacher how you would take care of your new pet."
     ]
   },
   {
@@ -286,7 +286,7 @@
     "lifecycleState": "Generated",
     "english": [
       "Would you rather never use a phone again, or never eat ice cream again?",
-      "Why?"
+      "Tell your teacher why your choice is easier to give up. Do they agree?"
     ]
   },
   {
@@ -296,7 +296,7 @@
     "lifecycleState": "Generated",
     "english": [
       "Would you rather smell like a fart forever, or smell like old socks forever?",
-      "Why?"
+      "Tell your teacher why, then ask which smell they could survive."
     ]
   },
   {
@@ -306,7 +306,7 @@
     "lifecycleState": "Generated",
     "english": [
       "Would you rather have a tail, or have wings?",
-      "Why?"
+      "What would you do with it every single day? Tell your teacher."
     ]
   },
   {
@@ -316,7 +316,7 @@
     "lifecycleState": "Generated",
     "english": [
       "Would you rather sneeze slime, or cry cheese?",
-      "Why?"
+      "Describe what that would actually look like, then ask your teacher which is worse."
     ]
   },
   {
@@ -326,7 +326,7 @@
     "lifecycleState": "Generated",
     "english": [
       "Would you rather be the smartest kid in school, or be the funniest kid in school?",
-      "Why?"
+      "Tell your teacher why, then ask which they would rather be known for."
     ]
   },
   {
@@ -336,7 +336,7 @@
     "lifecycleState": "Generated",
     "english": [
       "Would you rather fight one giant monster, or fight one hundred tiny monsters?",
-      "Why?"
+      "Tell your teacher your battle plan!"
     ]
   },
   {
@@ -346,7 +346,7 @@
     "lifecycleState": "Generated",
     "english": [
       "Would you rather have a robot best friend, or have an alien best friend?",
-      "Why?"
+      "Describe what your new best friend would be like."
     ]
   },
   {
@@ -356,7 +356,7 @@
     "lifecycleState": "Generated",
     "english": [
       "Would you rather only speak in whispers for a whole day, or only speak in shouts for a whole day?",
-      "Why?"
+      "Tell your teacher why, then try saying one sentence to them that way."
     ]
   },
   {
@@ -366,7 +366,7 @@
     "lifecycleState": "Generated",
     "english": [
       "Would you rather eat cold soup every day, or eat burnt toast every day?",
-      "Why?"
+      "Tell your teacher your reason, then ask what they hate eating most."
     ]
   },
   {
@@ -376,7 +376,7 @@
     "lifecycleState": "Generated",
     "english": [
       "Would you rather turn into a frog for a day, or turn into a fly for a day?",
-      "Why?"
+      "What would your day actually be like? Tell your teacher."
     ]
   },
   {
@@ -386,7 +386,7 @@
     "lifecycleState": "Generated",
     "english": [
       "Would you rather have bright green hair, or have bright purple skin?",
-      "Why?"
+      "Tell your teacher why, then ask which they would pick."
     ]
   },
   {
@@ -396,7 +396,7 @@
     "lifecycleState": "Generated",
     "english": [
       "Would you rather have slime instead of hair, or have spaghetti instead of hair?",
-      "Why?"
+      "Describe how you would wash it, then ask your teacher which is worse."
     ]
   },
   {
@@ -406,7 +406,7 @@
     "lifecycleState": "Generated",
     "english": [
       "Describe a pizza without saying the word pizza.",
-      "Go!"
+      "Go! Then see if your teacher can guess it."
     ]
   },
   {
@@ -416,7 +416,7 @@
     "lifecycleState": "Generated",
     "english": [
       "Name three things I should never put in a sandwich.",
-      "Go!"
+      "Go! Then ask your teacher for their worst sandwich idea."
     ]
   },
   {
@@ -426,7 +426,7 @@
     "lifecycleState": "Generated",
     "english": [
       "Give me a terrible name.",
-      "Go!"
+      "Go! Then tell your teacher why you chose it."
     ]
   },
   {
@@ -436,7 +436,7 @@
     "lifecycleState": "Generated",
     "english": [
       "Invent the worst ice cream flavour you can imagine. I might actually try it.",
-      "Go!"
+      "Go! Then ask your teacher if they would actually try it too."
     ]
   },
   {
@@ -446,7 +446,7 @@
     "lifecycleState": "Generated",
     "english": [
       "I think there's a monster living under your bed. Give it a name.",
-      "Go!"
+      "Go! Then describe what your monster looks like."
     ]
   },
   {
@@ -455,8 +455,8 @@
     "engine": "Mystery",
     "lifecycleState": "Generated",
     "english": [
-      "The classroom smells terrible. Was it a banana, a wet sock, or PUPU?",
-      "Why?"
+      "The classroom smells terrible. Was it a banana, a wet sock, or was it me?",
+      "Tell your teacher why you think so, then let them guess too."
     ]
   },
   {
@@ -465,8 +465,8 @@
     "engine": "Mystery",
     "lifecycleState": "Generated",
     "english": [
-      "PUPU has green slime on his head. Did he fall in a swamp, did someone drop slime on him, or did he eat the slime?",
-      "Why?"
+      "I have green slime on my head! Did I fall in a swamp, did someone drop it on me, or did I eat it?",
+      "Give your teacher three clues before you tell them your answer."
     ]
   },
   {
@@ -475,8 +475,8 @@
     "engine": "Mystery",
     "lifecycleState": "Generated",
     "english": [
-      "There are muddy footprints on the kitchen floor. Was it the dog, PUPU, or a monster?",
-      "Why?"
+      "There are muddy footprints on the kitchen floor. Was it the dog, me, or a monster?",
+      "Tell your teacher your clues like a real detective."
     ]
   },
   {
@@ -485,8 +485,8 @@
     "engine": "Mystery",
     "lifecycleState": "Generated",
     "english": [
-      "Your pencil case is empty. Did a pencil thief take it, did you leave it at school, or did PUPU eat it?",
-      "Why?"
+      "Your pencil case is empty. Was it a pencil thief, did you leave it at school, or did I eat it?",
+      "Tell your teacher your idea, and why."
     ]
   },
   {
@@ -495,8 +495,8 @@
     "engine": "Mystery",
     "lifecycleState": "Generated",
     "english": [
-      "There is a strange noise coming from the closet. Is it a monster, PUPU, or your little sister hiding?",
-      "Why?"
+      "There is a strange noise coming from the closet. Is it a monster, me, or your little sister hiding?",
+      "Tell your teacher your idea, then invent what happens if you open the door."
     ]
   },
   {
@@ -555,8 +555,8 @@
     "engine": "Joke",
     "lifecycleState": "Generated",
     "english": [
-      "Why did PUPU put a sock on his head?",
-      "Because his feet were cold."
+      "Why did I put a sock on my head?",
+      "Because my feet were cold! Tell your teacher your best silly reason for something you did today."
     ]
   },
   {
@@ -565,8 +565,8 @@
     "engine": "Joke",
     "lifecycleState": "Generated",
     "english": [
-      "What did PUPU eat for breakfast?",
-      "A shoe. He said it tasted like leather."
+      "What did I eat for breakfast?",
+      "A shoe! It tasted like leather. Invent an even worse breakfast and see if your teacher can guess it."
     ]
   },
   {
@@ -575,8 +575,8 @@
     "engine": "Joke",
     "lifecycleState": "Generated",
     "english": [
-      "Why did PUPU go to the toilet?",
-      "He had a very important meeting."
+      "Why did I go to the toilet?",
+      "I had a very important meeting! Ask your teacher what their most important meeting was ever about."
     ]
   },
   {
@@ -585,8 +585,8 @@
     "engine": "Joke",
     "lifecycleState": "Generated",
     "english": [
-      "Why did PUPU bring a ladder to school?",
-      "He wanted to sit at the top of the class."
+      "Why did I bring a ladder to school?",
+      "I wanted to sit at the top of the class! Tell your teacher your worst joke -- the worse it is, the better."
     ]
   },
   {
@@ -595,8 +595,8 @@
     "engine": "Joke",
     "lifecycleState": "Generated",
     "english": [
-      "Why did PUPU put cheese in his pocket?",
-      "In case he got hungry later."
+      "Why did I put cheese in my pocket?",
+      "In case I got hungry later! Tell your teacher the strangest thing you have ever kept in your pocket."
     ]
   },
   {
@@ -605,8 +605,8 @@
     "engine": "Joke",
     "lifecycleState": "Generated",
     "english": [
-      "Why did PUPU talk to the fridge?",
-      "He wanted to know what was for dinner."
+      "Why did I talk to the fridge?",
+      "I wanted to know what was for dinner! Ask your teacher what is for dinner at their house tonight."
     ]
   },
   {
@@ -615,8 +615,8 @@
     "engine": "Joke",
     "lifecycleState": "Generated",
     "english": [
-      "Why did PUPU wear two hats?",
-      "One hat was cold."
+      "Why did I wear two hats?",
+      "One hat was cold! Invent your own silly reason for wearing two of something."
     ]
   },
   {
@@ -625,8 +625,8 @@
     "engine": "Joke",
     "lifecycleState": "Generated",
     "english": [
-      "Why did PUPU bring a pillow to school?",
-      "Just in case."
+      "Why did I bring a pillow to school?",
+      "Just in case! Tell your teacher one strange thing YOU always bring with you, just in case."
     ]
   },
   {
@@ -635,8 +635,8 @@
     "engine": "Joke",
     "lifecycleState": "Generated",
     "english": [
-      "Why did PUPU hide under the table?",
-      "He didn't want to eat his vegetables."
+      "Why did I hide under the table?",
+      "I didn't want to eat my vegetables! Tell your teacher your best excuse for avoiding food you dislike."
     ]
   },
   {
@@ -645,8 +645,8 @@
     "engine": "Joke",
     "lifecycleState": "Generated",
     "english": [
-      "Why did PUPU carry an empty box everywhere?",
-      "He said something important was inside."
+      "Why did I carry an empty box everywhere?",
+      "I said something important was inside! Invent what was actually inside the box and tell your teacher."
     ]
   },
   {
@@ -655,8 +655,8 @@
     "engine": "Joke",
     "lifecycleState": "Generated",
     "english": [
-      "Why did PUPU wave at the wall?",
-      "He thought it waved first."
+      "Why did I wave at the wall?",
+      "I thought it waved first! Have you ever made a funny mistake? Tell your teacher!"
     ]
   },
   {
@@ -665,8 +665,8 @@
     "engine": "Joke",
     "lifecycleState": "Generated",
     "english": [
-      "Why did PUPU bring a fork to the swimming pool?",
-      "In case there was spaghetti in the water."
+      "Why did I bring a fork to the swimming pool?",
+      "In case there was spaghetti in the water! Invent your own ridiculous reason to bring something strange somewhere."
     ]
   },
   {
@@ -675,8 +675,8 @@
     "engine": "Joke",
     "lifecycleState": "Generated",
     "english": [
-      "Why did PUPU sleep in the bathtub?",
-      "His bed was too far away."
+      "Why did I sleep in the bathtub?",
+      "My bed was too far away! Tell your teacher the strangest place you have ever fallen asleep."
     ]
   },
   {
@@ -685,8 +685,8 @@
     "engine": "Joke",
     "lifecycleState": "Generated",
     "english": [
-      "Why did PUPU give his toy a bath?",
-      "It smelled like PUPU."
+      "Why did I give my toy a bath?",
+      "It smelled like me! Ask your teacher a smell they can never get rid of."
     ]
   },
   {
@@ -695,8 +695,8 @@
     "engine": "Joke",
     "lifecycleState": "Generated",
     "english": [
-      "Why did PUPU shout at his shoes?",
-      "They would not listen to him."
+      "Why did I shout at my shoes?",
+      "They would not listen to me! Tell your teacher about something that never listens to you."
     ]
   },
   {
@@ -705,8 +705,8 @@
     "engine": "Joke",
     "lifecycleState": "Generated",
     "english": [
-      "Why did PUPU bring an umbrella into the shower?",
-      "He heard it might rain."
+      "Why did I bring an umbrella into the shower?",
+      "I heard it might rain! Tell your teacher the most unnecessary thing you have ever prepared for."
     ]
   },
   {
@@ -715,8 +715,8 @@
     "engine": "Joke",
     "lifecycleState": "Generated",
     "english": [
-      "Why did PUPU take a banana to bed?",
-      "In case he got hungry in his dream."
+      "Why did I take a banana to bed?",
+      "In case I got hungry in my dream! Tell your teacher what you would eat in your dream, and why."
     ]
   },
   {
@@ -725,8 +725,8 @@
     "engine": "Joke",
     "lifecycleState": "Generated",
     "english": [
-      "Why did PUPU paint his room green?",
-      "He wanted to live inside a pea."
+      "Why did I paint my room green?",
+      "I wanted to live inside a pea! Invent your own tiny home and describe it to your teacher."
     ]
   },
   {
@@ -735,8 +735,8 @@
     "engine": "Joke",
     "lifecycleState": "Generated",
     "english": [
-      "Why did PUPU put his homework in the fridge?",
-      "He wanted it to stay fresh."
+      "Why did I put my homework in the fridge?",
+      "I wanted it to stay fresh! Tell your teacher the worst place you have ever put your own homework."
     ]
   },
   {
@@ -745,8 +745,8 @@
     "engine": "Joke",
     "lifecycleState": "Generated",
     "english": [
-      "Why did PUPU sit under his desk all day?",
-      "He said school was too loud upstairs."
+      "Why did I sit under my desk all day?",
+      "I said school was too loud upstairs! Invent your own excuse for hiding from something loud."
     ]
   },
   {
@@ -755,8 +755,8 @@
     "engine": "Riddle",
     "lifecycleState": "Generated",
     "english": [
-      "I am yellow. Monkeys like me. PUPU likes me too, but PUPU only eats the peel. What am I?",
-      "A banana."
+      "I am yellow. Monkeys like me. What am I?",
+      "A banana! I only eat the peel, by the way. Now invent your own fruit riddle for your teacher to guess."
     ]
   },
   {
@@ -766,7 +766,7 @@
     "lifecycleState": "Generated",
     "english": [
       "I have four legs. I sleep all day. I steal food when nobody is looking. What am I?",
-      "A dog."
+      "A dog. Describe your own pet, real or imaginary, without saying its name, and let your teacher guess."
     ]
   },
   {
@@ -776,7 +776,7 @@
     "lifecycleState": "Generated",
     "english": [
       "I am cold and white. I fall from the sky in winter. What am I?",
-      "Snow."
+      "Snow. Tell your teacher what you would build if it snowed right now."
     ]
   },
   {
@@ -785,8 +785,8 @@
     "engine": "Riddle",
     "lifecycleState": "Generated",
     "english": [
-      "I get smaller every time you use me. PUPU always forgets to use me. What am I?",
-      "Soap."
+      "I get smaller every time you use me. What am I?",
+      "Soap! I always forget to use it, by the way. Ask your teacher what they would never want to run out of."
     ]
   },
   {
@@ -796,7 +796,7 @@
     "lifecycleState": "Generated",
     "english": [
       "I am full of holes but I can still hold water. What am I?",
-      "A sponge."
+      "A sponge. Tell your teacher one more thing that is full of holes but still useful."
     ]
   },
   {
@@ -806,7 +806,7 @@
     "lifecycleState": "Generated",
     "english": [
       "I have wings. I visit flowers all day. I make honey. What am I?",
-      "A bee."
+      "A bee. Ask your teacher if they would rather be a bee or a butterfly, and why."
     ]
   },
   {
@@ -816,7 +816,7 @@
     "lifecycleState": "Generated",
     "english": [
       "I live in a shell. I am very slow. I carry my house on my back. What am I?",
-      "A snail."
+      "A snail. Tell your teacher what you would carry on your back if you had to."
     ]
   },
   {
@@ -826,7 +826,7 @@
     "lifecycleState": "Generated",
     "english": [
       "I am white outside. I am yellow inside. I come from a chicken. What am I?",
-      "An egg."
+      "An egg. Ask your teacher their favourite way to eat one."
     ]
   },
   {
@@ -835,8 +835,8 @@
     "engine": "Riddle",
     "lifecycleState": "Generated",
     "english": [
-      "I am green. I am sticky. PUPU loves to play with me. What am I?",
-      "Slime."
+      "I am green. I am sticky. What am I?",
+      "Slime! I love playing with it. Describe the grossest slime you can imagine to your teacher."
     ]
   },
   {
@@ -845,8 +845,8 @@
     "engine": "Riddle",
     "lifecycleState": "Generated",
     "english": [
-      "I come out of your nose when you are sick. PUPU thinks I am gross. What am I?",
-      "A booger."
+      "I come out of your nose when you are sick. What am I?",
+      "A booger! I think that's gross. Tell your teacher the grossest riddle answer you can think of."
     ]
   },
   {
@@ -856,7 +856,7 @@
     "lifecycleState": "Generated",
     "english": [
       "I am loud. I come from your tummy. I happen after you eat too fast. What am I?",
-      "A burp."
+      "A burp. Tell your teacher your loudest ever burp story."
     ]
   },
   {
@@ -866,7 +866,7 @@
     "lifecycleState": "Generated",
     "english": [
       "I fly at night. I sleep upside down. I am not a bird. What am I?",
-      "A bat."
+      "A bat. Ask your teacher if they would rather fly at night or sleep upside down."
     ]
   },
   {
@@ -875,8 +875,8 @@
     "engine": "Riddle",
     "lifecycleState": "Generated",
     "english": [
-      "I am red. I am round. I grow on trees. PUPU says I am boring, but he eats me every day. What am I?",
-      "An apple."
+      "I am red. I am round. I grow on trees. What am I?",
+      "An apple! I say it's boring, but I eat one every day anyway. Which fruit do YOU secretly find boring? Tell your teacher."
     ]
   },
   {
@@ -886,7 +886,7 @@
     "lifecycleState": "Generated",
     "english": [
       "I am cold. I am sweet. I melt in the sun. Everybody wants a scoop of me. What am I?",
-      "Ice cream."
+      "Ice cream. Ask your teacher their favourite flavour, then guess it before they answer."
     ]
   },
   {
@@ -896,7 +896,7 @@
     "lifecycleState": "Generated",
     "english": [
       "I am orange. I am long. Rabbits love to eat me. What am I?",
-      "A carrot."
+      "A carrot. Tell your teacher a food you thought was boring until you tried it differently."
     ]
   },
   {
@@ -905,8 +905,8 @@
     "engine": "Riddle",
     "lifecycleState": "Generated",
     "english": [
-      "I am small. I have four wheels. PUPU makes a loud \"vroom\" noise when he pushes me. What am I?",
-      "A toy car."
+      "I am small. I have four wheels. What am I?",
+      "A toy car! I make a loud \"vroom\" noise when I push it. Tell your teacher your favourite toy when you were little."
     ]
   },
   {
@@ -915,8 +915,8 @@
     "engine": "Riddle",
     "lifecycleState": "Generated",
     "english": [
-      "I am big and grey. I have a long nose called a trunk. PUPU wants a nose like mine. What am I?",
-      "An elephant."
+      "I am big and grey. I have a long nose called a trunk. What am I?",
+      "An elephant! I want a nose like that. Ask your teacher which animal part THEY would want."
     ]
   },
   {
@@ -925,8 +925,8 @@
     "engine": "Riddle",
     "lifecycleState": "Generated",
     "english": [
-      "I have a long neck. I am yellow with brown spots. PUPU wishes he had a neck like mine. What am I?",
-      "A giraffe."
+      "I have a long neck. I am yellow with brown spots. What am I?",
+      "A giraffe! I wish I had a neck like that. Tell your teacher which animal's body you would NOT want to have."
     ]
   },
   {
@@ -935,8 +935,8 @@
     "engine": "Riddle",
     "lifecycleState": "Generated",
     "english": [
-      "I am white and fluffy. I float in the sky. PUPU wants to take a nap on me. What am I?",
-      "A cloud."
+      "I am white and fluffy. I float in the sky. What am I?",
+      "A cloud! I want to take a nap on one. Ask your teacher what shape they see when they look at clouds."
     ]
   },
   {
@@ -945,8 +945,8 @@
     "engine": "Riddle",
     "lifecycleState": "Generated",
     "english": [
-      "I am small and round. Bees make me. PUPU always gets sticky fingers when he eats me. What am I?",
-      "Honey."
+      "I am small and round. Bees make me. What am I?",
+      "Honey! I always get sticky fingers when I eat it. Tell your teacher one food you could eat forever without getting bored."
     ]
   },
   {
@@ -956,7 +956,7 @@
     "lifecycleState": "Generated",
     "english": [
       "I hate bad smells. Name three smelly things I should avoid.",
-      "Go!"
+      "Go! Then ask your teacher their answer too."
     ]
   },
   {
@@ -966,7 +966,7 @@
     "lifecycleState": "Generated",
     "english": [
       "I met a monster today. Describe it in three words.",
-      "Go!"
+      "Go! Then ask your teacher to guess what kind of monster it is."
     ]
   },
   {
@@ -976,7 +976,7 @@
     "lifecycleState": "Generated",
     "english": [
       "Say three foods I should NOT eat.",
-      "Go!"
+      "Go! Then ask your teacher what THEY refuse to eat."
     ]
   },
   {
@@ -1065,8 +1065,8 @@
     "engine": "Moment",
     "lifecycleState": "Generated",
     "english": [
-      "PUPU knows what you did.",
-      "He isn't telling me."
+      "I know what you did.",
+      "I'm not telling."
     ]
   },
   {
@@ -1083,9 +1083,9 @@
     "lifecycleState": "Generated",
     "english": [
       "Octopuses have three hearts.",
-      "PUPU says one heart is enough trouble."
+      "I say one heart is already enough trouble!"
     ],
-    "sharePrompt": "How many hearts would you want?"
+    "sharePrompt": "How many hearts would you want? Tell your teacher why."
   },
   {
     "sourceId": "FACT-0202",
@@ -1101,7 +1101,7 @@
     "lifecycleState": "Generated",
     "english": [
       "A snail can sleep for three years.",
-      "PUPU is already planning a very long nap."
+      "I am already planning a very long nap."
     ],
     "sharePrompt": "What would you do for three years if you could sleep through it?"
   },
@@ -1119,7 +1119,7 @@
     "lifecycleState": "Generated",
     "english": [
       "Elephants cannot jump.",
-      "PUPU tried it. PUPU also cannot jump."
+      "I tried it. I also cannot jump."
     ],
     "sharePrompt": "Try jumping right now. Easy, right?"
   },
@@ -1137,7 +1137,7 @@
     "lifecycleState": "Generated",
     "english": [
       "Sharks lived on Earth before trees did.",
-      "PUPU says that's very rude to trees."
+      "I say that's very rude to trees."
     ],
     "sharePrompt": "Go tell the nearest tree it's younger than a shark."
   },
@@ -1155,9 +1155,9 @@
     "lifecycleState": "Generated",
     "english": [
       "A crocodile cannot stick out its tongue.",
-      "PUPU tried it too. Also impossible."
+      "I tried it too! Also impossible."
     ],
-    "sharePrompt": "Try it yourself right now."
+    "sharePrompt": "Try it yourself right now, then tell your teacher what happened."
   },
   {
     "sourceId": "FACT-0206",
@@ -1173,9 +1173,9 @@
     "lifecycleState": "Generated",
     "english": [
       "A group of flamingos is called a flamboyance.",
-      "PUPU wants to join one immediately."
+      "I want to join one immediately!"
     ],
-    "sharePrompt": "What would you call a group of your friends?"
+    "sharePrompt": "What would you call a group of your friends? Tell your teacher your idea."
   },
   {
     "sourceId": "FACT-0207",
@@ -1193,7 +1193,7 @@
       "A cockroach can live for a while without its head.",
       "I am now checking that I still have my head."
     ],
-    "sharePrompt": "Should I be allowed to keep one as a pet?"
+    "sharePrompt": "Should I be allowed to keep one as a pet? Tell your teacher why or why not."
   },
   {
     "sourceId": "FACT-0208",
@@ -1209,9 +1209,9 @@
     "lifecycleState": "Generated",
     "english": [
       "A goat's eyes are shaped like a box, not a circle.",
-      "PUPU wants those eyes immediately."
+      "I want those eyes immediately!"
     ],
-    "sharePrompt": "What animal's eyes would you want to borrow?"
+    "sharePrompt": "What animal's eyes would you want to borrow? Tell your teacher why."
   },
   {
     "sourceId": "FACT-0209",
@@ -1229,7 +1229,7 @@
       "A giraffe can clean its own ears with its tongue.",
       "I have officially banned this idea for myself."
     ],
-    "sharePrompt": "Would you ever try that if you could?"
+    "sharePrompt": "Would you ever try that if you could? Tell your teacher why."
   },
   {
     "sourceId": "FACT-0210",
@@ -1245,9 +1245,9 @@
     "lifecycleState": "Generated",
     "english": [
       "Some frogs can freeze solid in winter and come back to life in spring.",
-      "PUPU is now worried about winter."
+      "I am now worried about winter."
     ],
-    "sharePrompt": "Would you want to freeze and skip winter completely?"
+    "sharePrompt": "Would you want to freeze and skip winter? Tell your teacher why or why not."
   },
   {
     "sourceId": "FACT-0211",
@@ -1265,7 +1265,7 @@
       "Owls cannot move their eyes. They turn their whole head instead.",
       "I just tried it. My neck is not happy."
     ],
-    "sharePrompt": "Try turning your head as far as you can right now."
+    "sharePrompt": "Try turning your head as far as you can, then tell your teacher how far you got."
   },
   {
     "sourceId": "FACT-0212",
@@ -1299,7 +1299,7 @@
     "lifecycleState": "Generated",
     "english": [
       "Honey can stay good for years and years.",
-      "PUPU has started hiding honey everywhere."
+      "I have started hiding honey everywhere."
     ],
     "sharePrompt": "Where would you hide a jar of honey so I could never find it?"
   },
@@ -1317,9 +1317,9 @@
     "lifecycleState": "Generated",
     "english": [
       "Bananas grow curved because they grow toward sunlight.",
-      "PUPU wants to grow toward pizza instead."
+      "I want to grow toward pizza instead."
     ],
-    "sharePrompt": "What would you grow toward if you were a plant?"
+    "sharePrompt": "What would you grow toward if you were a plant? Tell your teacher why."
   },
   {
     "sourceId": "FACT-0215",
@@ -1335,9 +1335,9 @@
     "lifecycleState": "Generated",
     "english": [
       "An avocado is actually a type of berry.",
-      "PUPU refuses to call it a berry."
+      "I refuse to call it a berry."
     ],
-    "sharePrompt": "What food would you never trust again?"
+    "sharePrompt": "What food would you never trust again? Tell your teacher why."
   },
   {
     "sourceId": "FACT-0216",
@@ -1355,7 +1355,7 @@
       "A strawberry keeps all its seeds on the outside, not the inside.",
       "I have been counting them. I lost count."
     ],
-    "sharePrompt": "Have you ever actually counted them?"
+    "sharePrompt": "Have you ever actually counted them? Try it with your teacher right now."
   },
   {
     "sourceId": "FACT-0217",
@@ -1371,9 +1371,9 @@
     "lifecycleState": "Generated",
     "english": [
       "Peanuts are not really nuts. They are part of the bean family.",
-      "PUPU feels personally betrayed."
+      "I feel personally betrayed."
     ],
-    "sharePrompt": "What would you rename peanuts?"
+    "sharePrompt": "What would you rename peanuts? Tell your teacher why."
   },
   {
     "sourceId": "FACT-0218",
@@ -1389,9 +1389,9 @@
     "lifecycleState": "Generated",
     "english": [
       "You cannot tickle yourself.",
-      "PUPU has been trying for ten minutes."
+      "I have been trying for ten minutes."
     ],
-    "sharePrompt": "Try it right now and see."
+    "sharePrompt": "Try it right now, then tell your teacher if I was right."
   },
   {
     "sourceId": "FACT-0219",
@@ -1409,7 +1409,7 @@
       "Your nose can remember thousands of different smells.",
       "My nose remembers every bad decision I've made."
     ],
-    "sharePrompt": "What is the worst thing I have ever smelled?"
+    "sharePrompt": "What is the worst thing I have ever smelled? Take a guess, then tell your teacher your own worst smell."
   },
   {
     "sourceId": "FACT-0220",
@@ -1461,9 +1461,9 @@
     "lifecycleState": "Generated",
     "english": [
       "Sometimes it rains fish. Strong winds can lift them from water and drop them somewhere else.",
-      "PUPU is now checking the sky very carefully."
+      "I am now checking the sky very carefully."
     ],
-    "sharePrompt": "What is the strangest thing you would want to see fall from the sky?"
+    "sharePrompt": "What is the strangest thing you would want to see fall from the sky? Tell your teacher why."
   },
   {
     "sourceId": "FACT-0223",
@@ -1479,9 +1479,9 @@
     "lifecycleState": "Generated",
     "english": [
       "A single cloud can weigh more than 500 elephants.",
-      "PUPU does not trust clouds anymore."
+      "I do not trust clouds anymore."
     ],
-    "sharePrompt": "How many elephants do you think YOU weigh?"
+    "sharePrompt": "How many elephants do you think YOU weigh? Tell your teacher your guess!"
   },
   {
     "sourceId": "FACT-0224",
@@ -1497,9 +1497,9 @@
     "lifecycleState": "Generated",
     "english": [
       "Lightning is about five times hotter than the surface of the Sun.",
-      "PUPU has decided to stay inside forever."
+      "I have decided to stay inside forever."
     ],
-    "sharePrompt": "Where do you think I would hide from lightning?"
+    "sharePrompt": "Where do you think I would hide from lightning? Tell your teacher your idea."
   },
   {
     "sourceId": "FACT-0225",
@@ -1515,7 +1515,7 @@
     "lifecycleState": "Generated",
     "english": [
       "Some bamboo can grow almost one metre in a single day.",
-      "PUPU is already planning to hide in it."
+      "I am already planning to hide in it."
     ],
     "sharePrompt": "What would you do with a plant that grew that fast?"
   },
@@ -1535,7 +1535,7 @@
       "A hummingbird's heart beats more than 1,000 times every minute.",
       "I tried to copy the sound. I need a rest now."
     ],
-    "sharePrompt": "Can you make a heartbeat sound as fast as that?"
+    "sharePrompt": "Can you make a heartbeat sound as fast as that? Try it, then tell your teacher how it went."
   },
   {
     "sourceId": "FACT-0227",
@@ -1551,9 +1551,9 @@
     "lifecycleState": "Generated",
     "english": [
       "If you put Saturn in a giant bath of water, it would float.",
-      "PUPU wants a bath exactly that size."
+      "I want a bath exactly that size!"
     ],
-    "sharePrompt": "What in your house do you think would float?"
+    "sharePrompt": "What in your house do you think would float? Tell your teacher why."
   },
   {
     "sourceId": "FACT-0228",
@@ -1569,9 +1569,9 @@
     "lifecycleState": "Generated",
     "english": [
       "One type of jellyfish never dies of old age. It can turn young again.",
-      "PUPU wants to know its secret."
+      "I want to know its secret."
     ],
-    "sharePrompt": "Would you press a button to turn young again, right now?"
+    "sharePrompt": "Would you press a button to turn young again? Tell your teacher why or why not."
   },
   {
     "sourceId": "FACT-0229",
@@ -1587,9 +1587,9 @@
     "lifecycleState": "Generated",
     "english": [
       "Butterflies taste with their feet.",
-      "PUPU wants to try walking on pizza."
+      "I want to try walking on pizza."
     ],
-    "sharePrompt": "What would you want to taste with your feet?"
+    "sharePrompt": "What would you want to taste with your feet? Tell your teacher why."
   },
   {
     "sourceId": "FACT-0230",
@@ -1607,6 +1607,6 @@
       "Bees dance to show other bees where to find flowers.",
       "I have been practising my own dance. It means nothing."
     ],
-    "sharePrompt": "What would your dance tell other people?"
+    "sharePrompt": "What would your dance tell other people? Show your teacher!"
   }
 ]
