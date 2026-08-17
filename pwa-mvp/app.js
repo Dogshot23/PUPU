@@ -1237,12 +1237,50 @@ function pickMission(conversationType, topicTags) {
   return pickRandomFrom(Object.values(state.missions).flat());
 }
 
+// ---------- Content-type weighting for pickCard() ----------
+// Weighted by type (not by raw card count) so the mix stays correct
+// regardless of how many cards exist per type -- previously pickCard()
+// picked uniformly across the whole array, which meant the type with
+// the most cards (fact, 100 of 120) dominated by sheer volume. Percent
+// values are relative to each other, not required to sum to 100.
+// "question" cards share "story"'s slice since both are situational
+// prompts; any type missing from this table (or with an empty pool
+// right now) falls back to "fact"'s slice below.
+const CARD_TYPE_WEIGHTS = {
+  wyr: 30,
+  joke: 20,
+  riddle: 15,
+  story: 15,
+  challenge: 5,
+  mystery: 5,
+  fact: 7,
+  moment: 3,
+};
+const CARD_TYPE_WEIGHT_ALIASES = { question: "story" };
+
+function cardWeightType(card) {
+  const type = card.type || "fact";
+  return CARD_TYPE_WEIGHT_ALIASES[type] || type;
+}
+
+function pickWeightedCardType() {
+  const totalWeight = Object.values(CARD_TYPE_WEIGHTS).reduce((sum, w) => sum + w, 0);
+  let roll = Math.random() * totalWeight;
+  for (const [type, weight] of Object.entries(CARD_TYPE_WEIGHTS)) {
+    roll -= weight;
+    if (roll <= 0) return type;
+  }
+  return "fact";
+}
+
 function pickCard() {
-  const notRecentlyShown = state.cards.filter(
-    (card) => !state.recent.includes(card.sourceId)
-  );
-  const pool = notRecentlyShown.length > 0 ? notRecentlyShown : state.cards;
-  const card = pool[Math.floor(Math.random() * pool.length)];
+  const chosenType = pickWeightedCardType();
+  const typePool = state.cards.filter((card) => cardWeightType(card) === chosenType);
+  const pool = typePool.length > 0 ? typePool : state.cards;
+
+  const notRecentlyShown = pool.filter((card) => !state.recent.includes(card.sourceId));
+  const finalPool = notRecentlyShown.length > 0 ? notRecentlyShown : pool;
+  const card = finalPool[Math.floor(Math.random() * finalPool.length)];
 
   state.recent.push(card.sourceId);
   if (state.recent.length > RECENT_MEMORY_SIZE) {
@@ -1516,6 +1554,10 @@ const CONTENT_TYPE_LABELS = {
   riddle: { box1: "🤔 CAN YOU GUESS?", box2: "💡 THE ANSWER" },
   story: { box1: "📖 STORY TIME", box2: "❓ WHAT HAPPENS NEXT?" },
   question: { box1: "💭 YOUR TURN", box2: "🗣️ TELL ME MORE" },
+  wyr: { box1: "🤔 WOULD YOU RATHER?", box2: "❓ WHY?" },
+  challenge: { box1: "🎯 YOUR CHALLENGE", box2: "🎬 GO!" },
+  mystery: { box1: "🕵️ WHAT HAPPENED?", box2: "❓ WHY?" },
+  moment: { box1: "👀 PUPU MOMENT", box2: "🤷 THAT'S IT" },
 };
 
 // ---------- Language toggle ----------
