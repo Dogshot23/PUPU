@@ -25,8 +25,8 @@
     "engine": "Story",
     "lifecycleState": "Generated",
     "english": [
-      "You wake up and your family is speaking a language you have never heard. Do you ask them to stop, try to guess what they are saying, or quietly leave the room?",
-      "Why? Then invent three words in your new secret language for your teacher."
+      "I just found out your family has a secret handshake, but nobody taught me! Should I copy yours, invent my own, or just wave instead?",
+      "What should I do?"
     ]
   },
   {
@@ -65,8 +65,8 @@
     "engine": "Story",
     "lifecycleState": "Generated",
     "english": [
-      "Someone ate the last cookie. The suspects are your dog, your sister, and your teacher. Who did it?",
-      "Tell your teacher your clues like a real detective."
+      "I just ate the last cookie from your kitchen, and I feel a tiny bit guilty. Should I admit it, blame your dog, or hide all the evidence?",
+      "What should I do?"
     ]
   },
   {
@@ -86,7 +86,7 @@
     "lifecycleState": "Generated",
     "english": [
       "Your teacher turns into a dinosaur for one day. Is she a friendly dinosaur or a scary dinosaur?",
-      "Why? Then describe what your actual class would be like that day."
+      "Why? Then tell your teacher one thing that would be different that day."
     ]
   },
   {
@@ -106,7 +106,7 @@
     "lifecycleState": "Generated",
     "english": [
       "A ghost moves into your bedroom. Is it lazy, noisy, or shy?",
-      "Why? Then describe a normal day living with your new roommate."
+      "Why? Then tell your teacher one thing you would do together."
     ]
   },
   {
@@ -116,7 +116,7 @@
     "lifecycleState": "Generated",
     "english": [
       "You find a box under your bed. Inside is a tiny dragon, a talking sock, or a slice of magic pizza. Which one is it?",
-      "Why? Then invent what happens next in the story."
+      "Why? Then tell your teacher one thing you would do with it."
     ]
   },
   {
@@ -126,7 +126,7 @@
     "lifecycleState": "Generated",
     "english": [
       "Your best friend turns into a zombie, but only at lunchtime. Does zombie-friend want to eat brains, eat pizza, or eat your homework?",
-      "Why? Then invent what your friend says when they see you."
+      "Why? Then tell your teacher what you would say to your friend."
     ]
   },
   {
@@ -146,7 +146,7 @@
     "lifecycleState": "Generated",
     "english": [
       "You open the fridge and find a tiny alien eating your cheese. Do you shout, share your cheese, or make friends with it?",
-      "Why? Then invent what the alien says back to you."
+      "Why? Then tell your teacher what you would say to it."
     ]
   },
   {
@@ -176,7 +176,7 @@
     "lifecycleState": "Generated",
     "english": [
       "If I could only eat one food for a whole year, what should it be?",
-      "Tell your teacher why your food would survive a whole year without getting boring."
+      "Tell your teacher why you chose it."
     ]
   },
   {
@@ -186,7 +186,7 @@
     "lifecycleState": "Generated",
     "english": [
       "If I made a movie about your day, would it be an action movie, a comedy, or a monster movie?",
-      "Describe one scene from the movie to your teacher."
+      "Why would it be that kind of movie? Tell your teacher."
     ]
   },
   {
@@ -246,7 +246,7 @@
     "lifecycleState": "Generated",
     "english": [
       "Would you rather have hands made of cheese, or have feet made of jelly?",
-      "Describe what a normal day would be like, then ask your teacher to imagine it too."
+      "What is the hardest part about that? Tell your teacher."
     ]
   },
   {
@@ -336,7 +336,7 @@
     "lifecycleState": "Generated",
     "english": [
       "Would you rather fight one giant monster, or fight one hundred tiny monsters?",
-      "Tell your teacher your battle plan!"
+      "Which would be scarier? Tell your teacher why."
     ]
   },
   {
@@ -346,7 +346,7 @@
     "lifecycleState": "Generated",
     "english": [
       "Would you rather have a robot best friend, or have an alien best friend?",
-      "Describe what your new best friend would be like."
+      "Give your friend a name. What would you do together?"
     ]
   },
   {
@@ -365,8 +365,8 @@
     "engine": "WouldYouRather",
     "lifecycleState": "Generated",
     "english": [
-      "Would you rather eat cold soup every day, or eat burnt toast every day?",
-      "Tell your teacher your reason, then ask what they hate eating most."
+      "Would you rather have spaghetti for hair, or have marshmallows for teeth?",
+      "Tell your teacher which one you would choose and why."
     ]
   },
   {
@@ -376,7 +376,7 @@
     "lifecycleState": "Generated",
     "english": [
       "Would you rather turn into a frog for a day, or turn into a fly for a day?",
-      "What would your day actually be like? Tell your teacher."
+      "What is one thing you would do? Tell your teacher."
     ]
   },
   {
@@ -415,8 +415,8 @@
     "engine": "Challenge",
     "lifecycleState": "Generated",
     "english": [
-      "Name three things I should never put in a sandwich.",
-      "Go! Then ask your teacher for their worst sandwich idea."
+      "Would my sandwich taste worse with ketchup and marshmallows, or with pickles and ice cream?",
+      "Which one is worse? Tell your teacher why, in just one sentence."
     ]
   },
   {
@@ -466,7 +466,7 @@
     "lifecycleState": "Generated",
     "english": [
       "I have green slime on my head! Did I fall in a swamp, did someone drop it on me, or did I eat it?",
-      "Give your teacher three clues before you tell them your answer."
+      "Tell your teacher your best guess, and why."
     ]
   },
   {
@@ -476,7 +476,7 @@
     "lifecycleState": "Generated",
     "english": [
       "There are muddy footprints on the kitchen floor. Was it the dog, me, or a monster?",
-      "Tell your teacher your clues like a real detective."
+      "Tell your teacher your best guess, and why."
     ]
   },
   {
@@ -496,7 +496,7 @@
     "lifecycleState": "Generated",
     "english": [
       "There is a strange noise coming from the closet. Is it a monster, me, or your little sister hiding?",
-      "Tell your teacher your idea, then invent what happens if you open the door."
+      "Tell your teacher your idea, and why."
     ]
   },
   {
@@ -575,8 +575,8 @@
     "engine": "Joke",
     "lifecycleState": "Generated",
     "english": [
-      "Why did I go to the toilet?",
-      "I had a very important meeting! Ask your teacher what their most important meeting was ever about."
+      "Why did I jump onto the sofa?",
+      "I saw a spider on the floor, and it started walking straight at me! Are you scared of spiders too?"
     ]
   },
   {
@@ -586,7 +586,7 @@
     "lifecycleState": "Generated",
     "english": [
       "Why did I bring a ladder to school?",
-      "I wanted to sit at the top of the class! Tell your teacher your worst joke -- the worse it is, the better."
+      "I wanted to touch the ceiling in the gym! What is the tallest thing you have ever touched?"
     ]
   },
   {
@@ -616,7 +616,7 @@
     "lifecycleState": "Generated",
     "english": [
       "Why did I wear two hats?",
-      "One hat was cold! Invent your own silly reason for wearing two of something."
+      "One hat was cold! What would you wear two of? Tell your teacher."
     ]
   },
   {
@@ -626,7 +626,7 @@
     "lifecycleState": "Generated",
     "english": [
       "Why did I bring a pillow to school?",
-      "Just in case! Tell your teacher one strange thing YOU always bring with you, just in case."
+      "So I could nap during maths class! Do you ever feel sleepy at school?"
     ]
   },
   {
@@ -666,7 +666,7 @@
     "lifecycleState": "Generated",
     "english": [
       "Why did I bring a fork to the swimming pool?",
-      "In case there was spaghetti in the water! Invent your own ridiculous reason to bring something strange somewhere."
+      "In case there was spaghetti in the water! What strange thing would you bring to school? Tell your teacher why."
     ]
   },
   {
@@ -706,7 +706,7 @@
     "lifecycleState": "Generated",
     "english": [
       "Why did I bring an umbrella into the shower?",
-      "I heard it might rain! Tell your teacher the most unnecessary thing you have ever prepared for."
+      "I heard it might rain! Tell your teacher one silly thing you always do before school."
     ]
   },
   {
@@ -726,7 +726,7 @@
     "lifecycleState": "Generated",
     "english": [
       "Why did I paint my room green?",
-      "I wanted to live inside a pea! Invent your own tiny home and describe it to your teacher."
+      "I wanted to live inside a pea! What would you want to live inside? Tell your teacher."
     ]
   },
   {
@@ -745,8 +745,8 @@
     "engine": "Joke",
     "lifecycleState": "Generated",
     "english": [
-      "Why did I sit under my desk all day?",
-      "I said school was too loud upstairs! Invent your own excuse for hiding from something loud."
+      "Why did I hide under my desk all day?",
+      "I was pretending to be a turtle in its shell! What animal would you pretend to be?"
     ]
   },
   {
@@ -756,7 +756,7 @@
     "lifecycleState": "Generated",
     "english": [
       "I am yellow. Monkeys like me. What am I?",
-      "A banana! I only eat the peel, by the way. Now invent your own fruit riddle for your teacher to guess."
+      "A banana! I only eat the peel, by the way. What's your favourite fruit? Tell your teacher why you like it."
     ]
   },
   {
@@ -766,7 +766,7 @@
     "lifecycleState": "Generated",
     "english": [
       "I have four legs. I sleep all day. I steal food when nobody is looking. What am I?",
-      "A dog. Describe your own pet, real or imaginary, without saying its name, and let your teacher guess."
+      "A dog. Do you have a pet, or want one? Tell your teacher about it."
     ]
   },
   {
@@ -795,8 +795,8 @@
     "engine": "Riddle",
     "lifecycleState": "Generated",
     "english": [
-      "I am full of holes but I can still hold water. What am I?",
-      "A sponge. Tell your teacher one more thing that is full of holes but still useful."
+      "I am small and hard at first, but when you heat me up, I turn big and fluffy. What am I?",
+      "Popcorn! I always eat way too much of it at the movies. Do you like your popcorn sweet or salty?"
     ]
   },
   {
@@ -825,8 +825,8 @@
     "engine": "Riddle",
     "lifecycleState": "Generated",
     "english": [
-      "I am white outside. I am yellow inside. I come from a chicken. What am I?",
-      "An egg. Ask your teacher their favourite way to eat one."
+      "I have no bones, but I have a shell. Crack me open and breakfast falls out. What am I?",
+      "An egg! I think eggs are secretly magic breakfast rocks. Do you like your eggs scrambled or fried?"
     ]
   },
   {
@@ -836,7 +836,7 @@
     "lifecycleState": "Generated",
     "english": [
       "I am green. I am sticky. What am I?",
-      "Slime! I love playing with it. Describe the grossest slime you can imagine to your teacher."
+      "Slime! I love playing with it. What colour slime would you make? What would you put in it?"
     ]
   },
   {
@@ -846,7 +846,7 @@
     "lifecycleState": "Generated",
     "english": [
       "I come out of your nose when you are sick. What am I?",
-      "A booger! I think that's gross. Tell your teacher the grossest riddle answer you can think of."
+      "A booger! I think that's gross. What is the grossest thing you can think of? Tell your teacher."
     ]
   },
   {
@@ -955,8 +955,8 @@
     "engine": "Challenge",
     "lifecycleState": "Generated",
     "english": [
-      "I hate bad smells. Name three smelly things I should avoid.",
-      "Go! Then ask your teacher their answer too."
+      "I hate bad smells! Make the sound or face you make when something smells terrible.",
+      "Go! Then show your teacher your best stinky-smell face."
     ]
   },
   {
@@ -975,8 +975,8 @@
     "engine": "Challenge",
     "lifecycleState": "Generated",
     "english": [
-      "Say three foods I should NOT eat.",
-      "Go! Then ask your teacher what THEY refuse to eat."
+      "There is one food I really do not want to eat today.",
+      "Give your teacher one clue about it. Can they guess what it is?"
     ]
   },
   {
