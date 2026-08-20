@@ -6,7 +6,7 @@
     "lifecycleState": "Generated",
     "english": [
       "You open your school bag and find a tiny door inside. Do you open it, ignore it, or show me?",
-      "Why? Then invent what's really behind the door and tell your teacher."
+      "Why?"
     ]
   },
   {
@@ -15,8 +15,8 @@
     "engine": "Story",
     "lifecycleState": "Generated",
     "english": [
-      "Your dog starts talking to you, but only about pizza. Does he want cheese pizza, or does he want your pizza?",
-      "Tell me what he says, then predict what he asks for next."
+      "Your dog runs off with your shoe in its mouth. What do you do?",
+      "What would you do?"
     ]
   },
   {
@@ -36,7 +36,7 @@
     "lifecycleState": "Generated",
     "english": [
       "A letter arrives with no name on it, just your address. Is it from a friend, from a monster, or from me?",
-      "Why? Then tell your teacher what the letter actually says."
+      "Who do you think it's from? Why?"
     ]
   },
   {
@@ -46,7 +46,7 @@
     "lifecycleState": "Generated",
     "english": [
       "You find a key that does not match any door in your house. Does it open a treasure box, a secret room, or my fridge?",
-      "Why? Then describe what you find when you open it."
+      "Why do you think that?"
     ]
   },
   {
@@ -76,7 +76,7 @@
     "lifecycleState": "Generated",
     "english": [
       "You find a robot in your garden. It only knows one word. Is the word hello, pizza, or help?",
-      "Why? Then predict what the robot does next."
+      "Why do you think that's the word?"
     ]
   },
   {
@@ -95,8 +95,8 @@
     "engine": "Story",
     "lifecycleState": "Generated",
     "english": [
-      "You wake up and you can talk to animals, but only chickens understand you. Do you ask them for eggs, ask them to be your friend, or ask them a secret question?",
-      "Tell me what you ask first, then ask your teacher what animal they would choose."
+      "If you could understand one kind of animal, would you choose your pet, a wild animal, or an insect?",
+      "Which one would you choose? Why?"
     ]
   },
   {
@@ -115,8 +115,8 @@
     "engine": "Story",
     "lifecycleState": "Generated",
     "english": [
-      "You find a box under your bed. Inside is a tiny dragon, a talking sock, or a slice of magic pizza. Which one is it?",
-      "Why? Then tell your teacher one thing you would do with it."
+      "You find an old box under your bed that you forgot about. What do you hope is inside?",
+      "What do you hope is inside?"
     ]
   },
   {
@@ -125,8 +125,8 @@
     "engine": "Story",
     "lifecycleState": "Generated",
     "english": [
-      "Your best friend turns into a zombie, but only at lunchtime. Does zombie-friend want to eat brains, eat pizza, or eat your homework?",
-      "Why? Then tell your teacher what you would say to your friend."
+      "Your best friend is upset but says nothing is wrong. Do you ask again, give them space, or tell a teacher?",
+      "What would you do? Why?"
     ]
   },
   {
@@ -225,8 +225,8 @@
     "engine": "WouldYouRather",
     "lifecycleState": "Generated",
     "english": [
-      "Would you rather have super speed but fart every time you run, or have super strength but sneeze every time you use it?",
-      "Tell your teacher why, then ask which power they would pick."
+      "Would you rather be able to fly, or be able to become invisible?",
+      "Which one would you choose? Why?"
     ]
   },
   {
@@ -245,8 +245,8 @@
     "engine": "WouldYouRather",
     "lifecycleState": "Generated",
     "english": [
-      "Would you rather have hands made of cheese, or have feet made of jelly?",
-      "What is the hardest part about that? Tell your teacher."
+      "Would you rather have a lot of money, or have a lot of free time?",
+      "Which one would you choose? Why?"
     ]
   },
   {
@@ -275,8 +275,8 @@
     "engine": "WouldYouRather",
     "lifecycleState": "Generated",
     "english": [
-      "Would you rather have a pet zombie, or have a pet ghost?",
-      "Tell your teacher how you would take care of your new pet."
+      "Would you rather be the youngest in your family, or be the oldest in your family?",
+      "Which one would you choose? Why?"
     ]
   },
   {
@@ -295,8 +295,8 @@
     "engine": "WouldYouRather",
     "lifecycleState": "Generated",
     "english": [
-      "Would you rather smell like a fart forever, or smell like old socks forever?",
-      "Tell your teacher why, then ask which smell they could survive."
+      "Would you rather always be five minutes late, or always be twenty minutes early?",
+      "Which one would you choose? Why?"
     ]
   },
   {
@@ -315,8 +315,8 @@
     "engine": "WouldYouRather",
     "lifecycleState": "Generated",
     "english": [
-      "Would you rather sneeze slime, or cry cheese?",
-      "Describe what that would actually look like, then ask your teacher which is worse."
+      "Would you rather be really good at football, or really good at drawing?",
+      "Which one would you choose? Why?"
     ]
   },
   {
@@ -365,8 +365,8 @@
     "engine": "WouldYouRather",
     "lifecycleState": "Generated",
     "english": [
-      "Would you rather have spaghetti for hair, or have marshmallows for teeth?",
-      "Tell your teacher which one you would choose and why."
+      "Would you rather always get to choose the film, or always get to choose the restaurant?",
+      "Which one would you choose? Why?"
     ]
   },
   {
@@ -395,8 +395,8 @@
     "engine": "WouldYouRather",
     "lifecycleState": "Generated",
     "english": [
-      "Would you rather have slime instead of hair, or have spaghetti instead of hair?",
-      "Describe how you would wash it, then ask your teacher which is worse."
+      "Would you rather live in a big city, or live in the countryside?",
+      "Which one would you choose? Why?"
     ]
   },
   {
@@ -415,8 +415,8 @@
     "engine": "Challenge",
     "lifecycleState": "Generated",
     "english": [
-      "Would my sandwich taste worse with ketchup and marshmallows, or with pickles and ice cream?",
-      "Which one is worse? Tell your teacher why, in just one sentence."
+      "Should I wear a hat every day, or wear sunglasses every day?",
+      "Which one is better for me? Tell your teacher why, in just one sentence."
     ]
   },
   {
@@ -465,7 +465,7 @@
     "engine": "Mystery",
     "lifecycleState": "Generated",
     "english": [
-      "I have green slime on my head! Did I fall in a swamp, did someone drop it on me, or did I eat it?",
+      "There is a strange stain on my shirt. Was it juice, paint, or mud?",
       "Tell your teacher your best guess, and why."
     ]
   },
@@ -566,7 +566,7 @@
     "lifecycleState": "Generated",
     "english": [
       "What did I eat for breakfast?",
-      "A shoe! It tasted like leather. Invent an even worse breakfast and see if your teacher can guess it."
+      "A shoe! It tasted like leather. What is the strangest thing you have ever eaten? Tell your teacher."
     ]
   },
   {
@@ -586,7 +586,7 @@
     "lifecycleState": "Generated",
     "english": [
       "Why did I bring a ladder to school?",
-      "I wanted to touch the ceiling in the gym! What is the tallest thing you have ever touched?"
+      "Because I wanted to reach the top shelf! Tell your teacher one thing you would keep on a very high shelf."
     ]
   },
   {
@@ -646,7 +646,7 @@
     "lifecycleState": "Generated",
     "english": [
       "Why did I carry an empty box everywhere?",
-      "I said something important was inside! Invent what was actually inside the box and tell your teacher."
+      "I said something important was inside! What is the most important thing you own? Tell your teacher."
     ]
   },
   {
@@ -1015,8 +1015,8 @@
     "engine": "Moment",
     "lifecycleState": "Generated",
     "english": [
-      "PUPU released a toxic stink cloud.",
-      "He blames the chair."
+      "PUPU is having a very dramatic day.",
+      "Everyone, please stay calm."
     ]
   },
   {
