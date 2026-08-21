@@ -1431,6 +1431,13 @@ function completeCurrentSectionText() {
   finishTypingSection();
 }
 
+// Types whose second section (the punchline/answer) should stay hidden
+// behind an explicit tap instead of auto-revealing after
+// SECTION_REVEAL_DELAY_MS -- real classroom testing showed the answer
+// appearing on its own before anyone had a chance to guess. Every other
+// type keeps the original auto-advance behaviour untouched.
+const MANUAL_REVEAL_TYPES = ["riddle", "joke"];
+
 function finishTypingSection() {
   bubbleSequence.timerId = null;
 
@@ -1444,7 +1451,32 @@ function finishTypingSection() {
   bubbleSequence.phase = "waiting";
   updateLanguageToggleEnabled();
   bubbleEl.classList.add("bubble-waiting"); // subtle pulse hinting the bubble can be tapped
+
+  if (MANUAL_REVEAL_TYPES.includes(bubbleSequence.cardType)) {
+    showRevealHint();
+    return; // no auto-advance timer here -- only an explicit tap reveals section 2
+  }
+
   bubbleSequence.timerId = setTimeout(advanceBubbleSequence, SECTION_REVEAL_DELAY_MS);
+}
+
+// Placeholder shown in place of the still-hidden second section for
+// MANUAL_REVEAL_TYPES -- reuses the exact .bubble-section/.bubble-label
+// markup (and its existing fade-in animation) a real section already
+// gets, just with no lines yet, so it's visually indistinguishable from
+// the box it's standing in for. Removed the moment the real section is
+// revealed (see advanceBubbleSequence()).
+function showRevealHint() {
+  const el = document.createElement("div");
+  el.className = "bubble-section bubble-section-mission bubble-reveal-hint";
+
+  const labelEl = document.createElement("p");
+  labelEl.className = "bubble-label";
+  labelEl.textContent = "💬 TAP TO REVEAL";
+  el.appendChild(labelEl);
+
+  bubbleEl.appendChild(el);
+  bubbleSequence.revealHintEl = el;
 }
 
 // Fire-and-forget: picks a random BUBBLE_REACTIONS entry and plays it
@@ -1511,6 +1543,10 @@ function playBubbleReaction() {
 
 function advanceBubbleSequence() {
   bubbleSequence.timerId = null;
+  if (bubbleSequence.revealHintEl) {
+    bubbleSequence.revealHintEl.remove();
+    bubbleSequence.revealHintEl = null;
+  }
   bubbleSequence.stageIndex++;
   const section = bubbleSequence.sections[bubbleSequence.stageIndex];
   // Refreshed against currentLanguage (not whatever renderCard() built
@@ -1704,7 +1740,7 @@ function renderCard(card, mission) {
     lines: getSectionLines(card, mission, i, currentLanguage),
   }));
 
-  bubbleSequence = { sections, stageIndex: 0, phase: "typing", timerId: null, lineEls: [], lineIndex: 0, charIndex: 0, cardType: type, card, mission };
+  bubbleSequence = { sections, stageIndex: 0, phase: "typing", timerId: null, lineEls: [], lineIndex: 0, charIndex: 0, cardType: type, card, mission, revealHintEl: null };
   startTypingSection(sections[0]);
 
   statusEl.textContent = `${card.sourceId} · ${card.engine} · Generated (not yet reviewed)`;
