@@ -13,13 +13,14 @@
 // each successful fetch so offline fallback stays reasonably current
 // too. CACHE_NAME still exists so activate() can drop old cache
 // generations; it no longer needs to be bumped just to see an edit.
-const CACHE_NAME = "pupu-mvp-v10";
+const CACHE_NAME = "pupu-mvp-v11";
 const APP_SHELL = [
   "./",
   "./index.html",
   "./style.css",
   "./audio.js",
   "./motion.js",
+  "./vector-pupu.js",
   "./app.js",
   "./cards.json",
   "./categories.json",

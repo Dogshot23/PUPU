@@ -2185,6 +2185,53 @@ bubbleEl.addEventListener("keydown", (event) => {
   }
 });
 
+// ---------- Renderer choice (PNG layers or vector canvas) ----------
+// PUPU can be drawn two ways: the PNG layers (default) or vector-pupu.js's
+// canvas, drawn from Bézier curves and springs. Open the app with
+// ?pupu=vector or ?pupu=png to switch; the choice is remembered in this
+// browser (localStorage) until switched back. Everything else -- cards,
+// reactions, sounds, events -- is shared: the vector version mirrors
+// what this file does to the PNG elements (see vector-pupu.js).
+const RENDERER_STORAGE_KEY = "pupu-renderer";
+
+function chooseRenderer() {
+  const requested = new URLSearchParams(location.search).get("pupu");
+  try {
+    if (requested === "vector" || requested === "png") localStorage.setItem(RENDERER_STORAGE_KEY, requested);
+    return localStorage.getItem(RENDERER_STORAGE_KEY) || "png";
+  } catch (error) {
+    return requested === "vector" ? "vector" : "png"; // storage blocked: this visit only
+  }
+}
+
+const vectorCanvasEl = document.getElementById("pupu-vector");
+const activeRenderer = chooseRenderer() === "vector" && vectorCanvasEl.getContext ? "vector" : "png";
+
+if (activeRenderer === "vector") {
+  document.getElementById("pupu-png").hidden = true;
+  vectorCanvasEl.hidden = false;
+  VectorPupu.mount(vectorCanvasEl, {
+    eyes,
+    mouth,
+    button: pupuButton,
+    effect: effectEl,
+    ghostWatch: bodyEl,
+  });
+  // Same instant press as the PNG belly (see the pointerdown handler
+  // below); the canvas squishes itself on the same touch.
+  vectorCanvasEl.addEventListener("pointerdown", (event) => {
+    if (!event.isPrimary || (event.pointerType === "mouse" && event.button !== 0)) return;
+    event.preventDefault();
+    handleBellyPress();
+  });
+  vectorCanvasEl.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      handleBellyPress();
+    }
+  });
+}
+
 // ---------- Preloading ----------
 // Every expression/overlay picture is downloaded and decoded now, so
 // swapping eyes/mouth/effects later is instant -- before, a face that

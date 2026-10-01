@@ -356,6 +356,37 @@ body {
   transition: opacity 0.45s ease;
 }
 
+/* ---------- Renderer: PNG layers or vector canvas ----------
+   Only one is shown (see "Renderer choice" in app.js). The canvas covers
+   the same stage box, so both versions sit in exactly the same place. */
+.pupu-png,
+.pupu-vector {
+  position: absolute;
+  inset: 0;
+}
+
+.pupu-vector {
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+
+.pupu-vector[hidden],
+.pupu-png[hidden] {
+  display: none;
+}
+
+.pupu-vector:focus-visible {
+  outline: 2.5px solid #b8e8d6;
+  outline-offset: 6px;
+  border-radius: 50%;
+}
+
 /* ---------- PUPU motion layers ----------
    Each wrapper owns one kind of movement, since every one of them
    moves via `transform` and an element can only have one:
