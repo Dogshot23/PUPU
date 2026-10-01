@@ -21,22 +21,22 @@
 const VectorPupu = (() => {
   // ---------- Look ----------
   const COLORS = {
-    outline: "#382e6a",
+    outline: "#2b1b54", // the single outer outline (and the mouth)
     bodyStops: [
       [0, "#fff0d4"],   // warm peach centre
       [0.45, "#fccde3"], // pink
       [0.78, "#ebb8ef"], // lilac pink
       [1, "#c9cbfb"],   // blue-lilac rim
     ],
-    cheek: ["#ffd9ec", "#f1b4e4", "#d9b1f2"],
-    visor: ["#d9c9fb", "#c7dcff"],
-    visorLid: "#b8a5ec",
-    eyeWhite: "#ffffff",
-    pupil: "#2f2763",
+    cheek: ["rgba(246, 150, 210, 0.75)", "rgba(240, 165, 220, 0.4)", "rgba(236, 175, 228, 0)"], // soft blush, fades into the body
+    visor: ["#f2cdf2", "#cfc6fb", "#bfe4fb"], // the original's pink > lilac > cyan sheen
+    visorEdge: "#a99be0", // soft lilac rim, not a dark line
+    visorLid: "#b4a2ea", // eyelid shade coming down over the visor
     glyph: "#2a2775", // the 푸푸 lettering
     mouthInside: "#8c3c66",
     tongue: "#f58fb3",
     buttonRing: "#d8c9f5",
+    buttonEdge: "#b6a6e6",
     buttonFace: ["#ffffff", "#e7e0fb"],
     arrow: "#b4a2e6",
     shadow: "rgba(150, 130, 220, 0.55)",
@@ -45,22 +45,27 @@ const VectorPupu = (() => {
 
   // Layout in artwork space (see body.png).
   const ANCHOR = { x: 505, y: 815 }; // between the feet: squash/tilt pivot
-  const BODY = { cx: 505, cy: 520, rx: 330, top: 335, bottom: 290 };
-  // The visor and its "푸푸" lettering. Each 푸 is ㅍ over ㅜ; the closed box
-  // inside each ㅍ is that eye's socket (see "The 푸푸 visor" below).
-  const VISOR = { x: 506, y: 262, w: 392, h: 168, r: 74 };
+  // Taller than the visor reaches, so the crown shows above it.
+  const BODY = { cx: 505, cy: 520, rx: 330, top: 362, bottom: 290 };
+  const OUTLINE_PX = 3.5; // outer outline width on screen, in CSS pixels
+  // The visor band (shorter and lower than the first prototype) and its
+  // "푸푸" lettering. Each 푸 is ㅍ over ㅜ, drawn as bold rounded strokes
+  // around its own centre (GLYPH is relative to that centre). The letters
+  // ARE PUPU's eyes: they look, squint, wink and arch (see drawPu).
+  const VISOR = { x: 506, y: 286, w: 352, h: 138, r: 64 };
   const GLYPH = {
-    stroke: 17,
-    half: 58, // half-width of ㅍ's top/bottom bars
-    post: 34, // ㅍ's two upright strokes sit at x ± post
-    top: 202, // ㅍ top bar
-    bottom: 282, // ㅍ bottom bar
-    uBar: 307, // ㅜ bar
-    uHalf: 64,
-    stemEnd: 334, // ㅜ stem
+    stroke: 19,
+    half: 40, // half-width of ㅍ's top/bottom bars
+    post: 21, // ㅍ's two upright strokes sit at x ± post
+    top: -45, // ㅍ top bar
+    bottom: 0, // ㅍ bottom bar (an open, nearly square box, like the original)
+    uBar: 23, // ㅜ bar
+    uHalf: 47,
+    stemEnd: 47, // ㅜ stem
   };
-  const EYES = [{ x: 416, y: (202 + 282) / 2 }, { x: 596, y: (202 + 282) / 2 }]; // the two 푸, left to right on screen
-  const MOUTH = { x: 506, y: 388 };
+  const EYES = [{ x: 430, y: 286 }, { x: 582, y: 286 }]; // centres of the two 푸, left to right on screen
+  const LOOK_SHIFT = { x: 14, y: 7 }; // how far the lettering shifts towards the pointer
+  const MOUTH = { x: 506, y: 392 };
   const BUTTON = { x: 520, y: 612, r: 118 };
 
   // ---------- Springs ----------
@@ -297,11 +302,15 @@ const VectorPupu = (() => {
     return g;
   }
 
-  function outlineFill(fill, width = 10) {
-    ctx.fillStyle = fill;
-    ctx.fill();
-    ctx.lineWidth = width;
-    ctx.strokeStyle = COLORS.outline;
+  // Artwork units per CSS pixel right now (the canvas is drawn in the
+  // artwork's 1024 space, then scaled to its on-screen size).
+  let unitsPerPx = 1024 / 232;
+
+  // A soft lilac edge for the visor and button -- definition without
+  // adding dark interior lines.
+  function softEdge(color, px) {
+    ctx.lineWidth = px * unitsPerPx;
+    ctx.strokeStyle = color;
     ctx.stroke();
   }
 
@@ -312,13 +321,14 @@ const VectorPupu = (() => {
     const { cx, cy, rx, top, bottom } = BODY;
     const k = 0.56;
     const upper = 1 + chest * 0.1;
-    ctx.beginPath();
-    ctx.moveTo(cx, cy - top);
-    ctx.bezierCurveTo(cx + rx * k * (1 + chest * 0.35), cy - top, cx + rx * upper, cy - top * k, cx + rx * upper, cy);
-    ctx.bezierCurveTo(cx + rx, cy + bottom * 0.62, cx + rx * 0.64, cy + bottom, cx, cy + bottom);
-    ctx.bezierCurveTo(cx - rx * 0.64, cy + bottom, cx - rx, cy + bottom * 0.62, cx - rx * upper, cy);
-    ctx.bezierCurveTo(cx - rx * upper, cy - top * k, cx - rx * k * (1 + chest * 0.35), cy - top, cx, cy - top);
-    ctx.closePath();
+    const path = new Path2D();
+    path.moveTo(cx, cy - top);
+    path.bezierCurveTo(cx + rx * k * (1 + chest * 0.35), cy - top, cx + rx * upper, cy - top * k, cx + rx * upper, cy);
+    path.bezierCurveTo(cx + rx, cy + bottom * 0.62, cx + rx * 0.64, cy + bottom, cx, cy + bottom);
+    path.bezierCurveTo(cx - rx * 0.64, cy + bottom, cx - rx, cy + bottom * 0.62, cx - rx * upper, cy);
+    path.bezierCurveTo(cx - rx * upper, cy - top * k, cx - rx * k * (1 + chest * 0.35), cy - top, cx, cy - top);
+    path.closePath();
+    return path;
   }
 
   function drawShadow() {
@@ -334,15 +344,47 @@ const VectorPupu = (() => {
     ctx.restore();
   }
 
-  function drawLimb(x, y, rx, ry, angle, pivotX, pivotY) {
-    ctx.save();
-    ctx.translate(pivotX, pivotY);
-    ctx.rotate(angle);
-    ctx.translate(-pivotX, -pivotY);
-    ctx.beginPath();
-    ctx.ellipse(x, y, rx, ry, 0, 0, Math.PI * 2);
-    outlineFill(radial(x - rx * 0.3, y - ry * 0.3, 4, Math.max(rx, ry) * 1.3, COLORS.bodyStops), 9);
-    ctx.restore();
+  // Arms and feet: a path, rotated around its pivot.
+  function limbPath(x, y, rx, ry, angle, pivotX, pivotY) {
+    const path = new Path2D();
+    const m = new DOMMatrix().translate(pivotX, pivotY).rotate((angle * 180) / Math.PI).translate(-pivotX, -pivotY);
+    const shape = new Path2D();
+    shape.ellipse(x, y, rx, ry, 0, 0, Math.PI * 2);
+    path.addPath(shape, m);
+    return path;
+  }
+
+  // The silhouette -- feet, arms and body -- gets ONE outline: every part
+  // is stroked first (at twice the width), then all the fills go on top,
+  // so only the outer half of the outside edge shows and there are no
+  // lines where the parts meet.
+  function drawSilhouette() {
+    const chest = Math.max(0, body.chest.value);
+    const limbs = [
+      limbPath(395, 800, 72, 42, 0, 395, 800),
+      limbPath(620, 800, 72, 42, 0, 620, 800),
+      limbPath(170, 585, 52, 84, 0.35 + body.armL.value, 215, 520),
+      limbPath(842, 585, 52, 84, -0.35 + body.armR.value, 795, 520),
+    ];
+    const torso = bodyPath(chest);
+    ctx.lineJoin = "round";
+    ctx.strokeStyle = COLORS.outline;
+    ctx.lineWidth = OUTLINE_PX * 2 * unitsPerPx;
+    [...limbs, torso].forEach((part) => ctx.stroke(part));
+    limbs.forEach((part, i) => {
+      const [x, y, r] = i < 2 ? [i ? 620 : 395, 790, 70] : [i === 2 ? 170 : 842, 560, 90];
+      ctx.fillStyle = radial(x, y, 4, r * 1.4, COLORS.bodyStops);
+      ctx.fill(part);
+    });
+    ctx.fillStyle = radial(560, 420, 20, 480, COLORS.bodyStops);
+    ctx.fill(torso);
+    if (face.glow.value > 0.01) {
+      ctx.save();
+      ctx.globalAlpha = Math.min(0.5, face.glow.value * 0.15);
+      ctx.fillStyle = "#fff";
+      ctx.fill(torso);
+      ctx.restore();
+    }
   }
 
   function drawButton() {
@@ -350,7 +392,9 @@ const VectorPupu = (() => {
     const down = Math.max(0, Math.min(1, face.buttonDown.value));
     ctx.beginPath();
     ctx.arc(x, y, r, 0, Math.PI * 2);
-    outlineFill(COLORS.buttonRing, 9);
+    ctx.fillStyle = COLORS.buttonRing;
+    ctx.fill();
+    softEdge(COLORS.buttonEdge, 1.6);
     ctx.save();
     ctx.translate(x, y + down * 6);
     ctx.scale(1 - down * 0.06, 1 - down * 0.06);
@@ -359,7 +403,9 @@ const VectorPupu = (() => {
     const g = ctx.createLinearGradient(0, -r, 0, r);
     g.addColorStop(0, down > 0.5 ? COLORS.buttonFace[1] : COLORS.buttonFace[0]);
     g.addColorStop(1, COLORS.buttonFace[1]);
-    outlineFill(g, 6);
+    ctx.fillStyle = g;
+    ctx.fill();
+    softEdge(COLORS.buttonEdge, 1.2);
     // the up arrow
     ctx.fillStyle = COLORS.arrow;
     ctx.beginPath();
@@ -377,16 +423,18 @@ const VectorPupu = (() => {
     ctx.restore();
   }
 
+  // Cheeks: soft blush only -- a radial gradient that fades to nothing
+  // at its edge, so it melts into the body (no outline), plus a shine.
   function drawCheeks() {
-    const r = 118 * (1 + body.cheek.value * 0.18);
-    [[300, 425], [712, 425]].forEach(([x, y]) => {
+    const r = 112 * (1 + body.cheek.value * 0.18);
+    [[312, 432], [700, 432]].forEach(([x, y]) => {
+      ctx.fillStyle = radial(x, y - 10, 4, r, [[0, COLORS.cheek[0]], [0.55, COLORS.cheek[1]], [1, COLORS.cheek[2]]]);
       ctx.beginPath();
       ctx.arc(x, y, r, 0, Math.PI * 2);
-      outlineFill(radial(x - 30, y - 40, 6, r * 1.15, [[0, COLORS.cheek[0]], [0.6, COLORS.cheek[1]], [1, COLORS.cheek[2]]]), 9);
-      // shine
-      ctx.fillStyle = "rgba(255,255,255,0.75)";
+      ctx.fill();
+      ctx.fillStyle = "rgba(255,255,255,0.7)";
       ctx.beginPath();
-      ctx.ellipse(x - r * 0.3 + (x > BODY.cx ? r * 0.55 : 0), y - r * 0.55, 20, 11, -0.4, 0, Math.PI * 2);
+      ctx.ellipse(x + (x > BODY.cx ? 34 : -34), y - r * 0.42, 18, 10, x > BODY.cx ? 0.4 : -0.4, 0, Math.PI * 2);
       ctx.fill();
     });
   }
@@ -403,134 +451,111 @@ const VectorPupu = (() => {
   }
 
   // ---------- The 푸푸 visor ----------
-  // PUPU's name is his face: each 푸 (ㅍ over ㅜ) is drawn from strokes,
-  // and the closed box inside each ㅍ is an eye socket. Inside the box go
-  // the eye white, the pupil (following the pointer, kept inside the
-  // box), the eyelid, the wink's lash line and the happy "^". The letter
-  // strokes are drawn LAST, on top, at full strength -- so whatever the
-  // eyes do, "푸푸" stays whole and readable.
+  // PUPU's name is his face, as on the original artwork: two bold 푸
+  // letters on a soft visor band. There are no separate pupils -- the
+  // letters themselves are the eyes:
+  //   look  -> the lettering shifts a little towards the pointer
+  //   lid   -> the letter squints (shorter) under an eyelid shade that
+  //            comes down from the top of the visor; a wink does this to
+  //            the left 푸 only
+  //   happy -> the ㅍ's top bar arches up into a "^"
+  //   wide  -> (shock: lid < 0 or small "pupil") the letters grow a bit
+  // The letter shapes are never covered, so "푸푸" always reads.
 
-  // The inside of one ㅍ box (between its strokes).
-  function socketOf(eye) {
-    const inset = GLYPH.stroke / 2;
-    const x0 = eye.x - GLYPH.post + inset;
-    const x1 = eye.x + GLYPH.post - inset;
-    const y0 = GLYPH.top + inset;
-    const y1 = GLYPH.bottom - inset;
-    return { x0, x1, y0, y1, cx: (x0 + x1) / 2, cy: (y0 + y1) / 2, w: x1 - x0, h: y1 - y0 };
-  }
+  let glyphTransforms = [null, null]; // where each 푸 was last drawn (for tests)
+  let glyphSquints = [1, 1];
 
-  // One eye inside its socket. `lid`: 0 open .. 1 shut (below 0 = wide,
-  // shown by the pupil shrinking -- the socket itself never changes, so
-  // the letter keeps its shape). `happy` cross-fades to a "^".
-  function drawEyeInSocket(eye, lid, happy) {
-    const box = socketOf(eye);
-    const closed = Math.max(0, Math.min(1, lid));
-    const roundAlpha = 1 - happy;
-    ctx.save();
-    roundedRect(box.x0, box.y0, box.w, box.h, 7);
-    ctx.clip();
-    // eye white
-    ctx.globalAlpha = roundAlpha;
-    ctx.fillStyle = COLORS.eyeWhite;
-    ctx.fillRect(box.x0, box.y0, box.w, box.h);
-    // pupil, kept inside the box
-    const pr = 12 * face.pupil.value;
-    const roomX = Math.max(0, box.w / 2 - pr - 2);
-    const roomY = Math.max(0, box.h / 2 - pr - 2);
-    const px = box.cx + (face.lookX.value / MAX_LOOK) * roomX;
-    const py = box.cy + (face.lookY.value / MAX_LOOK) * roomY;
-    ctx.fillStyle = COLORS.pupil;
-    ctx.beginPath();
-    ctx.arc(px, py, pr, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.fillStyle = "#fff";
-    ctx.beginPath();
-    ctx.arc(px + pr * 0.35, py - pr * 0.4, Math.max(2.5, pr * 0.3), 0, Math.PI * 2);
-    ctx.fill();
-    // eyelid coming down from the top of the box
-    if (closed > 0.01) {
-      const edge = box.y0 + closed * box.h;
-      ctx.fillStyle = COLORS.visorLid;
-      ctx.fillRect(box.x0, box.y0, box.w, edge - box.y0);
-      if (closed < 0.92) {
-        ctx.strokeStyle = COLORS.glyph;
-        ctx.lineWidth = 5;
-        ctx.beginPath();
-        ctx.moveTo(box.x0, edge);
-        ctx.quadraticCurveTo(box.cx, edge + 6 * (1 - closed), box.x1, edge);
-        ctx.stroke();
-      } else {
-        // shut (blink / wink): a lash curve across the middle
-        ctx.strokeStyle = COLORS.glyph;
-        ctx.lineWidth = 6;
-        ctx.lineCap = "round";
-        ctx.beginPath();
-        ctx.moveTo(box.x0 + 6, box.cy - 2);
-        ctx.quadraticCurveTo(box.cx, box.cy + 12, box.x1 - 6, box.cy - 2);
-        ctx.stroke();
-      }
-    }
-    // happy "^" (on the visor colour, the white fades out under it)
-    if (happy > 0.01) {
-      ctx.globalAlpha = happy;
-      ctx.fillStyle = COLORS.visorLid;
-      ctx.fillRect(box.x0, box.y0, box.w, box.h);
-      ctx.strokeStyle = COLORS.glyph;
-      ctx.lineWidth = 7;
-      ctx.lineCap = "round";
-      ctx.beginPath();
-      ctx.moveTo(box.x0 + 5, box.cy + 9);
-      ctx.quadraticCurveTo(box.cx, box.cy - 22, box.x1 - 5, box.cy + 9);
-      ctx.stroke();
-    }
-    ctx.restore();
-  }
-
-  // The letter 푸 itself, as strokes: ㅍ (top bar, two uprights, bottom
-  // bar) over ㅜ (bar and a stem going down).
-  function drawPuGlyph(cx) {
-    const g = GLYPH;
+  // One bold 푸 around (0, 0): ㅍ over ㅜ. `arch` (0..1) bends ㅍ's top
+  // bar; `squint` (0.5..1) makes the letter shorter without thinning its
+  // strokes, so a squinting letter stays as bold and crisp as an open one.
+  function drawPu(arch, squint = 1) {
+    const g = {
+      ...GLYPH,
+      top: GLYPH.top * squint,
+      bottom: GLYPH.bottom * squint,
+      uBar: GLYPH.uBar * squint,
+      stemEnd: GLYPH.stemEnd * squint,
+    };
     ctx.strokeStyle = COLORS.glyph;
     ctx.lineWidth = g.stroke;
     ctx.lineCap = "round";
     ctx.lineJoin = "round";
     ctx.beginPath();
-    // ㅍ
-    ctx.moveTo(cx - g.half, g.top);
-    ctx.lineTo(cx + g.half, g.top);
-    ctx.moveTo(cx - g.post, g.top);
-    ctx.lineTo(cx - g.post, g.bottom);
-    ctx.moveTo(cx + g.post, g.top);
-    ctx.lineTo(cx + g.post, g.bottom);
-    ctx.moveTo(cx - g.half, g.bottom);
-    ctx.lineTo(cx + g.half, g.bottom);
-    // ㅜ
-    ctx.moveTo(cx - g.uHalf, g.uBar);
-    ctx.lineTo(cx + g.uHalf, g.uBar);
-    ctx.moveTo(cx, g.uBar);
-    ctx.lineTo(cx, g.stemEnd);
+    ctx.moveTo(-g.half, g.top + arch * 6);
+    ctx.quadraticCurveTo(0, g.top - arch * 20, g.half, g.top + arch * 6); // ㅍ top bar
+    ctx.moveTo(-g.post, g.top + 2);
+    ctx.lineTo(-g.post, g.bottom);
+    ctx.moveTo(g.post, g.top + 2);
+    ctx.lineTo(g.post, g.bottom);
+    ctx.moveTo(-g.half, g.bottom);
+    ctx.lineTo(g.half, g.bottom); // ㅍ bottom bar
+    ctx.moveTo(-g.uHalf, g.uBar);
+    ctx.lineTo(g.uHalf, g.uBar); // ㅜ bar
+    ctx.moveTo(0, g.uBar);
+    ctx.lineTo(0, g.stemEnd); // ㅜ stem
     ctx.stroke();
   }
-
-  let glyphTransform = null; // where the lettering was last drawn (for tests)
 
   function drawVisorAndEyes() {
     const { x, y, w, h, r } = VISOR;
     roundedRect(x - w / 2, y - h / 2, w, h, r);
-    const g = ctx.createLinearGradient(x - w / 2, y, x + w / 2, y);
+    const g = ctx.createLinearGradient(x - w / 2, y - h / 2, x + w / 2, y + h / 2);
     g.addColorStop(0, COLORS.visor[0]);
-    g.addColorStop(1, COLORS.visor[1]);
-    outlineFill(g, 9);
-    ctx.fillStyle = "rgba(255,255,255,0.5)";
-    roundedRect(x - w / 2 + 40, y - h / 2 + 12, w - 170, 14, 7);
+    g.addColorStop(0.5, COLORS.visor[1]);
+    g.addColorStop(1, COLORS.visor[2]);
+    ctx.fillStyle = g;
     ctx.fill();
+    softEdge(COLORS.visorEdge, 1.4);
+    ctx.save();
+    roundedRect(x - w / 2, y - h / 2, w, h, r);
+    ctx.clip();
+    ctx.fillStyle = "rgba(255,255,255,0.5)";
+    roundedRect(x - w / 2 + 36, y - h / 2 + 10, w - 160, 12, 6);
+    ctx.fill();
+
+    const shiftX = (face.lookX.value / MAX_LOOK) * LOOK_SHIFT.x;
+    const shiftY = (face.lookY.value / MAX_LOOK) * LOOK_SHIFT.y;
+    const wide = Math.max(0, -Math.min(face.lidL.value, face.lidR.value)) * 0.35 + Math.max(0, 1 - face.pupil.value) * 0.14;
+    const happy = Math.max(0, Math.min(1, face.happy.value));
     // EYES[0] is the 푸 on screen-left; a wink closes that one (lidL).
-    drawEyeInSocket(EYES[0], face.lidL.value, face.happy.value);
-    drawEyeInSocket(EYES[1], face.lidR.value, face.happy.value);
-    glyphTransform = ctx.getTransform();
-    drawPuGlyph(EYES[0].x);
-    drawPuGlyph(EYES[1].x);
+    [face.lidL.value, face.lidR.value].forEach((lid, i) => {
+      const eye = EYES[i];
+      const closed = Math.max(0, Math.min(1, lid));
+      const squint = 1 - closed * 0.5; // letters never collapse: still readable at full blink
+      const grow = 1 + wide;
+      const gx = eye.x + shiftX;
+      const gy = eye.y + shiftY + closed * 6;
+      // eyelid shade, from the visor top down to just above the letter:
+      // a soft gradient with a rounded lower edge
+      if (closed > 0.01) {
+        const visorTop = y - h / 2;
+        const letterTop = gy + (GLYPH.top - GLYPH.stroke / 2) * squint * grow;
+        const lidBottom = visorTop + (letterTop - 4 - visorTop) * Math.min(1, closed * 1.15);
+        const half = GLYPH.uHalf + 20;
+        const shade = ctx.createLinearGradient(0, visorTop, 0, lidBottom + 10);
+        shade.addColorStop(0, COLORS.visorLid);
+        shade.addColorStop(1, "rgba(180, 162, 234, 0.55)");
+        ctx.save();
+        ctx.globalAlpha *= Math.min(1, closed * 1.4);
+        ctx.fillStyle = shade;
+        ctx.beginPath();
+        ctx.moveTo(gx - half, visorTop - 2);
+        ctx.lineTo(gx + half, visorTop - 2);
+        ctx.lineTo(gx + half, lidBottom - 14);
+        ctx.bezierCurveTo(gx + half * 0.55, lidBottom + 10, gx - half * 0.55, lidBottom + 10, gx - half, lidBottom - 14);
+        ctx.closePath();
+        ctx.fill();
+        ctx.restore();
+      }
+      ctx.save();
+      ctx.translate(gx, gy);
+      ctx.scale(grow, grow);
+      glyphTransforms[i] = ctx.getTransform();
+      glyphSquints[i] = squint;
+      drawPu(happy, squint);
+      ctx.restore();
+    });
+    ctx.restore();
   }
 
   // Mouth: corners rise with `curve` (smile) and fall when it's negative
@@ -569,7 +594,7 @@ const VectorPupu = (() => {
     ctx.lineJoin = "round";
     ctx.lineCap = "round";
     ctx.strokeStyle = COLORS.outline;
-    ctx.lineWidth = 8;
+    ctx.lineWidth = OUTLINE_PX * 0.9 * unitsPerPx;
     ctx.stroke(lips);
   }
 
@@ -600,6 +625,7 @@ const VectorPupu = (() => {
       canvas.height = Math.round(size * dpr);
     }
     const scale = (size * dpr) / 1024;
+    unitsPerPx = 1024 / size;
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.setTransform(scale, 0, 0, scale, 0, 0);
@@ -617,24 +643,11 @@ const VectorPupu = (() => {
     ctx.scale(scaleX * body.pop.value, scaleY * body.pop.value);
     ctx.translate(-ANCHOR.x, -ANCHOR.y);
 
-    drawLimb(395, 800, 72, 42, 0, 395, 800);
-    drawLimb(620, 800, 72, 42, 0, 620, 800);
-    drawLimb(170, 585, 52, 84, 0.35 + body.armL.value, 215, 520);
-    drawLimb(842, 585, 52, 84, -0.35 + body.armR.value, 795, 520);
-
-    bodyPath(Math.max(0, body.chest.value));
-    outlineFill(radial(560, 420, 20, 470, COLORS.bodyStops), 11);
-    if (face.glow.value > 0.01) {
-      ctx.save();
-      ctx.globalAlpha = Math.min(0.5, face.glow.value * 0.15);
-      ctx.fillStyle = "#fff";
-      ctx.fill();
-      ctx.restore();
-    }
-    // top shine
+    drawSilhouette();
+    // crown shine, above the visor
     ctx.fillStyle = "rgba(255,255,255,0.8)";
     ctx.beginPath();
-    ctx.ellipse(612, 222, 34, 15, 0.25, 0, Math.PI * 2);
+    ctx.ellipse(602, 196, 32, 13, 0.25, 0, Math.PI * 2);
     ctx.fill();
 
     drawButton();
@@ -643,9 +656,9 @@ const VectorPupu = (() => {
     ctx.save();
     const lagY = Math.max(-14, Math.min(14, body.faceY.value - body.hop.value));
     const lagTilt = Math.max(-0.08, Math.min(0.08, body.faceTilt.value - body.tilt.value));
-    ctx.translate(BODY.cx, 330 + lagY);
+    ctx.translate(BODY.cx, 340 + lagY);
     ctx.rotate(lagTilt);
-    ctx.translate(-BODY.cx, -330);
+    ctx.translate(-BODY.cx, -340);
     drawCheeks();
     drawVisorAndEyes();
     drawMouth();
@@ -756,23 +769,23 @@ const VectorPupu = (() => {
       face: values(face),
       pose: pose && Object.keys(REACTIONS).find((k) => REACTIONS[k] === pose.def),
       effectMark,
-      glyphTransform: glyphTransform && Array.from(glyphTransform.toFloat64Array()),
+      glyphTransforms: glyphTransforms.map((m) => m && Array.from(m.toFloat64Array())),
+      glyphSquints: glyphSquints.slice(),
     };
   }
 
-  // Points on every stroke of both 푸 (artwork space): tests check these
-  // are still drawn in letter colour in every expression.
+  // Points on every stroke of one 푸, relative to its centre, before
+  // squinting (multiply y by debugState().glyphSquints[i], then map
+  // through glyphTransforms[i]): tests check these are still drawn in
+  // letter colour in every expression.
   function glyphSamplePoints() {
     const g = GLYPH;
-    return EYES.flatMap((eye) => {
-      const cx = eye.x;
-      return [
-        [cx - g.half + 6, g.top], [cx + g.half - 6, g.top], [cx, g.top],
-        [cx - g.post, (g.top + g.bottom) / 2], [cx + g.post, (g.top + g.bottom) / 2],
-        [cx - g.half + 6, g.bottom], [cx, g.bottom], [cx + g.half - 6, g.bottom],
-        [cx - g.uHalf + 6, g.uBar], [cx + g.uHalf - 6, g.uBar], [cx, (g.uBar + g.stemEnd) / 2 + 4],
-      ];
-    });
+    return [
+      [-g.half + 8, g.top + 2], [g.half - 8, g.top + 2],
+      [-g.post, (g.top + g.bottom) / 2], [g.post, (g.top + g.bottom) / 2],
+      [-g.half + 8, g.bottom], [0, g.bottom], [g.half - 8, g.bottom],
+      [-g.uHalf + 8, g.uBar], [g.uHalf - 8, g.uBar], [0, (g.uBar + g.stemEnd) / 2 + 3],
+    ];
   }
 
   return { mount, react, poke, debugState, glyphSamplePoints, REACTIONS };
