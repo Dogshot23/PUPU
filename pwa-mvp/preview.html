@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!-- TEMPORARY preview page: the same app as index.html, but always drawn
+     with the vector renderer (vector-pupu.js) so it can be tried on a real
+     device. The home page stays on the PNG renderer. No analytics here, and
+     search engines are asked not to index it. Delete when no longer needed
+     (and keep it in step with index.html until then). -->
+<html lang="en" data-pupu-renderer="vector">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PUPU (vector preview)</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta property="og:title" content="PUPU">
+  <meta property="og:description" content="A free English conversation companion — press PUPU's belly for a fact, joke, riddle, or story to talk about.">
+  <meta property="og:url" content="https://xn--ok8ba.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://xn--ok8ba.com/images/promotion/fb_preview001.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PUPU">
+  <meta name="twitter:description" content="A free English conversation companion — press PUPU's belly for a fact, joke, riddle, or story to talk about.">
+  <meta name="twitter:image" content="https://xn--ok8ba.com/images/promotion/fb_preview001.png">
+  <meta name="theme-color" content="#fdf6ec">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon.png">
+  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ghost-overlay" id="ghost-overlay"></div>
+  <main class="container">
+    <div class="hero">
+      <div class="bubble-wrap" id="bubble-wrap">
+        <div class="bubble" id="bubble" role="button" tabindex="0" aria-label="PUPU's speech bubble. Tap to skip typing or continue to the next part.">
+          <p class="beat">Press PUPU's belly to hear a thought.</p>
+        </div>
+        <div class="language-toggle" id="language-toggle" role="group" aria-label="Choose a language"></div>
+      </div>
+
+      <div class="pupu-stage">
+        <!-- Two ways to draw PUPU (see "Renderer choice" in app.js):
+             the PNG layers below (default) or the vector canvas, which
+             is drawn from maths by vector-pupu.js. ?pupu=vector / ?pupu=png
+             switches, and the choice is remembered in this browser. -->
+        <canvas class="pupu-vector" id="pupu-vector" role="button" tabindex="0" aria-label="Press PUPU's belly to hear a thought" hidden></canvas>
+        <div class="pupu-png" id="pupu-png">
+        <img class="pupu-shadow" id="pupu-shadow" src="images/pupu/effects/effect_shadow.png" alt="">
+
+        <!-- Nested motion layers (see motion.js): float (up/down) >
+             sway (lean) > squash (breathing + reactions) > parts.
+             The face group trails the body slightly; the hat stays
+             outside it so its behind-the-body z-index trick still works. -->
+        <div class="pupu-float-wrap">
+          <div class="pupu-sway-wrap" id="pupu-sway">
+            <div class="pupu-squash-wrap" id="pupu-circle">
+              <img class="pupu-body" id="pupu-body" src="images/pupu/body/body.png" alt="PUPU">
+              <img class="pupu-body pupu-body-ghost" id="pupu-body-ghost" src="images/pupu/body/body_ghost.png" alt="">
+              <img class="pupu-arm pupu-arm-left" id="pupu-arm-left" src="images/pupu/body/body_left_arm.png" alt="">
+              <img class="pupu-arm pupu-arm-right" id="pupu-arm-right" src="images/pupu/body/body_right_arm.png" alt="">
+              <div class="pupu-face" id="pupu-face">
+                <img class="pupu-eye" id="pupu-eyes" src="images/pupu/eyes/eyes_open.png" alt="">
+                <img class="pupu-mouth" id="pupu-mouth" src="images/pupu/mouths/mouth_neutral.png" alt="">
+                <img class="pupu-layer pupu-item" id="pupu-item" alt="">
+              </div>
+              <img class="pupu-layer pupu-hat" id="pupu-hat" alt="">
+              <img class="pupu-layer pupu-effect" id="pupu-effect" alt="">
+              <img class="pupu-button" id="pupu-button" src="images/pupu/buttons/button_unpressed.png" alt="Press PUPU's belly to hear a thought" role="button" tabindex="0" draggable="false">
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="status" id="status"></p>
+
+    <button class="install-button" id="install-button" hidden>Install PUPU</button>
+  </main>
+
+  <script src="audio.js"></script>
+  <script src="motion.js"></script>
+  <script src="vector-pupu.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

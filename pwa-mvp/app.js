@@ -2195,6 +2195,11 @@ bubbleEl.addEventListener("keydown", (event) => {
 const RENDERER_STORAGE_KEY = "pupu-renderer";
 
 function chooseRenderer() {
+  // A page can pin its renderer with <html data-pupu-renderer="...">
+  // (preview.html does): used for that page only, never remembered, so
+  // it can't change what index.html shows.
+  const pinned = document.documentElement.dataset.pupuRenderer;
+  if (pinned === "vector" || pinned === "png") return pinned;
   const requested = new URLSearchParams(location.search).get("pupu");
   try {
     if (requested === "vector" || requested === "png") localStorage.setItem(RENDERER_STORAGE_KEY, requested);

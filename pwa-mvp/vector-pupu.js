@@ -730,13 +730,14 @@ const VectorPupu = (() => {
     canvas = canvasEl;
     ctx = canvas.getContext("2d");
     mirror(parts);
-    window.addEventListener(
-      "pointermove",
-      (event) => {
-        pointer = { ...toArtwork(event), at: performance.now() };
-      },
-      { passive: true }
-    );
+    // Eyes follow the pointer: mouse movement, a finger dragging, and --
+    // on phones/tablets, which have no hover -- every touch anywhere on
+    // the page.
+    const follow = (event) => {
+      pointer = { ...toArtwork(event), at: performance.now() };
+    };
+    window.addEventListener("pointermove", follow, { passive: true });
+    window.addEventListener("pointerdown", follow, { passive: true });
     canvas.addEventListener("pointerdown", (event) => {
       if (!event.isPrimary || (event.pointerType === "mouse" && event.button !== 0)) return;
       const at = toArtwork(event);
