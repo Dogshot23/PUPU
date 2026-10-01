@@ -1,5 +1,5 @@
 {
-  "_comment": "Card categories for pwa-mvp. Each category lists its beats in order (role: setup | reveal | prompt), the box label shown above each beat (labels are never translated), whether later beats appear on their own ('auto') or only on a tap ('tap'), and its share of belly presses ('weight', relative; categories with the same 'weightGroup' share one slice; categories with no cards are skipped). A beat's 'react' names a motion in motion.js; a card's own beat 'react' overrides it. 'emotionReactions' picks the opening reaction from a card's 'emotion' when no beat names one. 'favouredReactions' lists BUBBLE_REACTIONS ids (app.js) weighted up for the random between-beat reaction. Check with: node tools/validate-content.js",
+  "_comment": "Card categories for pwa-mvp. Each category lists its beats in order (role: setup | reveal | prompt), the box label shown above each beat ('label' is English; 'labels' holds other languages, e.g. zh -- a language without one shows the English label), a display 'name' per language, whether later beats appear on their own ('auto') or only on a tap ('tap'), and its share of belly presses ('weight', relative; categories with the same 'weightGroup' share one slice; categories with no cards are skipped). A beat's 'react' names a motion in motion.js; a card's own beat 'react' overrides it. 'emotionReactions' picks the opening reaction from a card's 'emotion' when no beat names one. 'favouredReactions' lists BUBBLE_REACTIONS ids (app.js) weighted up for the random between-beat reaction. Check with: node tools/validate-content.js",
   "emotionReactions": {
     "mischievous": "wink",
     "surprised": "surprised",
@@ -13,145 +13,160 @@
   "categories": [
     {
       "id": "fact",
+      "name": { "en": "Fact", "zh": "冷知识" },
       "weight": 7,
       "reveal": "auto",
       "beats": [
-        { "role": "setup", "label": "💡 DID YOU KNOW?" },
-        { "role": "prompt", "label": "🗣️ SHARE IT!", "missionFallback": true }
+        { "role": "setup", "label": "💡 DID YOU KNOW?", "labels": { "zh": "💡 你知道吗？" } },
+        { "role": "prompt", "label": "🗣️ SHARE IT!", "labels": { "zh": "🗣️ 说一说！" }, "missionFallback": true }
       ]
     },
     {
       "id": "joke",
+      "name": { "en": "Joke", "zh": "笑话" },
       "weight": 20,
       "reveal": "tap",
       "favouredReactions": ["bounce", "sillyDance"],
       "beats": [
-        { "role": "setup", "label": "😂 JOKE TIME!" },
-        { "role": "reveal", "label": "😂 THE PUNCHLINE" }
+        { "role": "setup", "label": "😂 JOKE TIME!", "labels": { "zh": "😂 笑话时间！" } },
+        { "role": "reveal", "label": "😂 THE PUNCHLINE", "labels": { "zh": "😂 笑点来了" } }
       ]
     },
     {
       "id": "riddle",
+      "name": { "en": "Riddle", "zh": "谜语" },
       "weight": 10,
       "reveal": "tap",
       "favouredReactions": ["lookAround", "spin"],
       "beats": [
-        { "role": "setup", "label": "🤔 CAN YOU GUESS?" },
-        { "role": "reveal", "label": "💡 THE ANSWER" }
+        { "role": "setup", "label": "🤔 CAN YOU GUESS?", "labels": { "zh": "🤔 猜一猜？" } },
+        { "role": "reveal", "label": "💡 THE ANSWER", "labels": { "zh": "💡 答案是" } }
       ]
     },
     {
       "id": "story",
+      "name": { "en": "Story", "zh": "故事" },
       "weight": 15,
       "reveal": "auto",
       "favouredReactions": ["surprised", "wakeUp"],
       "beats": [
-        { "role": "setup", "label": "📖 STORY TIME" },
-        { "role": "prompt", "label": "❓ WHAT HAPPENS NEXT?" }
+        { "role": "setup", "label": "📖 STORY TIME", "labels": { "zh": "📖 故事时间" } },
+        { "role": "prompt", "label": "❓ WHAT HAPPENS NEXT?", "labels": { "zh": "❓ 接下来会怎样？" } }
       ]
     },
     {
       "id": "question",
+      "name": { "en": "Question", "zh": "问题" },
       "weightGroup": "story",
       "reveal": "auto",
       "favouredReactions": ["lookAround", "spin"],
       "beats": [
-        { "role": "setup", "label": "💭 YOUR TURN" },
-        { "role": "prompt", "label": "🗣️ TELL ME MORE" }
+        { "role": "setup", "label": "💭 YOUR TURN", "labels": { "zh": "💭 轮到你了" } },
+        { "role": "prompt", "label": "🗣️ TELL ME MORE", "labels": { "zh": "🗣️ 多说一点" } }
       ]
     },
     {
       "id": "wyr",
+      "name": { "en": "Would You Rather", "zh": "二选一" },
       "weight": 22,
       "reveal": "auto",
       "beats": [
-        { "role": "setup", "label": "🤔 WOULD YOU RATHER?" },
-        { "role": "prompt", "label": "❓ WHY?" }
+        { "role": "setup", "label": "🤔 WOULD YOU RATHER?", "labels": { "zh": "🤔 你宁愿？" } },
+        { "role": "prompt", "label": "❓ WHY?", "labels": { "zh": "❓ 为什么？" } }
       ]
     },
     {
       "id": "challenge",
+      "name": { "en": "Challenge", "zh": "挑战" },
       "weight": 5,
       "reveal": "auto",
       "beats": [
-        { "role": "setup", "label": "🎯 YOUR CHALLENGE" },
-        { "role": "prompt", "label": "🎬 GO!" }
+        { "role": "setup", "label": "🎯 YOUR CHALLENGE", "labels": { "zh": "🎯 你的挑战" } },
+        { "role": "prompt", "label": "🎬 GO!", "labels": { "zh": "🎬 开始！" } }
       ]
     },
     {
       "id": "mystery",
+      "name": { "en": "Mystery", "zh": "谜案" },
       "weight": 5,
       "reveal": "auto",
       "beats": [
-        { "role": "setup", "label": "🕵️ WHAT HAPPENED?" },
-        { "role": "prompt", "label": "❓ WHY?" }
+        { "role": "setup", "label": "🕵️ WHAT HAPPENED?", "labels": { "zh": "🕵️ 发生了什么？" } },
+        { "role": "prompt", "label": "❓ WHY?", "labels": { "zh": "❓ 为什么？" } }
       ]
     },
     {
       "id": "moment",
+      "name": { "en": "PUPU Moment", "zh": "PUPU 时刻" },
       "weight": 3,
       "reveal": "auto",
       "beats": [
-        { "role": "setup", "label": "👀 PUPU MOMENT" },
-        { "role": "reveal", "label": "🤷 THAT'S IT" }
+        { "role": "setup", "label": "👀 PUPU MOMENT", "labels": { "zh": "👀 PUPU 时刻" } },
+        { "role": "reveal", "label": "🤷 THAT'S IT", "labels": { "zh": "🤷 就这样" } }
       ]
     },
     {
       "id": "absurd-secret",
+      "name": { "en": "Absurd Secrets", "zh": "荒唐秘密" },
       "weight": 10,
       "reveal": "tap",
       "beats": [
-        { "role": "setup", "label": "🤫 CAN YOU KEEP A SECRET?", "react": "lean-in" },
-        { "role": "reveal", "label": "😳 PUPU'S SECRET", "react": "shock-pop" },
-        { "role": "prompt", "label": "🗣️ YOUR TURN", "react": "wink" }
+        { "role": "setup", "label": "🤫 CAN YOU KEEP A SECRET?", "labels": { "zh": "🤫 你能保守秘密吗？" }, "react": "lean-in" },
+        { "role": "reveal", "label": "😳 PUPU'S SECRET", "labels": { "zh": "😳 PUPU 的秘密" }, "react": "shock-pop" },
+        { "role": "prompt", "label": "🗣️ YOUR TURN", "labels": { "zh": "🗣️ 轮到你了" }, "react": "wink" }
       ]
     },
     {
       "id": "silly-lie",
+      "name": { "en": "Silly Lies", "zh": "傻傻的谎话" },
       "weight": 10,
       "reveal": "tap",
       "beats": [
-        { "role": "setup", "label": "🤥 SILLY LIE", "react": "lean-in" },
-        { "role": "reveal", "label": "😎 100% TRUE!", "react": "proud-puff" },
-        { "role": "prompt", "label": "🤔 TRUE OR LIE?", "react": "wink" }
+        { "role": "setup", "label": "🤥 SILLY LIE", "labels": { "zh": "🤥 傻傻的谎话" }, "react": "lean-in" },
+        { "role": "reveal", "label": "😎 100% TRUE!", "labels": { "zh": "😎 百分之百是真的！" }, "react": "proud-puff" },
+        { "role": "prompt", "label": "🤔 TRUE OR LIE?", "labels": { "zh": "🤔 是真是假？" }, "react": "wink" }
       ]
     },
     {
       "id": "teacher-challenge",
+      "name": { "en": "Teacher Challenge", "zh": "老师挑战" },
       "weight": 10,
       "reveal": "auto",
       "beats": [
-        { "role": "setup", "label": "🎯 TEACHER CHALLENGE", "react": "lean-in" },
-        { "role": "prompt", "label": "🎬 GO!", "react": "wink" }
+        { "role": "setup", "label": "🎯 TEACHER CHALLENGE", "labels": { "zh": "🎯 老师挑战" }, "react": "lean-in" },
+        { "role": "prompt", "label": "🎬 GO!", "labels": { "zh": "🎬 开始！" }, "react": "wink" }
       ]
     },
     {
       "id": "wrong-claim",
+      "name": { "en": "Wrong Claims", "zh": "错误说法" },
       "weight": 10,
       "reveal": "tap",
       "beats": [
-        { "role": "setup", "label": "😤 PUPU IS SURE…", "react": "proud-puff" },
-        { "role": "reveal", "label": "🙈 ACTUALLY…", "react": "shock-pop" },
-        { "role": "prompt", "label": "🗣️ WHAT'S RIGHT?", "react": "wink" }
+        { "role": "setup", "label": "😤 PUPU IS SURE…", "labels": { "zh": "😤 PUPU 很确定……" }, "react": "proud-puff" },
+        { "role": "reveal", "label": "🙈 ACTUALLY…", "labels": { "zh": "🙈 其实……" }, "react": "shock-pop" },
+        { "role": "prompt", "label": "🗣️ WHAT'S RIGHT?", "labels": { "zh": "🗣️ 正确的是什么？" }, "react": "wink" }
       ]
     },
     {
       "id": "gross",
+      "name": { "en": "Gross", "zh": "恶心事" },
       "weight": 12,
       "reveal": "tap",
       "beats": [
-        { "role": "setup", "label": "🤢 GROSS ALERT", "react": "lean-in" },
-        { "role": "reveal", "label": "😷 THE GROSS PART", "react": "burp" },
-        { "role": "prompt", "label": "🗣️ YOUR TURN", "react": "wink" }
+        { "role": "setup", "label": "🤢 GROSS ALERT", "labels": { "zh": "🤢 恶心警报" }, "react": "lean-in" },
+        { "role": "reveal", "label": "😷 THE GROSS PART", "labels": { "zh": "😷 恶心的部分" }, "react": "burp" },
+        { "role": "prompt", "label": "🗣️ YOUR TURN", "labels": { "zh": "🗣️ 轮到你了" }, "react": "wink" }
       ]
     },
     {
       "id": "pupu-logic",
+      "name": { "en": "PUPU Logic", "zh": "PUPU 逻辑" },
       "weight": 10,
       "reveal": "auto",
       "beats": [
-        { "role": "setup", "label": "🧠 PUPU LOGIC", "react": "glitch" },
-        { "role": "prompt", "label": "🤔 WHAT DO YOU THINK?", "react": "wink" }
+        { "role": "setup", "label": "🧠 PUPU LOGIC", "labels": { "zh": "🧠 PUPU 逻辑" }, "react": "glitch" },
+        { "role": "prompt", "label": "🤔 WHAT DO YOU THINK?", "labels": { "zh": "🤔 你怎么想？" }, "react": "wink" }
       ]
     }
   ]

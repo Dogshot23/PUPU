@@ -6,10 +6,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "You open your school bag and find a tiny door inside. Do you open it, ignore it, or show me?", "ko": "책가방을 열었는데 안에 작은 문이 있어요. 열어볼까요, 무시할까요, 아니면 저한테 보여줄래요?" }
+        { "en": "You open your school bag and find a tiny door inside. Do you open it, ignore it, or show me?", "ko": "책가방을 열었는데 안에 작은 문이 있어요. 열어볼까요, 무시할까요, 아니면 저한테 보여줄래요?", "zh": "你打开书包，发现里面有一扇小小的门。你会打开它、不理它，还是拿给我看？" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Why?", "ko": "왜요?" }
+        { "en": "Why?", "ko": "왜요?", "zh": "为什么？" }
       ] }
     ]
   },
@@ -20,10 +20,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "I just found out your family has a secret handshake, but nobody taught me! Should I copy yours, invent my own, or just wave instead?", "ko": "여러분 가족한테 비밀 악수가 있다는 걸 방금 알았어요. 그런데 아무도 나한테 안 가르쳐줬어요! 여러분 걸 따라 할까요, 내가 새로 만들까요, 아니면 그냥 손을 흔들까요?" }
+        { "en": "I just found out your family has a secret handshake, but nobody taught me! Should I copy yours, invent my own, or just wave instead?", "ko": "여러분 가족한테 비밀 악수가 있다는 걸 방금 알았어요. 그런데 아무도 나한테 안 가르쳐줬어요! 여러분 걸 따라 할까요, 내가 새로 만들까요, 아니면 그냥 손을 흔들까요?", "zh": "我刚发现你们家有一个秘密握手，可是没人教我！我该学你的、自己发明一个，还是干脆挥挥手？" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "What should I do? Why?", "ko": "내가 뭘 하면 좋을까요? 왜요?" }
+        { "en": "What should I do? Why?", "ko": "내가 뭘 하면 좋을까요? 왜요?", "zh": "我该怎么办？为什么？" }
       ] }
     ]
   },
@@ -34,10 +34,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "A letter arrives with no name on it, just your address. Is it from a friend, from a monster, or from me?", "ko": "이름은 없고 여러분의 주소만 적힌 편지가 도착했어요. 친구가 보냈을까요, 괴물이 보냈을까요, 아니면 제가 보냈을까요?" }
+        { "en": "A letter arrives with no name on it, just your address. Is it from a friend, from a monster, or from me?", "ko": "이름은 없고 여러분의 주소만 적힌 편지가 도착했어요. 친구가 보냈을까요, 괴물이 보냈을까요, 아니면 제가 보냈을까요?", "zh": "来了一封信，上面没有名字，只有你家的地址。是朋友寄的、怪兽寄的，还是我寄的？" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Who do you think it's from? Why?", "ko": "누가 보냈을 것 같아요? 왜요?" }
+        { "en": "Who do you think it's from? Why?", "ko": "누가 보냈을 것 같아요? 왜요?", "zh": "你觉得是谁寄的？为什么？" }
       ] }
     ]
   },
@@ -48,10 +48,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "You find a key that does not match any door in your house. Does it open a treasure box, a secret room, or my fridge?", "ko": "집에 있는 어떤 문에도 맞지 않는 열쇠를 발견했어요. 보물 상자를 열까요, 비밀의 방을 열까요, 아니면 제 냉장고를 열까요?" }
+        { "en": "You find a key that does not match any door in your house. Does it open a treasure box, a secret room, or my fridge?", "ko": "집에 있는 어떤 문에도 맞지 않는 열쇠를 발견했어요. 보물 상자를 열까요, 비밀의 방을 열까요, 아니면 제 냉장고를 열까요?", "zh": "你找到一把钥匙，家里没有一扇门能打开。它能打开宝箱、秘密房间，还是我的冰箱？" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Why do you think that?", "ko": "왜 그렇게 생각해요?" }
+        { "en": "Why do you think that?", "ko": "왜 그렇게 생각해요?", "zh": "你为什么这么想？" }
       ] }
     ]
   },
@@ -62,10 +62,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "I just ate the last cookie from your kitchen, and I feel a tiny bit guilty. Should I admit it, blame your dog, or hide all the evidence?", "ko": "방금 여러분 집 부엌에 있던 마지막 쿠키를 내가 먹어버렸어요. 살짝 죄책감이 들어요. 솔직하게 말할까요, 강아지 탓을 할까요, 아니면 증거를 다 숨길까요?" }
+        { "en": "I just ate the last cookie from your kitchen, and I feel a tiny bit guilty. Should I admit it, blame your dog, or hide all the evidence?", "ko": "방금 여러분 집 부엌에 있던 마지막 쿠키를 내가 먹어버렸어요. 살짝 죄책감이 들어요. 솔직하게 말할까요, 강아지 탓을 할까요, 아니면 증거를 다 숨길까요?", "zh": "我刚把你家厨房最后一块饼干吃掉了，有一点点内疚。我该承认、怪你家的狗，还是把证据全藏起来？" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "What should I do? Why?", "ko": "내가 뭘 하면 좋을까요? 왜요?" }
+        { "en": "What should I do? Why?", "ko": "내가 뭘 하면 좋을까요? 왜요?", "zh": "我该怎么办？为什么？" }
       ] }
     ]
   },
@@ -76,10 +76,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "You find a robot in your garden. It only knows one word. Is the word hello, pizza, or help?", "ko": "정원에서 로봇을 발견했어요. 그 로봇은 딱 한 단어만 알아요. 그 단어는 '안녕'일까요, '피자'일까요, 아니면 '도와줘'일까요?" }
+        { "en": "You find a robot in your garden. It only knows one word. Is the word hello, pizza, or help?", "ko": "정원에서 로봇을 발견했어요. 그 로봇은 딱 한 단어만 알아요. 그 단어는 '안녕'일까요, '피자'일까요, 아니면 '도와줘'일까요?", "zh": "你在花园里发现了一个机器人。它只会说一个词。这个词是“你好”、“披萨”，还是“救命”？" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Why do you think that's the word?", "ko": "왜 그 단어일 것 같아요?" }
+        { "en": "Why do you think that's the word?", "ko": "왜 그 단어일 것 같아요?", "zh": "你为什么觉得是这个词？" }
       ] }
     ]
   },
@@ -90,10 +90,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Your teacher turns into a dinosaur for one day. Is she a friendly dinosaur or a scary dinosaur?", "ko": "선생님이 하루 동안 공룡으로 변해요. 다정한 공룡일까요, 아니면 무서운 공룡일까요?" }
+        { "en": "Your teacher turns into a dinosaur for one day. Is she a friendly dinosaur or a scary dinosaur?", "ko": "선생님이 하루 동안 공룡으로 변해요. 다정한 공룡일까요, 아니면 무서운 공룡일까요?", "zh": "你的老师变成恐龙一天。她是友善的恐龙，还是可怕的恐龙？" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Why? What would be different that day?", "ko": "왜요? 그날 뭐가 달라질까요?" }
+        { "en": "Why? What would be different that day?", "ko": "왜요? 그날 뭐가 달라질까요?", "zh": "为什么？那天会有什么不一样？" }
       ] }
     ]
   },
@@ -104,10 +104,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "A ghost moves into your bedroom. Is it lazy, noisy, or shy?", "ko": "유령이 여러분 방으로 이사 왔어요. 게으른 유령일까요, 시끄러운 유령일까요, 아니면 부끄럼 많은 유령일까요?" }
+        { "en": "A ghost moves into your bedroom. Is it lazy, noisy, or shy?", "ko": "유령이 여러분 방으로 이사 왔어요. 게으른 유령일까요, 시끄러운 유령일까요, 아니면 부끄럼 많은 유령일까요?", "zh": "一个鬼搬进了你的卧室。它很懒、很吵，还是很害羞？" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Why? What would you do together?", "ko": "왜요? 함께 뭘 하고 싶어요?" }
+        { "en": "Why? What would you do together?", "ko": "왜요? 함께 뭘 하고 싶어요?", "zh": "为什么？你们会一起做什么？" }
       ] }
     ]
   },
@@ -118,10 +118,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Your best friend is upset but says nothing is wrong. Do you ask again, give them space, or tell a teacher?", "ko": "가장 친한 친구가 속상해 보이는데 괜찮다고만 해요. 다시 물어볼까요, 그냥 혼자 두게 놔둘까요, 아니면 선생님에게 말할까요?" }
+        { "en": "Your best friend is upset but says nothing is wrong. Do you ask again, give them space, or tell a teacher?", "ko": "가장 친한 친구가 속상해 보이는데 괜찮다고만 해요. 다시 물어볼까요, 그냥 혼자 두게 놔둘까요, 아니면 선생님에게 말할까요?", "zh": "你最好的朋友不开心，却说没事。你会再问一次、让对方一个人静一静，还是告诉老师？" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "What would you do? Why?", "ko": "어떻게 할래요? 왜요?" }
+        { "en": "What would you do? Why?", "ko": "어떻게 할래요? 왜요?", "zh": "你会怎么做？为什么？" }
       ] }
     ]
   },
@@ -132,10 +132,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "I knock on your door. I want to borrow something strange. Do I want your sock, your lunch, or your bicycle?", "ko": "제가 여러분 집 문을 두드려요. 이상한 걸 좀 빌리고 싶어서요. 양말일까요, 도시락일까요, 아니면 자전거일까요?" }
+        { "en": "I knock on your door. I want to borrow something strange. Do I want your sock, your lunch, or your bicycle?", "ko": "제가 여러분 집 문을 두드려요. 이상한 걸 좀 빌리고 싶어서요. 양말일까요, 도시락일까요, 아니면 자전거일까요?", "zh": "我来敲你家的门，想借一样奇怪的东西。我想借你的袜子、你的午饭，还是你的自行车？" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Why? Then predict if you would actually say yes.", "ko": "왜요? 그리고 진짜로 빌려줄 것 같은지도 예상해 보세요." }
+        { "en": "Why? Then predict if you would actually say yes.", "ko": "왜요? 그리고 진짜로 빌려줄 것 같은지도 예상해 보세요.", "zh": "为什么？再猜猜，你真的会借给我吗？" }
       ] }
     ]
   },
@@ -146,10 +146,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "You open the fridge and find a tiny alien eating your cheese. Do you shout, share your cheese, or make friends with it?", "ko": "냉장고를 열었는데 작은 외계인이 여러분의 치즈를 먹고 있어요. 소리를 지를까요, 치즈를 나눠줄까요, 아니면 친구가 될까요?" }
+        { "en": "You open the fridge and find a tiny alien eating your cheese. Do you shout, share your cheese, or make friends with it?", "ko": "냉장고를 열었는데 작은 외계인이 여러분의 치즈를 먹고 있어요. 소리를 지를까요, 치즈를 나눠줄까요, 아니면 친구가 될까요?", "zh": "你打开冰箱，发现一个小外星人在吃你的奶酪。你会大叫、分它一点奶酪，还是和它交朋友？" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Why? What would you say to it?", "ko": "왜요? 그 외계인에게 뭐라고 말할래요?" }
+        { "en": "Why? What would you say to it?", "ko": "왜요? 그 외계인에게 뭐라고 말할래요?", "zh": "为什么？你会对它说什么？" }
       ] }
     ]
   },
@@ -160,10 +160,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "I want a superpower, but only for one hour a day. What power should I pick?", "ko": "하루에 딱 한 시간만 쓸 수 있는 초능력을 가질 수 있다면, 어떤 초능력을 고르고 싶어요?" }
+        { "en": "I want a superpower, but only for one hour a day. What power should I pick?", "ko": "저는 초능력을 갖고 싶은데, 하루에 딱 한 시간만 쓸 수 있어요. 어떤 초능력을 고르면 좋을까요?", "zh": "我想要一个超能力，可是每天只能用一个小时。我该选什么超能力？" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "What would you do with your one hour?", "ko": "왜요?" }
+        { "en": "What would you do with your one hour?", "ko": "그 한 시간 동안 뭘 할 거예요?", "zh": "你会用这一个小时做什么？" }
       ] }
     ]
   },
@@ -174,10 +174,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "If I made a movie about your day, would it be an action movie, a comedy, or a monster movie?", "ko": "여러분의 인생이 영화라면, 제목은 뭐가 될까요?" }
+        { "en": "If I made a movie about your day, would it be an action movie, a comedy, or a monster movie?", "ko": "제가 여러분의 하루로 영화를 만든다면, 액션 영화일까요, 코미디일까요, 아니면 괴물 영화일까요?", "zh": "如果我把你的一天拍成电影，会是动作片、喜剧片，还是怪兽片？" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Why would it be that kind of movie?", "ko": "왜요?" }
+        { "en": "Why would it be that kind of movie?", "ko": "왜 그런 영화일 것 같아요?", "zh": "为什么会是这种电影？" }
       ] }
     ]
   },
@@ -188,10 +188,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "If you could switch lives with me for one day, what would you do first?", "ko": "하루 동안 누군가와 인생을 바꿀 수 있다면, 누구와 바꾸고 싶어요?" }
+        { "en": "If you could switch lives with me for one day, what would you do first?", "ko": "하루 동안 저랑 인생을 바꿀 수 있다면, 제일 먼저 뭘 할 거예요?", "zh": "如果你能和我交换生活一天，你第一件事会做什么？" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Tell me!", "ko": "왜요?" }
+        { "en": "Tell me!", "ko": "말해 줘요!", "zh": "告诉我！" }
       ] }
     ]
   },
@@ -202,10 +202,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Would you rather eat a spider, or eat a worm?", "ko": "여러분은 거미를 먹는 것과 지렁이를 먹는 것 중에 뭐가 나을 것 같아요?" }
+        { "en": "Would you rather eat a spider, or eat a worm?", "ko": "여러분은 거미를 먹는 것과 지렁이를 먹는 것 중에 뭐가 나을 것 같아요?", "zh": "你宁愿吃一只蜘蛛，还是吃一条虫子？" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Which one would you choose? Why?", "ko": "어떤 걸 고를래요? 왜요?" }
+        { "en": "Which one would you choose? Why?", "ko": "어떤 걸 고를래요? 왜요?", "zh": "你会选哪个？为什么？" }
       ] }
     ]
   },
@@ -216,10 +216,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Would you rather live in a house made of chocolate, or live in a house made of cheese?", "ko": "여러분은 초콜릿으로 만든 집과 치즈로 만든 집 중에 어디서 살고 싶어요?" }
+        { "en": "Would you rather live in a house made of chocolate, or live in a house made of cheese?", "ko": "여러분은 초콜릿으로 만든 집과 치즈로 만든 집 중에 어디서 살고 싶어요?", "zh": "你宁愿住在巧克力做的房子里，还是住在奶酪做的房子里？" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Why? What problem would that house have?", "ko": "왜요? 그 집에는 어떤 문제가 생길까요?" }
+        { "en": "Why? What problem would that house have?", "ko": "왜요? 그 집에는 어떤 문제가 생길까요?", "zh": "为什么？那座房子会有什么问题？" }
       ] }
     ]
   },
@@ -230,10 +230,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Would you rather burp so loud your whole class hears it, or trip in front of your whole class?", "ko": "여러분은 반 전체가 다 들을 정도로 크게 트림하는 것과 반 전체 앞에서 넘어지는 것 중에 뭐가 나을 것 같아요?" }
+        { "en": "Would you rather burp so loud your whole class hears it, or trip in front of your whole class?", "ko": "여러분은 반 전체가 다 들을 정도로 크게 트림하는 것과 반 전체 앞에서 넘어지는 것 중에 뭐가 나을 것 같아요?", "zh": "你宁愿打一个全班都听得到的大嗝，还是在全班面前摔一跤？" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Which one would you choose? Why?", "ko": "어떤 걸 고를래요? 왜요?" }
+        { "en": "Which one would you choose? Why?", "ko": "어떤 걸 고를래요? 왜요?", "zh": "你会选哪个？为什么？" }
       ] }
     ]
   },
@@ -244,10 +244,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Would you rather only speak in whispers for a whole day, or only speak in shouts for a whole day?", "ko": "여러분은 하루 종일 속삭이는 것과 하루 종일 소리치는 것 중에 뭐가 나을 것 같아요?" }
+        { "en": "Would you rather only speak in whispers for a whole day, or only speak in shouts for a whole day?", "ko": "여러분은 하루 종일 속삭이는 것과 하루 종일 소리치는 것 중에 뭐가 나을 것 같아요?", "zh": "你宁愿一整天只能小声说话，还是一整天只能大喊？" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Why? Then try saying one sentence that way.", "ko": "왜요? 그리고 그 방식대로 한 문장을 직접 말해 보세요." }
+        { "en": "Why? Then try saying one sentence that way.", "ko": "왜요? 그리고 그 방식대로 한 문장을 직접 말해 보세요.", "zh": "为什么？现在就用那种方式说一句话吧。" }
       ] }
     ]
   },
@@ -258,10 +258,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Would you rather turn into a frog for a day, or turn into a fly for a day?", "ko": "여러분은 하루 동안 개구리가 되는 것과 파리가 되는 것 중에 뭐가 나을 것 같아요?" }
+        { "en": "Would you rather turn into a frog for a day, or turn into a fly for a day?", "ko": "여러분은 하루 동안 개구리가 되는 것과 파리가 되는 것 중에 뭐가 나을 것 같아요?", "zh": "你宁愿变成青蛙一天，还是变成苍蝇一天？" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "What is one thing you would do?", "ko": "그렇게 되면 하고 싶은 일 한 가지는 뭐예요?" }
+        { "en": "What is one thing you would do?", "ko": "그렇게 되면 하고 싶은 일 한 가지는 뭐예요?", "zh": "你会做的一件事是什么？" }
       ] }
     ]
   },
@@ -272,10 +272,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Describe a pizza without saying the word pizza.", "ko": "'피자'라는 단어를 쓰지 않고 피자를 설명해 보세요." }
+        { "en": "Describe a pizza without saying the word pizza.", "ko": "'피자'라는 단어를 쓰지 않고 피자를 설명해 보세요.", "zh": "描述一个披萨，但不能说“披萨”这个词。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Go! Make it as clear as you can.", "ko": "지금 해 보세요! 최대한 자세하게 설명해 보세요." }
+        { "en": "Go! Make it as clear as you can.", "ko": "지금 해 보세요! 최대한 자세하게 설명해 보세요.", "zh": "开始！说得越清楚越好。" }
       ] }
     ]
   },
@@ -286,10 +286,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Give me a terrible name.", "ko": "저한테 아주 이상한 이름을 지어 주세요." }
+        { "en": "Give me a terrible name.", "ko": "저한테 아주 이상한 이름을 지어 주세요.", "zh": "给我起一个超难听的名字。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Go! Why did you choose it?", "ko": "지금 지어 보세요! 왜 그 이름을 골랐어요?" }
+        { "en": "Go! Why did you choose it?", "ko": "지금 지어 보세요! 왜 그 이름을 골랐어요?", "zh": "开始！你为什么选这个名字？" }
       ] }
     ]
   },
@@ -300,10 +300,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Invent the worst ice cream flavour you can imagine. I might actually try it.", "ko": "여러분이 상상할 수 있는 최악의 아이스크림 맛을 만들어보세요. 제가 진짜로 먹어볼지도 몰라요." }
+        { "en": "Invent the worst ice cream flavour you can imagine. I might actually try it.", "ko": "여러분이 상상할 수 있는 최악의 아이스크림 맛을 만들어보세요. 제가 진짜로 먹어볼지도 몰라요.", "zh": "发明一个你能想到的最难吃的冰淇淋口味。说不定我真的会尝一尝。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Go! Would you actually try it?", "ko": "지금 말해보세요! 여러분도 진짜로 먹어볼래요?" }
+        { "en": "Go! Would you actually try it?", "ko": "지금 말해보세요! 여러분도 진짜로 먹어볼래요?", "zh": "开始！你自己真的会尝吗？" }
       ] }
     ]
   },
@@ -314,10 +314,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "I think there's a monster living under your bed. Give it a name.", "ko": "여러분 침대 밑에 괴물이 살고 있는 것 같아요. 그 괴물에게 이름을 지어 주세요." }
+        { "en": "I think there's a monster living under your bed. Give it a name.", "ko": "여러분 침대 밑에 괴물이 살고 있는 것 같아요. 그 괴물에게 이름을 지어 주세요.", "zh": "我觉得你的床底下住着一个怪兽。给它起个名字吧。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Go! Then describe what your monster looks like.", "ko": "지금 지어 보세요! 그리고 그 괴물이 어떻게 생겼는지 설명해 주세요." }
+        { "en": "Go! Then describe what your monster looks like.", "ko": "지금 지어 보세요! 그리고 그 괴물이 어떻게 생겼는지 설명해 주세요.", "zh": "开始！然后说说你的怪兽长什么样。" }
       ] }
     ]
   },
@@ -328,10 +328,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "The classroom smells terrible. Was it a banana, a wet sock, or was it me?", "ko": "교실에서 아주 이상한 냄새가 나요. 바나나 때문일까요, 젖은 양말 때문일까요, 아니면 저 때문일까요?" }
+        { "en": "The classroom smells terrible. Was it a banana, a wet sock, or was it me?", "ko": "교실에서 아주 이상한 냄새가 나요. 바나나 때문일까요, 젖은 양말 때문일까요, 아니면 저 때문일까요?", "zh": "教室里臭死了。是香蕉、湿袜子，还是我？" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Why do you think so?", "ko": "왜 그렇게 생각해요?" }
+        { "en": "Why do you think so?", "ko": "왜 그렇게 생각해요?", "zh": "你为什么这么想？" }
       ] }
     ]
   },
@@ -342,10 +342,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "There are muddy footprints on the kitchen floor. Was it the dog, me, or a monster?", "ko": "부엌 바닥에 진흙 발자국이 있어요. 강아지가 그랬을까요, 저였을까요, 아니면 괴물이었을까요?" }
+        { "en": "There are muddy footprints on the kitchen floor. Was it the dog, me, or a monster?", "ko": "부엌 바닥에 진흙 발자국이 있어요. 강아지가 그랬을까요, 저였을까요, 아니면 괴물이었을까요?", "zh": "厨房地上有泥脚印。是狗、是我，还是怪兽？" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "What is your best guess, and why?", "ko": "가장 그럴듯한 추측은 뭐예요? 그리고 왜요?" }
+        { "en": "What is your best guess, and why?", "ko": "가장 그럴듯한 추측은 뭐예요? 그리고 왜요?", "zh": "你最好的猜测是什么？为什么？" }
       ] }
     ]
   },
@@ -356,10 +356,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Your pencil case is empty. Was it a pencil thief, did you leave it at school, or did I eat it?", "ko": "필통이 텅 비어 있어요. 연필 도둑이 있었을까요, 학교에 두고 왔을까요, 아니면 제가 먹었을까요?" }
+        { "en": "Your pencil case is empty. Was it a pencil thief, did you leave it at school, or did I eat it?", "ko": "필통이 텅 비어 있어요. 연필 도둑이 있었을까요, 학교에 두고 왔을까요, 아니면 제가 먹었을까요?", "zh": "你的笔袋空了。是有偷笔贼、你把笔忘在学校了，还是我把笔吃了？" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "What is your idea, and why?", "ko": "여러분의 생각은 뭐예요? 그리고 왜요?" }
+        { "en": "What is your idea, and why?", "ko": "여러분의 생각은 뭐예요? 그리고 왜요?", "zh": "你的想法是什么？为什么？" }
       ] }
     ]
   },
@@ -370,10 +370,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "PUPU's stomach just made a very suspicious noise.", "ko": "방금 푸푸 배에서 아주 수상한 소리가 났어요." }
+        { "en": "PUPU's stomach just made a very suspicious noise.", "ko": "방금 푸푸 배에서 아주 수상한 소리가 났어요.", "zh": "PUPU 的肚子刚刚发出了一个非常可疑的声音。" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "No comment.", "ko": "할 말 없어요." }
+        { "en": "No comment.", "ko": "할 말 없어요.", "zh": "无可奉告。" }
       ] }
     ]
   },
@@ -384,10 +384,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "PUPU smells like cheese today.", "ko": "오늘 푸푸한테서 치즈 냄새가 나요." }
+        { "en": "PUPU smells like cheese today.", "ko": "오늘 푸푸한테서 치즈 냄새가 나요.", "zh": "PUPU 今天身上有奶酪味。" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "Nobody asked.", "ko": "아무도 안 물어봤어요." }
+        { "en": "Nobody asked.", "ko": "아무도 안 물어봤어요.", "zh": "没人问。" }
       ] }
     ]
   },
@@ -398,10 +398,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "PUPU has made a terrible decision.", "ko": "푸푸가 아주 잘못된 결정을 내렸어요." }
+        { "en": "PUPU has made a terrible decision.", "ko": "푸푸가 아주 잘못된 결정을 내렸어요.", "zh": "PUPU 做了一个很糟糕的决定。" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "As usual.", "ko": "늘 그렇듯이요." }
+        { "en": "As usual.", "ko": "늘 그렇듯이요.", "zh": "和平时一样。" }
       ] }
     ]
   },
@@ -412,10 +412,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "PUPU is thinking about pizza.", "ko": "푸푸는 피자 생각을 하고 있어요." }
+        { "en": "PUPU is thinking about pizza.", "ko": "푸푸는 피자 생각을 하고 있어요.", "zh": "PUPU 在想披萨。" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "Always.", "ko": "항상 그래요." }
+        { "en": "Always.", "ko": "항상 그래요.", "zh": "一直在想。" }
       ] }
     ]
   },
@@ -426,10 +426,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "PUPU thinks socks are suspicious.", "ko": "푸푸는 양말이 수상하다고 생각해요." }
+        { "en": "PUPU thinks socks are suspicious.", "ko": "푸푸는 양말이 수상하다고 생각해요.", "zh": "PUPU 觉得袜子很可疑。" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "Watch your socks.", "ko": "여러분 양말을 조심하세요." }
+        { "en": "Watch your socks.", "ko": "여러분 양말을 조심하세요.", "zh": "看好你的袜子。" }
       ] }
     ]
   },
@@ -440,10 +440,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Why did I put a sock on my head?", "ko": "잠자는 공룡을 뭐라고 부를까요?" }
+        { "en": "Why did I put a sock on my head?", "ko": "저는 왜 머리에 양말을 썼을까요?", "zh": "我为什么把袜子戴在头上？" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "Because my feet were cold! What is your best silly reason for something you did today?", "ko": "'다이노스노어'요! 공룡(dino)이 드르렁 코를 곤다(snore)는 뜻이에요." }
+        { "en": "Because my feet were cold! What is your best silly reason for something you did today?", "ko": "발이 추웠거든요! 오늘 여러분이 한 일 중에 가장 엉뚱한 이유를 하나 말해 볼래요?", "zh": "因为我的脚冷！你今天做的事里，有什么最傻的理由？" }
       ] }
     ]
   },
@@ -454,10 +454,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "What did I eat for breakfast?", "ko": "저는 아침으로 뭘 먹었을까요?" }
+        { "en": "What did I eat for breakfast?", "ko": "저는 아침으로 뭘 먹었을까요?", "zh": "我早餐吃了什么？" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "A shoe! It tasted like leather. What is the strangest thing you have ever eaten?", "ko": "신발이요! 가죽 맛이 났어요. 여러분이 먹어본 것 중에 가장 이상했던 건 뭐예요?" }
+        { "en": "A shoe! It tasted like leather. What is the strangest thing you have ever eaten?", "ko": "신발이요! 가죽 맛이 났어요. 여러분이 먹어본 것 중에 가장 이상했던 건 뭐예요?", "zh": "一只鞋！吃起来像皮革。你吃过最奇怪的东西是什么？" }
       ] }
     ]
   },
@@ -468,10 +468,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Why did I jump onto the sofa?", "ko": "나는 왜 소파 위로 뛰어올라갔을까요?" }
+        { "en": "Why did I jump onto the sofa?", "ko": "나는 왜 소파 위로 뛰어올라갔을까요?", "zh": "我为什么跳到沙发上？" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "I saw a spider on the floor, and it started walking straight at me! Are you scared of spiders too?", "ko": "바닥에서 거미를 봤는데, 그 거미가 저를 향해 걸어오고 있었거든요! 여러분도 거미가 무서워요?" }
+        { "en": "I saw a spider on the floor, and it started walking straight at me! Are you scared of spiders too?", "ko": "바닥에서 거미를 봤는데, 그 거미가 저를 향해 걸어오고 있었거든요! 여러분도 거미가 무서워요?", "zh": "我看到地上有一只蜘蛛，它直直地朝我走过来！你也怕蜘蛛吗？" }
       ] }
     ]
   },
@@ -482,10 +482,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Why did I bring a ladder to school?", "ko": "저는 왜 학교에 사다리를 가져갔을까요?" }
+        { "en": "Why did I bring a ladder to school?", "ko": "저는 왜 학교에 사다리를 가져갔을까요?", "zh": "我为什么带梯子去学校？" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "Because I wanted to reach the top shelf! What is one thing you would keep on a very high shelf?", "ko": "맨 위 선반에 올라가고 싶었거든요! 아주 높은 선반에 무엇을 놓고 싶어요?" }
+        { "en": "Because I wanted to reach the top shelf! What is one thing you would keep on a very high shelf?", "ko": "맨 위 선반에 올라가고 싶었거든요! 아주 높은 선반에 무엇을 놓고 싶어요?", "zh": "因为我想够到最高的架子！你会在很高的架子上放什么？" }
       ] }
     ]
   },
@@ -496,10 +496,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Why did I put cheese in my pocket?", "ko": "내 것이 아닌 치즈를 뭐라고 부를까요?" }
+        { "en": "Why did I put cheese in my pocket?", "ko": "저는 왜 주머니에 치즈를 넣었을까요?", "zh": "我为什么把奶酪放在口袋里？" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "In case I got hungry later! What is the strangest thing you have ever kept in your pocket?", "ko": "'나초 치즈'요! 영어로 '네 치즈가 아니야(not your cheese)'가 나초 치즈(nacho cheese)처럼 들리거든요." }
+        { "en": "In case I got hungry later! What is the strangest thing you have ever kept in your pocket?", "ko": "나중에 배고플까 봐요! 여러분이 주머니에 넣어 본 것 중에 가장 이상한 건 뭐예요?", "zh": "以防等会儿我饿了！你口袋里放过最奇怪的东西是什么？" }
       ] }
     ]
   },
@@ -510,10 +510,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Why did I talk to the fridge?", "ko": "저는 왜 냉장고한테 말을 걸었을까요?" }
+        { "en": "Why did I talk to the fridge?", "ko": "저는 왜 냉장고한테 말을 걸었을까요?", "zh": "我为什么和冰箱说话？" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "I wanted to know what was for dinner! What is for dinner at your house tonight?", "ko": "저녁 메뉴가 뭔지 궁금했거든요! 오늘 저녁에 여러분 집에서는 뭘 먹어요?" }
+        { "en": "I wanted to know what was for dinner! What is for dinner at your house tonight?", "ko": "저녁 메뉴가 뭔지 궁금했거든요! 오늘 저녁에 여러분 집에서는 뭘 먹어요?", "zh": "我想知道晚饭吃什么！你家今晚吃什么？" }
       ] }
     ]
   },
@@ -524,10 +524,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Why did I wear two hats?", "ko": "저는 왜 모자를 두 개 썼을까요?" }
+        { "en": "Why did I wear two hats?", "ko": "저는 왜 모자를 두 개 썼을까요?", "zh": "我为什么戴两顶帽子？" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "One hat was cold! What would you wear two of?", "ko": "모자 하나가 추워했거든요! 여러분은 무엇을 두 개씩 걸치고 싶어요?" }
+        { "en": "One hat was cold! What would you wear two of?", "ko": "모자 하나가 추워했거든요! 여러분은 무엇을 두 개씩 걸치고 싶어요?", "zh": "因为一顶帽子觉得冷！你会想同时穿戴两个什么？" }
       ] }
     ]
   },
@@ -538,10 +538,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Why did I bring a pillow to school?", "ko": "나는 왜 학교에 베개를 가져갔을까요?" }
+        { "en": "Why did I bring a pillow to school?", "ko": "나는 왜 학교에 베개를 가져갔을까요?", "zh": "我为什么带枕头去学校？" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "So I could nap during maths class! Do you ever feel sleepy at school?", "ko": "수학 시간에 낮잠을 자려고요! 여러분도 학교에서 졸릴 때가 있어요?" }
+        { "en": "So I could nap during maths class! Do you ever feel sleepy at school?", "ko": "수학 시간에 낮잠을 자려고요! 여러분도 학교에서 졸릴 때가 있어요?", "zh": "这样我就能在数学课上睡午觉了！你在学校会犯困吗？" }
       ] }
     ]
   },
@@ -552,10 +552,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Why did I hide under the table?", "ko": "저는 왜 식탁 밑에 숨었을까요?" }
+        { "en": "Why did I hide under the table?", "ko": "저는 왜 식탁 밑에 숨었을까요?", "zh": "我为什么躲在桌子底下？" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "I didn't want to eat my vegetables! What is your best excuse for avoiding food you dislike?", "ko": "채소를 먹기 싫었거든요! 싫어하는 음식을 피할 때 쓰는 가장 좋은 핑계는 뭐예요?" }
+        { "en": "I didn't want to eat my vegetables! What is your best excuse for avoiding food you dislike?", "ko": "채소를 먹기 싫었거든요! 싫어하는 음식을 피할 때 쓰는 가장 좋은 핑계는 뭐예요?", "zh": "我不想吃蔬菜！不吃讨厌的食物，你最好的借口是什么？" }
       ] }
     ]
   },
@@ -566,10 +566,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Why did I carry an empty box everywhere?", "ko": "저는 왜 빈 상자를 계속 들고 다녔을까요?" }
+        { "en": "Why did I carry an empty box everywhere?", "ko": "저는 왜 빈 상자를 계속 들고 다녔을까요?", "zh": "我为什么到哪儿都抱着一个空盒子？" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "I said something important was inside! What is the most important thing you own?", "ko": "안에 중요한 게 들어 있다고 했거든요! 여러분이 가진 것 중에 가장 소중한 건 뭐예요?" }
+        { "en": "I said something important was inside! What is the most important thing you own?", "ko": "안에 중요한 게 들어 있다고 했거든요! 여러분이 가진 것 중에 가장 소중한 건 뭐예요?", "zh": "我说里面有很重要的东西！你最重要的东西是什么？" }
       ] }
     ]
   },
@@ -580,10 +580,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Why did I wave at the wall?", "ko": "저는 왜 벽을 향해 손을 흔들었을까요?" }
+        { "en": "Why did I wave at the wall?", "ko": "저는 왜 벽을 향해 손을 흔들었을까요?", "zh": "我为什么对着墙挥手？" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "I thought it waved first! Have you ever made a funny mistake?", "ko": "벽이 먼저 손을 흔든 줄 알았거든요! 여러분도 웃긴 실수를 해본 적 있어요?" }
+        { "en": "I thought it waved first! Have you ever made a funny mistake?", "ko": "벽이 먼저 손을 흔든 줄 알았거든요! 여러분도 웃긴 실수를 해본 적 있어요?", "zh": "我以为是它先跟我挥手的！你犯过好笑的错误吗？" }
       ] }
     ]
   },
@@ -594,10 +594,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Why did I bring a fork to the swimming pool?", "ko": "저는 왜 수영장에 포크를 가져갔을까요?" }
+        { "en": "Why did I bring a fork to the swimming pool?", "ko": "저는 왜 수영장에 포크를 가져갔을까요?", "zh": "我为什么带叉子去游泳池？" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "In case there was spaghetti in the water! What strange thing would you bring to school? Why?", "ko": "물속에 스파게티가 있을지도 모르니까요! 여러분이라면 학교에 어떤 이상한 물건을 가져가고 싶어요? 왜요?" }
+        { "en": "In case there was spaghetti in the water! What strange thing would you bring to school? Why?", "ko": "물속에 스파게티가 있을지도 모르니까요! 여러분이라면 학교에 어떤 이상한 물건을 가져가고 싶어요? 왜요?", "zh": "万一水里有意大利面呢！你会带什么奇怪的东西去学校？为什么？" }
       ] }
     ]
   },
@@ -608,10 +608,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Why did I sleep in the bathtub?", "ko": "저는 왜 욕조에서 잤을까요?" }
+        { "en": "Why did I sleep in the bathtub?", "ko": "저는 왜 욕조에서 잤을까요?", "zh": "我为什么在浴缸里睡觉？" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "My bed was too far away! What is the strangest place you have ever fallen asleep?", "ko": "침대까지 가기가 너무 멀었거든요! 여러분이 잠들었던 곳 중에 가장 이상한 곳은 어디예요?" }
+        { "en": "My bed was too far away! What is the strangest place you have ever fallen asleep?", "ko": "침대까지 가기가 너무 멀었거든요! 여러분이 잠들었던 곳 중에 가장 이상한 곳은 어디예요?", "zh": "因为我的床太远了！你在最奇怪的什么地方睡着过？" }
       ] }
     ]
   },
@@ -622,10 +622,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Why did I give my toy a bath?", "ko": "저는 왜 제 장난감을 목욕시켰을까요?" }
+        { "en": "Why did I give my toy a bath?", "ko": "저는 왜 제 장난감을 목욕시켰을까요?", "zh": "我为什么给我的玩具洗澡？" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "It smelled like me! What is a smell you can never get rid of?", "ko": "저랑 냄새가 똑같았거든요! 여러분이 절대 없앨 수 없는 냄새는 뭐예요?" }
+        { "en": "It smelled like me! What is a smell you can never get rid of?", "ko": "저랑 냄새가 똑같았거든요! 여러분이 절대 없앨 수 없는 냄새는 뭐예요?", "zh": "因为它闻起来像我！有什么味道是你永远去不掉的？" }
       ] }
     ]
   },
@@ -636,10 +636,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Why did I shout at my shoes?", "ko": "저는 왜 제 신발한테 소리를 질렀을까요?" }
+        { "en": "Why did I shout at my shoes?", "ko": "저는 왜 제 신발한테 소리를 질렀을까요?", "zh": "我为什么对着我的鞋子大喊？" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "They would not listen to me! What is something that never listens to you?", "ko": "제 말을 전혀 안 들었거든요! 여러분 말을 절대 안 듣는 게 있어요?" }
+        { "en": "They would not listen to me! What is something that never listens to you?", "ko": "제 말을 전혀 안 들었거든요! 여러분 말을 절대 안 듣는 게 있어요?", "zh": "它们不听我的话！有什么东西从来不听你的话？" }
       ] }
     ]
   },
@@ -650,10 +650,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Why did I bring an umbrella into the shower?", "ko": "저는 왜 샤워할 때 우산을 가지고 들어갔을까요?" }
+        { "en": "Why did I bring an umbrella into the shower?", "ko": "저는 왜 샤워할 때 우산을 가지고 들어갔을까요?", "zh": "我为什么带雨伞进淋浴间？" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "I heard it might rain! What is one silly thing you always do before school?", "ko": "비가 올지도 모른다고 들었거든요! 학교 가기 전에 항상 하는 엉뚱한 행동이 있어요?" }
+        { "en": "I heard it might rain! What is one silly thing you always do before school?", "ko": "비가 올지도 모른다고 들었거든요! 학교 가기 전에 항상 하는 엉뚱한 행동이 있어요?", "zh": "我听说可能会下雨！你上学前总会做的一件傻事是什么？" }
       ] }
     ]
   },
@@ -664,10 +664,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Why did I take a banana to bed?", "ko": "저는 왜 바나나를 들고 잠자리에 들었을까요?" }
+        { "en": "Why did I take a banana to bed?", "ko": "저는 왜 바나나를 들고 잠자리에 들었을까요?", "zh": "我为什么带一根香蕉上床？" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "In case I got hungry in my dream! What would you eat in your dream, and why?", "ko": "꿈속에서 배고파질까 봐요! 꿈속에서 뭘 먹고 싶어요? 왜요?" }
+        { "en": "In case I got hungry in my dream! What would you eat in your dream, and why?", "ko": "꿈속에서 배고파질까 봐요! 꿈속에서 뭘 먹고 싶어요? 왜요?", "zh": "以防我在梦里饿了！你在梦里会吃什么？为什么？" }
       ] }
     ]
   },
@@ -678,10 +678,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Why did I paint my room green?", "ko": "저는 왜 제 방을 초록색으로 칠했을까요?" }
+        { "en": "Why did I paint my room green?", "ko": "저는 왜 제 방을 초록색으로 칠했을까요?", "zh": "我为什么把房间刷成绿色？" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "I wanted to live inside a pea! What would you want to live inside?", "ko": "완두콩 속에서 살고 싶었거든요! 여러분은 무엇 속에서 살고 싶어요?" }
+        { "en": "I wanted to live inside a pea! What would you want to live inside?", "ko": "완두콩 속에서 살고 싶었거든요! 여러분은 무엇 속에서 살고 싶어요?", "zh": "我想住在一颗豌豆里！你想住在什么里面？" }
       ] }
     ]
   },
@@ -692,10 +692,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Why did I put my homework in the fridge?", "ko": "저는 왜 숙제를 냉장고에 넣었을까요?" }
+        { "en": "Why did I put my homework in the fridge?", "ko": "저는 왜 숙제를 냉장고에 넣었을까요?", "zh": "我为什么把作业放进冰箱？" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "I wanted it to stay fresh! What is the worst place you have ever put your own homework?", "ko": "신선하게 보관하고 싶었거든요! 여러분이 숙제를 놔둔 곳 중에 최악이었던 곳은 어디예요?" }
+        { "en": "I wanted it to stay fresh! What is the worst place you have ever put your own homework?", "ko": "신선하게 보관하고 싶었거든요! 여러분이 숙제를 놔둔 곳 중에 최악이었던 곳은 어디예요?", "zh": "我想让它保持新鲜！你把作业放过最糟糕的地方是哪里？" }
       ] }
     ]
   },
@@ -706,10 +706,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Why did I hide under my desk all day?", "ko": "나는 왜 하루 종일 책상 밑에 숨어 있었을까요?" }
+        { "en": "Why did I hide under my desk all day?", "ko": "나는 왜 하루 종일 책상 밑에 숨어 있었을까요?", "zh": "我为什么一整天都躲在书桌底下？" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "I was pretending to be a turtle in its shell! What animal would you pretend to be?", "ko": "등딱지 속에 숨은 거북이인 척했거든요! 여러분은 어떤 동물인 척하고 싶어요?" }
+        { "en": "I was pretending to be a turtle in its shell! What animal would you pretend to be?", "ko": "등딱지 속에 숨은 거북이인 척했거든요! 여러분은 어떤 동물인 척하고 싶어요?", "zh": "我在假装是一只缩在壳里的乌龟！你会假装成什么动物？" }
       ] }
     ]
   },
@@ -720,10 +720,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "I get smaller every time you use me. What am I?", "ko": "목은 있지만 머리는 없는 건 뭘까요?" }
+        { "en": "I get smaller every time you use me. What am I?", "ko": "저는 쓸 때마다 점점 작아져요. 저는 뭘까요?", "zh": "你每用我一次，我就变小一点。我是什么？" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "Soap! I always forget to use it, by the way. What would you never want to run out of?", "ko": "병이에요." }
+        { "en": "Soap! I always forget to use it, by the way. What would you never want to run out of?", "ko": "비누예요! 참고로 저는 맨날 비누 쓰는 걸 까먹어요. 여러분은 절대 떨어지면 안 되는 게 뭐예요?", "zh": "肥皂！顺便说一句，我总是忘了用它。你永远不想用完的东西是什么？" }
       ] }
     ]
   },
@@ -734,10 +734,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "I am small and hard at first, but when you heat me up, I turn big and fluffy. What am I?", "ko": "나는 처음엔 작고 딱딱하지만, 뜨겁게 데워지면 크고 폭신폭신해져요. 나는 무엇일까요?" }
+        { "en": "I am small and hard at first, but when you heat me up, I turn big and fluffy. What am I?", "ko": "나는 처음엔 작고 딱딱하지만, 뜨겁게 데워지면 크고 폭신폭신해져요. 나는 무엇일까요?", "zh": "我一开始又小又硬，可是一加热，就变得又大又蓬松。我是什么？" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "Popcorn! I always eat way too much of it at the movies. What is your favourite movie snack?", "ko": "바로 팝콘이에요! 나는 영화 볼 때 팝콘을 항상 너무 많이 먹어요. 여러분이 제일 좋아하는 영화관 간식은 뭐예요?" }
+        { "en": "Popcorn! I always eat way too much of it at the movies. What is your favourite movie snack?", "ko": "바로 팝콘이에요! 나는 영화 볼 때 팝콘을 항상 너무 많이 먹어요. 여러분이 제일 좋아하는 영화관 간식은 뭐예요?", "zh": "爆米花！我看电影的时候总是吃太多。你最喜欢的电影零食是什么？" }
       ] }
     ]
   },
@@ -748,10 +748,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "I have no bones, but I have a shell. Crack me open and breakfast falls out. What am I?", "ko": "나는 뼈는 없지만 껍데기가 있어요. 나를 톡 깨면 아침밥이 쏟아져 나와요. 나는 무엇일까요?" }
+        { "en": "I have no bones, but I have a shell. Crack me open and breakfast falls out. What am I?", "ko": "나는 뼈는 없지만 껍데기가 있어요. 나를 톡 깨면 아침밥이 쏟아져 나와요. 나는 무엇일까요?", "zh": "我没有骨头，但是有壳。把我敲开，早餐就掉出来了。我是什么？" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "An egg! I think eggs are secretly magic breakfast rocks. What is your favourite breakfast food?", "ko": "바로 달걀이에요! 나는 달걀이 사실 마법의 아침밥 돌멩이라고 생각해요. 여러분이 제일 좋아하는 아침 메뉴는 뭐예요?" }
+        { "en": "An egg! I think eggs are secretly magic breakfast rocks. What is your favourite breakfast food?", "ko": "바로 달걀이에요! 나는 달걀이 사실 마법의 아침밥 돌멩이라고 생각해요. 여러분이 제일 좋아하는 아침 메뉴는 뭐예요?", "zh": "鸡蛋！我觉得鸡蛋其实是有魔法的早餐石头。你最喜欢的早餐是什么？" }
       ] }
     ]
   },
@@ -762,10 +762,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "I am green. I am sticky. What am I?", "ko": "나는 초록색이에요. 끈적끈적해요. 나는 무엇일까요?" }
+        { "en": "I am green. I am sticky. What am I?", "ko": "나는 초록색이에요. 끈적끈적해요. 나는 무엇일까요?", "zh": "我是绿色的。我黏黏的。我是什么？" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "Slime! I love playing with it. What colour slime would you make? What would you put in it?", "ko": "바로 슬라임이에요! 저는 슬라임 가지고 노는 걸 정말 좋아해요. 여러분은 무슨 색 슬라임을 만들고 싶어요? 안에 뭘 넣고 싶어요?" }
+        { "en": "Slime! I love playing with it. What colour slime would you make? What would you put in it?", "ko": "바로 슬라임이에요! 저는 슬라임 가지고 노는 걸 정말 좋아해요. 여러분은 무슨 색 슬라임을 만들고 싶어요? 안에 뭘 넣고 싶어요?", "zh": "史莱姆！我超爱玩它。你会做什么颜色的史莱姆？你会往里面放什么？" }
       ] }
     ]
   },
@@ -776,10 +776,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "I come out of your nose when you are sick. What am I?", "ko": "나는 여러분이 아플 때 코에서 나와요. 나는 무엇일까요?" }
+        { "en": "I come out of your nose when you are sick. What am I?", "ko": "나는 여러분이 아플 때 코에서 나와요. 나는 무엇일까요?", "zh": "你生病的时候，我会从你的鼻子里出来。我是什么？" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "A booger! I think that's gross. What is the grossest thing you can think of?", "ko": "바로 코딱지예요! 저는 그게 너무 징그럽다고 생각해요. 여러분이 생각할 수 있는 가장 징그러운 게 뭐예요?" }
+        { "en": "A booger! I think that's gross. What is the grossest thing you can think of?", "ko": "바로 코딱지예요! 저는 그게 너무 징그럽다고 생각해요. 여러분이 생각할 수 있는 가장 징그러운 게 뭐예요?", "zh": "鼻屎！我觉得好恶心。你能想到最恶心的东西是什么？" }
       ] }
     ]
   },
@@ -790,10 +790,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "I am loud. I come from your tummy. I happen after you eat too fast. What am I?", "ko": "나는 시끄러워요. 배 속에서 나와요. 너무 빨리 먹으면 나한테서 나와요. 나는 무엇일까요?" }
+        { "en": "I am loud. I come from your tummy. I happen after you eat too fast. What am I?", "ko": "나는 시끄러워요. 배 속에서 나와요. 너무 빨리 먹으면 나한테서 나와요. 나는 무엇일까요?", "zh": "我很响。我从你的肚子里来。你吃得太快以后，我就会出现。我是什么？" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "A burp. What is your loudest ever burp story?", "ko": "바로 트림이에요. 여러분이 트림한 것 중에 제일 시끄러웠던 이야기는 뭐예요?" }
+        { "en": "A burp. What is your loudest ever burp story?", "ko": "바로 트림이에요. 여러분이 트림한 것 중에 제일 시끄러웠던 이야기는 뭐예요?", "zh": "打嗝。说说你打过最响的一个嗝吧？" }
       ] }
     ]
   },
@@ -804,10 +804,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "I hate bad smells! Describe the worst smell you can imagine, without saying what it actually is.", "ko": "저는 냄새나는 게 정말 싫어요! 무엇인지 말하지 않고, 여러분이 상상할 수 있는 최악의 냄새를 설명해 보세요." }
+        { "en": "I hate bad smells! Describe the worst smell you can imagine, without saying what it actually is.", "ko": "저는 냄새나는 게 정말 싫어요! 무엇인지 말하지 않고, 여러분이 상상할 수 있는 최악의 냄새를 설명해 보세요.", "zh": "我讨厌臭味！描述你能想到的最难闻的味道，但不能说它到底是什么。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Go! Make it sound as disgusting as possible.", "ko": "지금 해 보세요! 최대한 역겹게 설명해 보세요." }
+        { "en": "Go! Make it sound as disgusting as possible.", "ko": "지금 해 보세요! 최대한 역겹게 설명해 보세요.", "zh": "开始！说得越恶心越好。" }
       ] }
     ]
   },
@@ -818,10 +818,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "I met a monster today. Describe it in three words.", "ko": "저는 오늘 괴물을 만났어요. 딱 세 단어로 설명해 주세요." }
+        { "en": "I met a monster today. Describe it in three words.", "ko": "저는 오늘 괴물을 만났어요. 딱 세 단어로 설명해 주세요.", "zh": "我今天遇到了一个怪兽。用三个词描述它。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Go! Choose your three words carefully.", "ko": "지금 말해 보세요! 세 단어를 신중하게 골라 보세요." }
+        { "en": "Go! Choose your three words carefully.", "ko": "지금 말해 보세요! 세 단어를 신중하게 골라 보세요.", "zh": "开始！好好选你的三个词。" }
       ] }
     ]
   },
@@ -832,10 +832,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "PUPU has a secret.", "ko": "푸푸한테 비밀이 있어요." }
+        { "en": "PUPU has a secret.", "ko": "푸푸한테 비밀이 있어요.", "zh": "PUPU 有一个秘密。" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "He forgot the secret.", "ko": "그런데 그 비밀을 까먹었어요." }
+        { "en": "He forgot the secret.", "ko": "그런데 그 비밀을 까먹었어요.", "zh": "他把秘密忘了。" }
       ] }
     ]
   },
@@ -846,10 +846,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "PUPU thinks your pencil looks delicious.", "ko": "푸푸는 여러분 연필이 맛있어 보인다고 생각해요." }
+        { "en": "PUPU thinks your pencil looks delicious.", "ko": "푸푸는 여러분 연필이 맛있어 보인다고 생각해요.", "zh": "PUPU 觉得你的铅笔看起来很好吃。" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "Do not let him eat it.", "ko": "먹게 놔두면 안 돼요." }
+        { "en": "Do not let him eat it.", "ko": "먹게 놔두면 안 돼요.", "zh": "别让他吃掉。" }
       ] }
     ]
   },
@@ -860,10 +860,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "PUPU is watching you.", "ko": "푸푸가 여러분을 보고 있어요." }
+        { "en": "PUPU is watching you.", "ko": "푸푸가 여러분을 보고 있어요.", "zh": "PUPU 在看着你。" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "Probably.", "ko": "아마도요." }
+        { "en": "Probably.", "ko": "아마도요.", "zh": "大概吧。" }
       ] }
     ]
   },
@@ -874,10 +874,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "PUPU is having a very dramatic day.", "ko": "오늘 푸푸는 아주 드라마틱한 하루를 보내고 있어요." }
+        { "en": "PUPU is having a very dramatic day.", "ko": "오늘 푸푸는 아주 드라마틱한 하루를 보내고 있어요.", "zh": "PUPU 今天过得非常戏剧化。" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "Everyone, please stay calm.", "ko": "다들 침착하게 계세요." }
+        { "en": "Everyone, please stay calm.", "ko": "다들 침착하게 계세요.", "zh": "大家请保持冷静。" }
       ] }
     ]
   },
@@ -888,10 +888,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "PUPU found something in his pocket.", "ko": "푸푸가 주머니에서 뭔가를 찾았어요." }
+        { "en": "PUPU found something in his pocket.", "ko": "푸푸가 주머니에서 뭔가를 찾았어요.", "zh": "PUPU 在口袋里发现了一样东西。" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "He has no idea what it is.", "ko": "그게 뭔지는 푸푸도 몰라요." }
+        { "en": "He has no idea what it is.", "ko": "그게 뭔지는 푸푸도 몰라요.", "zh": "他完全不知道那是什么。" }
       ] }
     ]
   },
@@ -902,10 +902,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "PUPU is very quiet.", "ko": "푸푸가 아주 조용해요." }
+        { "en": "PUPU is very quiet.", "ko": "푸푸가 아주 조용해요.", "zh": "PUPU 非常安静。" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "This is worrying.", "ko": "왠지 불안한데요." }
+        { "en": "This is worrying.", "ko": "왠지 불안한데요.", "zh": "这让人有点担心。" }
       ] }
     ]
   },
@@ -916,10 +916,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "PUPU has been banned from the kitchen.", "ko": "푸푸는 부엌 출입 금지를 당했어요." }
+        { "en": "PUPU has been banned from the kitchen.", "ko": "푸푸는 부엌 출입 금지를 당했어요.", "zh": "PUPU 被禁止进入厨房了。" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "Again.", "ko": "또요." }
+        { "en": "Again.", "ko": "또요.", "zh": "又一次。" }
       ] }
     ]
   },
@@ -930,10 +930,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "PUPU has chosen your next challenge.", "ko": "푸푸가 여러분의 다음 도전 과제를 골랐어요." }
+        { "en": "PUPU has chosen your next challenge.", "ko": "푸푸가 여러분의 다음 도전 과제를 골랐어요.", "zh": "PUPU 已经选好了你的下一个挑战。" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "Good luck.", "ko": "행운을 빌어요." }
+        { "en": "Good luck.", "ko": "행운을 빌어요.", "zh": "祝你好运。" }
       ] }
     ]
   },
@@ -944,10 +944,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "I know what you did.", "ko": "저는 여러분이 뭘 했는지 다 알아요." }
+        { "en": "I know what you did.", "ko": "저는 여러분이 뭘 했는지 다 알아요.", "zh": "我知道你做了什么。" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "I'm not telling.", "ko": "그래도 말은 안 할 거예요." }
+        { "en": "I'm not telling.", "ko": "그래도 말은 안 할 거예요.", "zh": "我不说。" }
       ] }
     ]
   },
@@ -963,11 +963,11 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Octopuses have three hearts.", "ko": "문어는 심장이 세 개예요." },
-        { "en": "I say one heart is already enough trouble!", "ko": "저는 심장 하나만 있어도 이미 골치 아픈데 말이죠!" }
+        { "en": "Octopuses have three hearts.", "ko": "문어는 심장이 세 개예요.", "zh": "章鱼有三颗心脏。" },
+        { "en": "I say one heart is already enough trouble!", "ko": "저는 심장 하나만 있어도 이미 골치 아픈데 말이죠!", "zh": "我觉得一颗心脏就已经够麻烦了！" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "How many hearts would you want? Why?", "ko": "여러분은 심장이 몇 개 있으면 좋겠어요? 왜요?" }
+        { "en": "How many hearts would you want? Why?", "ko": "여러분은 심장이 몇 개 있으면 좋겠어요? 왜요?", "zh": "你想要几颗心脏？为什么？" }
       ] }
     ]
   },
@@ -983,11 +983,11 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "A snail can sleep for three years.", "ko": "달팽이는 삼 년 동안 잠을 잘 수 있어요." },
-        { "en": "I am already planning a very long nap.", "ko": "저는 벌써 아주 긴 낮잠을 계획하고 있어요." }
+        { "en": "A snail can sleep for three years.", "ko": "달팽이는 삼 년 동안 잠을 잘 수 있어요.", "zh": "蜗牛可以睡三年。" },
+        { "en": "I am already planning a very long nap.", "ko": "저는 벌써 아주 긴 낮잠을 계획하고 있어요.", "zh": "我已经在计划一个超长的午觉了。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "What would you do for three years if you could sleep through it?", "ko": "삼 년 동안 자면서 지나갈 수 있다면 뭘 하고 싶어요?" }
+        { "en": "What would you do for three years if you could sleep through it?", "ko": "삼 년 동안 자면서 지나갈 수 있다면 뭘 하고 싶어요?", "zh": "如果你能一觉睡三年，你最想跳过什么？" }
       ] }
     ]
   },
@@ -1003,11 +1003,11 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Elephants cannot jump.", "ko": "코끼리는 점프를 못 해요." },
-        { "en": "I tried it. I also cannot jump.", "ko": "저도 해봤는데, 저도 점프를 못 하네요." }
+        { "en": "Elephants cannot jump.", "ko": "코끼리는 점프를 못 해요.", "zh": "大象不会跳。" },
+        { "en": "I tried it. I also cannot jump.", "ko": "저도 해봤는데, 저도 점프를 못 하네요.", "zh": "我试了一下，我也不会跳。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "What is the highest you have ever jumped?", "ko": "여러분이 지금까지 뛰어본 것 중에 가장 높이 뛴 건 얼마나 높았어요?" }
+        { "en": "What is the highest you have ever jumped?", "ko": "여러분이 지금까지 뛰어본 것 중에 가장 높이 뛴 건 얼마나 높았어요?", "zh": "你跳过最高有多高？" }
       ] }
     ]
   },
@@ -1023,11 +1023,11 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Sharks lived on Earth before trees did.", "ko": "상어는 나무보다 먼저 지구에 살았어요." },
-        { "en": "I say that's very rude to trees.", "ko": "저는 그게 나무한테 너무 무례한 일이라고 생각해요." }
+        { "en": "Sharks lived on Earth before trees did.", "ko": "상어는 나무보다 먼저 지구에 살았어요.", "zh": "鲨鱼比树更早出现在地球上。" },
+        { "en": "I say that's very rude to trees.", "ko": "저는 그게 나무한테 너무 무례한 일이라고 생각해요.", "zh": "我觉得这对树太不礼貌了。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "What else do you think might be older than trees?", "ko": "나무보다 더 오래됐을 것 같은 게 또 뭐가 있을까요?" }
+        { "en": "What else do you think might be older than trees?", "ko": "나무보다 더 오래됐을 것 같은 게 또 뭐가 있을까요?", "zh": "你觉得还有什么可能比树更古老？" }
       ] }
     ]
   },
@@ -1043,11 +1043,11 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "A crocodile cannot stick out its tongue.", "ko": "악어는 혀를 내밀 수 없어요." },
-        { "en": "I tried it too! Also impossible.", "ko": "저도 해봤는데, 저도 안 되더라고요!" }
+        { "en": "A crocodile cannot stick out its tongue.", "ko": "악어는 혀를 내밀 수 없어요.", "zh": "鳄鱼不能伸出舌头。" },
+        { "en": "I tried it too! Also impossible.", "ko": "저도 해봤는데, 저도 안 되더라고요!", "zh": "我也试了！也做不到。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Can you imagine never sticking out your tongue again?", "ko": "다시는 혀를 내밀 수 없다면 어떨 것 같아요?" }
+        { "en": "Can you imagine never sticking out your tongue again?", "ko": "다시는 혀를 내밀 수 없다면 어떨 것 같아요?", "zh": "你能想象再也不能伸舌头吗？" }
       ] }
     ]
   },
@@ -1063,11 +1063,11 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "A group of flamingos is called a flamboyance.", "ko": "홍학 무리는 '플램보이언스'라고 불러요." },
-        { "en": "I want to join one immediately!", "ko": "저도 당장 거기에 끼고 싶어요!" }
+        { "en": "A group of flamingos is called a flamboyance.", "ko": "홍학 무리는 '플램보이언스'라고 불러요.", "zh": "一群火烈鸟在英语里叫做“flamboyance”（意思是“华丽”）。" },
+        { "en": "I want to join one immediately!", "ko": "저도 당장 거기에 끼고 싶어요!", "zh": "我想马上加入它们！" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "What would you call a group of your friends?", "ko": "여러분 친구들 무리는 뭐라고 부르고 싶어요?" }
+        { "en": "What would you call a group of your friends?", "ko": "여러분 친구들 무리는 뭐라고 부르고 싶어요?", "zh": "你会给你的一群朋友起什么名字？" }
       ] }
     ]
   },
@@ -1083,11 +1083,11 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "A cockroach can live for a while without its head.", "ko": "바퀴벌레는 머리가 없어도 한동안 살 수 있어요." },
-        { "en": "I am now checking that I still have my head.", "ko": "저는 지금 제 머리가 잘 붙어 있는지 확인하는 중이에요." }
+        { "en": "A cockroach can live for a while without its head.", "ko": "바퀴벌레는 머리가 없어도 한동안 살 수 있어요.", "zh": "蟑螂没有头也能活一段时间。" },
+        { "en": "I am now checking that I still have my head.", "ko": "저는 지금 제 머리가 잘 붙어 있는지 확인하는 중이에요.", "zh": "我现在正在检查我的头还在不在。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Should I be allowed to keep one as a pet? Why or why not?", "ko": "제가 바퀴벌레를 반려동물로 키워도 될까요? 왜요, 아니면 왜 안 될까요?" }
+        { "en": "Should I be allowed to keep one as a pet? Why or why not?", "ko": "제가 바퀴벌레를 반려동물로 키워도 될까요? 왜요, 아니면 왜 안 될까요?", "zh": "我可以养一只当宠物吗？为什么可以，或者为什么不可以？" }
       ] }
     ]
   },
@@ -1103,11 +1103,11 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "A goat's eyes are shaped like a box, not a circle.", "ko": "염소의 눈은 동그라미가 아니라 네모 모양이에요." },
-        { "en": "I want those eyes immediately!", "ko": "저도 당장 그런 눈을 갖고 싶어요!" }
+        { "en": "A goat's eyes are shaped like a box, not a circle.", "ko": "염소의 눈은 동그라미가 아니라 네모 모양이에요.", "zh": "山羊的瞳孔是方形的，不是圆的。" },
+        { "en": "I want those eyes immediately!", "ko": "저도 당장 그런 눈을 갖고 싶어요!", "zh": "我马上就想要那样的眼睛！" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "What animal's eyes would you want to borrow? Why?", "ko": "어떤 동물의 눈을 빌리고 싶어요? 왜요?" }
+        { "en": "What animal's eyes would you want to borrow? Why?", "ko": "어떤 동물의 눈을 빌리고 싶어요? 왜요?", "zh": "你想借哪种动物的眼睛？为什么？" }
       ] }
     ]
   },
@@ -1123,11 +1123,11 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "A giraffe can clean its own ears with its tongue.", "ko": "기린은 자기 혀로 귀를 청소할 수 있어요." },
-        { "en": "I have officially banned this idea for myself.", "ko": "저는 절대 그렇게 안 하기로 결심했어요." }
+        { "en": "A giraffe can clean its own ears with its tongue.", "ko": "기린은 자기 혀로 귀를 청소할 수 있어요.", "zh": "长颈鹿能用舌头清洁自己的耳朵。" },
+        { "en": "I have officially banned this idea for myself.", "ko": "저는 절대 그렇게 안 하기로 결심했어요.", "zh": "我已经正式禁止自己这么做了。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Would you ever try that if you could? Why?", "ko": "할 수 있다면 한번 해보고 싶어요? 왜요?" }
+        { "en": "Would you ever try that if you could? Why?", "ko": "할 수 있다면 한번 해보고 싶어요? 왜요?", "zh": "如果你能做到，你会试试吗？为什么？" }
       ] }
     ]
   },
@@ -1143,11 +1143,11 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Some frogs can freeze solid in winter and come back to life in spring.", "ko": "어떤 개구리는 겨울에 꽁꽁 얼었다가 봄에 다시 살아나요." },
-        { "en": "I am now worried about winter.", "ko": "저는 이제 겨울이 걱정되기 시작했어요." }
+        { "en": "Some frogs can freeze solid in winter and come back to life in spring.", "ko": "어떤 개구리는 겨울에 꽁꽁 얼었다가 봄에 다시 살아나요.", "zh": "有些青蛙冬天会冻得硬邦邦的，春天又活过来。" },
+        { "en": "I am now worried about winter.", "ko": "저는 이제 겨울이 걱정되기 시작했어요.", "zh": "我现在开始担心冬天了。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Would you want to freeze and skip winter? Why or why not?", "ko": "얼어서 겨울을 그냥 건너뛰고 싶어요? 왜요, 아니면 왜 싫어요?" }
+        { "en": "Would you want to freeze and skip winter? Why or why not?", "ko": "얼어서 겨울을 그냥 건너뛰고 싶어요? 왜요, 아니면 왜 싫어요?", "zh": "你想冻起来跳过冬天吗？为什么想，或者为什么不想？" }
       ] }
     ]
   },
@@ -1163,11 +1163,11 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Owls cannot move their eyes. They turn their whole head instead.", "ko": "부엉이는 눈을 움직이지 못해요. 대신 머리 전체를 돌려요." },
-        { "en": "I just tried it. My neck is not happy.", "ko": "저도 방금 해봤는데, 목이 별로 안 좋아하네요." }
+        { "en": "Owls cannot move their eyes. They turn their whole head instead.", "ko": "부엉이는 눈을 움직이지 못해요. 대신 머리 전체를 돌려요.", "zh": "猫头鹰不能转动眼睛，所以它们转动整个头。" },
+        { "en": "I just tried it. My neck is not happy.", "ko": "저도 방금 해봤는데, 목이 별로 안 좋아하네요.", "zh": "我刚试了一下。我的脖子不太开心。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Do you think you could live without moving your eyes? Why or why not?", "ko": "여러분은 눈을 움직이지 않고 살 수 있을 것 같아요? 왜 그렇게 생각해요?" }
+        { "en": "Do you think you could live without moving your eyes? Why or why not?", "ko": "여러분은 눈을 움직이지 않고 살 수 있을 것 같아요? 왜 그렇게 생각해요?", "zh": "你觉得不转动眼睛能生活吗？为什么？" }
       ] }
     ]
   },
@@ -1183,11 +1183,11 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "A wombat's droppings come out as perfect little cubes.", "ko": "웜뱃의 똥은 완벽한 정육면체 모양으로 나와요." },
-        { "en": "I have been trying to make my own.", "ko": "저도 그렇게 만들어 보려고 계속 시도하고 있어요." }
+        { "en": "A wombat's droppings come out as perfect little cubes.", "ko": "웜뱃의 똥은 완벽한 정육면체 모양으로 나와요.", "zh": "袋熊拉出来的便便是完美的小方块。" },
+        { "en": "I have been trying to make my own.", "ko": "저도 그렇게 만들어 보려고 계속 시도하고 있어요.", "zh": "我一直在试着做出我自己的。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Why cubes? What is your best guess?", "ko": "왜 정육면체 모양일까요? 여러분의 생각을 말해 주세요." }
+        { "en": "Why cubes? What is your best guess?", "ko": "왜 정육면체 모양일까요? 여러분의 생각을 말해 주세요.", "zh": "为什么是方块？你最好的猜测是什么？" }
       ] }
     ]
   },
@@ -1203,11 +1203,11 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Honey can stay good for years and years.", "ko": "꿀은 몇 년이 지나도 상하지 않아요." },
-        { "en": "I have started hiding honey everywhere.", "ko": "그래서 저는 여기저기에 꿀을 숨기기 시작했어요." }
+        { "en": "Honey can stay good for years and years.", "ko": "꿀은 몇 년이 지나도 상하지 않아요.", "zh": "蜂蜜放很多很多年都不会坏。" },
+        { "en": "I have started hiding honey everywhere.", "ko": "그래서 저는 여기저기에 꿀을 숨기기 시작했어요.", "zh": "我已经开始到处藏蜂蜜了。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Where would you hide a jar of honey so I could never find it?", "ko": "제가 절대 못 찾게 꿀단지를 어디에 숨기고 싶어요?" }
+        { "en": "Where would you hide a jar of honey so I could never find it?", "ko": "제가 절대 못 찾게 꿀단지를 어디에 숨기고 싶어요?", "zh": "你会把一罐蜂蜜藏在哪里，让我永远找不到？" }
       ] }
     ]
   },
@@ -1223,11 +1223,11 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Bananas grow curved because they grow toward sunlight.", "ko": "바나나는 햇빛을 향해 자라기 때문에 휘어져요." },
-        { "en": "I want to grow toward pizza instead.", "ko": "저라면 피자를 향해 자라고 싶어요." }
+        { "en": "Bananas grow curved because they grow toward sunlight.", "ko": "바나나는 햇빛을 향해 자라기 때문에 휘어져요.", "zh": "香蕉是弯的，因为它们朝着阳光长。" },
+        { "en": "I want to grow toward pizza instead.", "ko": "저라면 피자를 향해 자라고 싶어요.", "zh": "我倒想朝着披萨长。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "What would you grow toward if you were a plant? Why?", "ko": "여러분이 식물이라면 무엇을 향해 자라고 싶어요? 왜요?" }
+        { "en": "What would you grow toward if you were a plant? Why?", "ko": "여러분이 식물이라면 무엇을 향해 자라고 싶어요? 왜요?", "zh": "如果你是一棵植物，你会朝着什么长？为什么？" }
       ] }
     ]
   },
@@ -1243,11 +1243,11 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "An avocado is actually a type of berry.", "ko": "아보카도는 사실 베리류의 한 종류예요." },
-        { "en": "I refuse to call it a berry.", "ko": "저는 절대 베리라고 부르지 않을 거예요." }
+        { "en": "An avocado is actually a type of berry.", "ko": "아보카도는 사실 베리류의 한 종류예요.", "zh": "牛油果其实是一种浆果。" },
+        { "en": "I refuse to call it a berry.", "ko": "저는 절대 베리라고 부르지 않을 거예요.", "zh": "我拒绝叫它浆果。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "What food would you never trust again? Why?", "ko": "이제 다시는 못 믿을 것 같은 음식이 있어요? 왜요?" }
+        { "en": "What food would you never trust again? Why?", "ko": "이제 다시는 못 믿을 것 같은 음식이 있어요? 왜요?", "zh": "有什么食物你再也不会相信了？为什么？" }
       ] }
     ]
   },
@@ -1263,11 +1263,11 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "A strawberry keeps all its seeds on the outside, not the inside.", "ko": "딸기는 씨앗이 안쪽이 아니라 전부 바깥쪽에 있어요." },
-        { "en": "I have been counting them. I lost count.", "ko": "저는 계속 세어봤는데, 세다가 잊어버렸어요." }
+        { "en": "A strawberry keeps all its seeds on the outside, not the inside.", "ko": "딸기는 씨앗이 안쪽이 아니라 전부 바깥쪽에 있어요.", "zh": "草莓的种子全长在外面，不在里面。" },
+        { "en": "I have been counting them. I lost count.", "ko": "저는 계속 세어봤는데, 세다가 잊어버렸어요.", "zh": "我一直在数，数着数着就数乱了。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Have you ever actually counted them? Try it right now.", "ko": "진짜로 세어본 적 있어요? 지금 한번 세어보세요." }
+        { "en": "Have you ever actually counted them? Try it right now.", "ko": "진짜로 세어본 적 있어요? 지금 한번 세어보세요.", "zh": "你真的数过吗？现在就试试吧。" }
       ] }
     ]
   },
@@ -1283,11 +1283,11 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Peanuts are not really nuts. They are part of the bean family.", "ko": "땅콩은 사실 견과류가 아니에요. 콩과에 속해요." },
-        { "en": "I feel personally betrayed.", "ko": "저는 완전히 배신당한 기분이에요." }
+        { "en": "Peanuts are not really nuts. They are part of the bean family.", "ko": "땅콩은 사실 견과류가 아니에요. 콩과에 속해요.", "zh": "花生其实不是坚果，它们属于豆类。" },
+        { "en": "I feel personally betrayed.", "ko": "저는 완전히 배신당한 기분이에요.", "zh": "我感觉自己被背叛了。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "What would you rename peanuts? Why?", "ko": "땅콩 이름을 바꾼다면 뭐라고 하고 싶어요? 왜요?" }
+        { "en": "What would you rename peanuts? Why?", "ko": "땅콩 이름을 바꾼다면 뭐라고 하고 싶어요? 왜요?", "zh": "你会给花生改个什么名字？为什么？" }
       ] }
     ]
   },
@@ -1303,11 +1303,11 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "You cannot tickle yourself.", "ko": "여러분은 스스로를 간지럽힐 수 없어요." },
-        { "en": "I have been trying for ten minutes.", "ko": "저는 십 분째 계속 시도하고 있어요." }
+        { "en": "You cannot tickle yourself.", "ko": "여러분은 스스로를 간지럽힐 수 없어요.", "zh": "你没法给自己挠痒痒。" },
+        { "en": "I have been trying for ten minutes.", "ko": "저는 십 분째 계속 시도하고 있어요.", "zh": "我已经试了十分钟了。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Why do you think you can't tickle yourself?", "ko": "왜 스스로를 간지럽힐 수 없는 걸까요?" }
+        { "en": "Why do you think you can't tickle yourself?", "ko": "왜 스스로를 간지럽힐 수 없는 걸까요?", "zh": "你觉得为什么不能给自己挠痒痒？" }
       ] }
     ]
   },
@@ -1323,11 +1323,11 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Your nose can remember thousands of different smells.", "ko": "여러분의 코는 수천 가지 냄새를 기억할 수 있어요." },
-        { "en": "My nose remembers every bad decision I've made.", "ko": "제 코는 제가 저지른 모든 잘못된 선택을 다 기억해요." }
+        { "en": "Your nose can remember thousands of different smells.", "ko": "여러분의 코는 수천 가지 냄새를 기억할 수 있어요.", "zh": "你的鼻子能记住几千种不同的气味。" },
+        { "en": "My nose remembers every bad decision I've made.", "ko": "제 코는 제가 저지른 모든 잘못된 선택을 다 기억해요.", "zh": "我的鼻子记得我做过的每一个糟糕决定。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "What is the worst thing I have ever smelled? Take a guess, then tell me your own worst smell!", "ko": "제가 맡아본 것 중에 최악의 냄새는 뭘까요? 한번 맞혀보고, 여러분이 맡아본 최악의 냄새도 저한테 말해 주세요!" }
+        { "en": "What is the worst thing I have ever smelled? Take a guess, then tell me your own worst smell!", "ko": "제가 맡아본 것 중에 최악의 냄새는 뭘까요? 한번 맞혀보고, 여러분이 맡아본 최악의 냄새도 저한테 말해 주세요!", "zh": "我闻过最难闻的东西是什么？猜一猜，然后告诉我你闻过最难闻的味道！" }
       ] }
     ]
   },
@@ -1343,11 +1343,11 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "A starfish does not have a brain.", "ko": "불가사리는 뇌가 없어요." },
-        { "en": "That explains a few things about me.", "ko": "그게 저에 대한 몇 가지를 설명해 주네요." }
+        { "en": "A starfish does not have a brain.", "ko": "불가사리는 뇌가 없어요.", "zh": "海星没有大脑。" },
+        { "en": "That explains a few things about me.", "ko": "그게 저에 대한 몇 가지를 설명해 주네요.", "zh": "这就能解释我的一些事情了。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "What would you do all day without a brain?", "ko": "뇌가 없으면 하루 종일 뭘 하고 싶어요?" }
+        { "en": "What would you do all day without a brain?", "ko": "뇌가 없으면 하루 종일 뭘 하고 싶어요?", "zh": "如果没有大脑，你一整天会做什么？" }
       ] }
     ]
   },
@@ -1363,11 +1363,11 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Your stomach can make loud noises even when you are not hungry.", "ko": "배고프지 않아도 배에서 큰 소리가 날 수 있어요." },
-        { "en": "My stomach is very loud right now. I blame the chair.", "ko": "지금 제 배에서 아주 크게 소리가 나고 있어요. 저는 의자 탓을 할래요." }
+        { "en": "Your stomach can make loud noises even when you are not hungry.", "ko": "배고프지 않아도 배에서 큰 소리가 날 수 있어요.", "zh": "就算你不饿，肚子也会咕咕叫得很大声。" },
+        { "en": "My stomach is very loud right now. I blame the chair.", "ko": "지금 제 배에서 아주 크게 소리가 나고 있어요. 저는 의자 탓을 할래요.", "zh": "我的肚子现在叫得好响。我怪椅子。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "What is the strangest noise your stomach has ever made?", "ko": "여러분 배에서 났던 소리 중에 제일 이상했던 건 뭐예요?" }
+        { "en": "What is the strangest noise your stomach has ever made?", "ko": "여러분 배에서 났던 소리 중에 제일 이상했던 건 뭐예요?", "zh": "你的肚子发出过最奇怪的声音是什么？" }
       ] }
     ]
   },
@@ -1383,11 +1383,11 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Sometimes it rains fish. Strong winds can lift them from water and drop them somewhere else.", "ko": "가끔 물고기 비가 내려요. 강한 바람이 물속 물고기를 들어 올려서 다른 곳에 떨어뜨릴 수 있거든요." },
-        { "en": "I am now checking the sky very carefully.", "ko": "저는 이제 하늘을 아주 조심스럽게 살펴보고 있어요." }
+        { "en": "Sometimes it rains fish. Strong winds can lift them from water and drop them somewhere else.", "ko": "가끔 물고기 비가 내려요. 강한 바람이 물속 물고기를 들어 올려서 다른 곳에 떨어뜨릴 수 있거든요.", "zh": "有时候天上会下鱼。大风能把鱼从水里卷起来，再丢到别的地方。" },
+        { "en": "I am now checking the sky very carefully.", "ko": "저는 이제 하늘을 아주 조심스럽게 살펴보고 있어요.", "zh": "我现在正非常仔细地观察天空。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "What is the strangest thing you would want to see fall from the sky? Why?", "ko": "하늘에서 떨어졌으면 하는 가장 이상한 것은 뭐예요? 왜요?" }
+        { "en": "What is the strangest thing you would want to see fall from the sky? Why?", "ko": "하늘에서 떨어졌으면 하는 가장 이상한 것은 뭐예요? 왜요?", "zh": "你最想看到天上掉下来的最奇怪的东西是什么？为什么？" }
       ] }
     ]
   },
@@ -1403,11 +1403,11 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "A single cloud can weigh more than 500 elephants.", "ko": "구름 하나가 코끼리 오백 마리보다 더 무거울 수 있어요." },
-        { "en": "I do not trust clouds anymore.", "ko": "저는 이제 구름을 믿지 않기로 했어요." }
+        { "en": "A single cloud can weigh more than 500 elephants.", "ko": "구름 하나가 코끼리 오백 마리보다 더 무거울 수 있어요.", "zh": "一朵云可能比五百头大象还重。" },
+        { "en": "I do not trust clouds anymore.", "ko": "저는 이제 구름을 믿지 않기로 했어요.", "zh": "我再也不相信云了。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "How many elephants do you think YOU weigh?", "ko": "여러분 몸무게는 코끼리 몇 마리쯤 될 것 같아요?" }
+        { "en": "How many elephants do you think YOU weigh?", "ko": "여러분 몸무게는 코끼리 몇 마리쯤 될 것 같아요?", "zh": "你觉得你自己有几头大象重？" }
       ] }
     ]
   },
@@ -1423,11 +1423,11 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Lightning is about five times hotter than the surface of the Sun.", "ko": "번개는 태양 표면보다 다섯 배 정도 더 뜨거워요." },
-        { "en": "I have decided to stay inside forever.", "ko": "저는 이제부터 평생 집 안에만 있기로 했어요." }
+        { "en": "Lightning is about five times hotter than the surface of the Sun.", "ko": "번개는 태양 표면보다 다섯 배 정도 더 뜨거워요.", "zh": "闪电的温度大约是太阳表面的五倍。" },
+        { "en": "I have decided to stay inside forever.", "ko": "저는 이제부터 평생 집 안에만 있기로 했어요.", "zh": "我决定永远待在室内了。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Where do you think I would hide from lightning?", "ko": "제가 번개를 피해서 어디에 숨을 것 같아요?" }
+        { "en": "Where do you think I would hide from lightning?", "ko": "제가 번개를 피해서 어디에 숨을 것 같아요?", "zh": "你觉得我会躲在哪里躲闪电？" }
       ] }
     ]
   },
@@ -1443,11 +1443,11 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Some bamboo can grow almost one metre in a single day.", "ko": "어떤 대나무는 하루 만에 거의 1미터씩 자랄 수 있어요." },
-        { "en": "I am already planning to hide in it.", "ko": "저는 벌써 그 안에 숨을 계획을 세우고 있어요." }
+        { "en": "Some bamboo can grow almost one metre in a single day.", "ko": "어떤 대나무는 하루 만에 거의 1미터씩 자랄 수 있어요.", "zh": "有些竹子一天能长将近一米。" },
+        { "en": "I am already planning to hide in it.", "ko": "저는 벌써 그 안에 숨을 계획을 세우고 있어요.", "zh": "我已经计划好要躲在里面了。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "What would you do with a plant that grew that fast?", "ko": "그렇게 빨리 자라는 식물이 있다면 뭘 하고 싶어요?" }
+        { "en": "What would you do with a plant that grew that fast?", "ko": "그렇게 빨리 자라는 식물이 있다면 뭘 하고 싶어요?", "zh": "如果有一种长得那么快的植物，你会用它做什么？" }
       ] }
     ]
   },
@@ -1463,11 +1463,11 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "A hummingbird's heart beats more than 1,000 times every minute.", "ko": "벌새의 심장은 1분에 천 번도 넘게 뛰어요." },
-        { "en": "I tried to copy the sound. I need a rest now.", "ko": "저도 그 소리를 따라 해봤는데, 이제 좀 쉬어야겠어요." }
+        { "en": "A hummingbird's heart beats more than 1,000 times every minute.", "ko": "벌새의 심장은 1분에 천 번도 넘게 뛰어요.", "zh": "蜂鸟的心脏每分钟跳一千多下。" },
+        { "en": "I tried to copy the sound. I need a rest now.", "ko": "저도 그 소리를 따라 해봤는데, 이제 좀 쉬어야겠어요.", "zh": "我试着模仿那个声音，现在我需要休息一下。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Do you think you could copy that sound? Why or why not?", "ko": "여러분도 그 소리를 따라 할 수 있을 것 같아요? 왜 그렇게 생각해요?" }
+        { "en": "Do you think you could copy that sound? Why or why not?", "ko": "여러분도 그 소리를 따라 할 수 있을 것 같아요? 왜 그렇게 생각해요?", "zh": "你觉得你能模仿那个声音吗？为什么？" }
       ] }
     ]
   },
@@ -1483,11 +1483,11 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "If you put Saturn in a giant bath of water, it would float.", "ko": "토성을 아주 커다란 물 욕조에 넣으면 둥둥 뜰 거예요." },
-        { "en": "I want a bath exactly that size!", "ko": "저도 딱 그만한 크기의 욕조를 갖고 싶어요!" }
+        { "en": "If you put Saturn in a giant bath of water, it would float.", "ko": "토성을 아주 커다란 물 욕조에 넣으면 둥둥 뜰 거예요.", "zh": "如果把土星放进一个超大的浴缸里，它会浮起来。" },
+        { "en": "I want a bath exactly that size!", "ko": "저도 딱 그만한 크기의 욕조를 갖고 싶어요!", "zh": "我就想要一个那么大的浴缸！" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "What in your house do you think would float? Why?", "ko": "여러분 집에 있는 것 중에서 물에 뜰 것 같은 게 뭐예요? 왜요?" }
+        { "en": "What in your house do you think would float? Why?", "ko": "여러분 집에 있는 것 중에서 물에 뜰 것 같은 게 뭐예요? 왜요?", "zh": "你家里有什么东西你觉得会浮起来？为什么？" }
       ] }
     ]
   },
@@ -1503,11 +1503,11 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "One type of jellyfish never dies of old age. It can turn young again.", "ko": "한 종류의 해파리는 늙어서 죽는 법이 없어요. 다시 어려질 수 있거든요." },
-        { "en": "I want to know its secret.", "ko": "저는 그 비밀이 정말 궁금해요." }
+        { "en": "One type of jellyfish never dies of old age. It can turn young again.", "ko": "한 종류의 해파리는 늙어서 죽는 법이 없어요. 다시 어려질 수 있거든요.", "zh": "有一种水母永远不会老死，它可以变回年轻。" },
+        { "en": "I want to know its secret.", "ko": "저는 그 비밀이 정말 궁금해요.", "zh": "我想知道它的秘密。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Would you press a button to turn young again? Why or why not?", "ko": "버튼을 눌러서 다시 어려질 수 있다면 누르고 싶어요? 왜요, 아니면 왜 싫어요?" }
+        { "en": "Would you press a button to turn young again? Why or why not?", "ko": "버튼을 눌러서 다시 어려질 수 있다면 누르고 싶어요? 왜요, 아니면 왜 싫어요?", "zh": "如果按一个按钮就能变年轻，你会按吗？为什么？" }
       ] }
     ]
   },
@@ -1523,11 +1523,11 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Butterflies taste with their feet.", "ko": "나비는 발로 맛을 봐요." },
-        { "en": "I want to try walking on pizza.", "ko": "저도 피자 위를 걸어보고 싶어요." }
+        { "en": "Butterflies taste with their feet.", "ko": "나비는 발로 맛을 봐요.", "zh": "蝴蝶用脚尝味道。" },
+        { "en": "I want to try walking on pizza.", "ko": "저도 피자 위를 걸어보고 싶어요.", "zh": "我想试试在披萨上走路。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "What would you want to taste with your feet? Why?", "ko": "발로 맛보고 싶은 게 있어요? 왜요?" }
+        { "en": "What would you want to taste with your feet? Why?", "ko": "발로 맛보고 싶은 게 있어요? 왜요?", "zh": "你想用脚尝什么？为什么？" }
       ] }
     ]
   },
@@ -1543,11 +1543,11 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Bees dance to show other bees where to find flowers.", "ko": "꿀벌은 다른 꿀벌들에게 꽃이 어디 있는지 알려주려고 춤을 춰요." },
-        { "en": "I have been practising my own dance. It means nothing.", "ko": "저도 제 나름의 춤을 연습하고 있는데, 사실 아무 의미도 없어요." }
+        { "en": "Bees dance to show other bees where to find flowers.", "ko": "꿀벌은 다른 꿀벌들에게 꽃이 어디 있는지 알려주려고 춤을 춰요.", "zh": "蜜蜂会跳舞，告诉别的蜜蜂哪里有花。" },
+        { "en": "I have been practising my own dance. It means nothing.", "ko": "저도 제 나름의 춤을 연습하고 있는데, 사실 아무 의미도 없어요.", "zh": "我也在练我自己的舞。它什么意思都没有。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "What would your dance tell other people?", "ko": "여러분의 춤은 다른 사람들에게 뭘 알려줄까요?" }
+        { "en": "What would your dance tell other people?", "ko": "여러분의 춤은 다른 사람들에게 뭘 알려줄까요?", "zh": "你的舞会告诉别人什么？" }
       ] }
     ]
   },
@@ -1559,13 +1559,13 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Psst… can you keep a secret? Come closer.", "ko": "쉿… 비밀 지킬 수 있어요? 더 가까이 와 봐요." }
+        { "en": "Psst… can you keep a secret? Come closer.", "ko": "쉿… 비밀 지킬 수 있어요? 더 가까이 와 봐요.", "zh": "嘘……你能保守秘密吗？靠近一点。" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "I sleep inside a sock drawer. The socks don't know.", "ko": "저는 양말 서랍 안에서 자요. 양말들은 몰라요." }
+        { "en": "I sleep inside a sock drawer. The socks don't know.", "ko": "저는 양말 서랍 안에서 자요. 양말들은 몰라요.", "zh": "我睡在袜子抽屉里。袜子们都不知道。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Your turn! Make up a silly secret about you.", "ko": "이제 여러분 차례예요! 여러분에 대한 엉뚱한 비밀을 하나 지어내 보세요." }
+        { "en": "Your turn! Make up a silly secret about you.", "ko": "이제 여러분 차례예요! 여러분에 대한 엉뚱한 비밀을 하나 지어내 보세요.", "zh": "轮到你了！编一个关于你自己的傻秘密。" }
       ] }
     ]
   },
@@ -1577,13 +1577,13 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Don't laugh, okay? Promise?", "ko": "웃으면 안 돼요, 알았죠? 약속해요?" }
+        { "en": "Don't laugh, okay? Promise?", "ko": "웃으면 안 돼요, 알았죠? 약속해요?", "zh": "不许笑，好吗？保证？" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "I'm scared of ducks. They look at me like they know something.", "ko": "저는 오리가 무서워요. 오리들이 뭔가 아는 것처럼 저를 쳐다봐요." }
+        { "en": "I'm scared of ducks. They look at me like they know something.", "ko": "저는 오리가 무서워요. 오리들이 뭔가 아는 것처럼 저를 쳐다봐요.", "zh": "我怕鸭子。它们看我的眼神好像知道些什么。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "What's a silly thing that scares you?", "ko": "여러분은 좀 엉뚱하게 무서운 게 있어요? 뭐예요?" }
+        { "en": "What's a silly thing that scares you?", "ko": "여러분은 좀 엉뚱하게 무서운 게 있어요? 뭐예요?", "zh": "有什么傻傻的东西让你害怕？" }
       ] }
     ]
   },
@@ -1595,13 +1595,13 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Shh… this one is top secret.", "ko": "쉿… 이건 일급비밀이에요." }
+        { "en": "Shh… this one is top secret.", "ko": "쉿… 이건 일급비밀이에요.", "zh": "嘘……这是绝密。" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "My belly button is really a doorbell. But nobody ever visits.", "ko": "제 배꼽은 사실 초인종이에요. 그런데 아무도 놀러 안 와요." }
+        { "en": "My belly button is really a doorbell. But nobody ever visits.", "ko": "제 배꼽은 사실 초인종이에요. 그런데 아무도 놀러 안 와요.", "zh": "我的肚脐其实是一个门铃。可是从来没人来找我玩。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "If you visited me, what would you bring?", "ko": "여러분이 저한테 놀러 온다면 뭘 가져올 거예요?" }
+        { "en": "If you visited me, what would you bring?", "ko": "여러분이 저한테 놀러 온다면 뭘 가져올 거예요?", "zh": "如果你来找我玩，你会带什么？" }
       ] }
     ]
   },
@@ -1613,13 +1613,13 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Did you know I'm a little bit famous?", "ko": "제가 좀 유명하다는 거 알아요?" }
+        { "en": "Did you know I'm a little bit famous?", "ko": "제가 좀 유명하다는 거 알아요?", "zh": "你知道我有一点点出名吗？" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "I won a gold medal in sleeping. I slept for nine days!", "ko": "저는 잠자기 대회에서 금메달을 땄어요. 9일 동안 잤거든요!" }
+        { "en": "I won a gold medal in sleeping. I slept for nine days!", "ko": "저는 잠자기 대회에서 금메달을 땄어요. 9일 동안 잤거든요!", "zh": "我在睡觉比赛里拿了金牌。我睡了九天！" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "True or lie? Now tell me your silliest lie!", "ko": "진짜일까요, 거짓말일까요? 이제 여러분의 가장 엉뚱한 거짓말을 들려줘요!" }
+        { "en": "True or lie? Now tell me your silliest lie!", "ko": "진짜일까요, 거짓말일까요? 이제 여러분의 가장 엉뚱한 거짓말을 들려줘요!", "zh": "是真是假？现在告诉我你最傻的谎话！" }
       ] }
     ]
   },
@@ -1631,13 +1631,13 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "I'm very, very strong. Want to know how strong?", "ko": "저는 아주아주 힘이 세요. 얼마나 센지 알고 싶어요?" }
+        { "en": "I'm very, very strong. Want to know how strong?", "ko": "저는 아주아주 힘이 세요. 얼마나 센지 알고 싶어요?", "zh": "我力气非常非常大。想知道有多大吗？" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "This morning, I picked up a whole elephant with one finger.", "ko": "오늘 아침에 손가락 하나로 코끼리를 통째로 들어 올렸어요." }
+        { "en": "This morning, I picked up a whole elephant with one finger.", "ko": "오늘 아침에 손가락 하나로 코끼리를 통째로 들어 올렸어요.", "zh": "今天早上，我用一根手指举起了一整头大象。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Do you believe me? What's the heaviest thing you can lift?", "ko": "믿어요? 여러분이 들 수 있는 가장 무거운 건 뭐예요?" }
+        { "en": "Do you believe me? What's the heaviest thing you can lift?", "ko": "믿어요? 여러분이 들 수 있는 가장 무거운 건 뭐예요?", "zh": "你相信我吗？你能举起的最重的东西是什么？" }
       ] }
     ]
   },
@@ -1649,13 +1649,13 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Guess what I did last weekend!", "ko": "제가 지난 주말에 뭘 했는지 맞혀 봐요!" }
+        { "en": "Guess what I did last weekend!", "ko": "제가 지난 주말에 뭘 했는지 맞혀 봐요!", "zh": "猜猜我上个周末做了什么！" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "I flew to the moon on a banana. It was a bit slippery.", "ko": "바나나를 타고 달에 다녀왔어요. 좀 미끄러웠어요." }
+        { "en": "I flew to the moon on a banana. It was a bit slippery.", "ko": "바나나를 타고 달에 다녀왔어요. 좀 미끄러웠어요.", "zh": "我骑着一根香蕉飞到了月亮上。有点滑。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Is that true? Where would you fly on a banana?", "ko": "그게 진짜일까요? 여러분은 바나나를 타고 어디로 날아가고 싶어요?" }
+        { "en": "Is that true? Where would you fly on a banana?", "ko": "그게 진짜일까요? 여러분은 바나나를 타고 어디로 날아가고 싶어요?", "zh": "这是真的吗？你会骑着香蕉飞到哪里？" }
       ] }
     ]
   },
@@ -1667,13 +1667,13 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "I can speak a secret language.", "ko": "저는 비밀 언어를 할 줄 알아요." }
+        { "en": "I can speak a secret language.", "ko": "저는 비밀 언어를 할 줄 알아요.", "zh": "我会说一种秘密语言。" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "I speak perfect Cat. Last night, I talked to a cat about fish for three hours.", "ko": "저는 고양이 말을 아주 잘해요. 어젯밤에 고양이랑 생선 얘기를 세 시간이나 했어요." }
+        { "en": "I speak perfect Cat. Last night, I talked to a cat about fish for three hours.", "ko": "저는 고양이 말을 아주 잘해요. 어젯밤에 고양이랑 생선 얘기를 세 시간이나 했어요.", "zh": "我的猫语说得完美。昨晚我和一只猫聊了三个小时的鱼。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "True or lie? Which animal would you like to talk to?", "ko": "진짜일까요, 거짓말일까요? 여러분은 어떤 동물이랑 이야기해 보고 싶어요?" }
+        { "en": "True or lie? Which animal would you like to talk to?", "ko": "진짜일까요, 거짓말일까요? 여러분은 어떤 동물이랑 이야기해 보고 싶어요?", "zh": "是真是假？你想和哪种动物聊天？" }
       ] }
     ]
   },
@@ -1685,13 +1685,13 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "I'm the best cook in the whole world.", "ko": "저는 세상에서 요리를 제일 잘해요." }
+        { "en": "I'm the best cook in the whole world.", "ko": "저는 세상에서 요리를 제일 잘해요.", "zh": "我是全世界最棒的厨师。" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "My best dish is ice cream soup with crunchy socks on top.", "ko": "제 최고 요리는 바삭한 양말을 올린 아이스크림 수프예요." }
+        { "en": "My best dish is ice cream soup with crunchy socks on top.", "ko": "제 최고 요리는 바삭한 양말을 올린 아이스크림 수프예요.", "zh": "我的拿手菜是冰淇淋汤，上面放着脆脆的袜子。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Would you eat it? What's the strangest food you can invent?", "ko": "먹어 볼래요? 여러분이 만들 수 있는 가장 이상한 음식은 뭐예요?" }
+        { "en": "Would you eat it? What's the strangest food you can invent?", "ko": "먹어 볼래요? 여러분이 만들 수 있는 가장 이상한 음식은 뭐예요?", "zh": "你会吃吗？你能发明的最奇怪的食物是什么？" }
       ] }
     ]
   },
@@ -1703,13 +1703,13 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "I know everything about animals. Fish fly in the sky, and birds live underwater!", "ko": "저는 동물에 대해 다 알아요. 물고기는 하늘을 날고, 새는 물속에 살아요!" }
+        { "en": "I know everything about animals. Fish fly in the sky, and birds live underwater!", "ko": "저는 동물에 대해 다 알아요. 물고기는 하늘을 날고, 새는 물속에 살아요!", "zh": "我对动物无所不知。鱼在天上飞，鸟住在水里！" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "Wait… why is everyone laughing? Did I mix them up?", "ko": "잠깐만요… 왜 다들 웃어요? 제가 헷갈렸나요?" }
+        { "en": "Wait… why is everyone laughing? Did I mix them up?", "ko": "잠깐만요… 왜 다들 웃어요? 제가 헷갈렸나요?", "zh": "等等……大家为什么在笑？我搞混了吗？" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Help me! Where do fish and birds really live?", "ko": "도와줘요! 물고기랑 새는 진짜 어디에 살아요?" }
+        { "en": "Help me! Where do fish and birds really live?", "ko": "도와줘요! 물고기랑 새는 진짜 어디에 살아요?", "zh": "帮帮我！鱼和鸟到底住在哪里？" }
       ] }
     ]
   },
@@ -1721,13 +1721,13 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Everyone knows this: snow is hot, and fire is cold.", "ko": "이건 다 아는 거예요. 눈은 뜨겁고, 불은 차가워요." }
+        { "en": "Everyone knows this: snow is hot, and fire is cold.", "ko": "이건 다 아는 거예요. 눈은 뜨겁고, 불은 차가워요.", "zh": "大家都知道：雪是热的，火是冷的。" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "Wait… then why are my mittens melting?", "ko": "잠깐만요… 그럼 제 벙어리장갑은 왜 녹고 있죠?" }
+        { "en": "Wait… then why are my mittens melting?", "ko": "잠깐만요… 그럼 제 벙어리장갑은 왜 녹고 있죠?", "zh": "等等……那我的手套为什么在融化？" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "What's the real answer? What do you wear when it snows?", "ko": "진짜 정답은 뭐예요? 눈이 오면 여러분은 뭘 입어요?" }
+        { "en": "What's the real answer? What do you wear when it snows?", "ko": "진짜 정답은 뭐예요? 눈이 오면 여러분은 뭘 입어요?", "zh": "真正的答案是什么？下雪的时候你穿什么？" }
       ] }
     ]
   },
@@ -1739,13 +1739,13 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "I counted very carefully. Spiders have two legs, and people have eight!", "ko": "아주 꼼꼼하게 세어 봤어요. 거미는 다리가 두 개고, 사람은 여덟 개예요!" }
+        { "en": "I counted very carefully. Spiders have two legs, and people have eight!", "ko": "아주 꼼꼼하게 세어 봤어요. 거미는 다리가 두 개고, 사람은 여덟 개예요!", "zh": "我数得非常仔细。蜘蛛有两条腿，人有八条腿！" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "Hmm. My arms are very short, so counting is hard.", "ko": "음. 제 팔이 너무 짧아서 세기가 어려워요." }
+        { "en": "Hmm. My arms are very short, so counting is hard.", "ko": "음. 제 팔이 너무 짧아서 세기가 어려워요.", "zh": "嗯。我的胳膊太短了，所以数数很难。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Can you count for me? How many legs do spiders and people really have?", "ko": "저 대신 세어 줄래요? 거미랑 사람은 다리가 진짜 몇 개예요?" }
+        { "en": "Can you count for me? How many legs do spiders and people really have?", "ko": "저 대신 세어 줄래요? 거미랑 사람은 다리가 진짜 몇 개예요?", "zh": "你能帮我数吗？蜘蛛和人到底有几条腿？" }
       ] }
     ]
   },
@@ -1757,10 +1757,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "I bet your teacher can't say \"She sells seashells\" three times really fast.", "ko": "여러분 선생님은 \"She sells seashells\"를 세 번 아주 빨리 말하지 못할걸요." }
+        { "en": "I bet your teacher can't say \"She sells seashells\" three times really fast.", "ko": "여러분 선생님은 \"She sells seashells\"를 세 번 아주 빨리 말하지 못할걸요.", "zh": "我打赌你的老师没法很快地连说三遍“She sells seashells”。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Dare them! Then you try too. Who was faster?", "ko": "선생님께 도전해 봐요! 그다음엔 여러분도 해 봐요. 누가 더 빨랐어요?" }
+        { "en": "Dare them! Then you try too. Who was faster?", "ko": "선생님께 도전해 봐요! 그다음엔 여러분도 해 봐요. 누가 더 빨랐어요?", "zh": "向老师挑战！然后你也试试。谁更快？" }
       ] }
     ]
   },
@@ -1772,10 +1772,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "I wonder… what did your teacher want to be when they were little?", "ko": "궁금해요… 여러분 선생님은 어렸을 때 뭐가 되고 싶었을까요?" }
+        { "en": "I wonder… what did your teacher want to be when they were little?", "ko": "궁금해요… 여러분 선생님은 어렸을 때 뭐가 되고 싶었을까요?", "zh": "我很好奇……你的老师小时候想做什么？" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Guess first, then find out! Were you right?", "ko": "먼저 맞혀 보고, 그다음에 알아봐요! 맞았어요?" }
+        { "en": "Guess first, then find out! Were you right?", "ko": "먼저 맞혀 보고, 그다음에 알아봐요! 맞았어요?", "zh": "先猜一猜，再问问看！你猜对了吗？" }
       ] }
     ]
   },
@@ -1787,10 +1787,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Can your teacher name five fruits in ten seconds? I'm not sure…", "ko": "여러분 선생님은 10초 안에 과일 다섯 개를 말할 수 있을까요? 잘 모르겠어요…" }
+        { "en": "Can your teacher name five fruits in ten seconds? I'm not sure…", "ko": "여러분 선생님은 10초 안에 과일 다섯 개를 말할 수 있을까요? 잘 모르겠어요…", "zh": "你的老师能在十秒内说出五种水果吗？我不太确定……" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "You count the seconds! Then can you beat their score?", "ko": "여러분이 시간을 세어 줘요! 그다음에 선생님 기록을 깰 수 있어요?" }
+        { "en": "You count the seconds! Then can you beat their score?", "ko": "여러분이 시간을 세어 줘요! 그다음에 선생님 기록을 깰 수 있어요?", "zh": "你来计时！然后你能打破老师的纪录吗？" }
       ] }
     ]
   },
@@ -1802,10 +1802,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "I bet your teacher does a great animal sound. Maybe a monkey? Maybe a chicken?", "ko": "여러분 선생님은 동물 소리를 엄청 잘 낼 거예요. 원숭이일까요? 닭일까요?" }
+        { "en": "I bet your teacher does a great animal sound. Maybe a monkey? Maybe a chicken?", "ko": "여러분 선생님은 동물 소리를 엄청 잘 낼 거예요. 원숭이일까요? 닭일까요?", "zh": "我打赌你的老师学动物叫学得超好。也许是猴子？也许是鸡？" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Pick an animal for them! Then show me your best one too.", "ko": "선생님께 동물을 하나 골라 줘요! 그리고 여러분의 최고 동물 소리도 들려줘요." }
+        { "en": "Pick an animal for them! Then show me your best one too.", "ko": "선생님께 동물을 하나 골라 줘요! 그리고 여러분의 최고 동물 소리도 들려줘요.", "zh": "给老师选一种动物！然后也给我表演你最拿手的。" }
       ] }
     ]
   },
@@ -1817,10 +1817,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Big question: does your teacher like pineapple on pizza?", "ko": "중요한 질문! 여러분 선생님은 피자에 파인애플 올리는 걸 좋아할까요?" }
+        { "en": "Big question: does your teacher like pineapple on pizza?", "ko": "중요한 질문! 여러분 선생님은 피자에 파인애플 올리는 걸 좋아할까요?", "zh": "大问题：你的老师喜欢披萨上放菠萝吗？" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Guess their answer first. Do you agree with them? Why?", "ko": "먼저 선생님 대답을 맞혀 봐요. 여러분도 같은 생각이에요? 왜요?" }
+        { "en": "Guess their answer first. Do you agree with them? Why?", "ko": "먼저 선생님 대답을 맞혀 봐요. 여러분도 같은 생각이에요? 왜요?", "zh": "先猜猜老师的答案。你同意吗？为什么？" }
       ] }
     ]
   },
@@ -1832,13 +1832,13 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "I kept a piece of cheese in my sock for three days. To keep it safe.", "ko": "치즈 한 조각을 양말 속에 사흘 동안 넣어 뒀어요. 안전하게 지키려고요." }
+        { "en": "I kept a piece of cheese in my sock for three days. To keep it safe.", "ko": "치즈 한 조각을 양말 속에 사흘 동안 넣어 뒀어요. 안전하게 지키려고요.", "zh": "我把一块奶酪放在袜子里放了三天。为了保护它。" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "Now it tastes like feet. Is that delicious? I can't decide.", "ko": "이제 발 맛이 나요. 맛있는 걸까요? 잘 모르겠어요." }
+        { "en": "Now it tastes like feet. Is that delicious? I can't decide.", "ko": "이제 발 맛이 나요. 맛있는 걸까요? 잘 모르겠어요.", "zh": "现在它吃起来像脚的味道。好吃吗？我决定不了。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "What is the grossest food you have ever tasted?", "ko": "여러분이 먹어 본 음식 중에 제일 역겨운 건 뭐예요?" }
+        { "en": "What is the grossest food you have ever tasted?", "ko": "여러분이 먹어 본 음식 중에 제일 역겨운 건 뭐예요?", "zh": "你吃过最恶心的食物是什么？" }
       ] }
     ]
   },
@@ -1850,13 +1850,13 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "My doctor says I am 70% water.", "ko": "의사 선생님이 제 몸의 70%가 물이래요." }
+        { "en": "My doctor says I am 70% water.", "ko": "의사 선생님이 제 몸의 70%가 물이래요.", "zh": "医生说我身体的百分之七十是水。" }
       ] },
       { "role": "reveal", "react": "fart", "lines": [
-        { "en": "Wrong! I am 90% soup and 10% farts.", "ko": "틀렸어요! 저는 90%가 수프고 10%가 방귀예요." }
+        { "en": "Wrong! I am 90% soup and 10% farts.", "ko": "틀렸어요! 저는 90%가 수프고 10%가 방귀예요.", "zh": "错！我是百分之九十的汤，加百分之十的屁。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "What do you think YOU are made of? Make a silly recipe!", "ko": "여러분은 뭐로 만들어졌을까요? 엉뚱한 레시피를 만들어 봐요!" }
+        { "en": "What do you think YOU are made of? Make a silly recipe!", "ko": "여러분은 뭐로 만들어졌을까요? 엉뚱한 레시피를 만들어 봐요!", "zh": "你觉得你是用什么做的？编一个搞笑的配方吧！" }
       ] }
     ]
   },
@@ -1868,13 +1868,13 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "I found something under my bed this morning.", "ko": "오늘 아침에 침대 밑에서 뭔가를 찾았어요." }
+        { "en": "I found something under my bed this morning.", "ko": "오늘 아침에 침대 밑에서 뭔가를 찾았어요.", "zh": "今天早上我在床底下找到了一样东西。" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "A very old sandwich. It was green and fluffy. I think it said hello.", "ko": "아주 오래된 샌드위치요. 초록색이고 털이 보송보송했어요. 저한테 인사한 것 같아요." }
+        { "en": "A very old sandwich. It was green and fluffy. I think it said hello.", "ko": "아주 오래된 샌드위치요. 초록색이고 털이 보송보송했어요. 저한테 인사한 것 같아요.", "zh": "一个很旧很旧的三明治。它是绿色的，毛茸茸的。我觉得它跟我打了招呼。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "What is the oldest thing in your fridge right now? Guess!", "ko": "지금 여러분 집 냉장고에서 제일 오래된 건 뭘까요? 맞혀 봐요!" }
+        { "en": "What is the oldest thing in your fridge right now? Guess!", "ko": "지금 여러분 집 냉장고에서 제일 오래된 건 뭘까요? 맞혀 봐요!", "zh": "你家冰箱里现在最老的东西是什么？猜一猜！" }
       ] }
     ]
   },
@@ -1886,13 +1886,13 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "I have a new hobby. Do you want to hear it?", "ko": "저 새 취미가 생겼어요. 들어 볼래요?" }
+        { "en": "I have a new hobby. Do you want to hear it?", "ko": "저 새 취미가 생겼어요. 들어 볼래요?", "zh": "我有了一个新爱好。你想听吗？" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "I collect belly button fluff. I have a whole jar now.", "ko": "배꼽 먼지를 모아요. 이제 한 병이나 돼요." }
+        { "en": "I collect belly button fluff. I have a whole jar now.", "ko": "배꼽 먼지를 모아요. 이제 한 병이나 돼요.", "zh": "我收集肚脐里的绒毛。现在已经有一整罐了。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "What is the strangest thing a person could collect?", "ko": "사람이 모을 수 있는 가장 이상한 건 뭘까요?" }
+        { "en": "What is the strangest thing a person could collect?", "ko": "사람이 모을 수 있는 가장 이상한 건 뭘까요?", "zh": "一个人能收集的最奇怪的东西是什么？" }
       ] }
     ]
   },
@@ -1904,13 +1904,13 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "I sneezed really hard today.", "ko": "오늘 재채기를 엄청 세게 했어요." }
+        { "en": "I sneezed really hard today.", "ko": "오늘 재채기를 엄청 세게 했어요.", "zh": "我今天打了一个超用力的喷嚏。" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "It flew out of the window and landed on a pigeon. The pigeon is not my friend now.", "ko": "재채기가 창밖으로 날아가서 비둘기한테 떨어졌어요. 그 비둘기는 이제 저랑 친구 안 해요." }
+        { "en": "It flew out of the window and landed on a pigeon. The pigeon is not my friend now.", "ko": "재채기가 창밖으로 날아가서 비둘기한테 떨어졌어요. 그 비둘기는 이제 저랑 친구 안 해요.", "zh": "它飞出窗外，落在了一只鸽子身上。那只鸽子现在不跟我做朋友了。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "What is the biggest sneeze you have ever seen? What happened?", "ko": "여러분이 본 가장 큰 재채기는 어땠어요? 무슨 일이 있었어요?" }
+        { "en": "What is the biggest sneeze you have ever seen? What happened?", "ko": "여러분이 본 가장 큰 재채기는 어땠어요? 무슨 일이 있었어요?", "zh": "你见过最大的喷嚏是什么样的？发生了什么？" }
       ] }
     ]
   },
@@ -1922,13 +1922,13 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "I didn't brush my teeth for one week. As a test.", "ko": "실험으로 일주일 동안 이를 안 닦았어요." }
+        { "en": "I didn't brush my teeth for one week. As a test.", "ko": "실험으로 일주일 동안 이를 안 닦았어요.", "zh": "我一个星期没刷牙。当作实验。" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "Now my breath can open doors. And close them.", "ko": "이제 제 입 냄새로 문을 열 수 있어요. 닫을 수도 있고요." }
+        { "en": "Now my breath can open doors. And close them.", "ko": "이제 제 입 냄새로 문을 열 수 있어요. 닫을 수도 있고요.", "zh": "现在我的口气能把门打开。还能把门关上。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "What is the worst smell in your house? Where does it come from?", "ko": "여러분 집에서 제일 고약한 냄새는 뭐예요? 어디서 나요?" }
+        { "en": "What is the worst smell in your house? Where does it come from?", "ko": "여러분 집에서 제일 고약한 냄새는 뭐예요? 어디서 나요?", "zh": "你家里最难闻的味道是什么？是从哪里来的？" }
       ] }
     ]
   },
@@ -1940,13 +1940,13 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Here's a real fact: your mouth makes about one litre of spit every day.", "ko": "진짜 사실이에요. 사람 입은 하루에 침을 약 1리터나 만들어요." }
+        { "en": "Here's a real fact: your mouth makes about one litre of spit every day.", "ko": "진짜 사실이에요. 사람 입은 하루에 침을 약 1리터나 만들어요.", "zh": "真的冷知识：你的嘴巴每天会产生大约一升口水。" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "One litre! I am saving mine in a bucket.", "ko": "1리터요! 저는 제 침을 양동이에 모으고 있어요." }
+        { "en": "One litre! I am saving mine in a bucket.", "ko": "1리터요! 저는 제 침을 양동이에 모으고 있어요.", "zh": "一升！我把我的口水存在一个桶里。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "What would you do with a bucket of spit? Please don't say drink it.", "ko": "침 한 양동이로 뭘 할 거예요? 마시겠다는 말은 하지 마세요." }
+        { "en": "What would you do with a bucket of spit? Please don't say drink it.", "ko": "침 한 양동이로 뭘 할 거예요? 마시겠다는 말은 하지 마세요.", "zh": "你会用一桶口水做什么？千万别说喝掉。" }
       ] }
     ]
   },
@@ -1958,13 +1958,13 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "I tried to burp the whole alphabet.", "ko": "알파벳 전체를 트림으로 말해 보려고 했어요." }
+        { "en": "I tried to burp the whole alphabet.", "ko": "알파벳 전체를 트림으로 말해 보려고 했어요.", "zh": "我试着用打嗝念出整个字母表。" }
       ] },
       { "role": "reveal", "react": "fart", "lines": [
-        { "en": "I got to D. Then something came out that was NOT a burp.", "ko": "D까지 갔어요. 그런데 트림이 아닌 게 나왔어요." }
+        { "en": "I got to D. Then something came out that was NOT a burp.", "ko": "D까지 갔어요. 그런데 트림이 아닌 게 나왔어요.", "zh": "我念到 D。然后出来的东西不是嗝。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Can you say the alphabet really fast? Try it now! Is your teacher faster?", "ko": "알파벳을 엄청 빨리 말할 수 있어요? 지금 해 봐요! 선생님이 더 빠를까요?" }
+        { "en": "Can you say the alphabet really fast? Try it now! Is your teacher faster?", "ko": "알파벳을 엄청 빨리 말할 수 있어요? 지금 해 봐요! 선생님이 더 빠를까요?", "zh": "你能很快地念出字母表吗？现在试试！你的老师会更快吗？" }
       ] }
     ]
   },
@@ -1976,10 +1976,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "If money doesn't grow on trees, why do banks have so many plants? Something is fishy.", "ko": "돈이 나무에서 안 자란다면, 은행에는 왜 화분이 그렇게 많을까요? 뭔가 수상해요." }
+        { "en": "If money doesn't grow on trees, why do banks have so many plants? Something is fishy.", "ko": "돈이 나무에서 안 자란다면, 은행에는 왜 화분이 그렇게 많을까요? 뭔가 수상해요.", "zh": "如果钱不是长在树上的，那为什么银行里有那么多植物？有点可疑。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Do you agree? What else is suspicious?", "ko": "동의해요? 또 수상한 건 뭐가 있을까요?" }
+        { "en": "Do you agree? What else is suspicious?", "ko": "동의해요? 또 수상한 건 뭐가 있을까요?", "zh": "你同意吗？还有什么很可疑？" }
       ] }
     ]
   },
@@ -1991,10 +1991,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "I tried to teach a worm how to play chess today. He was terrible.", "ko": "오늘 지렁이한테 체스를 가르쳐 봤어요. 진짜 못하더라고요." }
+        { "en": "I tried to teach a worm how to play chess today. He was terrible.", "ko": "오늘 지렁이한테 체스를 가르쳐 봤어요. 진짜 못하더라고요.", "zh": "我今天试着教一条虫子下国际象棋。它下得糟透了。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "What is the dumbest animal you know? Why?", "ko": "여러분이 아는 동물 중에 제일 멍청한 동물은 뭐예요? 왜요?" }
+        { "en": "What is the dumbest animal you know? Why?", "ko": "여러분이 아는 동물 중에 제일 멍청한 동물은 뭐예요? 왜요?", "zh": "你知道的最笨的动物是什么？为什么？" }
       ] }
     ]
   },
@@ -2006,10 +2006,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "If I eat myself, will I get twice as big, or will I disappear?", "ko": "제가 저를 먹으면 두 배로 커질까요, 아니면 사라질까요?" }
+        { "en": "If I eat myself, will I get twice as big, or will I disappear?", "ko": "제가 저를 먹으면 두 배로 커질까요, 아니면 사라질까요?", "zh": "如果我把自己吃掉，我会变成两倍大，还是会消失？" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "What do you think? Explain it to me slowly.", "ko": "어떻게 생각해요? 천천히 설명해 줘요." }
+        { "en": "What do you think? Explain it to me slowly.", "ko": "어떻게 생각해요? 천천히 설명해 줘요.", "zh": "你怎么想？慢慢给我解释。" }
       ] }
     ]
   },
@@ -2021,10 +2021,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Fish are wet all the time. So are fish ever thirsty? I'm very worried about them.", "ko": "물고기는 항상 젖어 있잖아요. 그럼 물고기도 목이 마를까요? 너무 걱정돼요." }
+        { "en": "Fish are wet all the time. So are fish ever thirsty? I'm very worried about them.", "ko": "물고기는 항상 젖어 있잖아요. 그럼 물고기도 목이 마를까요? 너무 걱정돼요.", "zh": "鱼一直都是湿的。那鱼会口渴吗？我好担心它们。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "What do you think? Do fish drink water?", "ko": "어떻게 생각해요? 물고기도 물을 마실까요?" }
+        { "en": "What do you think? Do fish drink water?", "ko": "어떻게 생각해요? 물고기도 물을 마실까요?", "zh": "你怎么想？鱼会喝水吗？" }
       ] }
     ]
   },
@@ -2036,10 +2036,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Nobody has ever seen me sleep. Maybe I never sleep. Maybe YOU are my dream.", "ko": "아무도 제가 자는 걸 본 적이 없어요. 저는 안 자는 걸지도 몰라요. 어쩌면 여러분이 제 꿈일지도요." }
+        { "en": "Nobody has ever seen me sleep. Maybe I never sleep. Maybe YOU are my dream.", "ko": "아무도 제가 자는 걸 본 적이 없어요. 저는 안 자는 걸지도 몰라요. 어쩌면 여러분이 제 꿈일지도요.", "zh": "从来没有人见过我睡觉。也许我从来不睡觉。也许你才是我的梦。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Can you prove you are real? Give me three reasons.", "ko": "여러분이 진짜라는 걸 증명할 수 있어요? 이유 세 개를 말해 봐요." }
+        { "en": "Can you prove you are real? Give me three reasons.", "ko": "여러분이 진짜라는 걸 증명할 수 있어요? 이유 세 개를 말해 봐요.", "zh": "你能证明你是真的吗？给我三个理由。" }
       ] }
     ]
   },
@@ -2051,10 +2051,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Socks always disappear in the washing machine. I think they escape to start a new life.", "ko": "양말은 세탁기에서 항상 사라져요. 제 생각엔 새 인생을 시작하려고 도망치는 것 같아요." }
+        { "en": "Socks always disappear in the washing machine. I think they escape to start a new life.", "ko": "양말은 세탁기에서 항상 사라져요. 제 생각엔 새 인생을 시작하려고 도망치는 것 같아요.", "zh": "袜子总是在洗衣机里消失。我觉得它们是逃走去开始新生活了。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Where do the socks go? Tell me their secret plan.", "ko": "양말들은 어디로 갈까요? 양말들의 비밀 계획을 말해 줘요." }
+        { "en": "Where do the socks go? Tell me their secret plan.", "ko": "양말들은 어디로 갈까요? 양말들의 비밀 계획을 말해 줘요.", "zh": "袜子们去哪儿了？告诉我它们的秘密计划。" }
       ] }
     ]
   },
@@ -2066,10 +2066,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "In space, nobody can hear you shout. So space is the best place to sing badly.", "ko": "우주에서는 소리를 질러도 아무도 못 들어요. 그러니까 우주는 노래를 못 불러도 되는 최고의 장소예요." }
+        { "en": "In space, nobody can hear you shout. So space is the best place to sing badly.", "ko": "우주에서는 소리를 질러도 아무도 못 들어요. 그러니까 우주는 노래를 못 불러도 되는 최고의 장소예요.", "zh": "在太空里，你大喊也没人听得见。所以太空是唱歌跑调的最佳地点。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "What would you do in space if nobody could hear you?", "ko": "아무도 못 듣는 우주에서 여러분은 뭘 할 거예요?" }
+        { "en": "What would you do in space if nobody could hear you?", "ko": "아무도 못 듣는 우주에서 여러분은 뭘 할 거예요?", "zh": "如果在太空里没人能听见你，你会做什么？" }
       ] }
     ]
   },
@@ -2081,10 +2081,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Cats sleep about fifteen hours a day. Cats are not lazy. Cats are geniuses.", "ko": "고양이는 하루에 15시간쯤 자요. 고양이는 게으른 게 아니에요. 천재예요." }
+        { "en": "Cats sleep about fifteen hours a day. Cats are not lazy. Cats are geniuses.", "ko": "고양이는 하루에 15시간쯤 자요. 고양이는 게으른 게 아니에요. 천재예요.", "zh": "猫每天大约睡十五个小时。猫不是懒，猫是天才。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Is sleeping all day smart or lazy? Argue with me!", "ko": "하루 종일 자는 건 똑똑한 걸까요, 게으른 걸까요? 저랑 논쟁해 봐요!" }
+        { "en": "Is sleeping all day smart or lazy? Argue with me!", "ko": "하루 종일 자는 건 똑똑한 걸까요, 게으른 걸까요? 저랑 논쟁해 봐요!", "zh": "睡一整天是聪明还是懒？来跟我辩论！" }
       ] }
     ]
   },
@@ -2096,10 +2096,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Would you rather have a pet dragon the size of a hamster, or a hamster the size of a car?", "ko": "햄스터만 한 용을 키울래요, 아니면 자동차만 한 햄스터를 키울래요?" }
+        { "en": "Would you rather have a pet dragon the size of a hamster, or a hamster the size of a car?", "ko": "햄스터만 한 용을 키울래요, 아니면 자동차만 한 햄스터를 키울래요?", "zh": "你宁愿养一条仓鼠那么小的龙，还是一只汽车那么大的仓鼠？" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Which one? Why?", "ko": "어느 쪽이에요? 왜요?" }
+        { "en": "Which one? Why?", "ko": "어느 쪽이에요? 왜요?", "zh": "选哪个？为什么？" }
       ] }
     ]
   },
@@ -2111,10 +2111,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Would you rather always walk backwards, or always talk backwards?", "ko": "항상 뒤로 걸을래요, 아니면 항상 말을 거꾸로 할래요?" }
+        { "en": "Would you rather always walk backwards, or always talk backwards?", "ko": "항상 뒤로 걸을래요, 아니면 항상 말을 거꾸로 할래요?", "zh": "你宁愿永远倒着走路，还是永远倒着说话？" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Which one? Try saying your name backwards!", "ko": "어느 쪽이에요? 이름을 거꾸로 말해 봐요!" }
+        { "en": "Which one? Try saying your name backwards!", "ko": "어느 쪽이에요? 이름을 거꾸로 말해 봐요!", "zh": "选哪个？试着把你的名字倒过来说！" }
       ] }
     ]
   },
@@ -2126,10 +2126,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Would you rather have spaghetti for hair, or meatballs for eyes?", "ko": "머리카락이 스파게티인 거랑, 눈이 미트볼인 거 중에 뭐가 나아요?" }
+        { "en": "Would you rather have spaghetti for hair, or meatballs for eyes?", "ko": "머리카락이 스파게티인 거랑, 눈이 미트볼인 거 중에 뭐가 나아요?", "zh": "你宁愿头发是意大利面，还是眼睛是肉丸？" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Which one? How would you wash it?", "ko": "어느 쪽이에요? 어떻게 씻을 거예요?" }
+        { "en": "Which one? How would you wash it?", "ko": "어느 쪽이에요? 어떻게 씻을 거예요?", "zh": "选哪个？你要怎么洗？" }
       ] }
     ]
   },
@@ -2141,10 +2141,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Would you rather smell like old fish for a year, or sound like a duck for a year?", "ko": "1년 동안 오래된 생선 냄새가 나는 거랑, 1년 동안 오리 목소리가 나는 거 중에 뭐가 나아요?" }
+        { "en": "Would you rather smell like old fish for a year, or sound like a duck for a year?", "ko": "1년 동안 오래된 생선 냄새가 나는 거랑, 1년 동안 오리 목소리가 나는 거 중에 뭐가 나아요?", "zh": "你宁愿一年身上都有臭鱼味，还是一年说话都像鸭子？" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Which one? Show me your duck voice!", "ko": "어느 쪽이에요? 오리 목소리 한번 들려줘요!" }
+        { "en": "Which one? Show me your duck voice!", "ko": "어느 쪽이에요? 오리 목소리 한번 들려줘요!", "zh": "选哪个？给我听听你的鸭子声音！" }
       ] }
     ]
   },
@@ -2156,10 +2156,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Would you rather be a giant ant, or a tiny elephant?", "ko": "거대한 개미가 될래요, 아니면 아주 작은 코끼리가 될래요?" }
+        { "en": "Would you rather be a giant ant, or a tiny elephant?", "ko": "거대한 개미가 될래요, 아니면 아주 작은 코끼리가 될래요?", "zh": "你宁愿当一只巨大的蚂蚁，还是一头小小的大象？" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Which one? What would you do first?", "ko": "어느 쪽이에요? 제일 먼저 뭘 할 거예요?" }
+        { "en": "Which one? What would you do first?", "ko": "어느 쪽이에요? 제일 먼저 뭘 할 거예요?", "zh": "选哪个？你第一件事会做什么？" }
       ] }
     ]
   },
@@ -2171,10 +2171,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Would you rather eat cold soup with your hands, or eat ice cream with a fork?", "ko": "차가운 수프를 손으로 먹을래요, 아니면 아이스크림을 포크로 먹을래요?" }
+        { "en": "Would you rather eat cold soup with your hands, or eat ice cream with a fork?", "ko": "차가운 수프를 손으로 먹을래요, 아니면 아이스크림을 포크로 먹을래요?", "zh": "你宁愿用手吃冷汤，还是用叉子吃冰淇淋？" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Which one? Which is messier?", "ko": "어느 쪽이에요? 어느 게 더 지저분할까요?" }
+        { "en": "Which one? Which is messier?", "ko": "어느 쪽이에요? 어느 게 더 지저분할까요?", "zh": "选哪个？哪个更乱？" }
       ] }
     ]
   },
@@ -2186,10 +2186,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Would you rather have a nose that honks like a car, or ears that whistle when you're angry?", "ko": "자동차처럼 빵빵 소리 나는 코를 가질래요, 아니면 화나면 휘파람 부는 귀를 가질래요?" }
+        { "en": "Would you rather have a nose that honks like a car, or ears that whistle when you're angry?", "ko": "자동차처럼 빵빵 소리 나는 코를 가질래요, 아니면 화나면 휘파람 부는 귀를 가질래요?", "zh": "你宁愿有一个像汽车喇叭一样会“嘀嘀”响的鼻子，还是生气时会吹口哨的耳朵？" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Which one? Make the sound!", "ko": "어느 쪽이에요? 그 소리를 내 봐요!" }
+        { "en": "Which one? Make the sound!", "ko": "어느 쪽이에요? 그 소리를 내 봐요!", "zh": "选哪个？发出那个声音！" }
       ] }
     ]
   },
@@ -2201,10 +2201,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Would you rather your teacher sang every sentence, or danced every time they said \"OK\"?", "ko": "선생님이 모든 문장을 노래로 부르는 거랑, \"OK\"라고 할 때마다 춤추는 거 중에 뭐가 좋아요?" }
+        { "en": "Would you rather your teacher sang every sentence, or danced every time they said \"OK\"?", "ko": "선생님이 모든 문장을 노래로 부르는 거랑, \"OK\"라고 할 때마다 춤추는 거 중에 뭐가 좋아요?", "zh": "你宁愿老师每句话都唱出来，还是每次说“OK”都跳一段舞？" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Which one? I bet your teacher would try it.", "ko": "어느 쪽이에요? 선생님도 한번 해 보실 것 같은데요." }
+        { "en": "Which one? I bet your teacher would try it.", "ko": "어느 쪽이에요? 선생님도 한번 해 보실 것 같은데요.", "zh": "选哪个？我打赌你的老师会愿意试试。" }
       ] }
     ]
   },
@@ -2216,10 +2216,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Would you rather fight one horse-sized chicken, or ten chicken-sized horses?", "ko": "말만 한 닭 한 마리랑 싸울래요, 아니면 닭만 한 말 열 마리랑 싸울래요?" }
+        { "en": "Would you rather fight one horse-sized chicken, or ten chicken-sized horses?", "ko": "말만 한 닭 한 마리랑 싸울래요, 아니면 닭만 한 말 열 마리랑 싸울래요?", "zh": "你宁愿和一只马那么大的鸡打架，还是和十匹鸡那么大的马打架？" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Which one? What is your battle plan?", "ko": "어느 쪽이에요? 작전이 뭐예요?" }
+        { "en": "Which one? What is your battle plan?", "ko": "어느 쪽이에요? 작전이 뭐예요?", "zh": "选哪个？你的作战计划是什么？" }
       ] }
     ]
   },
@@ -2231,10 +2231,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Would you rather only eat blue food, or only eat crunchy food?", "ko": "파란 음식만 먹을래요, 아니면 바삭한 음식만 먹을래요?" }
+        { "en": "Would you rather only eat blue food, or only eat crunchy food?", "ko": "파란 음식만 먹을래요, 아니면 바삭한 음식만 먹을래요?", "zh": "你宁愿只吃蓝色的食物，还是只吃脆脆的食物？" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Which one? Name three foods you could eat.", "ko": "어느 쪽이에요? 먹을 수 있는 음식 세 개를 말해 봐요." }
+        { "en": "Which one? Name three foods you could eat.", "ko": "어느 쪽이에요? 먹을 수 있는 음식 세 개를 말해 봐요.", "zh": "选哪个？说出三种你能吃的食物。" }
       ] }
     ]
   },
@@ -2246,10 +2246,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Would you rather sweat maple syrup, or cry lemonade?", "ko": "땀으로 메이플 시럽이 나올래요, 아니면 눈물로 레모네이드가 나올래요?" }
+        { "en": "Would you rather sweat maple syrup, or cry lemonade?", "ko": "땀으로 메이플 시럽이 나올래요, 아니면 눈물로 레모네이드가 나올래요?", "zh": "你宁愿流的汗是枫糖浆，还是流的眼泪是柠檬水？" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Which one? Who would follow you around?", "ko": "어느 쪽이에요? 누가 여러분을 졸졸 따라다닐까요?" }
+        { "en": "Which one? Who would follow you around?", "ko": "어느 쪽이에요? 누가 여러분을 졸졸 따라다닐까요?", "zh": "选哪个？谁会一直跟着你？" }
       ] }
     ]
   },
@@ -2261,10 +2261,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Would you rather have a pet that farts glitter, or a pet that burps music?", "ko": "반짝이 방귀를 뀌는 애완동물이 좋아요, 아니면 트림하면 음악이 나오는 애완동물이 좋아요?" }
+        { "en": "Would you rather have a pet that farts glitter, or a pet that burps music?", "ko": "반짝이 방귀를 뀌는 애완동물이 좋아요, 아니면 트림하면 음악이 나오는 애완동물이 좋아요?", "zh": "你宁愿养一只放屁会放出亮片的宠物，还是一只打嗝会打出音乐的宠物？" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Which one? What would you name it?", "ko": "어느 쪽이에요? 이름은 뭐라고 지을 거예요?" }
+        { "en": "Which one? What would you name it?", "ko": "어느 쪽이에요? 이름은 뭐라고 지을 거예요?", "zh": "选哪个？你会给它起什么名字？" }
       ] }
     ]
   },
@@ -2276,10 +2276,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Would you rather live with no music, or with no cheese? I say cheese is life.", "ko": "음악 없이 살래요, 아니면 치즈 없이 살래요? 저는 치즈가 인생이에요." }
+        { "en": "Would you rather live with no music, or with no cheese? I say cheese is life.", "ko": "음악 없이 살래요, 아니면 치즈 없이 살래요? 저는 치즈가 인생이에요.", "zh": "你宁愿生活里没有音乐，还是没有奶酪？我说奶酪就是生命。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Which one? Change my mind!", "ko": "어느 쪽이에요? 제 생각을 바꿔 봐요!" }
+        { "en": "Which one? Change my mind!", "ko": "어느 쪽이에요? 제 생각을 바꿔 봐요!", "zh": "选哪个？说服我改变主意！" }
       ] }
     ]
   },
@@ -2291,10 +2291,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Would you rather have a mouth on your elbow, or an eye on your knee?", "ko": "팔꿈치에 입이 있는 거랑, 무릎에 눈이 있는 거 중에 뭐가 나아요?" }
+        { "en": "Would you rather have a mouth on your elbow, or an eye on your knee?", "ko": "팔꿈치에 입이 있는 거랑, 무릎에 눈이 있는 거 중에 뭐가 나아요?", "zh": "你宁愿手肘上长一张嘴，还是膝盖上长一只眼睛？" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Which one? What problem would it cause?", "ko": "어느 쪽이에요? 어떤 문제가 생길까요?" }
+        { "en": "Which one? What problem would it cause?", "ko": "어느 쪽이에요? 어떤 문제가 생길까요?", "zh": "选哪个？会带来什么麻烦？" }
       ] }
     ]
   },
@@ -2306,10 +2306,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "If you could ban ONE food in the whole world forever, what would you ban?", "ko": "전 세계에서 음식 하나를 영원히 금지할 수 있다면, 뭘 금지할 거예요?" }
+        { "en": "If you could ban ONE food in the whole world forever, what would you ban?", "ko": "전 세계에서 음식 하나를 영원히 금지할 수 있다면, 뭘 금지할 거예요?", "zh": "如果你能永远禁止全世界的一种食物，你会禁止哪一种？" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Why? Who would be angry?", "ko": "왜요? 누가 화낼까요?" }
+        { "en": "Why? Who would be angry?", "ko": "왜요? 누가 화낼까요?", "zh": "为什么？谁会生气？" }
       ] }
     ]
   },
@@ -2321,10 +2321,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Pizza is better for breakfast than cereal. I say YES.", "ko": "피자가 시리얼보다 아침으로 더 좋아요. 저는 무조건 찬성이에요." }
+        { "en": "Pizza is better for breakfast than cereal. I say YES.", "ko": "피자가 시리얼보다 아침으로 더 좋아요. 저는 무조건 찬성이에요.", "zh": "披萨当早餐比麦片好。我说是的！" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Do you agree? Convince me!", "ko": "동의해요? 저를 설득해 봐요!" }
+        { "en": "Do you agree? Convince me!", "ko": "동의해요? 저를 설득해 봐요!", "zh": "你同意吗？说服我！" }
       ] }
     ]
   },
@@ -2336,10 +2336,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "I have a neck but no head. I wear a cap. What am I?", "ko": "저는 목은 있는데 머리가 없어요. 모자도 써요. 저는 뭘까요?" }
+        { "en": "I have a neck but no head. I wear a cap. What am I?", "ko": "저는 목은 있는데 머리가 없어요. 모자도 써요. 저는 뭘까요?", "zh": "我有脖子，但是没有头。我戴着一顶帽子。我是什么？" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "A bottle! What is the strangest thing you could put in a bottle?", "ko": "병이에요! 병 안에 넣을 수 있는 가장 이상한 건 뭘까요?" }
+        { "en": "A bottle! What is the strangest thing you could put in a bottle?", "ko": "병이에요! 병 안에 넣을 수 있는 가장 이상한 건 뭘까요?", "zh": "瓶子！你能放进瓶子里最奇怪的东西是什么？" }
       ] }
     ]
   },
@@ -2351,10 +2351,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "The more you take, the more you leave behind. What am I?", "ko": "가져갈수록 더 많이 남기고 가요. 저는 뭘까요?" }
+        { "en": "The more you take, the more you leave behind. What am I?", "ko": "가져갈수록 더 많이 남기고 가요. 저는 뭘까요?", "zh": "你拿走得越多，留下的就越多。我是什么？" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "Footsteps! Where would you leave muddy footprints if nobody could see?", "ko": "발자국이에요! 아무도 안 본다면 어디에 진흙 발자국을 남기고 싶어요?" }
+        { "en": "Footsteps! Where would you leave muddy footprints if nobody could see?", "ko": "발자국이에요! 아무도 안 본다면 어디에 진흙 발자국을 남기고 싶어요?", "zh": "脚印！如果没人看见，你会在哪里留下泥脚印？" }
       ] }
     ]
   },
@@ -2366,10 +2366,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "I am full of holes, but I can still hold water. What am I?", "ko": "구멍이 가득한데도 물을 담을 수 있어요. 저는 뭘까요?" }
+        { "en": "I am full of holes, but I can still hold water. What am I?", "ko": "구멍이 가득한데도 물을 담을 수 있어요. 저는 뭘까요?", "zh": "我全身都是洞，但还是能装水。我是什么？" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "A sponge! What is the dirtiest thing you have ever cleaned?", "ko": "스펀지예요! 여러분이 청소해 본 것 중에 제일 더러운 건 뭐예요?" }
+        { "en": "A sponge! What is the dirtiest thing you have ever cleaned?", "ko": "스펀지예요! 여러분이 청소해 본 것 중에 제일 더러운 건 뭐예요?", "zh": "海绵！你打扫过最脏的东西是什么？" }
       ] }
     ]
   },
@@ -2381,10 +2381,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "I live in your shoes. I come out when you take them off. Everybody runs away from me. What am I?", "ko": "저는 신발 속에 살아요. 신발을 벗으면 나와요. 다들 저를 피해 도망가요. 저는 뭘까요?" }
+        { "en": "I live in your shoes. I come out when you take them off. Everybody runs away from me. What am I?", "ko": "저는 신발 속에 살아요. 신발을 벗으면 나와요. 다들 저를 피해 도망가요. 저는 뭘까요?", "zh": "我住在你的鞋子里。你一脱鞋我就出来。大家都躲着我跑。我是什么？" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "Foot smell! What is the strongest smell you know?", "ko": "발 냄새예요! 여러분이 아는 가장 강한 냄새는 뭐예요?" }
+        { "en": "Foot smell! What is the strongest smell you know?", "ko": "발 냄새예요! 여러분이 아는 가장 강한 냄새는 뭐예요?", "zh": "脚臭！你知道的最浓的味道是什么？" }
       ] }
     ]
   },
@@ -2396,10 +2396,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "I have teeth, but I can't eat. What am I?", "ko": "저는 이빨이 있는데 먹을 수는 없어요. 저는 뭘까요?" }
+        { "en": "I have teeth, but I can't eat. What am I?", "ko": "저는 이빨이 있는데 먹을 수는 없어요. 저는 뭘까요?", "zh": "我有牙齿，但是不能吃东西。我是什么？" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "A comb! I have no hair, but I own one anyway. What do you own but never use?", "ko": "빗이에요! 저는 머리카락이 없는데도 빗이 있어요. 여러분이 갖고 있는데 한 번도 안 쓰는 물건은 뭐예요?" }
+        { "en": "A comb! I have no hair, but I own one anyway. What do you own but never use?", "ko": "빗이에요! 저는 머리카락이 없는데도 빗이 있어요. 여러분이 갖고 있는데 한 번도 안 쓰는 물건은 뭐예요?", "zh": "梳子！我没有头发，可我还是有一把。你有什么东西从来不用？" }
       ] }
     ]
   },
@@ -2411,10 +2411,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "I go up and down, but I never move. What am I?", "ko": "올라갔다 내려갔다 하는데 한 번도 안 움직여요. 저는 뭘까요?" }
+        { "en": "I go up and down, but I never move. What am I?", "ko": "올라갔다 내려갔다 하는데 한 번도 안 움직여요. 저는 뭘까요?", "zh": "我一会儿上，一会儿下，可是从来不动。我是什么？" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "Stairs! What is the silliest way to go down the stairs? Show me with your hands!", "ko": "계단이에요! 계단을 내려가는 가장 웃긴 방법은 뭘까요? 손으로 보여 줘요!" }
+        { "en": "Stairs! What is the silliest way to go down the stairs? Show me with your hands!", "ko": "계단이에요! 계단을 내려가는 가장 웃긴 방법은 뭘까요? 손으로 보여 줘요!", "zh": "楼梯！下楼梯最傻的方式是什么？用手比给我看！" }
       ] }
     ]
   },
@@ -2426,10 +2426,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "You wake up as a fly in your own kitchen. Do you eat the sugar, annoy your family, or escape out of the window?", "ko": "아침에 일어났더니 여러분 집 부엌의 파리가 되어 있어요. 설탕을 먹을래요, 가족을 귀찮게 할래요, 창밖으로 탈출할래요?" }
+        { "en": "You wake up as a fly in your own kitchen. Do you eat the sugar, annoy your family, or escape out of the window?", "ko": "아침에 일어났더니 여러분 집 부엌의 파리가 되어 있어요. 설탕을 먹을래요, 가족을 귀찮게 할래요, 창밖으로 탈출할래요?", "zh": "你醒来发现自己变成了你家厨房里的一只苍蝇。你会去吃糖、去烦你的家人，还是从窗户逃走？" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Why? What happens next?", "ko": "왜요? 그다음엔 무슨 일이 생길까요?" }
+        { "en": "Why? What happens next?", "ko": "왜요? 그다음엔 무슨 일이 생길까요?", "zh": "为什么？接下来会发生什么？" }
       ] }
     ]
   },
@@ -2441,10 +2441,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Your shadow walks away without you. Do you chase it, call the police, or get a new shadow?", "ko": "그림자가 여러분을 두고 혼자 걸어가 버렸어요. 쫓아갈래요, 경찰을 부를래요, 새 그림자를 구할래요?" }
+        { "en": "Your shadow walks away without you. Do you chase it, call the police, or get a new shadow?", "ko": "그림자가 여러분을 두고 혼자 걸어가 버렸어요. 쫓아갈래요, 경찰을 부를래요, 새 그림자를 구할래요?", "zh": "你的影子丢下你自己走掉了。你会去追它、报警，还是换一个新影子？" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Why? Where is your shadow going?", "ko": "왜요? 그림자는 어디로 가는 걸까요?" }
+        { "en": "Why? Where is your shadow going?", "ko": "왜요? 그림자는 어디로 가는 걸까요?", "zh": "为什么？你的影子要去哪里？" }
       ] }
     ]
   },
@@ -2456,10 +2456,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Every time you sneeze today, a frog jumps out. Do you hide, sell the frogs, or start a frog band?", "ko": "오늘 재채기를 할 때마다 개구리가 튀어나와요. 숨을래요, 개구리를 팔래요, 개구리 밴드를 만들래요?" }
+        { "en": "Every time you sneeze today, a frog jumps out. Do you hide, sell the frogs, or start a frog band?", "ko": "오늘 재채기를 할 때마다 개구리가 튀어나와요. 숨을래요, 개구리를 팔래요, 개구리 밴드를 만들래요?", "zh": "今天你每打一个喷嚏，就会跳出一只青蛙。你会躲起来、把青蛙卖掉，还是组一个青蛙乐队？" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Why? How many frogs do you have by dinner?", "ko": "왜요? 저녁쯤엔 개구리가 몇 마리나 될까요?" }
+        { "en": "Why? How many frogs do you have by dinner?", "ko": "왜요? 저녁쯤엔 개구리가 몇 마리나 될까요?", "zh": "为什么？到晚饭时你会有几只青蛙？" }
       ] }
     ]
   },
@@ -2471,10 +2471,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Your teacher's voice turns into a chicken's for the whole lesson. Do you laugh, help them, or answer like a chicken too?", "ko": "수업 내내 선생님 목소리가 닭 목소리로 바뀌었어요. 웃을래요, 도와드릴래요, 아니면 여러분도 닭처럼 대답할래요?" }
+        { "en": "Your teacher's voice turns into a chicken's for the whole lesson. Do you laugh, help them, or answer like a chicken too?", "ko": "수업 내내 선생님 목소리가 닭 목소리로 바뀌었어요. 웃을래요, 도와드릴래요, 아니면 여러분도 닭처럼 대답할래요?", "zh": "一整节课，你老师的声音都变成了鸡叫。你会笑、帮帮老师，还是也像鸡一样回答？" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Why? Try one sentence like a chicken!", "ko": "왜요? 닭처럼 한 문장 말해 봐요!" }
+        { "en": "Why? Try one sentence like a chicken!", "ko": "왜요? 닭처럼 한 문장 말해 봐요!", "zh": "为什么？像鸡一样说一句话试试！" }
       ] }
     ]
   },
@@ -2486,10 +2486,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Someone ate half of my sandwich and left a tooth inside. Was it a shark, a robot, or my grandma?", "ko": "누가 제 샌드위치를 반이나 먹고 안에 이빨 하나를 두고 갔어요. 상어였을까요, 로봇이었을까요, 우리 할머니였을까요?" }
+        { "en": "Someone ate half of my sandwich and left a tooth inside. Was it a shark, a robot, or my grandma?", "ko": "누가 제 샌드위치를 반이나 먹고 안에 이빨 하나를 두고 갔어요. 상어였을까요, 로봇이었을까요, 우리 할머니였을까요?", "zh": "有人吃了我半个三明治，还在里面留下了一颗牙。是鲨鱼、机器人，还是我奶奶？" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Who did it? Give me one clue.", "ko": "누가 그랬을까요? 단서 하나만 말해 봐요." }
+        { "en": "Who did it? Give me one clue.", "ko": "누가 그랬을까요? 단서 하나만 말해 봐요.", "zh": "是谁干的？给我一个线索。" }
       ] }
     ]
   },
@@ -2501,10 +2501,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "All my socks smell like onions this morning. Was it a prank, a magic spell, or my feet?", "ko": "오늘 아침에 제 양말이 전부 양파 냄새가 나요. 장난이었을까요, 마법 주문이었을까요, 아니면 제 발 때문일까요?" }
+        { "en": "All my socks smell like onions this morning. Was it a prank, a magic spell, or my feet?", "ko": "오늘 아침에 제 양말이 전부 양파 냄새가 나요. 장난이었을까요, 마법 주문이었을까요, 아니면 제 발 때문일까요?", "zh": "今天早上我所有的袜子都有洋葱味。是恶作剧、魔法咒语，还是我的脚？" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "What is your theory? Explain it!", "ko": "여러분 생각은 뭐예요? 설명해 봐요!" }
+        { "en": "What is your theory? Explain it!", "ko": "여러분 생각은 뭐예요? 설명해 봐요!", "zh": "你的推理是什么？解释一下！" }
       ] }
     ]
   },
@@ -2516,10 +2516,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Try to talk for ten seconds without moving your lips! Go!", "ko": "입술을 안 움직이고 10초 동안 말해 봐요! 시작!" }
+        { "en": "Try to talk for ten seconds without moving your lips! Go!", "ko": "입술을 안 움직이고 10초 동안 말해 봐요! 시작!", "zh": "试着说十秒钟话，但嘴唇不能动！开始！" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Can your teacher do it better? I bet they can't.", "ko": "선생님이 더 잘할 수 있을까요? 아마 못 하실걸요." }
+        { "en": "Can your teacher do it better? I bet they can't.", "ko": "선생님이 더 잘할 수 있을까요? 아마 못 하실걸요.", "zh": "你的老师能做得更好吗？我打赌不能。" }
       ] }
     ]
   },
@@ -2531,10 +2531,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "react": "puff", "lines": [
-        { "en": "I'm holding my breath until you tell me your top three favourite smells. Hurry!", "ko": "여러분이 제일 좋아하는 냄새 세 가지를 말해 줄 때까지 숨 참을 거예요. 빨리요!" }
+        { "en": "I'm holding my breath until you tell me your top three favourite smells. Hurry!", "ko": "여러분이 제일 좋아하는 냄새 세 가지를 말해 줄 때까지 숨 참을 거예요. 빨리요!", "zh": "我要一直憋气，直到你说出你最喜欢的三种气味。快点！" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Quick! Three smells! Then tell me your worst one.", "ko": "빨리요! 냄새 세 가지! 그다음엔 제일 싫은 냄새도 말해 줘요." }
+        { "en": "Quick! Three smells! Then tell me your worst one.", "ko": "빨리요! 냄새 세 가지! 그다음엔 제일 싫은 냄새도 말해 줘요.", "zh": "快！三种气味！然后告诉我你最讨厌的一种。" }
       ] }
     ]
   },
@@ -2546,10 +2546,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Make the weirdest face you can. I'll copy it. I bet I can't.", "ko": "할 수 있는 가장 이상한 표정을 지어 봐요. 제가 따라 할게요. 아마 못 할 거예요." }
+        { "en": "Make the weirdest face you can. I'll copy it. I bet I can't.", "ko": "할 수 있는 가장 이상한 표정을 지어 봐요. 제가 따라 할게요. 아마 못 할 거예요.", "zh": "做一个你能做出的最怪的鬼脸。我来模仿。我打赌我学不像。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Go! Now describe your face in three words.", "ko": "시작! 이제 그 표정을 단어 세 개로 설명해 봐요." }
+        { "en": "Go! Now describe your face in three words.", "ko": "시작! 이제 그 표정을 단어 세 개로 설명해 봐요.", "zh": "开始！现在用三个词描述你的脸。" }
       ] }
     ]
   },
@@ -2561,10 +2561,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "I bet your teacher has eaten a fly by accident. Ask them! Watch their face very closely.", "ko": "선생님은 실수로 파리를 먹어 본 적이 있을걸요. 물어봐요! 선생님 표정을 아주 자세히 보세요." }
+        { "en": "I bet your teacher has eaten a fly by accident. Ask them! Watch their face very closely.", "ko": "선생님은 실수로 파리를 먹어 본 적이 있을걸요. 물어봐요! 선생님 표정을 아주 자세히 보세요.", "zh": "我打赌你的老师不小心吃过苍蝇。问问看！仔细看老师的表情。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Did they? What did their face say?", "ko": "먹어 봤대요? 선생님 표정은 뭐라고 말하고 있었어요?" }
+        { "en": "Did they? What did their face say?", "ko": "먹어 봤대요? 선생님 표정은 뭐라고 말하고 있었어요?", "zh": "老师吃过吗？老师的表情在说什么？" }
       ] }
     ]
   },
@@ -2576,10 +2576,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "I think your teacher has a secret weird snack. Maybe pickles with chocolate?", "ko": "선생님한테는 비밀 이상한 간식이 있을 것 같아요. 초콜릿 바른 피클일까요?" }
+        { "en": "I think your teacher has a secret weird snack. Maybe pickles with chocolate?", "ko": "선생님한테는 비밀 이상한 간식이 있을 것 같아요. 초콜릿 바른 피클일까요?", "zh": "我觉得你的老师有一种秘密的奇怪零食。也许是巧克力配酸黄瓜？" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Guess their weird snack, then ask! Was it gross?", "ko": "선생님의 이상한 간식을 맞혀 보고, 그다음에 물어봐요! 역겨웠어요?" }
+        { "en": "Guess their weird snack, then ask! Was it gross?", "ko": "선생님의 이상한 간식을 맞혀 보고, 그다음에 물어봐요! 역겨웠어요?", "zh": "猜猜老师的奇怪零食，然后问问看！恶心吗？" }
       ] }
     ]
   },
@@ -2591,10 +2591,10 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Quick test: can your teacher touch their nose with their tongue? I can't. I have no nose.", "ko": "간단한 테스트! 선생님은 혀로 코를 만질 수 있을까요? 저는 못 해요. 코가 없거든요." }
+        { "en": "Quick test: can your teacher touch their nose with their tongue? I can't. I have no nose.", "ko": "간단한 테스트! 선생님은 혀로 코를 만질 수 있을까요? 저는 못 해요. 코가 없거든요.", "zh": "快速测试：你的老师能用舌头碰到鼻子吗？我不行。我没有鼻子。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Watch them try! Can you do it?", "ko": "선생님이 하는 걸 봐요! 여러분은 할 수 있어요?" }
+        { "en": "Watch them try! Can you do it?", "ko": "선생님이 하는 걸 봐요! 여러분은 할 수 있어요?", "zh": "看老师试一试！你能做到吗？" }
       ] }
     ]
   },
@@ -2606,13 +2606,13 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Promise you won't tell anyone?", "ko": "아무한테도 말 안 한다고 약속해요?" }
+        { "en": "Promise you won't tell anyone?", "ko": "아무한테도 말 안 한다고 약속해요?", "zh": "保证不告诉任何人？" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "I have never washed my belly button. Never. Something lives in there now.", "ko": "저는 배꼽을 한 번도 안 씻었어요. 한 번도요. 지금은 거기 뭔가가 살아요." }
+        { "en": "I have never washed my belly button. Never. Something lives in there now.", "ko": "저는 배꼽을 한 번도 안 씻었어요. 한 번도요. 지금은 거기 뭔가가 살아요.", "zh": "我从来没洗过我的肚脐。从来没有。现在里面住着什么东西。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "What do you think lives in there? Draw it in the air!", "ko": "거기 뭐가 살고 있을 것 같아요? 손가락으로 허공에 그려 봐요!" }
+        { "en": "What do you think lives in there? Draw it in the air!", "ko": "거기 뭐가 살고 있을 것 같아요? 손가락으로 허공에 그려 봐요!", "zh": "你觉得里面住着什么？用手指在空中画出来！" }
       ] }
     ]
   },
@@ -2624,13 +2624,13 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Okay. This is a bit embarrassing.", "ko": "좋아요. 이건 좀 창피한데요." }
+        { "en": "Okay. This is a bit embarrassing.", "ko": "좋아요. 이건 좀 창피한데요.", "zh": "好吧。这有点丢脸。" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "Sometimes I sniff the TV to smell the food on it. It smells like dust.", "ko": "가끔 TV에 나오는 음식 냄새를 맡으려고 화면에 코를 대요. 먼지 냄새가 나요." }
+        { "en": "Sometimes I sniff the TV to smell the food on it. It smells like dust.", "ko": "가끔 TV에 나오는 음식 냄새를 맡으려고 화면에 코를 대요. 먼지 냄새가 나요.", "zh": "有时候我会凑近电视闻上面的食物。闻起来像灰尘。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "Which TV food would you want to taste? Why?", "ko": "TV에 나오는 음식 중에 뭘 맛보고 싶어요? 왜요?" }
+        { "en": "Which TV food would you want to taste? Why?", "ko": "TV에 나오는 음식 중에 뭘 맛보고 싶어요? 왜요?", "zh": "你想尝尝电视里的哪种食物？为什么？" }
       ] }
     ]
   },
@@ -2642,13 +2642,13 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Fact: if you eat a carrot, you can see through walls.", "ko": "사실: 당근을 먹으면 벽 너머를 볼 수 있어요." }
+        { "en": "Fact: if you eat a carrot, you can see through walls.", "ko": "사실: 당근을 먹으면 벽 너머를 볼 수 있어요.", "zh": "事实：吃了胡萝卜，你就能看穿墙壁。" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "I ate fifty carrots. Now I can only see orange.", "ko": "당근을 50개 먹었어요. 이제 주황색밖에 안 보여요." }
+        { "en": "I ate fifty carrots. Now I can only see orange.", "ko": "당근을 50개 먹었어요. 이제 주황색밖에 안 보여요.", "zh": "我吃了五十根胡萝卜。现在我眼里只有橙色。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "What's the real truth about carrots? Which food do YOU think is magic?", "ko": "당근에 대한 진짜 사실은 뭐예요? 여러분은 어떤 음식이 마법 같다고 생각해요?" }
+        { "en": "What's the real truth about carrots? Which food do YOU think is magic?", "ko": "당근에 대한 진짜 사실은 뭐예요? 여러분은 어떤 음식이 마법 같다고 생각해요?", "zh": "关于胡萝卜，真相是什么？你觉得哪种食物有魔法？" }
       ] }
     ]
   },
@@ -2660,13 +2660,13 @@
     "lifecycleState": "Generated",
     "beats": [
       { "role": "setup", "lines": [
-        { "en": "Everybody knows: if you swallow gum, it stays in your tummy for seven years.", "ko": "다들 알잖아요. 껌을 삼키면 배 속에 7년 동안 남아 있어요." }
+        { "en": "Everybody knows: if you swallow gum, it stays in your tummy for seven years.", "ko": "다들 알잖아요. 껌을 삼키면 배 속에 7년 동안 남아 있어요.", "zh": "大家都知道：吞下去的口香糖会在你肚子里待七年。" }
       ] },
       { "role": "reveal", "lines": [
-        { "en": "So I am 40% gum. Wait… maybe that isn't true.", "ko": "그러니까 저는 40%가 껌이에요. 잠깐만요… 그거 사실이 아닐 수도 있겠네요." }
+        { "en": "So I am 40% gum. Wait… maybe that isn't true.", "ko": "그러니까 저는 40%가 껌이에요. 잠깐만요… 그거 사실이 아닐 수도 있겠네요.", "zh": "所以我是百分之四十的口香糖。等等……也许这不是真的。" }
       ] },
       { "role": "prompt", "lines": [
-        { "en": "What really happens, do you think? What other strange stories have you heard?", "ko": "진짜로는 어떻게 될까요? 또 어떤 이상한 이야기를 들어 봤어요?" }
+        { "en": "What really happens, do you think? What other strange stories have you heard?", "ko": "진짜로는 어떻게 될까요? 또 어떤 이상한 이야기를 들어 봤어요?", "zh": "你觉得真正会发生什么？你还听过哪些奇怪的说法？" }
       ] }
     ]
   }

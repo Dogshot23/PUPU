@@ -1422,12 +1422,13 @@ function startTypingSection(section) {
 
   const labelEl = document.createElement("p");
   labelEl.className = "bubble-label";
-  labelEl.textContent = section.label;
+  labelEl.textContent = beatLabel(section, currentLanguage);
   el.appendChild(labelEl);
 
   const lineEls = section.lines.map((line) => {
     const p = document.createElement("p");
     p.className = "beat";
+    p.lang = languageInfo(currentLanguage).htmlLang;
     el.appendChild(p);
     return { el: p, text: line };
   });
@@ -1513,7 +1514,7 @@ function showRevealHint() {
 
   const labelEl = document.createElement("p");
   labelEl.className = "bubble-label";
-  labelEl.textContent = "💬 TAP TO REVEAL";
+  labelEl.textContent = uiText("tapToReveal");
   el.appendChild(labelEl);
 
   bubbleEl.appendChild(el);
@@ -1617,10 +1618,26 @@ function handleBubbleAdvance() {
 // adding an entry here plus a matching key ("zh", ...) next to "en"/"ko"
 // on each line in cards.json -- buildLanguageToggle() and localizeLines()
 // below both just look up by code, no rendering-logic changes needed.
+// `htmlLang` tags each line so phones pick the right glyph shapes
+// (Simplified Chinese, not Japanese/Korean forms of the same characters).
 const SUPPORTED_LANGUAGES = [
-  { code: "en", label: "English", flag: "🇬🇧" },
-  { code: "ko", label: "한국어", flag: "" }
+  { code: "en", short: "EN", label: "English", htmlLang: "en" },
+  { code: "ko", short: "KO", label: "한국어", htmlLang: "ko" },
+  { code: "zh", short: "ZH", label: "中文", htmlLang: "zh-Hans" }
 ];
+
+function languageInfo(code) {
+  return SUPPORTED_LANGUAGES.find((lang) => lang.code === code) || SUPPORTED_LANGUAGES[0];
+}
+
+// Small bits of bubble UI text; a language without an entry shows English.
+const UI_TEXT = {
+  tapToReveal: { en: "💬 TAP TO REVEAL", zh: "💬 点一下揭晓" }
+};
+
+function uiText(key, lang = currentLanguage) {
+  return UI_TEXT[key][lang] || UI_TEXT[key].en;
+}
 
 // Resets to "en" at the start of every renderCard() (a new output
 // always starts in English); otherwise only changed by the student
@@ -1629,7 +1646,8 @@ const SUPPORTED_LANGUAGES = [
 let currentLanguage = "en";
 
 // The beats a card shows, in its category's order, each with its box
-// label (labels never translate), reaction and lines ({ en, ko, ... }).
+// label (English `label` plus optional `labels` per language), reaction
+// and lines ({ en, ko, zh }).
 // The first beat uses the .bubble-section-fact styling, later ones
 // .bubble-section-mission. A category beat marked `missionFallback` that
 // the card doesn't have (a fact with no share prompt of its own) is
@@ -1647,12 +1665,18 @@ function getCardBeats(card, mission) {
       return {
         role: definition.role,
         label: definition.label,
+        labels: definition.labels || {},
         modifier: i === 0 ? "fact" : "mission",
         react: (beat && beat.react) || definition.react || null,
         beatLines,
       };
     })
     .filter(Boolean);
+}
+
+// A beat's box label in one language (English when there's no translation).
+function beatLabel(section, lang) {
+  return (section.labels && section.labels[lang]) || section.label;
 }
 
 // The text to show for some beat lines in one language. Any line missing
@@ -1665,9 +1689,19 @@ function localizeLines(beatLines, lang) {
 // Reflects which language is currently active on the toggle buttons
 // themselves (bold/filled pill -- see .lang-active in style.css).
 function updateLanguageToggleUI() {
-  languageToggleEl.querySelectorAll(".lang-btn").forEach((btn) => {
-    btn.classList.toggle("lang-active", btn.dataset.lang === currentLanguage);
-  });
+  const btn = languageToggleEl.querySelector(".lang-btn");
+  if (!btn) return;
+  const current = languageInfo(currentLanguage);
+  const next = nextLanguage();
+  btn.textContent = `${current.short} · ${current.label}`;
+  btn.dataset.lang = current.code;
+  btn.setAttribute("aria-label", `Language: ${current.label}. Tap for ${languageInfo(next).label}.`);
+}
+
+// The language after the current one: EN -> KO -> ZH -> EN.
+function nextLanguage() {
+  const i = SUPPORTED_LANGUAGES.findIndex((lang) => lang.code === currentLanguage);
+  return SUPPORTED_LANGUAGES[(i + 1) % SUPPORTED_LANGUAGES.length].code;
 }
 
 // The toggle is inert (dimmed, not clickable) while a section is
@@ -1679,28 +1713,18 @@ function updateLanguageToggleEnabled() {
   languageToggleEl.classList.toggle("language-toggle-disabled", disabled);
 }
 
-// Built once at startup from SUPPORTED_LANGUAGES; the buttons
-// themselves never need rebuilding per-card, only their active state
-// does (see renderCard()/updateLanguageToggleUI()).
+// One button, built once at startup: it shows the current language and
+// each tap moves to the next one (EN -> KO -> ZH -> EN). Only its text
+// changes per card (see renderCard()/updateLanguageToggleUI()).
 function buildLanguageToggle() {
-  SUPPORTED_LANGUAGES.forEach((lang, i) => {
-    if (i > 0) {
-      const sep = document.createElement("span");
-      sep.className = "lang-sep";
-      sep.textContent = "|";
-      languageToggleEl.appendChild(sep);
-    }
-    const btn = document.createElement("button");
-    btn.type = "button";
-    btn.className = "lang-btn";
-    btn.dataset.lang = lang.code;
-    btn.textContent = lang.flag ? `${lang.flag} ${lang.label}` : lang.label;
-    btn.addEventListener("click", (event) => {
-      event.stopPropagation(); // the toggle sits outside #bubble, but this keeps it inert to any future ancestor handlers too
-      setLanguage(lang.code);
-    });
-    languageToggleEl.appendChild(btn);
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "lang-btn lang-active";
+  btn.addEventListener("click", (event) => {
+    event.stopPropagation(); // the toggle sits outside #bubble, but this keeps it inert to any future ancestor handlers too
+    setLanguage(nextLanguage());
   });
+  languageToggleEl.appendChild(btn);
   updateLanguageToggleUI();
   updateLanguageToggleEnabled();
 }
@@ -1716,15 +1740,22 @@ function setLanguage(lang) {
 
   currentLanguage = lang;
 
+  const htmlLang = languageInfo(lang).htmlLang;
   const sectionEls = bubbleEl.querySelectorAll(".bubble-section:not(.bubble-reveal-hint)");
   sectionEls.forEach((sectionEl, i) => {
-    const localizedLines = localizeLines(bubbleSequence.sections[i].beatLines, lang);
-    bubbleSequence.sections[i].lines = localizedLines; // keep in sync so a later advance/tap types the right language too
+    const section = bubbleSequence.sections[i];
+    const localizedLines = localizeLines(section.beatLines, lang);
+    section.lines = localizedLines; // keep in sync so a later advance/tap types the right language too
+    const labelEl = sectionEl.querySelector(".bubble-label");
+    if (labelEl) labelEl.textContent = beatLabel(section, lang);
     const lineEls = sectionEl.querySelectorAll(".beat");
     lineEls.forEach((el, j) => {
       el.textContent = localizedLines[j] || "";
+      el.lang = htmlLang;
     });
   });
+  const hintLabel = bubbleEl.querySelector(".bubble-reveal-hint .bubble-label");
+  if (hintLabel) hintLabel.textContent = uiText("tapToReveal", lang);
 
   updateLanguageToggleUI();
 }

@@ -2,8 +2,11 @@
 // PUPU MVP -- content check for cards.json + categories.json.
 // Run from pwa-mvp/:   node tools/validate-content.js
 // Exits with code 1 (and lists every problem) if anything is wrong:
-//   - every line in every beat has non-empty English AND Korean
-//     (so the two can't drift: a line edited in one must be in both)
+//   - every line in every beat has non-empty English, Korean AND Chinese
+//     (LANGUAGES below; so they can't drift: a line edited in one must
+//     be in all of them)
+//   - every category has a name and every box label a translation in
+//     each language except English (CATEGORY_LANGUAGES)
 //   - each card's beats follow its category's beat roles, in order
 //   - every reaction (card beat `react`, category beat `react`,
 //     emotionReactions) names a motion that exists in motion.js
@@ -45,6 +48,9 @@ const { categories, emotionReactions = {} } = JSON.parse(read("categories.json")
 const cards = JSON.parse(read("cards.json"));
 
 const ROLES = ["setup", "reveal", "prompt"];
+const LANGUAGES = ["en", "ko", "zh"]; // every card line, all of these
+const LANGUAGE_NAMES = { en: "English", ko: "Korean", zh: "Chinese" };
+const CATEGORY_LANGUAGES = ["zh"]; // category names / box labels besides English
 const checkReaction = (where, name) => {
   if (name !== undefined && !motions.has(name)) fail(where, `reaction "${name}" is not a motion in motion.js`);
 };
@@ -58,6 +64,11 @@ categories.forEach((category, index) => {
   categoryById[category.id] = category;
 
   if (!["auto", "tap"].includes(category.reveal)) fail(where, `reveal must be "auto" or "tap"`);
+  ["en", ...CATEGORY_LANGUAGES].forEach((lang) => {
+    if (!category.name || typeof category.name[lang] !== "string" || !category.name[lang].trim()) {
+      fail(where, `missing ${LANGUAGE_NAMES[lang]} name (name.${lang})`);
+    }
+  });
   if (category.weightGroup === undefined && !(category.weight >= 0)) fail(where, "needs a weight (>= 0) or a weightGroup");
   if (!Array.isArray(category.beats) || category.beats.length === 0) return fail(where, "needs at least one beat");
   if (category.beats[0].role !== "setup") fail(where, "first beat must be the setup");
@@ -69,6 +80,11 @@ categories.forEach((category, index) => {
     if (roles.has(beat.role)) fail(beatWhere, `role "${beat.role}" used twice`);
     roles.add(beat.role);
     if (!beat.label) fail(beatWhere, "missing label");
+    CATEGORY_LANGUAGES.forEach((lang) => {
+      if (!beat.labels || typeof beat.labels[lang] !== "string" || !beat.labels[lang].trim()) {
+        fail(beatWhere, `missing ${LANGUAGE_NAMES[lang]} label (labels.${lang})`);
+      }
+    });
     checkReaction(beatWhere, beat.react);
   });
   (category.favouredReactions || []).forEach((id) => {
@@ -109,8 +125,9 @@ cards.forEach((card, index) => {
     if (!Array.isArray(beat.lines) || beat.lines.length === 0) return fail(beatWhere, "has no lines");
     beat.lines.forEach((line, j) => {
       lineCount++;
-      if (typeof line.en !== "string" || !line.en.trim()) fail(`${beatWhere} line ${j}`, "missing English");
-      if (typeof line.ko !== "string" || !line.ko.trim()) fail(`${beatWhere} line ${j}`, "missing Korean");
+      LANGUAGES.forEach((lang) => {
+        if (typeof line[lang] !== "string" || !line[lang].trim()) fail(`${beatWhere} line ${j}`, `missing ${LANGUAGE_NAMES[lang]}`);
+      });
     });
   });
   ["english", "type", "sharePrompt"].forEach((oldField) => {
@@ -119,7 +136,7 @@ cards.forEach((card, index) => {
 });
 
 // ---- report ----
-console.log(`Cards: ${cards.length} (${lineCount} lines, each needs English + Korean)`);
+console.log(`Cards: ${cards.length} (${lineCount} lines, each needs ${LANGUAGES.map((l) => LANGUAGE_NAMES[l]).join(" + ")})`);
 categories.forEach((category) => {
   console.log(`  ${category.id.padEnd(18)} ${String(cardsPerCategory[category.id] || 0).padStart(3)} cards`);
 });
