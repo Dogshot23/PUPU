@@ -152,7 +152,7 @@ const VectorPupu = (() => {
       impulse: { hop: -1100, squash: 3.5 },
       pose: { ms: 650, pop: 1.12, armL: -0.9, armR: 0.9, face: { lid: -0.3, pupil: 0.4, mouth: "oh", bang: 1 } },
     },
-    "proud-puff": { pose: { ms: 1100, chest: 1, pop: 1.07, hop: -6, armL: 0.35, armR: -0.35, face: { lid: 0.3, happy: 0.4, mouth: "closedSmile" } } },
+    "proud-puff": { pose: { ms: 1100, chest: 1, pop: 1.07, hop: -6, armL: 0.35, armR: -0.35, face: { lid: 0.42, happy: 0, mouth: "closedSmile" } } },
     wink: { impulse: { hop: -250 }, pose: { ms: 700, tilt: -0.16, face: { wink: true, mouth: "tongue" } } },
   };
 
