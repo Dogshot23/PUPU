@@ -32,7 +32,7 @@
     },
     {
       "id": "riddle",
-      "weight": 15,
+      "weight": 10,
       "reveal": "tap",
       "favouredReactions": ["lookAround", "spin"],
       "beats": [
@@ -62,7 +62,7 @@
     },
     {
       "id": "wyr",
-      "weight": 30,
+      "weight": 22,
       "reveal": "auto",
       "beats": [
         { "role": "setup", "label": "🤔 WOULD YOU RATHER?" },
@@ -133,6 +133,25 @@
         { "role": "setup", "label": "😤 PUPU IS SURE…", "react": "proud-puff" },
         { "role": "reveal", "label": "🙈 ACTUALLY…", "react": "shock-pop" },
         { "role": "prompt", "label": "🗣️ WHAT'S RIGHT?", "react": "wink" }
+      ]
+    },
+    {
+      "id": "gross",
+      "weight": 12,
+      "reveal": "tap",
+      "beats": [
+        { "role": "setup", "label": "🤢 GROSS ALERT", "react": "lean-in" },
+        { "role": "reveal", "label": "😷 THE GROSS PART", "react": "burp" },
+        { "role": "prompt", "label": "🗣️ YOUR TURN", "react": "wink" }
+      ]
+    },
+    {
+      "id": "pupu-logic",
+      "weight": 10,
+      "reveal": "auto",
+      "beats": [
+        { "role": "setup", "label": "🧠 PUPU LOGIC", "react": "glitch" },
+        { "role": "prompt", "label": "🤔 WHAT DO YOU THINK?", "react": "wink" }
       ]
     }
   ]

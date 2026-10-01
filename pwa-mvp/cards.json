@@ -14,20 +14,6 @@
     ]
   },
   {
-    "sourceId": "STORY-0002",
-    "category": "story",
-    "engine": "Story",
-    "lifecycleState": "Generated",
-    "beats": [
-      { "role": "setup", "lines": [
-        { "en": "Your dog runs off with your shoe in its mouth. What do you do?", "ko": "강아지가 신발을 입에 물고 도망가요. 어떻게 할 거예요?" }
-      ] },
-      { "role": "prompt", "lines": [
-        { "en": "What would you do?", "ko": "어떻게 할 거예요?" }
-      ] }
-    ]
-  },
-  {
     "sourceId": "STORY-0003",
     "category": "story",
     "engine": "Story",
@@ -66,20 +52,6 @@
       ] },
       { "role": "prompt", "lines": [
         { "en": "Why do you think that?", "ko": "왜 그렇게 생각해요?" }
-      ] }
-    ]
-  },
-  {
-    "sourceId": "STORY-0006",
-    "category": "story",
-    "engine": "Story",
-    "lifecycleState": "Generated",
-    "beats": [
-      { "role": "setup", "lines": [
-        { "en": "You open your school bag. There is a tiny green monster inside. Do you run away, feed it, or take it to class?", "ko": "책가방을 열었더니 안에 작은 초록색 괴물이 있어요. 도망갈까요, 먹이를 줄까요, 아니면 교실로 데려갈까요?" }
-      ] },
-      { "role": "prompt", "lines": [
-        { "en": "Why? Then describe what the monster looks like.", "ko": "왜요? 그리고 그 괴물이 어떻게 생겼는지 설명해 주세요." }
       ] }
     ]
   },
@@ -126,20 +98,6 @@
     ]
   },
   {
-    "sourceId": "STORY-0010",
-    "category": "story",
-    "engine": "Story",
-    "lifecycleState": "Generated",
-    "beats": [
-      { "role": "setup", "lines": [
-        { "en": "If you could understand one kind of animal, would you choose your pet, a wild animal, or an insect?", "ko": "한 가지 동물의 말을 알아들을 수 있다면, 반려동물과 야생동물과 곤충 중에 어떤 걸 고를래요?" }
-      ] },
-      { "role": "prompt", "lines": [
-        { "en": "Which one would you choose? Why?", "ko": "어떤 걸 고를래요? 왜요?" }
-      ] }
-    ]
-  },
-  {
     "sourceId": "STORY-0011",
     "category": "story",
     "engine": "Story",
@@ -150,20 +108,6 @@
       ] },
       { "role": "prompt", "lines": [
         { "en": "Why? What would you do together?", "ko": "왜요? 함께 뭘 하고 싶어요?" }
-      ] }
-    ]
-  },
-  {
-    "sourceId": "STORY-0012",
-    "category": "story",
-    "engine": "Story",
-    "lifecycleState": "Generated",
-    "beats": [
-      { "role": "setup", "lines": [
-        { "en": "You find an old box under your bed that you forgot about. What do you hope is inside?", "ko": "침대 밑에서 잊고 있었던 낡은 상자를 발견했어요. 안에 뭐가 들어 있으면 좋겠어요?" }
-      ] },
-      { "role": "prompt", "lines": [
-        { "en": "Why do you hope that?", "ko": "왜 그게 들어 있으면 좋겠어요?" }
       ] }
     ]
   },
@@ -210,20 +154,6 @@
     ]
   },
   {
-    "sourceId": "QUESTION-0001",
-    "category": "question",
-    "engine": "Question",
-    "lifecycleState": "Generated",
-    "beats": [
-      { "role": "setup", "lines": [
-        { "en": "If I could turn into any animal for one day, which animal should I pick?", "ko": "동물이 하루 동안 말을 할 수 있다면, 어떤 동물을 고르고 싶어요?" }
-      ] },
-      { "role": "prompt", "lines": [
-        { "en": "Which one would you pick? Why?", "ko": "왜요?" }
-      ] }
-    ]
-  },
-  {
     "sourceId": "QUESTION-0002",
     "category": "question",
     "engine": "Question",
@@ -234,20 +164,6 @@
       ] },
       { "role": "prompt", "lines": [
         { "en": "What would you do with your one hour?", "ko": "왜요?" }
-      ] }
-    ]
-  },
-  {
-    "sourceId": "QUESTION-0003",
-    "category": "question",
-    "engine": "Question",
-    "lifecycleState": "Generated",
-    "beats": [
-      { "role": "setup", "lines": [
-        { "en": "If I could only eat one food for a whole year, what should it be?", "ko": "1년 동안 딱 한 가지 음식만 먹어야 한다면, 무엇을 먹고 싶어요?" }
-      ] },
-      { "role": "prompt", "lines": [
-        { "en": "Why did you choose it?", "ko": "왜요?" }
       ] }
     ]
   },
@@ -280,48 +196,6 @@
     ]
   },
   {
-    "sourceId": "WYR-0001",
-    "category": "wyr",
-    "engine": "WouldYouRather",
-    "lifecycleState": "Generated",
-    "beats": [
-      { "role": "setup", "lines": [
-        { "en": "Would you rather have a pet dinosaur, or have a pet shark?", "ko": "여러분은 반려동물로 공룡을 키우는 것과 상어를 키우는 것 중에 뭐가 더 좋을 것 같아요?" }
-      ] },
-      { "role": "prompt", "lines": [
-        { "en": "Which one would you choose, and why?", "ko": "어떤 걸 고를래요? 그리고 왜요?" }
-      ] }
-    ]
-  },
-  {
-    "sourceId": "WYR-0002",
-    "category": "wyr",
-    "engine": "WouldYouRather",
-    "lifecycleState": "Generated",
-    "beats": [
-      { "role": "setup", "lines": [
-        { "en": "Would you rather never eat pizza again, or never eat chocolate again?", "ko": "여러분은 평생 피자를 못 먹는 것과 평생 초콜릿을 못 먹는 것 중에 뭐가 나을 것 같아요?" }
-      ] },
-      { "role": "prompt", "lines": [
-        { "en": "Which one would you choose? Why?", "ko": "어떤 걸 고를래요? 왜요?" }
-      ] }
-    ]
-  },
-  {
-    "sourceId": "WYR-0003",
-    "category": "wyr",
-    "engine": "WouldYouRather",
-    "lifecycleState": "Generated",
-    "beats": [
-      { "role": "setup", "lines": [
-        { "en": "Would you rather be able to fly, or be able to become invisible?", "ko": "여러분은 하늘을 나는 것과 투명인간이 되는 것 중에 뭐가 더 좋을 것 같아요?" }
-      ] },
-      { "role": "prompt", "lines": [
-        { "en": "Which one would you choose? Why?", "ko": "어떤 걸 고를래요? 왜요?" }
-      ] }
-    ]
-  },
-  {
     "sourceId": "WYR-0004",
     "category": "wyr",
     "engine": "WouldYouRather",
@@ -329,20 +203,6 @@
     "beats": [
       { "role": "setup", "lines": [
         { "en": "Would you rather eat a spider, or eat a worm?", "ko": "여러분은 거미를 먹는 것과 지렁이를 먹는 것 중에 뭐가 나을 것 같아요?" }
-      ] },
-      { "role": "prompt", "lines": [
-        { "en": "Which one would you choose? Why?", "ko": "어떤 걸 고를래요? 왜요?" }
-      ] }
-    ]
-  },
-  {
-    "sourceId": "WYR-0005",
-    "category": "wyr",
-    "engine": "WouldYouRather",
-    "lifecycleState": "Generated",
-    "beats": [
-      { "role": "setup", "lines": [
-        { "en": "Would you rather have a lot of money, or have a lot of free time?", "ko": "여러분은 돈이 아주 많은 것과 자유 시간이 아주 많은 것 중에 뭐가 더 좋을 것 같아요?" }
       ] },
       { "role": "prompt", "lines": [
         { "en": "Which one would you choose? Why?", "ko": "어떤 걸 고를래요? 왜요?" }
@@ -378,118 +238,6 @@
     ]
   },
   {
-    "sourceId": "WYR-0008",
-    "category": "wyr",
-    "engine": "WouldYouRather",
-    "lifecycleState": "Generated",
-    "beats": [
-      { "role": "setup", "lines": [
-        { "en": "Would you rather be the youngest in your family, or be the oldest in your family?", "ko": "여러분은 가족 중에서 제일 어린 것과 제일 나이 많은 것 중에 뭐가 더 좋을 것 같아요?" }
-      ] },
-      { "role": "prompt", "lines": [
-        { "en": "Which one would you choose? Why?", "ko": "어떤 걸 고를래요? 왜요?" }
-      ] }
-    ]
-  },
-  {
-    "sourceId": "WYR-0009",
-    "category": "wyr",
-    "engine": "WouldYouRather",
-    "lifecycleState": "Generated",
-    "beats": [
-      { "role": "setup", "lines": [
-        { "en": "Would you rather never use a phone again, or never eat ice cream again?", "ko": "여러분은 평생 휴대폰을 못 쓰는 것과 평생 아이스크림을 못 먹는 것 중에 뭐가 덜 힘들 것 같아요?" }
-      ] },
-      { "role": "prompt", "lines": [
-        { "en": "Why is your choice easier to give up?", "ko": "왜 그게 더 포기하기 쉬울까요?" }
-      ] }
-    ]
-  },
-  {
-    "sourceId": "WYR-0010",
-    "category": "wyr",
-    "engine": "WouldYouRather",
-    "lifecycleState": "Generated",
-    "beats": [
-      { "role": "setup", "lines": [
-        { "en": "Would you rather always be five minutes late, or always be twenty minutes early?", "ko": "여러분은 항상 오 분 늦는 것과 항상 이십 분 일찍 도착하는 것 중에 뭐가 더 좋을 것 같아요?" }
-      ] },
-      { "role": "prompt", "lines": [
-        { "en": "Which one would you choose? Why?", "ko": "어떤 걸 고를래요? 왜요?" }
-      ] }
-    ]
-  },
-  {
-    "sourceId": "WYR-0011",
-    "category": "wyr",
-    "engine": "WouldYouRather",
-    "lifecycleState": "Generated",
-    "beats": [
-      { "role": "setup", "lines": [
-        { "en": "Would you rather have a tail, or have wings?", "ko": "여러분은 꼬리가 있는 것과 날개가 있는 것 중에 뭐가 더 좋을 것 같아요?" }
-      ] },
-      { "role": "prompt", "lines": [
-        { "en": "What would you do with it every single day?", "ko": "그게 있으면 매일 뭘 하고 싶어요?" }
-      ] }
-    ]
-  },
-  {
-    "sourceId": "WYR-0012",
-    "category": "wyr",
-    "engine": "WouldYouRather",
-    "lifecycleState": "Generated",
-    "beats": [
-      { "role": "setup", "lines": [
-        { "en": "Would you rather be really good at football, or really good at drawing?", "ko": "여러분은 축구를 아주 잘하는 것과 그림을 아주 잘 그리는 것 중에 뭐가 더 좋을 것 같아요?" }
-      ] },
-      { "role": "prompt", "lines": [
-        { "en": "Which one would you choose? Why?", "ko": "어떤 걸 고를래요? 왜요?" }
-      ] }
-    ]
-  },
-  {
-    "sourceId": "WYR-0013",
-    "category": "wyr",
-    "engine": "WouldYouRather",
-    "lifecycleState": "Generated",
-    "beats": [
-      { "role": "setup", "lines": [
-        { "en": "Would you rather be the smartest kid in school, or be the funniest kid in school?", "ko": "여러분은 학교에서 제일 똑똑한 아이가 되는 것과 제일 웃긴 아이가 되는 것 중에 뭐가 더 좋을 것 같아요?" }
-      ] },
-      { "role": "prompt", "lines": [
-        { "en": "Which one would you choose? Why?", "ko": "어떤 걸 고를래요? 왜요?" }
-      ] }
-    ]
-  },
-  {
-    "sourceId": "WYR-0014",
-    "category": "wyr",
-    "engine": "WouldYouRather",
-    "lifecycleState": "Generated",
-    "beats": [
-      { "role": "setup", "lines": [
-        { "en": "Would you rather fight one giant monster, or fight one hundred tiny monsters?", "ko": "여러분은 거대한 괴물 한 마리와 싸우는 것과 아주 작은 괴물 백 마리와 싸우는 것 중에 뭐가 나을 것 같아요?" }
-      ] },
-      { "role": "prompt", "lines": [
-        { "en": "Which would be scarier? Why?", "ko": "어느 쪽이 더 무서울까요? 왜요?" }
-      ] }
-    ]
-  },
-  {
-    "sourceId": "WYR-0015",
-    "category": "wyr",
-    "engine": "WouldYouRather",
-    "lifecycleState": "Generated",
-    "beats": [
-      { "role": "setup", "lines": [
-        { "en": "Would you rather have a robot best friend, or have an alien best friend?", "ko": "여러분은 가장 친한 친구가 로봇인 것과 외계인인 것 중에 뭐가 더 좋을 것 같아요?" }
-      ] },
-      { "role": "prompt", "lines": [
-        { "en": "Give your friend a name. What would you do together?", "ko": "친구에게 이름을 지어 주세요. 함께 뭘 하고 싶어요?" }
-      ] }
-    ]
-  },
-  {
     "sourceId": "WYR-0016",
     "category": "wyr",
     "engine": "WouldYouRather",
@@ -500,20 +248,6 @@
       ] },
       { "role": "prompt", "lines": [
         { "en": "Why? Then try saying one sentence that way.", "ko": "왜요? 그리고 그 방식대로 한 문장을 직접 말해 보세요." }
-      ] }
-    ]
-  },
-  {
-    "sourceId": "WYR-0017",
-    "category": "wyr",
-    "engine": "WouldYouRather",
-    "lifecycleState": "Generated",
-    "beats": [
-      { "role": "setup", "lines": [
-        { "en": "Would you rather always get to choose the film, or always get to choose the restaurant?", "ko": "여러분은 항상 영화를 고를 수 있는 것과 항상 식당을 고를 수 있는 것 중에 뭐가 더 좋을 것 같아요?" }
-      ] },
-      { "role": "prompt", "lines": [
-        { "en": "Which one would you choose? Why?", "ko": "어떤 걸 고를래요? 왜요?" }
       ] }
     ]
   },
@@ -532,34 +266,6 @@
     ]
   },
   {
-    "sourceId": "WYR-0019",
-    "category": "wyr",
-    "engine": "WouldYouRather",
-    "lifecycleState": "Generated",
-    "beats": [
-      { "role": "setup", "lines": [
-        { "en": "Would you rather have bright green hair, or have bright purple skin?", "ko": "여러분은 밝은 초록색 머리카락과 밝은 보라색 피부 중에 뭐가 더 좋을 것 같아요?" }
-      ] },
-      { "role": "prompt", "lines": [
-        { "en": "Which one would you choose? Why?", "ko": "어떤 걸 고를래요? 왜요?" }
-      ] }
-    ]
-  },
-  {
-    "sourceId": "WYR-0020",
-    "category": "wyr",
-    "engine": "WouldYouRather",
-    "lifecycleState": "Generated",
-    "beats": [
-      { "role": "setup", "lines": [
-        { "en": "Would you rather live in a big city, or live in the countryside?", "ko": "여러분은 큰 도시에서 사는 것과 시골에서 사는 것 중에 뭐가 더 좋을 것 같아요?" }
-      ] },
-      { "role": "prompt", "lines": [
-        { "en": "Which one would you choose? Why?", "ko": "어떤 걸 고를래요? 왜요?" }
-      ] }
-    ]
-  },
-  {
     "sourceId": "CHALLENGE-0001",
     "category": "challenge",
     "engine": "Challenge",
@@ -570,20 +276,6 @@
       ] },
       { "role": "prompt", "lines": [
         { "en": "Go! Make it as clear as you can.", "ko": "지금 해 보세요! 최대한 자세하게 설명해 보세요." }
-      ] }
-    ]
-  },
-  {
-    "sourceId": "CHALLENGE-0002",
-    "category": "challenge",
-    "engine": "Challenge",
-    "lifecycleState": "Generated",
-    "beats": [
-      { "role": "setup", "lines": [
-        { "en": "Should I wear a hat every day, or wear sunglasses every day?", "ko": "저는 매일 모자를 쓰는 게 나을까요, 아니면 매일 선글라스를 쓰는 게 나을까요?" }
-      ] },
-      { "role": "prompt", "lines": [
-        { "en": "Which one is better for me? Why?", "ko": "어느 쪽이 저한테 더 나을까요? 왜요?" }
       ] }
     ]
   },
@@ -644,20 +336,6 @@
     ]
   },
   {
-    "sourceId": "MYSTERY-0002",
-    "category": "mystery",
-    "engine": "Mystery",
-    "lifecycleState": "Generated",
-    "beats": [
-      { "role": "setup", "lines": [
-        { "en": "There is a strange stain on my shirt. Was it juice, paint, or mud?", "ko": "제 셔츠에 이상한 얼룩이 묻어 있어요. 주스였을까요, 물감이었을까요, 아니면 흙이었을까요?" }
-      ] },
-      { "role": "prompt", "lines": [
-        { "en": "What is your best guess, and why?", "ko": "가장 그럴듯한 추측은 뭐예요? 그리고 왜요?" }
-      ] }
-    ]
-  },
-  {
     "sourceId": "MYSTERY-0003",
     "category": "mystery",
     "engine": "Mystery",
@@ -679,20 +357,6 @@
     "beats": [
       { "role": "setup", "lines": [
         { "en": "Your pencil case is empty. Was it a pencil thief, did you leave it at school, or did I eat it?", "ko": "필통이 텅 비어 있어요. 연필 도둑이 있었을까요, 학교에 두고 왔을까요, 아니면 제가 먹었을까요?" }
-      ] },
-      { "role": "prompt", "lines": [
-        { "en": "What is your idea, and why?", "ko": "여러분의 생각은 뭐예요? 그리고 왜요?" }
-      ] }
-    ]
-  },
-  {
-    "sourceId": "MYSTERY-0005",
-    "category": "mystery",
-    "engine": "Mystery",
-    "lifecycleState": "Generated",
-    "beats": [
-      { "role": "setup", "lines": [
-        { "en": "There is a strange noise coming from the closet. Is it a monster, me, or your little sister hiding?", "ko": "옷장에서 이상한 소리가 나요. 괴물일까요, 저일까요, 아니면 여동생이 숨어 있는 걸까요?" }
       ] },
       { "role": "prompt", "lines": [
         { "en": "What is your idea, and why?", "ko": "여러분의 생각은 뭐예요? 그리고 왜요?" }
@@ -1050,48 +714,6 @@
     ]
   },
   {
-    "sourceId": "RIDDLE-0001",
-    "category": "riddle",
-    "engine": "Riddle",
-    "lifecycleState": "Generated",
-    "beats": [
-      { "role": "setup", "lines": [
-        { "en": "I am yellow. Monkeys like me. What am I?", "ko": "손이 있지만 박수를 못 치는 건 뭘까요?" }
-      ] },
-      { "role": "reveal", "lines": [
-        { "en": "A banana! I only eat the peel, by the way. What's your favourite fruit? Why do you like it?", "ko": "시계예요." }
-      ] }
-    ]
-  },
-  {
-    "sourceId": "RIDDLE-0002",
-    "category": "riddle",
-    "engine": "Riddle",
-    "lifecycleState": "Generated",
-    "beats": [
-      { "role": "setup", "lines": [
-        { "en": "I have four legs. I sleep all day. I steal food when nobody is looking. What am I?", "ko": "나는 다리가 네 개예요. 하루 종일 잠을 자요. 아무도 안 볼 때 음식을 훔쳐요. 나는 무엇일까요?" }
-      ] },
-      { "role": "reveal", "lines": [
-        { "en": "A dog. Do you have a pet, or want one? What is it like?", "ko": "바로 강아지예요. 반려동물이 있어요, 아니면 갖고 싶은 동물이 있어요? 어떤 동물이에요?" }
-      ] }
-    ]
-  },
-  {
-    "sourceId": "RIDDLE-0003",
-    "category": "riddle",
-    "engine": "Riddle",
-    "lifecycleState": "Generated",
-    "beats": [
-      { "role": "setup", "lines": [
-        { "en": "I am cold and white. I fall from the sky in winter. What am I?", "ko": "키(열쇠)는 있지만 자물쇠는 없고, 스페이스(공간)는 있지만 방은 없는 건 뭘까요?" }
-      ] },
-      { "role": "reveal", "lines": [
-        { "en": "Snow. What would you build if it snowed right now?", "ko": "키보드예요." }
-      ] }
-    ]
-  },
-  {
     "sourceId": "RIDDLE-0004",
     "category": "riddle",
     "engine": "Riddle",
@@ -1116,34 +738,6 @@
       ] },
       { "role": "reveal", "lines": [
         { "en": "Popcorn! I always eat way too much of it at the movies. What is your favourite movie snack?", "ko": "바로 팝콘이에요! 나는 영화 볼 때 팝콘을 항상 너무 많이 먹어요. 여러분이 제일 좋아하는 영화관 간식은 뭐예요?" }
-      ] }
-    ]
-  },
-  {
-    "sourceId": "RIDDLE-0006",
-    "category": "riddle",
-    "engine": "Riddle",
-    "lifecycleState": "Generated",
-    "beats": [
-      { "role": "setup", "lines": [
-        { "en": "I have wings. I visit flowers all day. I make honey. What am I?", "ko": "나는 날개가 있어요. 하루 종일 꽃을 찾아다녀요. 꿀을 만들어요. 나는 무엇일까요?" }
-      ] },
-      { "role": "reveal", "lines": [
-        { "en": "A bee. Would you rather be a bee or a butterfly, and why?", "ko": "바로 꿀벌이에요. 여러분은 꿀벌과 나비 중 어느 쪽이 되고 싶어요? 왜요?" }
-      ] }
-    ]
-  },
-  {
-    "sourceId": "RIDDLE-0007",
-    "category": "riddle",
-    "engine": "Riddle",
-    "lifecycleState": "Generated",
-    "beats": [
-      { "role": "setup", "lines": [
-        { "en": "I live in a shell. I am very slow. I carry my house on my back. What am I?", "ko": "나는 껍데기 안에서 살아요. 아주 느려요. 등에 집을 지고 다녀요. 나는 무엇일까요?" }
-      ] },
-      { "role": "reveal", "lines": [
-        { "en": "A snail. What would you carry on your back if you had to?", "ko": "바로 달팽이예요. 만약 등에 뭔가를 지고 다녀야 한다면 뭘 지고 다니고 싶어요?" }
       ] }
     ]
   },
@@ -1204,132 +798,6 @@
     ]
   },
   {
-    "sourceId": "RIDDLE-0012",
-    "category": "riddle",
-    "engine": "Riddle",
-    "lifecycleState": "Generated",
-    "beats": [
-      { "role": "setup", "lines": [
-        { "en": "I fly at night. I sleep upside down. I am not a bird. What am I?", "ko": "나는 밤에 날아다녀요. 거꾸로 매달려 자요. 새는 아니에요. 나는 무엇일까요?" }
-      ] },
-      { "role": "reveal", "lines": [
-        { "en": "A bat. Would you rather fly at night or sleep upside down? Why?", "ko": "바로 박쥐예요. 여러분은 밤에 나는 것과 거꾸로 매달려 자는 것 중에 뭐가 더 좋아요? 왜요?" }
-      ] }
-    ]
-  },
-  {
-    "sourceId": "RIDDLE-0013",
-    "category": "riddle",
-    "engine": "Riddle",
-    "lifecycleState": "Generated",
-    "beats": [
-      { "role": "setup", "lines": [
-        { "en": "I am red. I am round. I grow on trees. What am I?", "ko": "나는 빨간색이에요. 둥글어요. 나무에서 자라요. 나는 무엇일까요?" }
-      ] },
-      { "role": "reveal", "lines": [
-        { "en": "An apple! I say it's boring, but I eat one every day anyway. Which fruit do YOU secretly find boring?", "ko": "바로 사과예요! 저는 사과가 지루하다고 하면서도 매일 하나씩 먹어요. 여러분은 사실 어떤 과일이 지루하다고 생각해요?" }
-      ] }
-    ]
-  },
-  {
-    "sourceId": "RIDDLE-0014",
-    "category": "riddle",
-    "engine": "Riddle",
-    "lifecycleState": "Generated",
-    "beats": [
-      { "role": "setup", "lines": [
-        { "en": "I am cold. I am sweet. I melt in the sun. Everybody wants a scoop of me. What am I?", "ko": "나는 차가워요. 달콤해요. 햇볕에 녹아요. 다들 나를 한 스쿱씩 먹고 싶어 해요. 나는 무엇일까요?" }
-      ] },
-      { "role": "reveal", "lines": [
-        { "en": "Ice cream! What flavour do you think I would pick? What is your own favourite?", "ko": "바로 아이스크림이에요! 제가 어떤 맛을 고를 것 같아요? 여러분이 제일 좋아하는 맛은 뭐예요?" }
-      ] }
-    ]
-  },
-  {
-    "sourceId": "RIDDLE-0015",
-    "category": "riddle",
-    "engine": "Riddle",
-    "lifecycleState": "Generated",
-    "beats": [
-      { "role": "setup", "lines": [
-        { "en": "I am orange. I am long. Rabbits love to eat me. What am I?", "ko": "나는 주황색이에요. 길쭉해요. 토끼가 나를 정말 좋아해요. 나는 무엇일까요?" }
-      ] },
-      { "role": "reveal", "lines": [
-        { "en": "A carrot. What is a food you thought was boring until you tried it differently?", "ko": "바로 당근이에요. 다르게 먹어보기 전까지는 지루하다고 생각했던 음식이 있어요?" }
-      ] }
-    ]
-  },
-  {
-    "sourceId": "RIDDLE-0016",
-    "category": "riddle",
-    "engine": "Riddle",
-    "lifecycleState": "Generated",
-    "beats": [
-      { "role": "setup", "lines": [
-        { "en": "I am small. I have four wheels. What am I?", "ko": "나는 작아요. 바퀴가 네 개 있어요. 나는 무엇일까요?" }
-      ] },
-      { "role": "reveal", "lines": [
-        { "en": "A toy car! I make a loud \"vroom\" noise when I push it. What was your favourite toy when you were little?", "ko": "바로 장난감 자동차예요! 저는 밀 때마다 큰 소리로 '부릉'이라고 해요. 어렸을 때 제일 좋아했던 장난감은 뭐였어요?" }
-      ] }
-    ]
-  },
-  {
-    "sourceId": "RIDDLE-0017",
-    "category": "riddle",
-    "engine": "Riddle",
-    "lifecycleState": "Generated",
-    "beats": [
-      { "role": "setup", "lines": [
-        { "en": "I am big and grey. I have a long nose called a trunk. What am I?", "ko": "나는 크고 회색이에요. 코끼리 코라고 부르는 긴 코가 있어요. 나는 무엇일까요?" }
-      ] },
-      { "role": "reveal", "lines": [
-        { "en": "An elephant! I want a nose like that. Which animal part would you want? Why?", "ko": "바로 코끼리예요! 저도 그런 코를 갖고 싶어요. 여러분은 어떤 동물의 몸 부분을 갖고 싶어요? 왜요?" }
-      ] }
-    ]
-  },
-  {
-    "sourceId": "RIDDLE-0018",
-    "category": "riddle",
-    "engine": "Riddle",
-    "lifecycleState": "Generated",
-    "beats": [
-      { "role": "setup", "lines": [
-        { "en": "I have a long neck. I am yellow with brown spots. What am I?", "ko": "나는 목이 길어요. 노란색에 갈색 무늬가 있어요. 나는 무엇일까요?" }
-      ] },
-      { "role": "reveal", "lines": [
-        { "en": "A giraffe! I wish I had a neck like that. Which animal's body would you NOT want to have? Why not?", "ko": "바로 기린이에요! 저도 그런 목을 갖고 싶어요. 절대 갖고 싶지 않은 동물의 몸이 있어요? 왜요?" }
-      ] }
-    ]
-  },
-  {
-    "sourceId": "RIDDLE-0019",
-    "category": "riddle",
-    "engine": "Riddle",
-    "lifecycleState": "Generated",
-    "beats": [
-      { "role": "setup", "lines": [
-        { "en": "I am white and fluffy. I float in the sky. What am I?", "ko": "나는 하얗고 폭신폭신해요. 하늘에 둥둥 떠 있어요. 나는 무엇일까요?" }
-      ] },
-      { "role": "reveal", "lines": [
-        { "en": "A cloud! I want to take a nap on one. What shape do you see when you look at clouds?", "ko": "바로 구름이에요! 저는 구름 위에서 낮잠을 자고 싶어요. 여러분은 구름을 보면 어떤 모양이 보여요?" }
-      ] }
-    ]
-  },
-  {
-    "sourceId": "RIDDLE-0020",
-    "category": "riddle",
-    "engine": "Riddle",
-    "lifecycleState": "Generated",
-    "beats": [
-      { "role": "setup", "lines": [
-        { "en": "I am small and round. Bees make me. What am I?", "ko": "나는 작고 동그래요. 꿀벌이 나를 만들어요. 나는 무엇일까요?" }
-      ] },
-      { "role": "reveal", "lines": [
-        { "en": "Honey! I always get sticky fingers when I eat it. What is one food you could eat forever without getting bored?", "ko": "바로 꿀이에요! 저는 꿀을 먹을 때마다 손가락이 끈적끈적해져요. 질리지 않고 평생 먹을 수 있는 음식이 있어요?" }
-      ] }
-    ]
-  },
-  {
     "sourceId": "CHALLENGE-0006",
     "category": "challenge",
     "engine": "Challenge",
@@ -1354,20 +822,6 @@
       ] },
       { "role": "prompt", "lines": [
         { "en": "Go! Choose your three words carefully.", "ko": "지금 말해 보세요! 세 단어를 신중하게 골라 보세요." }
-      ] }
-    ]
-  },
-  {
-    "sourceId": "CHALLENGE-0008",
-    "category": "challenge",
-    "engine": "Challenge",
-    "lifecycleState": "Generated",
-    "beats": [
-      { "role": "setup", "lines": [
-        { "en": "There is one food I really do not want to eat today.", "ko": "오늘 내가 정말 먹기 싫은 음식이 하나 있어요." }
-      ] },
-      { "role": "prompt", "lines": [
-        { "en": "Give one clue about it.", "ko": "힌트를 하나만 주세요." }
       ] }
     ]
   },
@@ -2116,24 +1570,6 @@
     ]
   },
   {
-    "sourceId": "SECRET-0002",
-    "category": "absurd-secret",
-    "engine": "Secret",
-    "level": "A1",
-    "lifecycleState": "Generated",
-    "beats": [
-      { "role": "setup", "lines": [
-        { "en": "I've never told anyone this before…", "ko": "이건 아무한테도 말한 적 없는데요…" }
-      ] },
-      { "role": "reveal", "lines": [
-        { "en": "Every night, I sing to the moon. The moon sings back, but very quietly.", "ko": "저는 매일 밤 달한테 노래를 불러요. 달도 따라 불러요. 아주 조용히요." }
-      ] },
-      { "role": "prompt", "lines": [
-        { "en": "What song would you sing to the moon?", "ko": "여러분이라면 달한테 무슨 노래를 불러 줄 거예요?" }
-      ] }
-    ]
-  },
-  {
     "sourceId": "SECRET-0003",
     "category": "absurd-secret",
     "engine": "Secret",
@@ -2166,24 +1602,6 @@
       ] },
       { "role": "prompt", "lines": [
         { "en": "If you visited me, what would you bring?", "ko": "여러분이 저한테 놀러 온다면 뭘 가져올 거예요?" }
-      ] }
-    ]
-  },
-  {
-    "sourceId": "SECRET-0005",
-    "category": "absurd-secret",
-    "engine": "Secret",
-    "level": "A1",
-    "lifecycleState": "Generated",
-    "beats": [
-      { "role": "setup", "lines": [
-        { "en": "Can I tell you something strange?", "ko": "이상한 거 하나 말해 줘도 돼요?" }
-      ] },
-      { "role": "reveal", "lines": [
-        { "en": "I have a pet cloud. Its name is Steve, and it rains when it's sad.", "ko": "저는 구름을 키워요. 이름은 스티브인데, 슬프면 비가 와요." }
-      ] },
-      { "role": "prompt", "lines": [
-        { "en": "If you had a pet cloud, what would you call it? Why?", "ko": "여러분이 구름을 키운다면 이름을 뭐라고 지을 거예요? 왜요?" }
       ] }
     ]
   },
@@ -2296,42 +1714,6 @@
     ]
   },
   {
-    "sourceId": "WRONG-0002",
-    "category": "wrong-claim",
-    "engine": "WrongClaim",
-    "level": "A1",
-    "lifecycleState": "Generated",
-    "beats": [
-      { "role": "setup", "lines": [
-        { "en": "Here's a fact: cows say \"quack,\" and ducks say \"moo.\"", "ko": "사실을 알려 줄게요. 소는 \"꽥꽥\" 하고, 오리는 \"음매\" 해요." }
-      ] },
-      { "role": "reveal", "lines": [
-        { "en": "Hmm… that sounded strange, even to me.", "ko": "음… 제가 말하고도 좀 이상하네요." }
-      ] },
-      { "role": "prompt", "lines": [
-        { "en": "What do cows and ducks really say? Can you make the sounds?", "ko": "소랑 오리는 진짜 뭐라고 울어요? 소리를 흉내 내 볼래요?" }
-      ] }
-    ]
-  },
-  {
-    "sourceId": "WRONG-0003",
-    "category": "wrong-claim",
-    "engine": "WrongClaim",
-    "level": "A1",
-    "lifecycleState": "Generated",
-    "beats": [
-      { "role": "setup", "lines": [
-        { "en": "I'm very clever. The sun comes out at night, and the moon comes out in the morning.", "ko": "저는 아주 똑똑해요. 해는 밤에 뜨고, 달은 아침에 떠요." }
-      ] },
-      { "role": "reveal", "lines": [
-        { "en": "Oh no. Is that why I'm always so sleepy?", "ko": "어머나. 그래서 제가 맨날 졸린 걸까요?" }
-      ] },
-      { "role": "prompt", "lines": [
-        { "en": "Can you fix my fact? When do we see the sun and the moon?", "ko": "제 말을 고쳐 줄래요? 해랑 달은 언제 볼 수 있어요?" }
-      ] }
-    ]
-  },
-  {
     "sourceId": "WRONG-0004",
     "category": "wrong-claim",
     "engine": "WrongClaim",
@@ -2439,6 +1821,852 @@
       ] },
       { "role": "prompt", "lines": [
         { "en": "Guess their answer first. Do you agree with them? Why?", "ko": "먼저 선생님 대답을 맞혀 봐요. 여러분도 같은 생각이에요? 왜요?" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "GROSS-0001",
+    "category": "gross",
+    "engine": "Gross",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "I kept a piece of cheese in my sock for three days. To keep it safe.", "ko": "치즈 한 조각을 양말 속에 사흘 동안 넣어 뒀어요. 안전하게 지키려고요." }
+      ] },
+      { "role": "reveal", "lines": [
+        { "en": "Now it tastes like feet. Is that delicious? I can't decide.", "ko": "이제 발 맛이 나요. 맛있는 걸까요? 잘 모르겠어요." }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "What is the grossest food you have ever tasted?", "ko": "여러분이 먹어 본 음식 중에 제일 역겨운 건 뭐예요?" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "GROSS-0002",
+    "category": "gross",
+    "engine": "Gross",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "My doctor says I am 70% water.", "ko": "의사 선생님이 제 몸의 70%가 물이래요." }
+      ] },
+      { "role": "reveal", "react": "fart", "lines": [
+        { "en": "Wrong! I am 90% soup and 10% farts.", "ko": "틀렸어요! 저는 90%가 수프고 10%가 방귀예요." }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "What do you think YOU are made of? Make a silly recipe!", "ko": "여러분은 뭐로 만들어졌을까요? 엉뚱한 레시피를 만들어 봐요!" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "GROSS-0003",
+    "category": "gross",
+    "engine": "Gross",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "I found something under my bed this morning.", "ko": "오늘 아침에 침대 밑에서 뭔가를 찾았어요." }
+      ] },
+      { "role": "reveal", "lines": [
+        { "en": "A very old sandwich. It was green and fluffy. I think it said hello.", "ko": "아주 오래된 샌드위치요. 초록색이고 털이 보송보송했어요. 저한테 인사한 것 같아요." }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "What is the oldest thing in your fridge right now? Guess!", "ko": "지금 여러분 집 냉장고에서 제일 오래된 건 뭘까요? 맞혀 봐요!" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "GROSS-0004",
+    "category": "gross",
+    "engine": "Gross",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "I have a new hobby. Do you want to hear it?", "ko": "저 새 취미가 생겼어요. 들어 볼래요?" }
+      ] },
+      { "role": "reveal", "lines": [
+        { "en": "I collect belly button fluff. I have a whole jar now.", "ko": "배꼽 먼지를 모아요. 이제 한 병이나 돼요." }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "What is the strangest thing a person could collect?", "ko": "사람이 모을 수 있는 가장 이상한 건 뭘까요?" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "GROSS-0005",
+    "category": "gross",
+    "engine": "Gross",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "I sneezed really hard today.", "ko": "오늘 재채기를 엄청 세게 했어요." }
+      ] },
+      { "role": "reveal", "lines": [
+        { "en": "It flew out of the window and landed on a pigeon. The pigeon is not my friend now.", "ko": "재채기가 창밖으로 날아가서 비둘기한테 떨어졌어요. 그 비둘기는 이제 저랑 친구 안 해요." }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "What is the biggest sneeze you have ever seen? What happened?", "ko": "여러분이 본 가장 큰 재채기는 어땠어요? 무슨 일이 있었어요?" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "GROSS-0006",
+    "category": "gross",
+    "engine": "Gross",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "I didn't brush my teeth for one week. As a test.", "ko": "실험으로 일주일 동안 이를 안 닦았어요." }
+      ] },
+      { "role": "reveal", "lines": [
+        { "en": "Now my breath can open doors. And close them.", "ko": "이제 제 입 냄새로 문을 열 수 있어요. 닫을 수도 있고요." }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "What is the worst smell in your house? Where does it come from?", "ko": "여러분 집에서 제일 고약한 냄새는 뭐예요? 어디서 나요?" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "GROSS-0007",
+    "category": "gross",
+    "engine": "Gross",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "Here's a real fact: your mouth makes about one litre of spit every day.", "ko": "진짜 사실이에요. 사람 입은 하루에 침을 약 1리터나 만들어요." }
+      ] },
+      { "role": "reveal", "lines": [
+        { "en": "One litre! I am saving mine in a bucket.", "ko": "1리터요! 저는 제 침을 양동이에 모으고 있어요." }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "What would you do with a bucket of spit? Please don't say drink it.", "ko": "침 한 양동이로 뭘 할 거예요? 마시겠다는 말은 하지 마세요." }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "GROSS-0008",
+    "category": "gross",
+    "engine": "Gross",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "I tried to burp the whole alphabet.", "ko": "알파벳 전체를 트림으로 말해 보려고 했어요." }
+      ] },
+      { "role": "reveal", "react": "fart", "lines": [
+        { "en": "I got to D. Then something came out that was NOT a burp.", "ko": "D까지 갔어요. 그런데 트림이 아닌 게 나왔어요." }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "Can you say the alphabet really fast? Try it now! Is your teacher faster?", "ko": "알파벳을 엄청 빨리 말할 수 있어요? 지금 해 봐요! 선생님이 더 빠를까요?" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "LOGIC-0001",
+    "category": "pupu-logic",
+    "engine": "Logic",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "If money doesn't grow on trees, why do banks have so many plants? Something is fishy.", "ko": "돈이 나무에서 안 자란다면, 은행에는 왜 화분이 그렇게 많을까요? 뭔가 수상해요." }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "Do you agree? What else is suspicious?", "ko": "동의해요? 또 수상한 건 뭐가 있을까요?" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "LOGIC-0002",
+    "category": "pupu-logic",
+    "engine": "Logic",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "I tried to teach a worm how to play chess today. He was terrible.", "ko": "오늘 지렁이한테 체스를 가르쳐 봤어요. 진짜 못하더라고요." }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "What is the dumbest animal you know? Why?", "ko": "여러분이 아는 동물 중에 제일 멍청한 동물은 뭐예요? 왜요?" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "LOGIC-0003",
+    "category": "pupu-logic",
+    "engine": "Logic",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "If I eat myself, will I get twice as big, or will I disappear?", "ko": "제가 저를 먹으면 두 배로 커질까요, 아니면 사라질까요?" }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "What do you think? Explain it to me slowly.", "ko": "어떻게 생각해요? 천천히 설명해 줘요." }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "LOGIC-0004",
+    "category": "pupu-logic",
+    "engine": "Logic",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "Fish are wet all the time. So are fish ever thirsty? I'm very worried about them.", "ko": "물고기는 항상 젖어 있잖아요. 그럼 물고기도 목이 마를까요? 너무 걱정돼요." }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "What do you think? Do fish drink water?", "ko": "어떻게 생각해요? 물고기도 물을 마실까요?" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "LOGIC-0005",
+    "category": "pupu-logic",
+    "engine": "Logic",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "Nobody has ever seen me sleep. Maybe I never sleep. Maybe YOU are my dream.", "ko": "아무도 제가 자는 걸 본 적이 없어요. 저는 안 자는 걸지도 몰라요. 어쩌면 여러분이 제 꿈일지도요." }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "Can you prove you are real? Give me three reasons.", "ko": "여러분이 진짜라는 걸 증명할 수 있어요? 이유 세 개를 말해 봐요." }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "LOGIC-0006",
+    "category": "pupu-logic",
+    "engine": "Logic",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "Socks always disappear in the washing machine. I think they escape to start a new life.", "ko": "양말은 세탁기에서 항상 사라져요. 제 생각엔 새 인생을 시작하려고 도망치는 것 같아요." }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "Where do the socks go? Tell me their secret plan.", "ko": "양말들은 어디로 갈까요? 양말들의 비밀 계획을 말해 줘요." }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "LOGIC-0007",
+    "category": "pupu-logic",
+    "engine": "Logic",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "In space, nobody can hear you shout. So space is the best place to sing badly.", "ko": "우주에서는 소리를 질러도 아무도 못 들어요. 그러니까 우주는 노래를 못 불러도 되는 최고의 장소예요." }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "What would you do in space if nobody could hear you?", "ko": "아무도 못 듣는 우주에서 여러분은 뭘 할 거예요?" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "LOGIC-0008",
+    "category": "pupu-logic",
+    "engine": "Logic",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "Cats sleep about fifteen hours a day. Cats are not lazy. Cats are geniuses.", "ko": "고양이는 하루에 15시간쯤 자요. 고양이는 게으른 게 아니에요. 천재예요." }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "Is sleeping all day smart or lazy? Argue with me!", "ko": "하루 종일 자는 건 똑똑한 걸까요, 게으른 걸까요? 저랑 논쟁해 봐요!" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "WYR-0021",
+    "category": "wyr",
+    "engine": "WouldYouRather",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "Would you rather have a pet dragon the size of a hamster, or a hamster the size of a car?", "ko": "햄스터만 한 용을 키울래요, 아니면 자동차만 한 햄스터를 키울래요?" }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "Which one? Why?", "ko": "어느 쪽이에요? 왜요?" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "WYR-0022",
+    "category": "wyr",
+    "engine": "WouldYouRather",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "Would you rather always walk backwards, or always talk backwards?", "ko": "항상 뒤로 걸을래요, 아니면 항상 말을 거꾸로 할래요?" }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "Which one? Try saying your name backwards!", "ko": "어느 쪽이에요? 이름을 거꾸로 말해 봐요!" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "WYR-0023",
+    "category": "wyr",
+    "engine": "WouldYouRather",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "Would you rather have spaghetti for hair, or meatballs for eyes?", "ko": "머리카락이 스파게티인 거랑, 눈이 미트볼인 거 중에 뭐가 나아요?" }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "Which one? How would you wash it?", "ko": "어느 쪽이에요? 어떻게 씻을 거예요?" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "WYR-0024",
+    "category": "wyr",
+    "engine": "WouldYouRather",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "Would you rather smell like old fish for a year, or sound like a duck for a year?", "ko": "1년 동안 오래된 생선 냄새가 나는 거랑, 1년 동안 오리 목소리가 나는 거 중에 뭐가 나아요?" }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "Which one? Show me your duck voice!", "ko": "어느 쪽이에요? 오리 목소리 한번 들려줘요!" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "WYR-0025",
+    "category": "wyr",
+    "engine": "WouldYouRather",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "Would you rather be a giant ant, or a tiny elephant?", "ko": "거대한 개미가 될래요, 아니면 아주 작은 코끼리가 될래요?" }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "Which one? What would you do first?", "ko": "어느 쪽이에요? 제일 먼저 뭘 할 거예요?" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "WYR-0026",
+    "category": "wyr",
+    "engine": "WouldYouRather",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "Would you rather eat cold soup with your hands, or eat ice cream with a fork?", "ko": "차가운 수프를 손으로 먹을래요, 아니면 아이스크림을 포크로 먹을래요?" }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "Which one? Which is messier?", "ko": "어느 쪽이에요? 어느 게 더 지저분할까요?" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "WYR-0027",
+    "category": "wyr",
+    "engine": "WouldYouRather",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "Would you rather have a nose that honks like a car, or ears that whistle when you're angry?", "ko": "자동차처럼 빵빵 소리 나는 코를 가질래요, 아니면 화나면 휘파람 부는 귀를 가질래요?" }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "Which one? Make the sound!", "ko": "어느 쪽이에요? 그 소리를 내 봐요!" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "WYR-0028",
+    "category": "wyr",
+    "engine": "WouldYouRather",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "Would you rather your teacher sang every sentence, or danced every time they said \"OK\"?", "ko": "선생님이 모든 문장을 노래로 부르는 거랑, \"OK\"라고 할 때마다 춤추는 거 중에 뭐가 좋아요?" }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "Which one? I bet your teacher would try it.", "ko": "어느 쪽이에요? 선생님도 한번 해 보실 것 같은데요." }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "WYR-0029",
+    "category": "wyr",
+    "engine": "WouldYouRather",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "Would you rather fight one horse-sized chicken, or ten chicken-sized horses?", "ko": "말만 한 닭 한 마리랑 싸울래요, 아니면 닭만 한 말 열 마리랑 싸울래요?" }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "Which one? What is your battle plan?", "ko": "어느 쪽이에요? 작전이 뭐예요?" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "WYR-0030",
+    "category": "wyr",
+    "engine": "WouldYouRather",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "Would you rather only eat blue food, or only eat crunchy food?", "ko": "파란 음식만 먹을래요, 아니면 바삭한 음식만 먹을래요?" }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "Which one? Name three foods you could eat.", "ko": "어느 쪽이에요? 먹을 수 있는 음식 세 개를 말해 봐요." }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "WYR-0031",
+    "category": "wyr",
+    "engine": "WouldYouRather",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "Would you rather sweat maple syrup, or cry lemonade?", "ko": "땀으로 메이플 시럽이 나올래요, 아니면 눈물로 레모네이드가 나올래요?" }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "Which one? Who would follow you around?", "ko": "어느 쪽이에요? 누가 여러분을 졸졸 따라다닐까요?" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "WYR-0032",
+    "category": "wyr",
+    "engine": "WouldYouRather",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "Would you rather have a pet that farts glitter, or a pet that burps music?", "ko": "반짝이 방귀를 뀌는 애완동물이 좋아요, 아니면 트림하면 음악이 나오는 애완동물이 좋아요?" }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "Which one? What would you name it?", "ko": "어느 쪽이에요? 이름은 뭐라고 지을 거예요?" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "WYR-0033",
+    "category": "wyr",
+    "engine": "WouldYouRather",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "Would you rather live with no music, or with no cheese? I say cheese is life.", "ko": "음악 없이 살래요, 아니면 치즈 없이 살래요? 저는 치즈가 인생이에요." }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "Which one? Change my mind!", "ko": "어느 쪽이에요? 제 생각을 바꿔 봐요!" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "WYR-0034",
+    "category": "wyr",
+    "engine": "WouldYouRather",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "Would you rather have a mouth on your elbow, or an eye on your knee?", "ko": "팔꿈치에 입이 있는 거랑, 무릎에 눈이 있는 거 중에 뭐가 나아요?" }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "Which one? What problem would it cause?", "ko": "어느 쪽이에요? 어떤 문제가 생길까요?" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "QUESTION-0006",
+    "category": "question",
+    "engine": "Question",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "If you could ban ONE food in the whole world forever, what would you ban?", "ko": "전 세계에서 음식 하나를 영원히 금지할 수 있다면, 뭘 금지할 거예요?" }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "Why? Who would be angry?", "ko": "왜요? 누가 화낼까요?" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "QUESTION-0007",
+    "category": "question",
+    "engine": "Question",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "Pizza is better for breakfast than cereal. I say YES.", "ko": "피자가 시리얼보다 아침으로 더 좋아요. 저는 무조건 찬성이에요." }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "Do you agree? Convince me!", "ko": "동의해요? 저를 설득해 봐요!" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "RIDDLE-0021",
+    "category": "riddle",
+    "engine": "Riddle",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "I have a neck but no head. I wear a cap. What am I?", "ko": "저는 목은 있는데 머리가 없어요. 모자도 써요. 저는 뭘까요?" }
+      ] },
+      { "role": "reveal", "lines": [
+        { "en": "A bottle! What is the strangest thing you could put in a bottle?", "ko": "병이에요! 병 안에 넣을 수 있는 가장 이상한 건 뭘까요?" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "RIDDLE-0022",
+    "category": "riddle",
+    "engine": "Riddle",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "The more you take, the more you leave behind. What am I?", "ko": "가져갈수록 더 많이 남기고 가요. 저는 뭘까요?" }
+      ] },
+      { "role": "reveal", "lines": [
+        { "en": "Footsteps! Where would you leave muddy footprints if nobody could see?", "ko": "발자국이에요! 아무도 안 본다면 어디에 진흙 발자국을 남기고 싶어요?" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "RIDDLE-0023",
+    "category": "riddle",
+    "engine": "Riddle",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "I am full of holes, but I can still hold water. What am I?", "ko": "구멍이 가득한데도 물을 담을 수 있어요. 저는 뭘까요?" }
+      ] },
+      { "role": "reveal", "lines": [
+        { "en": "A sponge! What is the dirtiest thing you have ever cleaned?", "ko": "스펀지예요! 여러분이 청소해 본 것 중에 제일 더러운 건 뭐예요?" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "RIDDLE-0024",
+    "category": "riddle",
+    "engine": "Riddle",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "I live in your shoes. I come out when you take them off. Everybody runs away from me. What am I?", "ko": "저는 신발 속에 살아요. 신발을 벗으면 나와요. 다들 저를 피해 도망가요. 저는 뭘까요?" }
+      ] },
+      { "role": "reveal", "lines": [
+        { "en": "Foot smell! What is the strongest smell you know?", "ko": "발 냄새예요! 여러분이 아는 가장 강한 냄새는 뭐예요?" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "RIDDLE-0025",
+    "category": "riddle",
+    "engine": "Riddle",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "I have teeth, but I can't eat. What am I?", "ko": "저는 이빨이 있는데 먹을 수는 없어요. 저는 뭘까요?" }
+      ] },
+      { "role": "reveal", "lines": [
+        { "en": "A comb! I have no hair, but I own one anyway. What do you own but never use?", "ko": "빗이에요! 저는 머리카락이 없는데도 빗이 있어요. 여러분이 갖고 있는데 한 번도 안 쓰는 물건은 뭐예요?" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "RIDDLE-0026",
+    "category": "riddle",
+    "engine": "Riddle",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "I go up and down, but I never move. What am I?", "ko": "올라갔다 내려갔다 하는데 한 번도 안 움직여요. 저는 뭘까요?" }
+      ] },
+      { "role": "reveal", "lines": [
+        { "en": "Stairs! What is the silliest way to go down the stairs? Show me with your hands!", "ko": "계단이에요! 계단을 내려가는 가장 웃긴 방법은 뭘까요? 손으로 보여 줘요!" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "STORY-0016",
+    "category": "story",
+    "engine": "Story",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "You wake up as a fly in your own kitchen. Do you eat the sugar, annoy your family, or escape out of the window?", "ko": "아침에 일어났더니 여러분 집 부엌의 파리가 되어 있어요. 설탕을 먹을래요, 가족을 귀찮게 할래요, 창밖으로 탈출할래요?" }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "Why? What happens next?", "ko": "왜요? 그다음엔 무슨 일이 생길까요?" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "STORY-0017",
+    "category": "story",
+    "engine": "Story",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "Your shadow walks away without you. Do you chase it, call the police, or get a new shadow?", "ko": "그림자가 여러분을 두고 혼자 걸어가 버렸어요. 쫓아갈래요, 경찰을 부를래요, 새 그림자를 구할래요?" }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "Why? Where is your shadow going?", "ko": "왜요? 그림자는 어디로 가는 걸까요?" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "STORY-0018",
+    "category": "story",
+    "engine": "Story",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "Every time you sneeze today, a frog jumps out. Do you hide, sell the frogs, or start a frog band?", "ko": "오늘 재채기를 할 때마다 개구리가 튀어나와요. 숨을래요, 개구리를 팔래요, 개구리 밴드를 만들래요?" }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "Why? How many frogs do you have by dinner?", "ko": "왜요? 저녁쯤엔 개구리가 몇 마리나 될까요?" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "STORY-0019",
+    "category": "story",
+    "engine": "Story",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "Your teacher's voice turns into a chicken's for the whole lesson. Do you laugh, help them, or answer like a chicken too?", "ko": "수업 내내 선생님 목소리가 닭 목소리로 바뀌었어요. 웃을래요, 도와드릴래요, 아니면 여러분도 닭처럼 대답할래요?" }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "Why? Try one sentence like a chicken!", "ko": "왜요? 닭처럼 한 문장 말해 봐요!" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "MYSTERY-0006",
+    "category": "mystery",
+    "engine": "Mystery",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "Someone ate half of my sandwich and left a tooth inside. Was it a shark, a robot, or my grandma?", "ko": "누가 제 샌드위치를 반이나 먹고 안에 이빨 하나를 두고 갔어요. 상어였을까요, 로봇이었을까요, 우리 할머니였을까요?" }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "Who did it? Give me one clue.", "ko": "누가 그랬을까요? 단서 하나만 말해 봐요." }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "MYSTERY-0007",
+    "category": "mystery",
+    "engine": "Mystery",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "All my socks smell like onions this morning. Was it a prank, a magic spell, or my feet?", "ko": "오늘 아침에 제 양말이 전부 양파 냄새가 나요. 장난이었을까요, 마법 주문이었을까요, 아니면 제 발 때문일까요?" }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "What is your theory? Explain it!", "ko": "여러분 생각은 뭐예요? 설명해 봐요!" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "CHALLENGE-0009",
+    "category": "challenge",
+    "engine": "Challenge",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "Try to talk for ten seconds without moving your lips! Go!", "ko": "입술을 안 움직이고 10초 동안 말해 봐요! 시작!" }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "Can your teacher do it better? I bet they can't.", "ko": "선생님이 더 잘할 수 있을까요? 아마 못 하실걸요." }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "CHALLENGE-0010",
+    "category": "challenge",
+    "engine": "Challenge",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "react": "puff", "lines": [
+        { "en": "I'm holding my breath until you tell me your top three favourite smells. Hurry!", "ko": "여러분이 제일 좋아하는 냄새 세 가지를 말해 줄 때까지 숨 참을 거예요. 빨리요!" }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "Quick! Three smells! Then tell me your worst one.", "ko": "빨리요! 냄새 세 가지! 그다음엔 제일 싫은 냄새도 말해 줘요." }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "CHALLENGE-0011",
+    "category": "challenge",
+    "engine": "Challenge",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "Make the weirdest face you can. I'll copy it. I bet I can't.", "ko": "할 수 있는 가장 이상한 표정을 지어 봐요. 제가 따라 할게요. 아마 못 할 거예요." }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "Go! Now describe your face in three words.", "ko": "시작! 이제 그 표정을 단어 세 개로 설명해 봐요." }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "TEACHER-0006",
+    "category": "teacher-challenge",
+    "engine": "TeacherChallenge",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "I bet your teacher has eaten a fly by accident. Ask them! Watch their face very closely.", "ko": "선생님은 실수로 파리를 먹어 본 적이 있을걸요. 물어봐요! 선생님 표정을 아주 자세히 보세요." }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "Did they? What did their face say?", "ko": "먹어 봤대요? 선생님 표정은 뭐라고 말하고 있었어요?" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "TEACHER-0007",
+    "category": "teacher-challenge",
+    "engine": "TeacherChallenge",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "I think your teacher has a secret weird snack. Maybe pickles with chocolate?", "ko": "선생님한테는 비밀 이상한 간식이 있을 것 같아요. 초콜릿 바른 피클일까요?" }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "Guess their weird snack, then ask! Was it gross?", "ko": "선생님의 이상한 간식을 맞혀 보고, 그다음에 물어봐요! 역겨웠어요?" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "TEACHER-0008",
+    "category": "teacher-challenge",
+    "engine": "TeacherChallenge",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "Quick test: can your teacher touch their nose with their tongue? I can't. I have no nose.", "ko": "간단한 테스트! 선생님은 혀로 코를 만질 수 있을까요? 저는 못 해요. 코가 없거든요." }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "Watch them try! Can you do it?", "ko": "선생님이 하는 걸 봐요! 여러분은 할 수 있어요?" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "SECRET-0006",
+    "category": "absurd-secret",
+    "engine": "Secret",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "Promise you won't tell anyone?", "ko": "아무한테도 말 안 한다고 약속해요?" }
+      ] },
+      { "role": "reveal", "lines": [
+        { "en": "I have never washed my belly button. Never. Something lives in there now.", "ko": "저는 배꼽을 한 번도 안 씻었어요. 한 번도요. 지금은 거기 뭔가가 살아요." }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "What do you think lives in there? Draw it in the air!", "ko": "거기 뭐가 살고 있을 것 같아요? 손가락으로 허공에 그려 봐요!" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "SECRET-0007",
+    "category": "absurd-secret",
+    "engine": "Secret",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "Okay. This is a bit embarrassing.", "ko": "좋아요. 이건 좀 창피한데요." }
+      ] },
+      { "role": "reveal", "lines": [
+        { "en": "Sometimes I sniff the TV to smell the food on it. It smells like dust.", "ko": "가끔 TV에 나오는 음식 냄새를 맡으려고 화면에 코를 대요. 먼지 냄새가 나요." }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "Which TV food would you want to taste? Why?", "ko": "TV에 나오는 음식 중에 뭘 맛보고 싶어요? 왜요?" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "WRONG-0006",
+    "category": "wrong-claim",
+    "engine": "WrongClaim",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "Fact: if you eat a carrot, you can see through walls.", "ko": "사실: 당근을 먹으면 벽 너머를 볼 수 있어요." }
+      ] },
+      { "role": "reveal", "lines": [
+        { "en": "I ate fifty carrots. Now I can only see orange.", "ko": "당근을 50개 먹었어요. 이제 주황색밖에 안 보여요." }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "What's the real truth about carrots? Which food do YOU think is magic?", "ko": "당근에 대한 진짜 사실은 뭐예요? 여러분은 어떤 음식이 마법 같다고 생각해요?" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "WRONG-0007",
+    "category": "wrong-claim",
+    "engine": "WrongClaim",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "Everybody knows: if you swallow gum, it stays in your tummy for seven years.", "ko": "다들 알잖아요. 껌을 삼키면 배 속에 7년 동안 남아 있어요." }
+      ] },
+      { "role": "reveal", "lines": [
+        { "en": "So I am 40% gum. Wait… maybe that isn't true.", "ko": "그러니까 저는 40%가 껌이에요. 잠깐만요… 그거 사실이 아닐 수도 있겠네요." }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "What really happens, do you think? What other strange stories have you heard?", "ko": "진짜로는 어떻게 될까요? 또 어떤 이상한 이야기를 들어 봤어요?" }
       ] }
     ]
   }

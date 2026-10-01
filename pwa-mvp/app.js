@@ -74,7 +74,10 @@ const MOUTH_BY_ANIMATION = {
   "lean-in": "closedSmile",
   "shock-pop": "shout",
   "proud-puff": "closedSmile",
-  wink: "tongue"
+  wink: "tongue",
+  fart: "closedSmile", // smug
+  burp: "wide",
+  glitch: "shout"
 };
 
 // Sets the mouth artwork for a given expression; anything
@@ -121,14 +124,28 @@ const EYES_BY_ANIMATION = {
   "lean-in": "dots",
   "shock-pop": "circles",
   "proud-puff": "smiling",
-  wink: "smiling"
+  wink: "smiling",
+  fart: "smiling",
+  burp: "slits",
+  glitch: "circles"
 };
 
 // Overlay effect shown with a card-category reaction (same layer system
 // as the BUBBLE_REACTIONS/EVENTS `effect` field).
 const EFFECT_BY_ANIMATION = {
-  "shock-pop": "effect_exclamation"
+  "shock-pop": "effect_exclamation",
+  fart: "effect_fart"
 };
+
+// Sound played with a card-category reaction (SOUND_CATEGORY_PLAYERS
+// names). A fart gets a wet pop straight after it.
+const SOUND_BY_ANIMATION = {
+  fart: "fart",
+  burp: "burp",
+  glitch: "crackle"
+};
+const WET_POP_AFTER = ["fart"];
+const WET_POP_DELAY_MS = 180;
 
 // Tracks the current *base* eyes expression (i.e. what the eyes should
 // show when not mid-blink), so blink()/gestureBlink() can restore the
@@ -779,6 +796,9 @@ const SOUND_CATEGORY_PLAYERS = {
   breathIn: playBreathIn,
   celebration: playCelebration,
   fart: playFart,
+  burp: playBurp,
+  wet: playWet,
+  crackle: playCrackle,
 };
 
 // Plays whichever sound/effect/item are attached to a
@@ -1302,12 +1322,15 @@ function beatReactionName(card, beatIndex) {
 // Turns a motion name into the same shape as a BEHAVIOURS/BUBBLE_REACTIONS
 // entry, so the existing play/face/extras code handles both alike.
 function reactionFromMotion(name, minDurationMs) {
+  if (WET_POP_AFTER.includes(name)) setTimeout(playWet, WET_POP_DELAY_MS);
   return {
     id: name,
     animation: name,
     duration: Math.max(PupuMotion.MOTIONS[name].duration, minDurationMs),
     effect: EFFECT_BY_ANIMATION[name],
-    effectDuration: 1200,
+    effectDuration: name === "fart" ? 1500 : 1200,
+    effectFadeMs: name === "fart" ? 1800 : undefined, // the fart cloud drifts away, like puff's
+    sound: SOUND_BY_ANIMATION[name],
   };
 }
 

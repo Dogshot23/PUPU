@@ -258,6 +258,34 @@ const PupuMotion = (() => {
     { offset: 1, transform: "rotate(0deg) translateY(0)" },
   ];
 
+  // New: gross / glitch reactions. Each frame also carries a `filter`
+  // (added on top of nothing), so the PNG PUPU flashes green for a
+  // fart/burp and goes dark and cold for a glitch.
+  KEYFRAMES["fart"] = [ // sudden comic squish, then a little lift-off
+    { offset: 0, transform: "scale(1) translateY(0)", filter: "hue-rotate(0deg)" },
+    { offset: 0.12, transform: "scale(1.12, 0.86) translateY(8px)", filter: "hue-rotate(125deg) saturate(1.3)" },
+    { offset: 0.32, transform: "scale(0.93, 1.1) translateY(-12px)", filter: "hue-rotate(125deg) saturate(1.3)" },
+    { offset: 0.6, transform: "scale(1.03, 0.97) translateY(0)", filter: "hue-rotate(70deg)" },
+    { offset: 1, transform: "scale(1) translateY(0)", filter: "hue-rotate(0deg)" },
+  ];
+  KEYFRAMES["burp"] = [ // a jolt from the belly up, head thrown back
+    { offset: 0, transform: "scale(1) translateY(0) rotate(0deg)", filter: "hue-rotate(0deg)" },
+    { offset: 0.18, transform: "scale(1.07) translateY(-6px) rotate(-4deg)", filter: "hue-rotate(120deg) saturate(1.5)" },
+    { offset: 0.42, transform: "scale(0.97) translateY(2px) rotate(2deg)", filter: "hue-rotate(120deg) saturate(1.5)" },
+    { offset: 0.7, transform: "scale(1.01) translateY(0) rotate(-1deg)", filter: "hue-rotate(60deg)" },
+    { offset: 1, transform: "scale(1) translateY(0) rotate(0deg)", filter: "hue-rotate(0deg)" },
+  ];
+  KEYFRAMES["glitch"] = [ // jumpy, broken-robot jitter (each step snaps: easing "steps(1)")
+    { offset: 0, transform: "translateX(0) skewX(0deg)", filter: "grayscale(0) brightness(1)" },
+    { offset: 0.1, transform: "translateX(7px) skewX(8deg)", filter: "grayscale(1) brightness(0.55) contrast(1.6)" },
+    { offset: 0.22, transform: "translateX(-6px) skewX(-6deg)", filter: "grayscale(1) brightness(0.45) contrast(1.8)" },
+    { offset: 0.36, transform: "translateX(4px) skewX(0deg)", filter: "grayscale(0.6) hue-rotate(160deg) brightness(0.8)" },
+    { offset: 0.5, transform: "translateX(-8px) skewX(10deg)", filter: "grayscale(1) brightness(0.5) contrast(1.6)" },
+    { offset: 0.66, transform: "translateX(3px) skewX(-4deg)", filter: "grayscale(1) brightness(0.6)" },
+    { offset: 0.82, transform: "translateX(-2px) skewX(0deg)", filter: "grayscale(0.4) brightness(0.85)" },
+    { offset: 1, transform: "translateX(0) skewX(0deg)", filter: "grayscale(0) brightness(1)" },
+  ];
+
   // ---------- Motions ----------
   // name -> duration (ms), default easing, optional iterations, and
   // which KEYFRAMES each part plays. Names match the `animation` /
@@ -291,6 +319,9 @@ const PupuMotion = (() => {
     "shock-pop": { duration: 650, easing: "ease-out", body: "shock-pop", armLeft: "arm-flick-left", armRight: "arm-flick-right" },
     "proud-puff": { duration: 1100, easing: "cubic-bezier(0.34, 1.56, 0.64, 1)", body: "proud-puff", armLeft: "arm-up-left", armRight: "arm-up-right" },
     "wink": { duration: 700, easing: "ease-in-out", body: "wink", armRight: "arm-up-right" },
+    "fart": { duration: 750, easing: "ease-out", body: "fart", armLeft: "arm-flick-left", armRight: "arm-flick-right" },
+    "burp": { duration: 650, easing: "ease-out", body: "burp" },
+    "glitch": { duration: 700, easing: "steps(1)", body: "glitch" },
   };
 
   function framesFor(keyframesName, defaultEasing) {

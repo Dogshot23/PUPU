@@ -43,6 +43,13 @@ const VectorPupu = (() => {
     bang: "#ffd84d",
   };
 
+  // Mutation palettes the body gradient blends towards (see "Mutations").
+  const PALETTES = {
+    acid: [[0, "#f6ffc8"], [0.45, "#cdf57c"], [0.78, "#94d85a"], [1, "#5ca94b"]], // burp / fart
+    charcoal: [[0, "#74748a"], [0.45, "#4c4c5e"], [0.78, "#353542"], [1, "#22222d"]], // glitch / robot
+  };
+  const NEON = "#39f3ff";
+
   // Layout in artwork space (see body.png).
   const ANCHOR = { x: 505, y: 815 }; // between the feet: squash/tilt pivot
   // Taller than the visor reaches, so the crown shows above it.
@@ -90,6 +97,10 @@ const VectorPupu = (() => {
     cheek: spring(0, 150, 12),  // cheek puff
     faceY: spring(0, 900, 34),  // the face trails the body (secondary motion)
     faceTilt: spring(0, 900, 34),
+    // mutations (see "Mutations" below)
+    tint: spring(0, 70, 13),    // 0 normal colours .. 1 fully the mutation palette
+    blocky: spring(0, 180, 16), // 0 round blob .. 1 boxy robot
+    glitch: spring(0, 500, 32), // 0 .. 1 slice-split + neon outline
   };
   const face = {
     lidL: spring(0, 600, 34), // 0 open .. 1 closed, below 0 = wide open
@@ -173,7 +184,31 @@ const VectorPupu = (() => {
     },
     "proud-puff": { pose: { ms: 1100, chest: 1, pop: 1.07, hop: -6, armL: 0.35, armR: -0.35, face: { lid: 0.42, happy: 0, mouth: "closedSmile" } } },
     wink: { impulse: { hop: -250 }, pose: { ms: 700, tilt: -0.16, face: { wink: true, mouth: "tongue" } } },
+    // Gross / glitch reactions: physical hits plus a mutation (colour /
+    // shape change that fades back) and particles.
+    fart: {
+      impulse: { squash: -4.2, hop: -260 },
+      pose: { ms: 900, face: { happy: 0.6, mouth: "closedSmile" } },
+      mutation: { ms: 1100, palette: "acid", tint: 0.85 },
+      particles: "fart",
+    },
+    burp: {
+      impulse: { hop: -360, tilt: -1.8 },
+      pose: { ms: 700, face: { lid: 0.5, mouth: "wide" } },
+      mutation: { ms: 900, palette: "acid", tint: 0.9 },
+      particles: "burp",
+    },
+    glitch: {
+      impulse: { tilt: 3 },
+      pose: { ms: 800, face: { mouth: "shout", pupil: 0.4 } },
+      mutation: { ms: 900, palette: "charcoal", tint: 1, blocky: 1, glitch: 1 },
+    },
   };
+  // Hard hits can short-circuit PUPU into robot/glitch mode.
+  REACTIONS["shock-pop"].glitchChance = 0.35;
+  ["broken-payoff", "broken-payoff-shrink", "broken-payoff-spin", "broken-payoff-squash"].forEach((name) => {
+    REACTIONS[name].glitchChance = 0.5;
+  });
 
   let pose = null; // { until, def }
   let wiggleUntil = 0;
@@ -184,19 +219,111 @@ const VectorPupu = (() => {
   function react(name) {
     const def = REACTIONS[name];
     if (!def) return;
-    if (name === "press" && performance.now() - lastPokeAt < 150) return; // a poke already squished him
+    const now = performance.now();
+    if (name === "press" && now - lastPokeAt < 150) return; // a poke already squished him
     Object.entries(def.impulse || {}).forEach(([key, kick]) => {
       body[key] ? (body[key].velocity += kick * motionScale) : (face[key].velocity += kick * motionScale);
     });
-    if (def.pose) pose = { until: performance.now() + def.pose.ms, def };
-    if (def.wiggle) wiggleUntil = performance.now() + def.wiggle;
-    if (def.sweep) sweepUntil = performance.now() + def.sweep;
+    if (def.pose) pose = { until: now + def.pose.ms, def };
+    if (def.wiggle) wiggleUntil = now + def.wiggle;
+    if (def.sweep) sweepUntil = now + def.sweep;
+    if (def.mutation) mutate(def.mutation);
+    if (def.particles) emit(def.particles);
+    if (def.glitchChance && Math.random() < def.glitchChance) mutate(REACTIONS.glitch.mutation);
+  }
+
+  // ---------- Mutations ----------
+  // A temporary change to what PUPU is made of: his body colours blend
+  // into another palette (acid green, charcoal), he can turn boxy like a
+  // robot, and in glitch mode his picture splits into jittering slices
+  // with a neon outline. One at a time; each fades back by itself.
+  let mutation = null; // { until, palette, tint, blocky, glitch }
+  let palette = "acid";
+  function mutate(def) {
+    palette = def.palette;
+    mutation = { ...def, until: performance.now() + def.ms };
+  }
+
+  // Particles: fart clouds (billowing out from low behind him) and burp
+  // bubbles (from his mouth).
+  const particles = [];
+  let lastFartAt = -1e9;
+  function emit(kind) {
+    const now = performance.now();
+    if (kind === "fart") {
+      if (now - lastFartAt < 300) return; // the PNG fart cloud and the reaction can arrive together
+      lastFartAt = now;
+      for (let i = 0; i < 11; i++) {
+        const side = i % 2 ? 1 : -1;
+        // from low behind him, billowing out past his sides where you can see it
+        particles.push({
+          kind, behind: false, life: 0, maxLife: 1.1 + Math.random() * 0.5,
+          x: ANCHOR.x + side * (230 + Math.random() * 60), y: ANCHOR.y - 40 - Math.random() * 50,
+          vx: side * (90 + Math.random() * 150), vy: -(20 + Math.random() * 70), r: 22 + Math.random() * 20,
+        });
+      }
+    } else if (kind === "burp") {
+      for (let i = 0; i < 7; i++) {
+        particles.push({
+          kind, behind: false, life: 0, maxLife: 0.7 + Math.random() * 0.4,
+          x: MOUTH.x + (Math.random() - 0.5) * 30, y: MOUTH.y,
+          vx: (Math.random() - 0.5) * 120, vy: -(140 + Math.random() * 120), r: 7 + Math.random() * 12,
+        });
+      }
+    }
+  }
+  function stepParticles(dt) {
+    for (let i = particles.length - 1; i >= 0; i--) {
+      const p = particles[i];
+      p.life += dt;
+      if (p.life >= p.maxLife) {
+        particles.splice(i, 1);
+        continue;
+      }
+      p.x += p.vx * dt;
+      p.y += p.vy * dt;
+      p.vx *= 1 - 1.6 * dt; // air drag
+      p.r += (p.kind === "fart" ? 26 : 4) * dt; // clouds spread
+    }
+  }
+  function drawParticles(behind) {
+    particles.forEach((p) => {
+      if (p.behind !== behind) return;
+      const fade = 1 - p.life / p.maxLife;
+      ctx.save();
+      ctx.globalAlpha *= fade * (p.kind === "fart" ? 0.8 : 0.8);
+      if (p.kind === "fart") {
+        ctx.fillStyle = radial(p.x, p.y, 2, p.r, [[0, "rgba(170, 215, 80, 1)"], [0.6, "rgba(170, 215, 80, 0.7)"], [1, "rgba(150, 200, 70, 0)"]]);
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
+      } else {
+        ctx.strokeStyle = "rgba(120, 190, 70, 1)";
+        ctx.fillStyle = "rgba(210, 250, 160, 0.5)";
+        ctx.lineWidth = 1.4 * unitsPerPx;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+      }
+      ctx.restore();
+    });
   }
 
   // A touch at canvas point (x, y), in artwork space: squish down and lean
   // away from the side that was pressed -- the instant physical answer.
+  // Four or more pokes within HARD_TAP_WINDOW_MS count as a hard hit:
+  // PUPU short-circuits into glitch mode.
+  const HARD_TAP_COUNT = 4;
+  const HARD_TAP_WINDOW_MS = 1200;
+  let recentPokes = [];
   function poke(x) {
     lastPokeAt = performance.now();
+    recentPokes = recentPokes.filter((t) => lastPokeAt - t < HARD_TAP_WINDOW_MS).concat(lastPokeAt);
+    if (recentPokes.length >= HARD_TAP_COUNT) {
+      recentPokes = [];
+      react("glitch");
+    }
     body.squash.velocity -= 3.4 * motionScale;
     body.tilt.velocity += ((x - BODY.cx) / BODY.rx) * 1.6 * motionScale;
     face.lidL.velocity += 6;
@@ -234,6 +361,11 @@ const VectorPupu = (() => {
     body.chest.target = p.chest !== undefined ? p.chest : 0.08 + breath * 0.06 * motionScale;
     body.hop.target = p.hop || 0;
     body.pop.target = p.pop || 1;
+    const m = mutation && now < mutation.until ? mutation : null;
+    if (mutation && !m) mutation = null;
+    body.tint.target = m ? m.tint || 0 : 0;
+    body.blocky.target = m ? m.blocky || 0 : 0;
+    body.glitch.target = m ? m.glitch || 0 : 0;
     body.cheek.target = p.cheek || 0;
     body.armL.target = (p.armL || 0) + Math.sin(t * 1.3) * 0.04 * motionScale;
     body.armR.target = (p.armR || 0) - Math.sin(t * 1.3 + 0.8) * 0.04 * motionScale;
@@ -293,6 +425,7 @@ const VectorPupu = (() => {
     }
     // Keep the physics sane even after a huge kick.
     body.squash.value = Math.max(-0.35, Math.min(0.35, body.squash.value));
+    stepParticles(dt);
   }
 
   // ---------- Drawing ----------
@@ -300,6 +433,24 @@ const VectorPupu = (() => {
     const g = ctx.createRadialGradient(x, y, r0, x, y, r1);
     stops.forEach(([at, color]) => g.addColorStop(at, color));
     return g;
+  }
+
+  // Colour mixing for mutations: blend two "#rrggbb" colours (t = 0..1),
+  // and the body gradient's stops towards the current mutation palette.
+  function hexRgb(hex) {
+    const n = parseInt(hex.slice(1), 16);
+    return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+  }
+  function mix(a, b, t) {
+    const [ar, ag, ab] = hexRgb(a);
+    const [br, bg, bb] = hexRgb(b);
+    const k = Math.max(0, Math.min(1, t));
+    return `rgb(${Math.round(ar + (br - ar) * k)}, ${Math.round(ag + (bg - ag) * k)}, ${Math.round(ab + (bb - ab) * k)})`;
+  }
+  function bodyStops() {
+    const t = body.tint.value;
+    if (t < 0.01) return COLORS.bodyStops;
+    return COLORS.bodyStops.map(([at, color], i) => [at, mix(color, PALETTES[palette][i][1], t)]);
   }
 
   // Artwork units per CSS pixel right now (the canvas is drawn in the
@@ -317,15 +468,20 @@ const VectorPupu = (() => {
   // The body: four cubic Bézier curves around top / right / bottom / left
   // anchors. `chest` pushes the upper curves outwards (proud puff); the
   // bottom is flatter than the top, like PUPU sitting on his feet.
-  function bodyPath(chest) {
+  // `blocky` (robot mode) pulls every handle out towards the corners, so
+  // the blob squares up into a rounded box.
+  function bodyPath(chest, blocky = 0) {
     const { cx, cy, rx, top, bottom } = BODY;
-    const k = 0.56;
+    const b = Math.max(0, Math.min(1, blocky));
+    const k = 0.56 + 0.4 * b;
+    const lowK = 0.62 + 0.33 * b;
+    const lowX = 0.64 + 0.31 * b;
     const upper = 1 + chest * 0.1;
     const path = new Path2D();
     path.moveTo(cx, cy - top);
     path.bezierCurveTo(cx + rx * k * (1 + chest * 0.35), cy - top, cx + rx * upper, cy - top * k, cx + rx * upper, cy);
-    path.bezierCurveTo(cx + rx, cy + bottom * 0.62, cx + rx * 0.64, cy + bottom, cx, cy + bottom);
-    path.bezierCurveTo(cx - rx * 0.64, cy + bottom, cx - rx, cy + bottom * 0.62, cx - rx * upper, cy);
+    path.bezierCurveTo(cx + rx, cy + bottom * lowK, cx + rx * lowX, cy + bottom, cx, cy + bottom);
+    path.bezierCurveTo(cx - rx * lowX, cy + bottom, cx - rx, cy + bottom * lowK, cx - rx * upper, cy);
     path.bezierCurveTo(cx - rx * upper, cy - top * k, cx - rx * k * (1 + chest * 0.35), cy - top, cx, cy - top);
     path.closePath();
     return path;
@@ -366,17 +522,18 @@ const VectorPupu = (() => {
       limbPath(170, 585, 52, 84, 0.35 + body.armL.value, 215, 520),
       limbPath(842, 585, 52, 84, -0.35 + body.armR.value, 795, 520),
     ];
-    const torso = bodyPath(chest);
+    const torso = bodyPath(chest, body.blocky.value);
+    const stops = bodyStops();
     ctx.lineJoin = "round";
-    ctx.strokeStyle = COLORS.outline;
+    ctx.strokeStyle = body.glitch.value > 0.02 ? mix(COLORS.outline, NEON, body.glitch.value) : COLORS.outline;
     ctx.lineWidth = OUTLINE_PX * 2 * unitsPerPx;
     [...limbs, torso].forEach((part) => ctx.stroke(part));
     limbs.forEach((part, i) => {
       const [x, y, r] = i < 2 ? [i ? 620 : 395, 790, 70] : [i === 2 ? 170 : 842, 560, 90];
-      ctx.fillStyle = radial(x, y, 4, r * 1.4, COLORS.bodyStops);
+      ctx.fillStyle = radial(x, y, 4, r * 1.4, stops);
       ctx.fill(part);
     });
-    ctx.fillStyle = radial(560, 420, 20, 480, COLORS.bodyStops);
+    ctx.fillStyle = radial(560, 420, 20, 480, stops);
     ctx.fill(torso);
     if (face.glow.value > 0.01) {
       ctx.save();
@@ -427,6 +584,8 @@ const VectorPupu = (() => {
   // at its edge, so it melts into the body (no outline), plus a shine.
   function drawCheeks() {
     const r = 112 * (1 + body.cheek.value * 0.18);
+    ctx.save();
+    ctx.globalAlpha *= 1 - Math.max(0, Math.min(1, body.tint.value)) * 0.75; // the blush fades when he changes colour
     [[312, 432], [700, 432]].forEach(([x, y]) => {
       ctx.fillStyle = radial(x, y - 10, 4, r, [[0, COLORS.cheek[0]], [0.55, COLORS.cheek[1]], [1, COLORS.cheek[2]]]);
       ctx.beginPath();
@@ -437,6 +596,7 @@ const VectorPupu = (() => {
       ctx.ellipse(x + (x > BODY.cx ? 34 : -34), y - r * 0.42, 18, 10, x > BODY.cx ? 0.4 : -0.4, 0, Math.PI * 2);
       ctx.fill();
     });
+    ctx.restore();
   }
 
   // Rounded rectangle path (ctx.roundRect is missing on older Safari).
@@ -474,7 +634,8 @@ const VectorPupu = (() => {
       top: GLYPH.top * squint,
       bottom: GLYPH.bottom * squint,
       uBar: GLYPH.uBar * squint,
-      stemEnd: GLYPH.stemEnd * squint,
+      // the ㅜ stem keeps most of its length, so a squinting 푸 still reads
+      stemEnd: GLYPH.uBar * squint + (GLYPH.stemEnd - GLYPH.uBar) * Math.max(squint, 0.75),
     };
     ctx.strokeStyle = COLORS.glyph;
     ctx.lineWidth = g.stroke;
@@ -632,6 +793,7 @@ const VectorPupu = (() => {
 
     ctx.globalAlpha = 1 - Math.max(0, Math.min(1, face.ghost.value)) * 0.55;
     drawShadow();
+    drawParticles(true); // (particles marked `behind`: none at the moment)
 
     // Body transform: hop, tilt and volume-preserving squash, all pivoting
     // between the feet; `pop` scales the whole of him.
@@ -665,8 +827,43 @@ const VectorPupu = (() => {
     ctx.restore();
 
     ctx.restore();
+    drawParticles(false); // fart clouds and burp bubbles
     drawMark();
     ctx.globalAlpha = 1;
+    if (body.glitch.value > 0.04) glitchSlices(body.glitch.value);
+  }
+
+  // Glitch mode: cut the finished picture into a few horizontal bands and
+  // shove them sideways by a random amount that changes ~16 times a
+  // second -- PUPU "splitting into pieces" like a broken screen.
+  let sliceBuffer = null;
+  function glitchSlices(amount) {
+    const w = canvas.width;
+    const h = canvas.height;
+    if (!sliceBuffer) sliceBuffer = document.createElement("canvas");
+    if (sliceBuffer.width !== w || sliceBuffer.height !== h) {
+      sliceBuffer.width = w;
+      sliceBuffer.height = h;
+    }
+    const buffer = sliceBuffer.getContext("2d");
+    buffer.clearRect(0, 0, w, h);
+    buffer.drawImage(canvas, 0, 0);
+    const seed = Math.floor(lastFrame / 60);
+    const rand = (n) => {
+      const x = Math.sin(seed * 12.9898 + n * 78.233) * 43758.5453;
+      return x - Math.floor(x);
+    };
+    ctx.save();
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    for (let i = 0; i < 7; i++) {
+      const y = Math.floor(rand(i) * h * 0.9);
+      const bandH = Math.max(2, Math.floor(h * (0.03 + 0.08 * rand(i + 10))));
+      const dx = Math.round((rand(i + 20) - 0.5) * w * 0.14 * amount);
+      if (!dx) continue;
+      ctx.clearRect(0, y, w, bandH);
+      ctx.drawImage(sliceBuffer, 0, y, w, bandH, dx, y, w, bandH);
+    }
+    ctx.restore();
   }
 
   // ---------- Loop ----------
@@ -721,6 +918,11 @@ const VectorPupu = (() => {
       const visible = el.classList.contains("pupu-layer-visible") && !el.classList.contains("pupu-layer-fading");
       const name = fileName(el.getAttribute("src"));
       effectMark = !visible ? null : name === "effect_question" ? "?" : /exclamation|shock/.test(name) ? "!" : null;
+      // The PNG fart cloud (e.g. the "puff" reaction): vector fart too.
+      if (visible && name === "effect_fart") {
+        emit("fart");
+        mutate(REACTIONS.fart.mutation);
+      }
     });
     watch(parts.ghostWatch, ["class"], (el) => {
       face.ghost.target = el.classList.contains("pupu-ghost-hidden") ? 1 : 0;
@@ -771,6 +973,9 @@ const VectorPupu = (() => {
       effectMark,
       glyphTransforms: glyphTransforms.map((m) => m && Array.from(m.toFloat64Array())),
       glyphSquints: glyphSquints.slice(),
+      mutation: mutation && { palette: mutation.palette, tint: mutation.tint, blocky: mutation.blocky || 0, glitch: mutation.glitch || 0 },
+      palette,
+      particles: particles.map((p) => p.kind),
     };
   }
 
