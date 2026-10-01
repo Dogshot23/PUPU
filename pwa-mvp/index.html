@@ -44,18 +44,26 @@
       <div class="pupu-stage">
         <img class="pupu-shadow" id="pupu-shadow" src="images/pupu/effects/effect_shadow.png" alt="">
 
+        <!-- Nested motion layers (see motion.js): float (up/down) >
+             sway (lean) > squash (breathing + reactions) > parts.
+             The face group trails the body slightly; the hat stays
+             outside it so its behind-the-body z-index trick still works. -->
         <div class="pupu-float-wrap">
-          <div class="pupu-circle" id="pupu-circle">
-            <img class="pupu-body" id="pupu-body" src="images/pupu/body/body.png" alt="PUPU">
-            <img class="pupu-body pupu-body-ghost" id="pupu-body-ghost" src="images/pupu/body/body_ghost.png" alt="">
-            <img class="pupu-arm pupu-arm-left" id="pupu-arm-left" src="images/pupu/body/body_left_arm.png" alt="">
-            <img class="pupu-arm pupu-arm-right" id="pupu-arm-right" src="images/pupu/body/body_right_arm.png" alt="">
-            <img class="pupu-eye" id="pupu-eyes" src="images/pupu/eyes/eyes_open.png" alt="">
-            <img class="pupu-mouth" id="pupu-mouth" src="images/pupu/mouths/mouth_neutral.png" alt="">
-            <img class="pupu-layer pupu-hat" id="pupu-hat" alt="">
-            <img class="pupu-layer pupu-item" id="pupu-item" alt="">
-            <img class="pupu-layer pupu-effect" id="pupu-effect" alt="">
-            <img class="pupu-button" id="pupu-button" src="images/pupu/buttons/button_unpressed.png" alt="Press PUPU's belly to hear a thought" role="button" tabindex="0">
+          <div class="pupu-sway-wrap" id="pupu-sway">
+            <div class="pupu-squash-wrap" id="pupu-circle">
+              <img class="pupu-body" id="pupu-body" src="images/pupu/body/body.png" alt="PUPU">
+              <img class="pupu-body pupu-body-ghost" id="pupu-body-ghost" src="images/pupu/body/body_ghost.png" alt="">
+              <img class="pupu-arm pupu-arm-left" id="pupu-arm-left" src="images/pupu/body/body_left_arm.png" alt="">
+              <img class="pupu-arm pupu-arm-right" id="pupu-arm-right" src="images/pupu/body/body_right_arm.png" alt="">
+              <div class="pupu-face" id="pupu-face">
+                <img class="pupu-eye" id="pupu-eyes" src="images/pupu/eyes/eyes_open.png" alt="">
+                <img class="pupu-mouth" id="pupu-mouth" src="images/pupu/mouths/mouth_neutral.png" alt="">
+                <img class="pupu-layer pupu-item" id="pupu-item" alt="">
+              </div>
+              <img class="pupu-layer pupu-hat" id="pupu-hat" alt="">
+              <img class="pupu-layer pupu-effect" id="pupu-effect" alt="">
+              <img class="pupu-button" id="pupu-button" src="images/pupu/buttons/button_unpressed.png" alt="Press PUPU's belly to hear a thought" role="button" tabindex="0" draggable="false">
+            </div>
           </div>
         </div>
       </div>
@@ -66,6 +74,8 @@
     <button class="install-button" id="install-button" hidden>Install PUPU</button>
   </main>
 
+  <script src="audio.js"></script>
+  <script src="motion.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

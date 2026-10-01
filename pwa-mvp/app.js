@@ -16,7 +16,6 @@ const state = {
 const bubbleEl = document.getElementById("bubble");
 const languageToggleEl = document.getElementById("language-toggle");
 const statusEl = document.getElementById("status");
-const pupuCircle = document.getElementById("pupu-circle");
 const pupuButton = document.getElementById("pupu-button");
 const eyes = document.getElementById("pupu-eyes");
 const mouth = document.getElementById("pupu-mouth");
@@ -280,11 +279,13 @@ const BUBBLE_REACTIONS = [
 // This whole system (this data, EVENT_CHANCE, and maybeTriggerEvent/
 // playEvent below) was the piece left out when behaviours were first
 // ported to this file -- see Checkpoint 3.
+// (`motion` names a motion in motion.js; it was `bodyClass`, the old
+// CSS class name, before the move to the Web Animations API.)
 const EVENTS = [
-  { id: "sneeze", message: "Achoo!", bodyClass: "pupu-sneeze", closeEyes: false, duration: 500 },
-  { id: "laugh", message: "Hehehe!", bodyClass: "pupu-laugh", closeEyes: false, duration: 600 },
-  { id: "distracted", message: "Oh...", bodyClass: "pupu-distracted", closeEyes: false, duration: 700, effect: "effect_dazed", effectDuration: 1300 },
-  { id: "sleep", message: "Zzz...", bodyClass: null, closeEyes: true, duration: 1000, sound: "sleeping" }
+  { id: "sneeze", message: "Achoo!", motion: "sneeze", closeEyes: false, duration: 500 },
+  { id: "laugh", message: "Hehehe!", motion: "laugh", closeEyes: false, duration: 600 },
+  { id: "distracted", message: "Oh...", motion: "distracted", closeEyes: false, duration: 700, effect: "effect_dazed", effectDuration: 1300 },
+  { id: "sleep", message: "Zzz...", motion: null, closeEyes: true, duration: 1000, sound: "sleeping" }
 ];
 
 // Restored from brain.js's EVENT_CHANCE: chance a special event happens
@@ -348,27 +349,12 @@ function pickRandomFrom(list) {
   return list[Math.floor(Math.random() * list.length)];
 }
 
-// Removes any previously applied behaviour animation class from PUPU,
-// so a new one can be added cleanly (and so re-triggering the same
-// behaviour restarts its animation). Restored from script.js's
-// clearBehaviourAnimations().
+// Stops any behaviour/reaction/event/thinking motion still playing, so
+// a new one starts cleanly. Breathing and the float carry on underneath
+// (see motion.js). Restored from script.js's clearBehaviourAnimations(),
+// which removed the old CSS animation classes instead.
 function clearBehaviourAnimations() {
-  BEHAVIOURS.forEach((behaviour) => {
-    pupuCircle.classList.remove(`pupu-${behaviour.animation}`);
-  });
-  BUBBLE_REACTIONS.forEach((reaction) => {
-    pupuCircle.classList.remove(`pupu-${reaction.animation}`);
-  });
-  pupuCircle.classList.remove("pupu-thinking");
-  pupuCircle.classList.remove("pupu-finish");
-
-  // Also clear any special-event body classes left over on the circle.
-  // Restored from script.js's clearBehaviourAnimations().
-  EVENTS.forEach((event) => {
-    if (event.bodyClass) {
-      pupuCircle.classList.remove(event.bodyClass);
-    }
-  });
+  PupuMotion.stopAll();
 }
 
 // ---------- Blinking ----------
@@ -403,36 +389,26 @@ const THINK_MIN_MS = 500;
 const THINK_MAX_MS = 1500;
 
 async function think() {
-  pupuCircle.classList.add("pupu-thinking");
+  const thinking = PupuMotion.play("thinking");
   eyes.classList.add("pupu-thinking-eye");
 
   await wait(randomRange(THINK_MIN_MS, THINK_MAX_MS));
 
-  pupuCircle.classList.remove("pupu-thinking");
+  thinking.cancel();
   eyes.classList.remove("pupu-thinking-eye");
 }
 
 // ---------- Sound ----------
 // Restored from the main app's SoundManager categories (see
 // sound-manager.js at the repo root) -- a minimal, MVP-scoped version:
-// only the categories this app actually uses, no preloading/mute API,
-// just a random variation played per call. playRandomSound() is the
-// shared "pick a random variation, play it, warn quietly on failure"
-// logic every category below needs; SoundManager gets the same
-// behaviour from its generic play(category) -- this is that same
-// pattern inlined per-category rather than as a lookup table, since
-// this file was already using a hand-written playSquish() before this
-// checkpoint and the categories being added here follow that.
+// only the categories this app actually uses, just a random variation
+// played per call. playRandomSound() is the shared "pick a random
+// variation, play it, warn quietly on failure" logic every category
+// below needs. The playing itself is done by audio.js (PupuAudio): one
+// shared Web Audio player with each file decoded once, instead of a new
+// <audio> element per play (which stuttered on iOS).
 function playRandomSound(files, label) {
-  const file = files[Math.floor(Math.random() * files.length)];
-  const audio = new Audio(file);
-  audio.volume = 0.7;
-  const playPromise = audio.play();
-  if (playPromise && typeof playPromise.catch === "function") {
-    playPromise.catch((error) => {
-      console.warn(`PUPU MVP: ${label} sound playback failed`, error);
-    });
-  }
+  PupuAudio.playRandom(files, { label });
 }
 
 const SQUISH_SOUND_FILES = [
@@ -442,8 +418,11 @@ const SQUISH_SOUND_FILES = [
   "sounds/squish/sqush344.wav",
 ];
 
+// The squish is the direct answer to a touch, so it's queued rather
+// than skipped if the browser hasn't allowed sound yet: on the very
+// first touch it then plays as the finger lifts (see audio.js).
 function playSquish() {
-  playRandomSound(SQUISH_SOUND_FILES, "squish");
+  PupuAudio.playRandom(SQUISH_SOUND_FILES, { label: "squish", whenLocked: "queue" });
 }
 
 // ---------- Idle sounds/chatter sound categories ----------
@@ -891,14 +870,13 @@ function runIdleSoundCheck() {
 // sound actually plays, there's a chance PUPU also makes one small
 // involuntary movement. Reuses existing assets/classes wherever one
 // already fits (blink artwork, the smile mouth, and the same
-// .pupu-soft-wobble class the pwa's finish/thinking states don't use)
-// -- and the .pupu-idle-brightness-pulse class, both already present
-// in style.css.
+// soft-wobble motion the pwa's finish/thinking states don't use)
+// -- and the idle-brightness-pulse motion, both in motion.js.
 const IDLE_GESTURE_SKIP_CHANCE = 0.5; // 50% chance of doing nothing
 const IDLE_GESTURE_SMILE_MS = 400; // brief smile-flash duration
 const IDLE_GESTURE_CONTENT_SMILE_MS = 400; // brief content-smile duration, same length as the smile flash above
-const IDLE_GESTURE_BRIGHTNESS_MS = 500; // must match .pupu-idle-brightness-pulse in style.css
-// Must match .pupu-soft-wobble in style.css. Named independently of
+const IDLE_GESTURE_BRIGHTNESS_MS = 500; // must match "idle-brightness-pulse" in motion.js
+// Must match "soft-wobble" in motion.js. Named independently of
 // the original's BROKEN_BUTTON_WOBBLE_MS (same value, 500ms) since the
 // broken-belly-button easter egg it was borrowed from isn't restored
 // here -- this checkpoint is idle behaviour only.
@@ -942,13 +920,11 @@ function gestureContentSmile() {
   }, IDLE_GESTURE_CONTENT_SMILE_MS);
 }
 
-// Tiny body wobble -- reuses the exact .pupu-soft-wobble class/timing
+// Tiny body wobble -- reuses the exact soft-wobble motion/timing
 // already used for the broken-belly-button flinch/payoff in the main app.
 function gestureWobble() {
-  void pupuCircle.offsetWidth; // force reflow so the animation can restart
-  pupuCircle.classList.add("pupu-soft-wobble");
+  PupuMotion.play("soft-wobble");
   setTimeout(() => {
-    pupuCircle.classList.remove("pupu-soft-wobble");
     idleGestureActive = false;
   }, IDLE_GESTURE_WOBBLE_MS);
 }
@@ -956,12 +932,10 @@ function gestureWobble() {
 // Subtle brightness pulse -- the one genuinely new visual in the
 // original's idle gesture system, since no existing system there did a
 // CSS filter pulse. Kept small and self-contained (see
-// .pupu-idle-brightness-pulse in style.css).
+// "idle-brightness-pulse" in motion.js).
 function gestureBrightnessPulse() {
-  void pupuCircle.offsetWidth; // force reflow so the animation can restart
-  pupuCircle.classList.add("pupu-idle-brightness-pulse");
+  PupuMotion.play("idle-brightness-pulse");
   setTimeout(() => {
-    pupuCircle.classList.remove("pupu-idle-brightness-pulse");
     idleGestureActive = false;
   }, IDLE_GESTURE_BRIGHTNESS_MS);
 }
@@ -1122,9 +1096,8 @@ function resumeIdleChatter() {
 async function playEvent(event) {
   clearBehaviourAnimations();
 
-  if (event.bodyClass) {
-    void pupuCircle.offsetWidth; // force reflow so the animation can restart
-    pupuCircle.classList.add(event.bodyClass);
+  if (event.motion) {
+    PupuMotion.play(event.motion);
   }
   if (event.closeEyes) {
     eyes.src = EYES_CLOSED_SRC;
@@ -1334,12 +1307,12 @@ function stopBubbleSequenceTimer() {
 // much lower volume than that category's other uses, and only every
 // few characters rather than every character, so it reads as a soft
 // typing texture instead of a loud per-keystroke click.
-// Fire-and-forget: a blocked/failed play() (e.g.
-// autoplay restrictions before any user gesture has happened yet)
-// only logs a warning via playRandomSound()'s existing rejection
-// handling -- it never touches the typing timer chain, so the
-// typewriter effect itself is entirely unaffected either way.
+// Fire-and-forget through audio.js's shared player (these files are
+// preloaded at startup, so a tick is instant); a tick that can't play
+// on time is simply dropped -- it never touches the typing timer chain,
+// so the typewriter effect itself is entirely unaffected either way.
 const TYPE_SOUND_VOLUME = 0.16;
+const TYPE_SOUND_MAX_DELAY_MS = 150; // a tick later than this would sound out of step
 const TYPE_SOUND_MIN_CHARS = 3;
 const TYPE_SOUND_MAX_CHARS = 5;
 let charsUntilNextTypeSound = 0;
@@ -1354,17 +1327,10 @@ function maybePlayTypeTick() {
   if (charsUntilNextTypeSound > 0) return;
   resetTypeSoundCounter();
 
-  const file = TYPING_SOUND_FILES[Math.floor(Math.random() * TYPING_SOUND_FILES.length)];
-  const audio = new Audio(file);
-  audio.volume = TYPE_SOUND_VOLUME;
-  const playPromise = audio.play();
-  if (playPromise && typeof playPromise.catch === "function") {
-    playPromise.catch(() => {
-      // Autoplay/user-activation restrictions or a missing asset --
-      // silently skip. The typewriter timing itself never depends on
-      // this resolving.
-    });
-  }
+  PupuAudio.playRandom(TYPING_SOUND_FILES, {
+    volume: TYPE_SOUND_VOLUME,
+    maxDelayMs: TYPE_SOUND_MAX_DELAY_MS,
+  });
 }
 
 // Creates one section's DOM immediately -- label plus one empty <p>
@@ -1485,7 +1451,7 @@ function showRevealHint() {
 // it, to bail out) -- so it can never delay or block advancing the
 // bubble sequence. Skipped entirely while `isBusy` is true so it can
 // never interrupt or get interrupted by the belly-press behaviour
-// sequence, which owns pupuCircle's animation during that window.
+// sequence, which owns PUPU's motion during that window.
 let bubbleReactionTimeoutId = null;
 
 // Card-type-aware weighting for playBubbleReaction() below: each
@@ -1526,15 +1492,13 @@ function playBubbleReaction() {
   const reaction = pickBubbleReaction(cardType);
 
   clearBehaviourAnimations();
-  void pupuCircle.offsetWidth; // force reflow so back-to-back reactions always restart cleanly
-  pupuCircle.classList.add(`pupu-${reaction.animation}`);
+  PupuMotion.play(reaction.animation);
   setMouth(MOUTH_BY_ANIMATION[reaction.animation]);
   setEyes(EYES_BY_ANIMATION[reaction.animation]);
   playBehaviourExtras(reaction);
 
   if (bubbleReactionTimeoutId !== null) clearTimeout(bubbleReactionTimeoutId);
   bubbleReactionTimeoutId = setTimeout(() => {
-    pupuCircle.classList.remove(`pupu-${reaction.animation}`);
     setMouth("normal");
     setEyes("normal");
     bubbleReactionTimeoutId = null;
@@ -1985,28 +1949,26 @@ async function playBrokenButtonDud() {
   pupuButton.src = BUTTON_UNPRESSED_SRC;
 
   // Small comedic flinch once the jam finally lets go -- reuses the
-  // same wobble class/duration the payoff already uses below.
-  void pupuCircle.offsetWidth; // force reflow so the wobble can restart cleanly
-  pupuCircle.classList.add("pupu-soft-wobble");
+  // same wobble motion/duration the payoff already uses below.
+  PupuMotion.play("soft-wobble");
   await wait(BROKEN_BUTTON_WOBBLE_MS);
-  pupuCircle.classList.remove("pupu-soft-wobble");
   setMouth("normal");
 }
 
 // Personality/unpredictability for the payoff animation itself -- which
 // of these plays is the only thing this varies. The dud/payoff press
 // counting, trigger frequency, sound, mouth, and finishing wobble below
-// are all untouched. Each variant is its own CSS class+keyframe pair
-// (see style.css) that starts and ends at PUPU's exact normal scale/
+// are all untouched. Each variant is its own motion (see motion.js)
+// that starts and ends at PUPU's exact normal scale/
 // rotation, so nothing can accumulate across repeated triggers -- same
 // cumulative-weight-threshold pattern already used by IDLE_SOUND_CHANCES/
-// IDLE_GESTURES above. durationMs must match each variant's own CSS
-// animation length.
+// IDLE_GESTURES above. durationMs must match each variant's own
+// duration in motion.js.
 const BROKEN_BUTTON_PAYOFF_VARIANTS = [
-  { upTo: 0.35, className: "pupu-broken-payoff", durationMs: BROKEN_BUTTON_PAYOFF_DURATION_MS }, // existing inflate, unchanged
-  { upTo: 0.6, className: "pupu-broken-payoff-shrink", durationMs: 700 },
-  { upTo: 0.8, className: "pupu-broken-payoff-spin", durationMs: 800 },
-  { upTo: 1.0, className: "pupu-broken-payoff-squash", durationMs: 700 }
+  { upTo: 0.35, motion: "broken-payoff", durationMs: BROKEN_BUTTON_PAYOFF_DURATION_MS }, // existing inflate, unchanged
+  { upTo: 0.6, motion: "broken-payoff-shrink", durationMs: 700 },
+  { upTo: 0.8, motion: "broken-payoff-spin", durationMs: 800 },
+  { upTo: 1.0, motion: "broken-payoff-squash", durationMs: 700 }
 ];
 
 function pickBrokenButtonPayoffVariant() {
@@ -2016,9 +1978,8 @@ function pickBrokenButtonPayoffVariant() {
 
 // The payoff on the third press: celebratory sound, one randomly-picked
 // scale/rotation flourish (see BROKEN_BUTTON_PAYOFF_VARIANTS above),
-// then a soft finishing wobble. Uses the same clear -> reflow -> add
-// class -> wait -> remove class pattern every existing reaction/event
-// already uses.
+// then a soft finishing wobble. Uses the same clear -> play motion ->
+// wait pattern every existing reaction/event already uses.
 async function playBrokenButtonPayoff() {
   pupuButton.src = BUTTON_PRESSED_SRC;
 
@@ -2028,16 +1989,12 @@ async function playBrokenButtonPayoff() {
   setMouth("shout"); // startled "whoa!" face for the big inflate payoff
 
   clearBehaviourAnimations();
-  void pupuCircle.offsetWidth; // force reflow so the animation can restart
   const payoffVariant = pickBrokenButtonPayoffVariant();
-  pupuCircle.classList.add(payoffVariant.className);
+  PupuMotion.play(payoffVariant.motion);
   await wait(payoffVariant.durationMs);
-  pupuCircle.classList.remove(payoffVariant.className);
 
-  void pupuCircle.offsetWidth; // force reflow so the wobble can restart cleanly
-  pupuCircle.classList.add("pupu-soft-wobble");
+  PupuMotion.play("soft-wobble");
   await wait(BROKEN_BUTTON_WOBBLE_MS);
-  pupuCircle.classList.remove("pupu-soft-wobble");
   setMouth("normal");
 
   pupuButton.src = BUTTON_UNPRESSED_SRC;
@@ -2092,6 +2049,10 @@ async function handleBellyPress() {
   if (isStreakSpark) fastPressStreak = 0;
 
   playSquish();
+  // Instant visible answer to the touch, layered over breathing; `keep`
+  // stops the sequence's own clearBehaviourAnimations() calls a moment
+  // later from cutting it short.
+  PupuMotion.play("press", { keep: true });
 
   // Restored from script.js's playReaction(): the belly button's own
   // pressed artwork, held through thinking, and disabled so it can't
@@ -2112,14 +2073,12 @@ async function handleBellyPress() {
   await think();
 
   // Restored from script.js's playReaction(): the Brain (here, a
-  // plain random pick) chooses a behaviour; its animation plays --
-  // triggering the matching arm animation via the CSS selectors on
-  // .pupu-circle.pupu-<animation> .pupu-arm-left/right -- and the
-  // mouth expression that goes with it.
+  // plain random pick) chooses a behaviour; its motion plays (body and
+  // arms, see motion.js) on top of PUPU's breathing -- with the mouth
+  // expression that goes with it.
   const behaviour = isStreakSpark ? pickRandomFrom(HAPPY_BEHAVIOURS) : pickRandomFrom(BEHAVIOURS);
   clearBehaviourAnimations();
-  void pupuCircle.offsetWidth; // force reflow so the animation can restart
-  pupuCircle.classList.add(`pupu-${behaviour.animation}`);
+  PupuMotion.play(behaviour.animation);
   setMouth(MOUTH_BY_ANIMATION[behaviour.animation]);
   setEyes(isStreakSpark ? "smiling" : EYES_BY_ANIMATION[behaviour.animation]);
   playBehaviourExtras(behaviour);
@@ -2140,8 +2099,7 @@ async function handleBellyPress() {
   await wait(behaviour.duration);
 
   clearBehaviourAnimations();
-  void pupuCircle.offsetWidth; // force reflow so the animation can restart
-  pupuCircle.classList.add("pupu-finish");
+  PupuMotion.play("finish");
   setMouth("normal");
   setEyes("normal");
   await wait(FINISH_DURATION_MS);
@@ -2176,7 +2134,16 @@ async function handleBellyPress() {
 // removed); keydown handles Enter/Space since the button is exposed as
 // role="button" for accessibility, matching how the main app's belly
 // button already works (see script.js).
-pupuButton.addEventListener("click", handleBellyPress);
+// pointerdown (not click) so PUPU reacts the instant a finger touches
+// him -- click only fires once the finger lifts. Primary touch / left
+// mouse button only, so a second finger or a right-click does nothing.
+// preventDefault stops the touch also turning into a later click, text
+// selection or the long-press image menu.
+pupuButton.addEventListener("pointerdown", (event) => {
+  if (!event.isPrimary || (event.pointerType === "mouse" && event.button !== 0)) return;
+  event.preventDefault();
+  handleBellyPress();
+});
 pupuButton.addEventListener("keydown", (event) => {
   if (event.key === "Enter" || event.key === " ") {
     event.preventDefault();
@@ -2197,6 +2164,41 @@ bubbleEl.addEventListener("keydown", (event) => {
     handleBubbleAdvance();
   }
 });
+
+// ---------- Preloading ----------
+// Every expression/overlay picture is downloaded and decoded now, so
+// swapping eyes/mouth/effects later is instant -- before, a face that
+// hadn't been shown yet had to load first and could flash blank. The
+// Image objects are kept so the browser holds on to them.
+function layerAssetSrc(layer, assetName) {
+  return `images/pupu/${LAYERS[layer].folder}/${assetName}.png`;
+}
+
+const PRELOAD_IMAGE_SRCS = [
+  EYES_OPEN_SRC, EYES_CLOSED_SRC, EYES_SMILING_SRC, EYES_DOTS_SRC,
+  EYES_SLITS_SRC, EYES_CIRCLES_SRC, EYES_PUPU_SRC,
+  MOUTH_NORMAL_SRC, MOUTH_SMILE_SRC, MOUTH_BLOW_SRC, MOUTH_OH_SRC, MOUTH_WIDE_SRC,
+  MOUTH_LIPS_SRC, MOUTH_TONGUE_SRC, MOUTH_SHOUT_SRC, MOUTH_CLOSED_SMILE_SRC,
+  MOUTH_SING_SRC, MOUTH_SAD_SRC,
+  BUTTON_UNPRESSED_SRC, BUTTON_PRESSED_SRC,
+  ...HAT_ASSETS.map((asset) => layerAssetSrc("hat", asset)),
+  ...[...BEHAVIOURS, ...BUBBLE_REACTIONS, ...EVENTS].flatMap((entry) => [
+    entry.effect ? layerAssetSrc("effect", entry.effect) : null,
+    entry.item ? layerAssetSrc("item", entry.item) : null,
+  ]),
+].filter((src, i, all) => src && all.indexOf(src) === i);
+
+const preloadedImages = PRELOAD_IMAGE_SRCS.map((src) => {
+  const img = new Image();
+  img.src = src;
+  if (typeof img.decode === "function") img.decode().catch(() => {});
+  return img;
+});
+
+// The sounds that play most often and must never lag (squish, typing
+// ticks, bubble taps) are decoded up front; everything else is decoded
+// the first time it plays (see audio.js).
+PupuAudio.preload([...SQUISH_SOUND_FILES, ...TYPING_SOUND_FILES, ...BUBBLE_TAP_SOUND_FILES]);
 
 scheduleNextBlink();
 loadCards();

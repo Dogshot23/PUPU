@@ -13,11 +13,13 @@
 // each successful fetch so offline fallback stays reasonably current
 // too. CACHE_NAME still exists so activate() can drop old cache
 // generations; it no longer needs to be bumped just to see an edit.
-const CACHE_NAME = "pupu-mvp-v8-debug";
+const CACHE_NAME = "pupu-mvp-v9";
 const APP_SHELL = [
   "./",
   "./index.html",
   "./style.css",
+  "./audio.js",
+  "./motion.js",
   "./app.js",
   "./cards.json",
   "./missions.json",
@@ -53,6 +55,29 @@ const APP_SHELL = [
   "./images/pupu/buttons/button_unpressed.png",
   "./images/pupu/buttons/button_pressed.png",
   "./images/pupu/effects/effect_shadow.png",
+  // Every expression/overlay app.js preloads, so faces work offline too.
+  "./images/pupu/body/body_ghost.png",
+  "./images/pupu/eyes/eyes_smiling.png",
+  "./images/pupu/eyes/eyes_dots.png",
+  "./images/pupu/eyes/eyes_slits.png",
+  "./images/pupu/eyes/eyes_circles.png",
+  "./images/pupu/eyes/eyes_pupu.png",
+  "./images/pupu/mouths/mouth_lips.png",
+  "./images/pupu/mouths/mouth_tongue.png",
+  "./images/pupu/mouths/mouth_shout.png",
+  "./images/pupu/mouths/mouth_closed_smile.png",
+  "./images/pupu/mouths/mouth_sing.png",
+  "./images/pupu/mouths/mouth_sad.png",
+  "./images/pupu/effects/effect_dazed.png",
+  "./images/pupu/effects/effect_exclamation.png",
+  "./images/pupu/effects/effect_fart.png",
+  "./images/pupu/effects/effect_love.png",
+  "./images/pupu/effects/effect_question.png",
+  "./images/pupu/effects/effect_shock.png",
+  "./images/pupu/hats/hat_pirate.png",
+  "./images/pupu/hats/hat_santa.png",
+  "./images/pupu/hats/hat_wizard.png",
+  "./images/pupu/items/item_shades.png",
 ];
 
 self.addEventListener("install", (event) => {

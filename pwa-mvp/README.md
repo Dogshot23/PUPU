@@ -22,6 +22,8 @@ When real review happens, the reviewed/approved subset belongs in the project's 
 ## Files
 
 - `index.html`, `style.css`, `app.js` — the app itself.
+- `motion.js` — PUPU's body/arm movements (breathing, reactions, the face's follow-through), played with the Web Animations API on nested layers so reactions add on top of breathing.
+- `audio.js` — one shared Web Audio player; each sound is decoded once and reused (replaces a new `Audio()` per sound).
 - `cards.json` — the 100-card MVP dataset (see above).
 - `manifest.json`, `sw.js` — PWA installability (manifest + a minimal cache-first service worker for the app shell).
 
