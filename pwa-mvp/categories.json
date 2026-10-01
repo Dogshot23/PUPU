@@ -1,0 +1,139 @@
+{
+  "_comment": "Card categories for pwa-mvp. Each category lists its beats in order (role: setup | reveal | prompt), the box label shown above each beat (labels are never translated), whether later beats appear on their own ('auto') or only on a tap ('tap'), and its share of belly presses ('weight', relative; categories with the same 'weightGroup' share one slice; categories with no cards are skipped). A beat's 'react' names a motion in motion.js; a card's own beat 'react' overrides it. 'emotionReactions' picks the opening reaction from a card's 'emotion' when no beat names one. 'favouredReactions' lists BUBBLE_REACTIONS ids (app.js) weighted up for the random between-beat reaction. Check with: node tools/validate-content.js",
+  "emotionReactions": {
+    "mischievous": "wink",
+    "surprised": "surprised",
+    "excited": "excited",
+    "confused": "look-around",
+    "sleepy": "sleepy",
+    "proud": "proud-puff",
+    "curious": "lean-in",
+    "happy": "bounce"
+  },
+  "categories": [
+    {
+      "id": "fact",
+      "weight": 7,
+      "reveal": "auto",
+      "beats": [
+        { "role": "setup", "label": "💡 DID YOU KNOW?" },
+        { "role": "prompt", "label": "🗣️ SHARE IT!", "missionFallback": true }
+      ]
+    },
+    {
+      "id": "joke",
+      "weight": 20,
+      "reveal": "tap",
+      "favouredReactions": ["bounce", "sillyDance"],
+      "beats": [
+        { "role": "setup", "label": "😂 JOKE TIME!" },
+        { "role": "reveal", "label": "😂 THE PUNCHLINE" }
+      ]
+    },
+    {
+      "id": "riddle",
+      "weight": 15,
+      "reveal": "tap",
+      "favouredReactions": ["lookAround", "spin"],
+      "beats": [
+        { "role": "setup", "label": "🤔 CAN YOU GUESS?" },
+        { "role": "reveal", "label": "💡 THE ANSWER" }
+      ]
+    },
+    {
+      "id": "story",
+      "weight": 15,
+      "reveal": "auto",
+      "favouredReactions": ["surprised", "wakeUp"],
+      "beats": [
+        { "role": "setup", "label": "📖 STORY TIME" },
+        { "role": "prompt", "label": "❓ WHAT HAPPENS NEXT?" }
+      ]
+    },
+    {
+      "id": "question",
+      "weightGroup": "story",
+      "reveal": "auto",
+      "favouredReactions": ["lookAround", "spin"],
+      "beats": [
+        { "role": "setup", "label": "💭 YOUR TURN" },
+        { "role": "prompt", "label": "🗣️ TELL ME MORE" }
+      ]
+    },
+    {
+      "id": "wyr",
+      "weight": 30,
+      "reveal": "auto",
+      "beats": [
+        { "role": "setup", "label": "🤔 WOULD YOU RATHER?" },
+        { "role": "prompt", "label": "❓ WHY?" }
+      ]
+    },
+    {
+      "id": "challenge",
+      "weight": 5,
+      "reveal": "auto",
+      "beats": [
+        { "role": "setup", "label": "🎯 YOUR CHALLENGE" },
+        { "role": "prompt", "label": "🎬 GO!" }
+      ]
+    },
+    {
+      "id": "mystery",
+      "weight": 5,
+      "reveal": "auto",
+      "beats": [
+        { "role": "setup", "label": "🕵️ WHAT HAPPENED?" },
+        { "role": "prompt", "label": "❓ WHY?" }
+      ]
+    },
+    {
+      "id": "moment",
+      "weight": 3,
+      "reveal": "auto",
+      "beats": [
+        { "role": "setup", "label": "👀 PUPU MOMENT" },
+        { "role": "reveal", "label": "🤷 THAT'S IT" }
+      ]
+    },
+    {
+      "id": "absurd-secret",
+      "weight": 10,
+      "reveal": "tap",
+      "beats": [
+        { "role": "setup", "label": "🤫 CAN YOU KEEP A SECRET?", "react": "lean-in" },
+        { "role": "reveal", "label": "😳 PUPU'S SECRET", "react": "shock-pop" },
+        { "role": "prompt", "label": "🗣️ YOUR TURN", "react": "wink" }
+      ]
+    },
+    {
+      "id": "silly-lie",
+      "weight": 10,
+      "reveal": "tap",
+      "beats": [
+        { "role": "setup", "label": "🤥 TRUE OR LIE?", "react": "proud-puff" },
+        { "role": "reveal", "label": "😜 THE TRUTH", "react": "wink" },
+        { "role": "prompt", "label": "🗣️ YOUR TURN", "react": "lean-in" }
+      ]
+    },
+    {
+      "id": "teacher-challenge",
+      "weight": 10,
+      "reveal": "auto",
+      "beats": [
+        { "role": "setup", "label": "👩‍🏫 TEACHER CHALLENGE", "react": "lean-in" },
+        { "role": "prompt", "label": "🎬 GO!", "react": "proud-puff" }
+      ]
+    },
+    {
+      "id": "wrong-claim",
+      "weight": 10,
+      "reveal": "tap",
+      "beats": [
+        { "role": "setup", "label": "😤 PUPU IS SURE…", "react": "proud-puff" },
+        { "role": "reveal", "label": "🙈 ACTUALLY…", "react": "shock-pop" },
+        { "role": "prompt", "label": "🗣️ WHAT'S RIGHT?", "react": "wink" }
+      ]
+    }
+  ]
+}

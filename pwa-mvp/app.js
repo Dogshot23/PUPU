@@ -10,7 +10,8 @@ const state = {
   cards: [],
   recent: [], // sourceIds of the most recently shown cards, oldest first
   missions: {}, // grouped by conversationType, e.g. { "guess": [...] }
-  translations: {}, // { [card.sourceId]: { [langCode]: { sections: [[line0, line1?], [line0]] } } } -- see loadTranslations()
+  categories: {}, // { [id]: category } from categories.json -- labels, beats, reveal mode, weights, reactions
+  emotionReactions: {}, // card emotion -> motion name, from categories.json
 };
 
 const bubbleEl = document.getElementById("bubble");
@@ -68,7 +69,12 @@ const MOUTH_BY_ANIMATION = {
   yawn: "wide",
   surprised: "oh",
   "wake-up": "oh",
-  "silly-dance": "lips"
+  "silly-dance": "lips",
+  // Card-category reactions (categories.json / motion.js).
+  "lean-in": "closedSmile",
+  "shock-pop": "shout",
+  "proud-puff": "closedSmile",
+  wink: "tongue"
 };
 
 // Sets the mouth artwork for a given expression; anything
@@ -109,7 +115,19 @@ const EYES_BY_ANIMATION = {
   "wake-up": "circles",
   surprised: "circles",
   "look-around": "dots",
-  sleepy: "slits"
+  sleepy: "slits",
+  // Card-category reactions. There is no one-eyed wink artwork yet, so
+  // "wink" uses the smiling eyes with the cheeky head tilt.
+  "lean-in": "dots",
+  "shock-pop": "circles",
+  "proud-puff": "smiling",
+  wink: "smiling"
+};
+
+// Overlay effect shown with a card-category reaction (same layer system
+// as the BUBBLE_REACTIONS/EVENTS `effect` field).
+const EFFECT_BY_ANIMATION = {
+  "shock-pop": "effect_exclamation"
 };
 
 // Tracks the current *base* eyes expression (i.e. what the eyes should
@@ -1163,20 +1181,28 @@ async function loadMissions() {
   }
 }
 
-// ---------- Language / translation system ----------
-// Static, reviewed translations only (see translations.json) -- no
-// external translation API. A missing/failed load just leaves
-// state.translations empty, which getSectionLines() below already
-// treats as "no translation available" and falls back to English, so
-// this can never break card rendering.
-async function loadTranslations() {
+// ---------- Categories ----------
+// categories.json holds everything that varies per card category: box
+// labels, beat order (setup / reveal / prompt), tap-or-auto reveal,
+// weights and reactions -- so adding a category means editing that file,
+// not this one. Korean (and any future language) now lives inside each
+// card's beats in cards.json, next to its English line, so the two can't
+// drift apart; there is no separate translations file any more.
+async function loadCategories() {
   try {
-    const response = await fetch("translations.json");
+    const response = await fetch("categories.json");
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    state.translations = await response.json();
+    const data = await response.json();
+    state.categories = Object.fromEntries(data.categories.map((category) => [category.id, category]));
+    state.emotionReactions = data.emotionReactions || {};
   } catch (error) {
-    console.error("PUPU MVP: failed to load translations.json", error);
+    console.error("PUPU MVP: failed to load categories.json", error);
   }
+}
+
+// A card's category; anything unrecognised is shown as a fact.
+function categoryOf(card) {
+  return state.categories[card.category] || state.categories.fact;
 }
 
 // True if a mission's own wording references one of the card's topics
@@ -1210,46 +1236,39 @@ function pickMission(conversationType, topicTags) {
   return pickRandomFrom(Object.values(state.missions).flat());
 }
 
-// ---------- Content-type weighting for pickCard() ----------
-// Weighted by type (not by raw card count) so the mix stays correct
-// regardless of how many cards exist per type -- previously pickCard()
-// picked uniformly across the whole array, which meant the type with
-// the most cards (fact, 100 of 120) dominated by sheer volume. Percent
-// values are relative to each other, not required to sum to 100.
-// "question" cards share "story"'s slice since both are situational
-// prompts; any type missing from this table (or with an empty pool
-// right now) falls back to "fact"'s slice below.
-const CARD_TYPE_WEIGHTS = {
-  wyr: 30,
-  joke: 20,
-  riddle: 15,
-  story: 15,
-  challenge: 5,
-  mystery: 5,
-  fact: 7,
-  moment: 3,
-};
-const CARD_TYPE_WEIGHT_ALIASES = { question: "story" };
-
-function cardWeightType(card) {
-  const type = card.type || "fact";
-  return CARD_TYPE_WEIGHT_ALIASES[type] || type;
+// ---------- Category weighting for pickCard() ----------
+// Weighted by category (not by raw card count) so the mix stays correct
+// regardless of how many cards exist per category -- picking uniformly
+// across the whole array would let whichever category has the most
+// cards dominate by sheer volume. Weights live in categories.json and
+// are relative to each other. A category with `weightGroup` shares that
+// category's slice ("question" shares "story"'s); a slice with no cards
+// yet (e.g. a new category still waiting for content) is skipped.
+function weightGroupOf(card) {
+  const category = categoryOf(card);
+  return category.weightGroup || category.id;
 }
 
-function pickWeightedCardType() {
-  const totalWeight = Object.values(CARD_TYPE_WEIGHTS).reduce((sum, w) => sum + w, 0);
+function pickWeightedCategoryGroup() {
+  const liveGroups = Object.values(state.categories).filter(
+    (category) =>
+      !category.weightGroup &&
+      category.weight > 0 &&
+      state.cards.some((card) => weightGroupOf(card) === category.id)
+  );
+  const totalWeight = liveGroups.reduce((sum, category) => sum + category.weight, 0);
   let roll = Math.random() * totalWeight;
-  for (const [type, weight] of Object.entries(CARD_TYPE_WEIGHTS)) {
-    roll -= weight;
-    if (roll <= 0) return type;
+  for (const category of liveGroups) {
+    roll -= category.weight;
+    if (roll <= 0) return category.id;
   }
-  return "fact";
+  return liveGroups.length > 0 ? liveGroups[liveGroups.length - 1].id : null;
 }
 
 function pickCard() {
-  const chosenType = pickWeightedCardType();
-  const typePool = state.cards.filter((card) => cardWeightType(card) === chosenType);
-  const pool = typePool.length > 0 ? typePool : state.cards;
+  const chosenGroup = pickWeightedCategoryGroup();
+  const groupPool = state.cards.filter((card) => weightGroupOf(card) === chosenGroup);
+  const pool = groupPool.length > 0 ? groupPool : state.cards;
 
   const notRecentlyShown = pool.filter((card) => !state.recent.includes(card.sourceId));
   const finalPool = notRecentlyShown.length > 0 ? notRecentlyShown : pool;
@@ -1261,6 +1280,41 @@ function pickCard() {
   }
 
   return card;
+}
+
+// ---------- Card reactions ----------
+// The card is picked BEFORE PUPU reacts, so the reaction can suit it.
+// For each beat the reaction is, in order: the card beat's own `react`,
+// its category's `react` for that beat (categories.json), and -- for the
+// opening beat only -- the card's `emotion` (categories.json
+// emotionReactions). Every one of these names a motion in motion.js.
+// Only when none applies does PUPU fall back to the original random
+// behaviour (BEHAVIOURS on a belly press, BUBBLE_REACTIONS between beats).
+const OPENING_REACTION_MIN_MS = 1200; // shortest hold before the finishing nod, like the shortest BEHAVIOURS entry
+
+function beatReactionName(card, beatIndex) {
+  const definition = categoryOf(card).beats[beatIndex];
+  if (!definition) return null;
+  const beat = card.beats.find((candidate) => candidate.role === definition.role);
+  return (beat && beat.react) || definition.react || null;
+}
+
+// Turns a motion name into the same shape as a BEHAVIOURS/BUBBLE_REACTIONS
+// entry, so the existing play/face/extras code handles both alike.
+function reactionFromMotion(name, minDurationMs) {
+  return {
+    id: name,
+    animation: name,
+    duration: Math.max(PupuMotion.MOTIONS[name].duration, minDurationMs),
+    effect: EFFECT_BY_ANIMATION[name],
+    effectDuration: 1200,
+  };
+}
+
+function pickOpeningReaction(card, isStreakSpark) {
+  const name = beatReactionName(card, 0) || state.emotionReactions[card.emotion];
+  if (name && PupuMotion.MOTIONS[name]) return reactionFromMotion(name, OPENING_REACTION_MIN_MS);
+  return isStreakSpark ? pickRandomFrom(HAPPY_BEHAVIOURS) : pickRandomFrom(BEHAVIOURS);
 }
 
 // Appends one line to the speech bubble using the existing .beat
@@ -1397,13 +1451,11 @@ function completeCurrentSectionText() {
   finishTypingSection();
 }
 
-// Types whose second section (the punchline/answer) should stay hidden
-// behind an explicit tap instead of auto-revealing after
-// SECTION_REVEAL_DELAY_MS -- real classroom testing showed the answer
-// appearing on its own before anyone had a chance to guess. Every other
-// type keeps the original auto-advance behaviour untouched.
-const MANUAL_REVEAL_TYPES = ["riddle", "joke"];
-
+// Categories with "reveal": "tap" in categories.json (jokes, riddles,
+// secrets, ...) keep each later beat hidden behind an explicit tap
+// instead of auto-revealing after SECTION_REVEAL_DELAY_MS -- real
+// classroom testing showed the answer appearing on its own before anyone
+// had a chance to guess. "auto" categories keep the auto-advance.
 function finishTypingSection() {
   bubbleSequence.timerId = null;
 
@@ -1418,16 +1470,16 @@ function finishTypingSection() {
   updateLanguageToggleEnabled();
   bubbleEl.classList.add("bubble-waiting"); // subtle pulse hinting the bubble can be tapped
 
-  if (MANUAL_REVEAL_TYPES.includes(bubbleSequence.cardType)) {
+  if (bubbleSequence.category.reveal === "tap") {
     showRevealHint();
-    return; // no auto-advance timer here -- only an explicit tap reveals section 2
+    return; // no auto-advance timer here -- only an explicit tap reveals the next beat
   }
 
   bubbleSequence.timerId = setTimeout(advanceBubbleSequence, SECTION_REVEAL_DELAY_MS);
 }
 
-// Placeholder shown in place of the still-hidden second section for
-// MANUAL_REVEAL_TYPES -- reuses the exact .bubble-section/.bubble-label
+// Placeholder shown in place of the still-hidden next beat for "tap"
+// categories -- reuses the exact .bubble-section/.bubble-label
 // markup (and its existing fade-in animation) a real section already
 // gets, just with no lines yet, so it's visually indistinguishable from
 // the box it's standing in for. Removed the moment the real section is
@@ -1454,26 +1506,17 @@ function showRevealHint() {
 // sequence, which owns PUPU's motion during that window.
 let bubbleReactionTimeoutId = null;
 
-// Card-type-aware weighting for playBubbleReaction() below: each
-// type's favoured reaction ids get extra entries in the pool they're
-// picked from (rather than a full weighting engine), so PUPU's
-// between-bubble reaction leans toward reactions that actually suit
-// what's on screen -- a joke gets more bounce/silly-dance, a riddle or
-// question gets more curious look-around/spin, a story gets more
-// wide-eyed surprised/wake-up -- instead of a flat uniform pick every
-// time. "fact" (the original/default type) and any unrecognised type
-// intentionally have no entry here, so they keep using the plain
-// unweighted pool exactly as before this pass.
-const CONTENT_TYPE_FAVOURED_REACTIONS = {
-  joke: ["bounce", "sillyDance"],
-  riddle: ["lookAround", "spin"],
-  question: ["lookAround", "spin"],
-  story: ["surprised", "wakeUp"]
-};
+// Category-aware weighting for the random between-beat reaction: each
+// category's `favouredReactions` (categories.json, BUBBLE_REACTIONS ids)
+// get extra entries in the pool they're picked from, so PUPU leans
+// toward reactions that suit what's on screen -- a joke gets more
+// bounce/silly-dance, a riddle or question gets more curious look-around/
+// spin, a story gets more wide-eyed surprised/wake-up. A category without
+// any keeps the plain unweighted pool.
 const FAVOURED_REACTION_EXTRA_WEIGHT = 2; // how many extra times a favoured reaction appears in the weighted pool
 
-function pickBubbleReaction(cardType) {
-  const favouredIds = CONTENT_TYPE_FAVOURED_REACTIONS[cardType];
+function pickBubbleReaction(category) {
+  const favouredIds = category && category.favouredReactions;
   if (!favouredIds) return pickRandomFrom(BUBBLE_REACTIONS);
 
   const pool = BUBBLE_REACTIONS.slice();
@@ -1485,11 +1528,15 @@ function pickBubbleReaction(cardType) {
   return pickRandomFrom(pool);
 }
 
-function playBubbleReaction() {
+// `reactionName`: the beat's reaction (see "Card reactions"), if any;
+// otherwise a random, category-weighted BUBBLE_REACTIONS entry.
+function playBubbleReaction(reactionName) {
   if (isBusy) return;
 
-  const cardType = bubbleSequence ? bubbleSequence.cardType : undefined;
-  const reaction = pickBubbleReaction(cardType);
+  const reaction =
+    reactionName && PupuMotion.MOTIONS[reactionName]
+      ? reactionFromMotion(reactionName, 0)
+      : pickBubbleReaction(bubbleSequence && bubbleSequence.category);
 
   clearBehaviourAnimations();
   PupuMotion.play(reaction.animation);
@@ -1514,11 +1561,11 @@ function advanceBubbleSequence() {
   bubbleSequence.stageIndex++;
   const section = bubbleSequence.sections[bubbleSequence.stageIndex];
   // Refreshed against currentLanguage (not whatever renderCard() built
-  // it with) so a language switch made during the "waiting" phase of
-  // the first section carries through to the second one too.
-  section.lines = getSectionLines(bubbleSequence.card, bubbleSequence.mission, bubbleSequence.stageIndex, currentLanguage);
+  // it with) so a language switch made while waiting on an earlier beat
+  // carries through to this one too.
+  section.lines = localizeLines(section.beatLines, currentLanguage);
   startTypingSection(section);
-  playBubbleReaction();
+  playBubbleReaction(section.react);
 }
 
 // The single entry point for tapping/clicking (or Enter/Space-ing) the
@@ -1542,29 +1589,11 @@ function handleBubbleAdvance() {
   }
 }
 
-// Per-type box labels for the two-bubble sequence. "fact" is the
-// original/default type -- the existing 100 cards have no `type`
-// field at all, so they fall back to it below. The other four types
-// reuse the exact same two-box mechanic, just with english[0]/
-// english[1] as a plain setup/payoff pair instead of a fact+share
-// prompt pair (no mission involved).
-const CONTENT_TYPE_LABELS = {
-  fact: { box1: "💡 DID YOU KNOW?", box2: "🗣️ SHARE IT!" },
-  joke: { box1: "😂 JOKE TIME!", box2: "😂 THE PUNCHLINE" },
-  riddle: { box1: "🤔 CAN YOU GUESS?", box2: "💡 THE ANSWER" },
-  story: { box1: "📖 STORY TIME", box2: "❓ WHAT HAPPENS NEXT?" },
-  question: { box1: "💭 YOUR TURN", box2: "🗣️ TELL ME MORE" },
-  wyr: { box1: "🤔 WOULD YOU RATHER?", box2: "❓ WHY?" },
-  challenge: { box1: "🎯 YOUR CHALLENGE", box2: "🎬 GO!" },
-  mystery: { box1: "🕵️ WHAT HAPPENED?", box2: "❓ WHY?" },
-  moment: { box1: "👀 PUPU MOMENT", box2: "🤷 THAT'S IT" },
-};
-
 // ---------- Language toggle ----------
 // Config-driven on purpose: adding Chinese/Spanish/Japanese later means
-// adding an entry here plus supplying translations in translations.json
-// -- buildLanguageToggle() and getSectionLines() below both just
-// iterate/look up by code, no rendering-logic changes needed.
+// adding an entry here plus a matching key ("zh", ...) next to "en"/"ko"
+// on each line in cards.json -- buildLanguageToggle() and localizeLines()
+// below both just look up by code, no rendering-logic changes needed.
 const SUPPORTED_LANGUAGES = [
   { code: "en", label: "English", flag: "🇬🇧" },
   { code: "ko", label: "한국어", flag: "" }
@@ -1576,47 +1605,38 @@ const SUPPORTED_LANGUAGES = [
 // no existing settings mechanism to extend, per the brief.
 let currentLanguage = "en";
 
-// Card-type-aware box shapes (label/modifier) -- these never translate,
-// only the lines inside them do (see the "what should be translated"
-// scope: fact text + Share It prompt, not the box labels).
-function getSectionShapes(card) {
-  const type = card.type || "fact";
-  const labels = CONTENT_TYPE_LABELS[type];
-  return [
-    { modifier: "fact", label: labels.box1 },
-    { modifier: "mission", label: labels.box2 },
-  ];
+// The beats a card shows, in its category's order, each with its box
+// label (labels never translate), reaction and lines ({ en, ko, ... }).
+// The first beat uses the .bubble-section-fact styling, later ones
+// .bubble-section-mission. A category beat marked `missionFallback` that
+// the card doesn't have (a fact with no share prompt of its own) is
+// filled with the picked mission's text instead (English only).
+function getCardBeats(card, mission) {
+  return categoryOf(card)
+    .beats.map((definition, i) => {
+      const beat = card.beats.find((candidate) => candidate.role === definition.role);
+      const beatLines = beat
+        ? beat.lines
+        : definition.missionFallback && mission
+          ? [{ en: mission.text }]
+          : null;
+      if (!beatLines) return null;
+      return {
+        role: definition.role,
+        label: definition.label,
+        modifier: i === 0 ? "fact" : "mission",
+        react: (beat && beat.react) || definition.react || null,
+        beatLines,
+      };
+    })
+    .filter(Boolean);
 }
 
-// English is always read straight from cards.json/missions.json --
-// never duplicated into translations.json -- so it's both the default
-// language and the fallback for anything untranslated. Restored
-// verbatim from renderCard()'s old inline ternary.
-function getEnglishLines(card, mission, sectionIndex) {
-  const type = card.type || "fact";
-  if (type === "fact") {
-    return sectionIndex === 0 ? card.english.slice(0, 2) : [card.sharePrompt || mission.text];
-  }
-  return [card.english[sectionIndex]];
-}
-
-// The single place that decides what text actually renders for a given
-// section + language. Falls back to English whenever the requested
-// language has no translations at all for this card, or no entry for
-// this specific section -- so a missing translation can never show
-// blank/broken text. A translations.json entry looks like
-// { "ko": { "sections": [ [line0, line1?], [line0] ] } } -- sections[i]
-// mirrors getEnglishLines()'s own shape exactly (one line-array per
-// section), so this same lookup works unchanged for every content type
-// (fact's 2-line fact + 1-line share prompt, or joke/riddle/story/
-// question's 1-line + 1-line setup/answer) with no per-type branching.
-function getSectionLines(card, mission, sectionIndex, lang) {
-  const englishLines = getEnglishLines(card, mission, sectionIndex);
-  if (lang === "en") return englishLines;
-
-  const entry = state.translations[card.sourceId] && state.translations[card.sourceId][lang];
-  const lines = entry && entry.sections && entry.sections[sectionIndex];
-  return Array.isArray(lines) && lines.length > 0 ? lines : englishLines;
+// The text to show for some beat lines in one language. Any line missing
+// that language shows its English instead, so a gap can never show
+// blank text.
+function localizeLines(beatLines, lang) {
+  return beatLines.map((line) => line[lang] || line.en);
 }
 
 // Reflects which language is currently active on the toggle buttons
@@ -1673,9 +1693,9 @@ function setLanguage(lang) {
 
   currentLanguage = lang;
 
-  const sectionEls = bubbleEl.querySelectorAll(".bubble-section");
+  const sectionEls = bubbleEl.querySelectorAll(".bubble-section:not(.bubble-reveal-hint)");
   sectionEls.forEach((sectionEl, i) => {
-    const localizedLines = getSectionLines(bubbleSequence.card, bubbleSequence.mission, i, lang);
+    const localizedLines = localizeLines(bubbleSequence.sections[i].beatLines, lang);
     bubbleSequence.sections[i].lines = localizedLines; // keep in sync so a later advance/tap types the right language too
     const lineEls = sectionEl.querySelectorAll(".beat");
     lineEls.forEach((el, j) => {
@@ -1698,13 +1718,13 @@ function renderCard(card, mission) {
   currentLanguage = "en"; // a new output always starts in English
   updateLanguageToggleUI();
 
-  const type = card.type || "fact";
-  const sections = getSectionShapes(card).map((shape, i) => ({
-    ...shape,
-    lines: getSectionLines(card, mission, i, currentLanguage),
+  const category = categoryOf(card);
+  const sections = getCardBeats(card, mission).map((beat) => ({
+    ...beat,
+    lines: localizeLines(beat.beatLines, currentLanguage),
   }));
 
-  bubbleSequence = { sections, stageIndex: 0, phase: "typing", timerId: null, lineEls: [], lineIndex: 0, charIndex: 0, cardType: type, card, mission, revealHintEl: null };
+  bubbleSequence = { sections, stageIndex: 0, phase: "typing", timerId: null, lineEls: [], lineIndex: 0, charIndex: 0, cardType: category.id, category, card, mission, revealHintEl: null };
   startTypingSection(sections[0]);
 
   statusEl.textContent = `${card.sourceId} · ${card.engine} · Generated (not yet reviewed)`;
@@ -2026,7 +2046,7 @@ async function handleBrokenButtonPress() {
 }
 
 async function handleBellyPress() {
-  if (isBusy || state.cards.length === 0 || Object.keys(state.missions).length === 0) return;
+  if (isBusy || state.cards.length === 0 || Object.keys(state.categories).length === 0 || Object.keys(state.missions).length === 0) return;
 
   if (brokenButtonDudsLeft > 0) {
     await handleBrokenButtonPress();
@@ -2072,29 +2092,29 @@ async function handleBellyPress() {
 
   await think();
 
-  // Restored from script.js's playReaction(): the Brain (here, a
-  // plain random pick) chooses a behaviour; its motion plays (body and
-  // arms, see motion.js) on top of PUPU's breathing -- with the mouth
-  // expression that goes with it.
-  const behaviour = isStreakSpark ? pickRandomFrom(HAPPY_BEHAVIOURS) : pickRandomFrom(BEHAVIOURS);
+  // The card is picked FIRST, so PUPU's reaction can suit it (see "Card
+  // reactions" above): the card's opening-beat reaction, else its
+  // category's, else one matching its emotion -- and only failing all
+  // of those the original random behaviour (from the happy family on a
+  // streak spark). Its motion plays on top of PUPU's breathing (body and
+  // arms, see motion.js) with the face that goes with it. The card's
+  // conversationType still steers which mission pool pickMission() draws
+  // from (used only by a fact with no share prompt of its own).
+  const card = pickCard();
+  const behaviour = pickOpeningReaction(card, isStreakSpark);
   clearBehaviourAnimations();
   PupuMotion.play(behaviour.animation);
   setMouth(MOUTH_BY_ANIMATION[behaviour.animation]);
   setEyes(isStreakSpark ? "smiling" : EYES_BY_ANIMATION[behaviour.animation]);
   playBehaviourExtras(behaviour);
 
-  // The card is picked first so its conversationType can steer which
-  // mission pool pickMission() draws from -- see the Mission Engine
-  // section above. renderCard() itself still just receives (card,
-  // mission), same as before.
-  const card = pickCard();
   renderCard(card, pickMission(card.conversationType, card.topicTags));
   replayAnimation(bubbleEl, "pupu-inflate", 500);
 
-  // Holds the behaviour's own body animation for its own duration (see
-  // the BEHAVIOURS comment above), then plays the finishing nod. This
-  // is independent of the bubble's own typewriter sequence started by
-  // renderCard() just above, which keeps running itself on its own
+  // Holds the reaction for its own duration (see the BEHAVIOURS comment
+  // above and OPENING_REACTION_MIN_MS), then plays the finishing nod.
+  // This is independent of the bubble's own typewriter sequence started
+  // by renderCard() just above, which keeps running itself on its own
   // timers regardless of how long this animation takes.
   await wait(behaviour.duration);
 
@@ -2182,6 +2202,7 @@ const PRELOAD_IMAGE_SRCS = [
   MOUTH_SING_SRC, MOUTH_SAD_SRC,
   BUTTON_UNPRESSED_SRC, BUTTON_PRESSED_SRC,
   ...HAT_ASSETS.map((asset) => layerAssetSrc("hat", asset)),
+  ...Object.values(EFFECT_BY_ANIMATION).map((asset) => layerAssetSrc("effect", asset)),
   ...[...BEHAVIOURS, ...BUBBLE_REACTIONS, ...EVENTS].flatMap((entry) => [
     entry.effect ? layerAssetSrc("effect", entry.effect) : null,
     entry.item ? layerAssetSrc("item", entry.item) : null,
@@ -2203,7 +2224,7 @@ PupuAudio.preload([...SQUISH_SOUND_FILES, ...TYPING_SOUND_FILES, ...BUBBLE_TAP_S
 scheduleNextBlink();
 loadCards();
 loadMissions();
-loadTranslations();
+loadCategories();
 buildLanguageToggle();
 
 // Restored from script.js's init(): arms both idle loops once at

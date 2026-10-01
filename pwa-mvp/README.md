@@ -24,7 +24,9 @@ When real review happens, the reviewed/approved subset belongs in the project's 
 - `index.html`, `style.css`, `app.js` — the app itself.
 - `motion.js` — PUPU's body/arm movements (breathing, reactions, the face's follow-through), played with the Web Animations API on nested layers so reactions add on top of breathing.
 - `audio.js` — one shared Web Audio player; each sound is decoded once and reused (replaces a new `Audio()` per sound).
-- `cards.json` — the 100-card MVP dataset (see above).
+- `cards.json` — the MVP card dataset (see above; now 137 cards). Each card has a `category` and `beats` (`setup` / `reveal` / `prompt`); every line inside a beat holds its English and Korean side by side (`{ "en": …, "ko": … }`), so there is no separate translations file.
+- `categories.json` — per-category box labels, beat order, tap/auto reveal, weights and PUPU's reactions (motion names from `motion.js`), plus the card-emotion → reaction map.
+- `tools/validate-content.js` — run `node tools/validate-content.js` from `pwa-mvp/` after any edit to `cards.json` or `categories.json`: checks every line has both English and Korean, beats match their category, and every reaction exists in `motion.js`.
 - `manifest.json`, `sw.js` — PWA installability (manifest + a minimal cache-first service worker for the app shell).
 
 ## Running it

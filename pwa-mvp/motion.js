@@ -230,6 +230,34 @@ const PupuMotion = (() => {
     { offset: 1, transform: "scale(1) translateY(0)" },
   ];
 
+  // New: card-category reactions (see categories.json). Each starts and
+  // ends at rest so it adds cleanly on top of breathing.
+  KEYFRAMES["lean-in"] = [ // lean in close, as if sharing a secret
+    { offset: 0, transform: "translateY(0) rotate(0deg) scale(1)" },
+    { offset: 0.35, transform: "translateY(5px) rotate(-7deg) scale(1.03)" },
+    { offset: 0.7, transform: "translateY(5px) rotate(-6deg) scale(1.03)" },
+    { offset: 1, transform: "translateY(0) rotate(0deg) scale(1)" },
+  ];
+  KEYFRAMES["shock-pop"] = [ // a sudden startled pop upwards, then a squashy landing
+    { offset: 0, transform: "scale(1) translateY(0)" },
+    { offset: 0.15, transform: "scale(0.9, 1.12) translateY(-20px)" },
+    { offset: 0.38, transform: "scale(1.12, 0.88) translateY(2px)" },
+    { offset: 0.6, transform: "scale(0.97, 1.04) translateY(-3px)" },
+    { offset: 1, transform: "scale(1) translateY(0)" },
+  ];
+  KEYFRAMES["proud-puff"] = [ // puffs himself up, very pleased, then deflates
+    { offset: 0, transform: "scale(1) translateY(0) rotate(0deg)" },
+    { offset: 0.3, transform: "scale(1.1) translateY(-5px) rotate(2deg)" },
+    { offset: 0.7, transform: "scale(1.1) translateY(-5px) rotate(-2deg)" },
+    { offset: 1, transform: "scale(1) translateY(0) rotate(0deg)" },
+  ];
+  KEYFRAMES["wink"] = [ // quick cheeky head tilt and bob
+    { offset: 0, transform: "rotate(0deg) translateY(0)" },
+    { offset: 0.3, transform: "rotate(-9deg) translateY(-4px)" },
+    { offset: 0.6, transform: "rotate(-7deg) translateY(-2px)" },
+    { offset: 1, transform: "rotate(0deg) translateY(0)" },
+  ];
+
   // ---------- Motions ----------
   // name -> duration (ms), default easing, optional iterations, and
   // which KEYFRAMES each part plays. Names match the `animation` /
@@ -259,6 +287,10 @@ const PupuMotion = (() => {
     "wake-up": { duration: 700, easing: "ease-in-out", body: "wake-up" },
     "exaggerated-float": { duration: 1200, easing: "ease-in-out", body: "exaggerated-float" },
     "press": { duration: 320, easing: "cubic-bezier(0.34, 1.56, 0.64, 1)", body: "press-squish" },
+    "lean-in": { duration: 900, easing: "ease-in-out", body: "lean-in", armLeft: "arm-up-left" },
+    "shock-pop": { duration: 650, easing: "ease-out", body: "shock-pop", armLeft: "arm-flick-left", armRight: "arm-flick-right" },
+    "proud-puff": { duration: 1100, easing: "cubic-bezier(0.34, 1.56, 0.64, 1)", body: "proud-puff", armLeft: "arm-up-left", armRight: "arm-up-right" },
+    "wink": { duration: 700, easing: "ease-in-out", body: "wink", armRight: "arm-up-right" },
   };
 
   function framesFor(keyframesName, defaultEasing) {
