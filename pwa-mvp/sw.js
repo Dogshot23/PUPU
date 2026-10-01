@@ -13,7 +13,7 @@
 // each successful fetch so offline fallback stays reasonably current
 // too. CACHE_NAME still exists so activate() can drop old cache
 // generations; it no longer needs to be bumped just to see an edit.
-const CACHE_NAME = "pupu-mvp-v11";
+const CACHE_NAME = "pupu-mvp-v12";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -106,8 +106,13 @@ self.addEventListener("fetch", (event) => {
   event.respondWith(
     fetch(event.request)
       .then((response) => {
-        const responseClone = response.clone();
-        caches.open(CACHE_NAME).then((cache) => cache.put(event.request, responseClone));
+        // Only keep successful GET responses for offline use. Saving a
+        // 404 (e.g. a page opened before it was deployed) would let it
+        // come back offline later; POSTs (analytics) can't be cached.
+        if (event.request.method === "GET" && response.ok) {
+          const responseClone = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, responseClone));
+        }
         return response;
       })
       .catch(() => caches.match(event.request))
