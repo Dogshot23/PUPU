@@ -33,6 +33,7 @@ const VectorPupu = (() => {
     visorLid: "#b8a5ec",
     eyeWhite: "#ffffff",
     pupil: "#2f2763",
+    glyph: "#2a2775", // the 푸푸 lettering
     mouthInside: "#8c3c66",
     tongue: "#f58fb3",
     buttonRing: "#d8c9f5",
@@ -45,8 +46,21 @@ const VectorPupu = (() => {
   // Layout in artwork space (see body.png).
   const ANCHOR = { x: 505, y: 815 }; // between the feet: squash/tilt pivot
   const BODY = { cx: 505, cy: 520, rx: 330, top: 335, bottom: 290 };
-  const EYES = [{ x: 432, y: 258 }, { x: 580, y: 258 }]; // [left, right] as you look at him
-  const MOUTH = { x: 506, y: 382 };
+  // The visor and its "푸푸" lettering. Each 푸 is ㅍ over ㅜ; the closed box
+  // inside each ㅍ is that eye's socket (see "The 푸푸 visor" below).
+  const VISOR = { x: 506, y: 262, w: 392, h: 168, r: 74 };
+  const GLYPH = {
+    stroke: 17,
+    half: 58, // half-width of ㅍ's top/bottom bars
+    post: 34, // ㅍ's two upright strokes sit at x ± post
+    top: 202, // ㅍ top bar
+    bottom: 282, // ㅍ bottom bar
+    uBar: 307, // ㅜ bar
+    uHalf: 64,
+    stemEnd: 334, // ㅜ stem
+  };
+  const EYES = [{ x: 416, y: (202 + 282) / 2 }, { x: 596, y: (202 + 282) / 2 }]; // the two 푸, left to right on screen
+  const MOUTH = { x: 506, y: 388 };
   const BUTTON = { x: 520, y: 612, r: 118 };
 
   // ---------- Springs ----------
@@ -377,91 +391,6 @@ const VectorPupu = (() => {
     });
   }
 
-  // One eye: white, pupil (follows `look`), and an upper eyelid that
-  // comes down with `lid` (negative = wide open). Only the part of the
-  // eye below the lid is drawn, so a half-closed eye looks sleepy/smug
-  // and a fully closed one becomes a curved lash line. Cross-faded with
-  // a happy "^" arc by `happy`.
-  function drawEye(eye, lid, happy) {
-    const rx = 44;
-    const ryOpen = 40 * (1 - Math.min(lid, 0) * 0.6);
-    const closed = Math.max(0, Math.min(1, lid));
-    const top = eye.y - ryOpen;
-    const lidEdge = top + closed * ryOpen * 2; // y of the lid's lower edge
-    const lidSag = 12 * (1 - closed); // the lid edge curves down in the middle
-    const roundAlpha = 1 - happy;
-    ctx.lineCap = "round";
-    if (roundAlpha > 0.01) {
-      ctx.save();
-      ctx.globalAlpha = roundAlpha;
-      if (closed > 0.92) {
-        // shut: a soft downward lash curve
-        ctx.strokeStyle = COLORS.outline;
-        ctx.lineWidth = 9;
-        ctx.beginPath();
-        ctx.moveTo(eye.x - rx * 0.85, eye.y);
-        ctx.quadraticCurveTo(eye.x, eye.y + 22, eye.x + rx * 0.85, eye.y);
-        ctx.stroke();
-      } else {
-        // visible part = the eye ellipse, below the lid edge
-        ctx.save();
-        ctx.beginPath();
-        ctx.moveTo(eye.x - rx - 4, lidEdge);
-        ctx.quadraticCurveTo(eye.x, lidEdge + lidSag * 2, eye.x + rx + 4, lidEdge);
-        ctx.lineTo(eye.x + rx + 4, eye.y + ryOpen + 8);
-        ctx.lineTo(eye.x - rx - 4, eye.y + ryOpen + 8);
-        ctx.closePath();
-        ctx.clip();
-        ctx.beginPath();
-        ctx.ellipse(eye.x, eye.y, rx, ryOpen, 0, 0, Math.PI * 2);
-        ctx.fillStyle = COLORS.eyeWhite;
-        ctx.fill();
-        ctx.save();
-        ctx.clip();
-        const pr = 20 * face.pupil.value;
-        const px = eye.x + face.lookX.value;
-        const py = eye.y + face.lookY.value;
-        ctx.fillStyle = COLORS.pupil;
-        ctx.beginPath();
-        ctx.arc(px, py, pr, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.fillStyle = "#fff";
-        ctx.beginPath();
-        ctx.arc(px + pr * 0.35, py - pr * 0.4, Math.max(3.5, pr * 0.32), 0, Math.PI * 2);
-        ctx.fill();
-        ctx.restore();
-        ctx.lineWidth = 7;
-        ctx.strokeStyle = COLORS.outline;
-        ctx.beginPath();
-        ctx.ellipse(eye.x, eye.y, rx, ryOpen, 0, 0, Math.PI * 2);
-        ctx.stroke();
-        ctx.restore();
-        if (closed > 0.02) {
-          // the lid's edge
-          ctx.strokeStyle = COLORS.outline;
-          ctx.lineWidth = 8;
-          ctx.beginPath();
-          const inset = rx * (1 - Math.sqrt(Math.max(0, 1 - Math.pow((lidEdge - eye.y) / ryOpen, 2))));
-          ctx.moveTo(eye.x - rx + inset, lidEdge);
-          ctx.quadraticCurveTo(eye.x, lidEdge + lidSag * 2, eye.x + rx - inset, lidEdge);
-          ctx.stroke();
-        }
-      }
-      ctx.restore();
-    }
-    if (happy > 0.01) {
-      ctx.save();
-      ctx.globalAlpha = happy;
-      ctx.strokeStyle = COLORS.outline;
-      ctx.lineWidth = 10;
-      ctx.beginPath();
-      ctx.moveTo(eye.x - 34, eye.y + 12);
-      ctx.quadraticCurveTo(eye.x, eye.y - 38, eye.x + 34, eye.y + 12);
-      ctx.stroke();
-      ctx.restore();
-    }
-  }
-
   // Rounded rectangle path (ctx.roundRect is missing on older Safari).
   function roundedRect(x, y, w, h, r) {
     ctx.beginPath();
@@ -473,23 +402,135 @@ const VectorPupu = (() => {
     ctx.closePath();
   }
 
+  // ---------- The 푸푸 visor ----------
+  // PUPU's name is his face: each 푸 (ㅍ over ㅜ) is drawn from strokes,
+  // and the closed box inside each ㅍ is an eye socket. Inside the box go
+  // the eye white, the pupil (following the pointer, kept inside the
+  // box), the eyelid, the wink's lash line and the happy "^". The letter
+  // strokes are drawn LAST, on top, at full strength -- so whatever the
+  // eyes do, "푸푸" stays whole and readable.
+
+  // The inside of one ㅍ box (between its strokes).
+  function socketOf(eye) {
+    const inset = GLYPH.stroke / 2;
+    const x0 = eye.x - GLYPH.post + inset;
+    const x1 = eye.x + GLYPH.post - inset;
+    const y0 = GLYPH.top + inset;
+    const y1 = GLYPH.bottom - inset;
+    return { x0, x1, y0, y1, cx: (x0 + x1) / 2, cy: (y0 + y1) / 2, w: x1 - x0, h: y1 - y0 };
+  }
+
+  // One eye inside its socket. `lid`: 0 open .. 1 shut (below 0 = wide,
+  // shown by the pupil shrinking -- the socket itself never changes, so
+  // the letter keeps its shape). `happy` cross-fades to a "^".
+  function drawEyeInSocket(eye, lid, happy) {
+    const box = socketOf(eye);
+    const closed = Math.max(0, Math.min(1, lid));
+    const roundAlpha = 1 - happy;
+    ctx.save();
+    roundedRect(box.x0, box.y0, box.w, box.h, 7);
+    ctx.clip();
+    // eye white
+    ctx.globalAlpha = roundAlpha;
+    ctx.fillStyle = COLORS.eyeWhite;
+    ctx.fillRect(box.x0, box.y0, box.w, box.h);
+    // pupil, kept inside the box
+    const pr = 12 * face.pupil.value;
+    const roomX = Math.max(0, box.w / 2 - pr - 2);
+    const roomY = Math.max(0, box.h / 2 - pr - 2);
+    const px = box.cx + (face.lookX.value / MAX_LOOK) * roomX;
+    const py = box.cy + (face.lookY.value / MAX_LOOK) * roomY;
+    ctx.fillStyle = COLORS.pupil;
+    ctx.beginPath();
+    ctx.arc(px, py, pr, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = "#fff";
+    ctx.beginPath();
+    ctx.arc(px + pr * 0.35, py - pr * 0.4, Math.max(2.5, pr * 0.3), 0, Math.PI * 2);
+    ctx.fill();
+    // eyelid coming down from the top of the box
+    if (closed > 0.01) {
+      const edge = box.y0 + closed * box.h;
+      ctx.fillStyle = COLORS.visorLid;
+      ctx.fillRect(box.x0, box.y0, box.w, edge - box.y0);
+      if (closed < 0.92) {
+        ctx.strokeStyle = COLORS.glyph;
+        ctx.lineWidth = 5;
+        ctx.beginPath();
+        ctx.moveTo(box.x0, edge);
+        ctx.quadraticCurveTo(box.cx, edge + 6 * (1 - closed), box.x1, edge);
+        ctx.stroke();
+      } else {
+        // shut (blink / wink): a lash curve across the middle
+        ctx.strokeStyle = COLORS.glyph;
+        ctx.lineWidth = 6;
+        ctx.lineCap = "round";
+        ctx.beginPath();
+        ctx.moveTo(box.x0 + 6, box.cy - 2);
+        ctx.quadraticCurveTo(box.cx, box.cy + 12, box.x1 - 6, box.cy - 2);
+        ctx.stroke();
+      }
+    }
+    // happy "^" (on the visor colour, the white fades out under it)
+    if (happy > 0.01) {
+      ctx.globalAlpha = happy;
+      ctx.fillStyle = COLORS.visorLid;
+      ctx.fillRect(box.x0, box.y0, box.w, box.h);
+      ctx.strokeStyle = COLORS.glyph;
+      ctx.lineWidth = 7;
+      ctx.lineCap = "round";
+      ctx.beginPath();
+      ctx.moveTo(box.x0 + 5, box.cy + 9);
+      ctx.quadraticCurveTo(box.cx, box.cy - 22, box.x1 - 5, box.cy + 9);
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
+
+  // The letter 푸 itself, as strokes: ㅍ (top bar, two uprights, bottom
+  // bar) over ㅜ (bar and a stem going down).
+  function drawPuGlyph(cx) {
+    const g = GLYPH;
+    ctx.strokeStyle = COLORS.glyph;
+    ctx.lineWidth = g.stroke;
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    ctx.beginPath();
+    // ㅍ
+    ctx.moveTo(cx - g.half, g.top);
+    ctx.lineTo(cx + g.half, g.top);
+    ctx.moveTo(cx - g.post, g.top);
+    ctx.lineTo(cx - g.post, g.bottom);
+    ctx.moveTo(cx + g.post, g.top);
+    ctx.lineTo(cx + g.post, g.bottom);
+    ctx.moveTo(cx - g.half, g.bottom);
+    ctx.lineTo(cx + g.half, g.bottom);
+    // ㅜ
+    ctx.moveTo(cx - g.uHalf, g.uBar);
+    ctx.lineTo(cx + g.uHalf, g.uBar);
+    ctx.moveTo(cx, g.uBar);
+    ctx.lineTo(cx, g.stemEnd);
+    ctx.stroke();
+  }
+
+  let glyphTransform = null; // where the lettering was last drawn (for tests)
+
   function drawVisorAndEyes() {
-    const x = 506;
-    const y = 258;
-    const w = 370;
-    const h = 136;
-    roundedRect(x - w / 2, y - h / 2, w, h, 64);
+    const { x, y, w, h, r } = VISOR;
+    roundedRect(x - w / 2, y - h / 2, w, h, r);
     const g = ctx.createLinearGradient(x - w / 2, y, x + w / 2, y);
     g.addColorStop(0, COLORS.visor[0]);
     g.addColorStop(1, COLORS.visor[1]);
     outlineFill(g, 9);
-    ctx.fillStyle = "rgba(255,255,255,0.55)";
-    roundedRect(x - w / 2 + 34, y - h / 2 + 13, w - 150, 16, 8);
+    ctx.fillStyle = "rgba(255,255,255,0.5)";
+    roundedRect(x - w / 2 + 40, y - h / 2 + 12, w - 170, 14, 7);
     ctx.fill();
-    // EYES[0] is PUPU's right eye on screen-left; a wink closes the one
-    // on screen-left (lidL).
-    drawEye(EYES[0], face.lidL.value, face.happy.value);
-    drawEye(EYES[1], face.lidR.value, face.happy.value);
+    // EYES[0] is the 푸 on screen-left; a wink closes that one (lidL).
+    drawEyeInSocket(EYES[0], face.lidL.value, face.happy.value);
+    drawEyeInSocket(EYES[1], face.lidR.value, face.happy.value);
+    glyphTransform = ctx.getTransform();
+    drawPuGlyph(EYES[0].x);
+    drawPuGlyph(EYES[1].x);
   }
 
   // Mouth: corners rise with `curve` (smile) and fall when it's negative
@@ -709,8 +750,29 @@ const VectorPupu = (() => {
   // For tests / tinkering in the console.
   function debugState() {
     const values = (group) => Object.fromEntries(Object.entries(group).map(([k, s]) => [k, s.value]));
-    return { body: values(body), face: values(face), pose: pose && Object.keys(REACTIONS).find((k) => REACTIONS[k] === pose.def), effectMark };
+    return {
+      body: values(body),
+      face: values(face),
+      pose: pose && Object.keys(REACTIONS).find((k) => REACTIONS[k] === pose.def),
+      effectMark,
+      glyphTransform: glyphTransform && Array.from(glyphTransform.toFloat64Array()),
+    };
   }
 
-  return { mount, react, poke, debugState, REACTIONS };
+  // Points on every stroke of both 푸 (artwork space): tests check these
+  // are still drawn in letter colour in every expression.
+  function glyphSamplePoints() {
+    const g = GLYPH;
+    return EYES.flatMap((eye) => {
+      const cx = eye.x;
+      return [
+        [cx - g.half + 6, g.top], [cx + g.half - 6, g.top], [cx, g.top],
+        [cx - g.post, (g.top + g.bottom) / 2], [cx + g.post, (g.top + g.bottom) / 2],
+        [cx - g.half + 6, g.bottom], [cx, g.bottom], [cx + g.half - 6, g.bottom],
+        [cx - g.uHalf + 6, g.uBar], [cx + g.uHalf - 6, g.uBar], [cx, (g.uBar + g.stemEnd) / 2 + 4],
+      ];
+    });
+  }
+
+  return { mount, react, poke, debugState, glyphSamplePoints, REACTIONS };
 })();
