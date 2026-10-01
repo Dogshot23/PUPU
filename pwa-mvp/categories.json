@@ -111,9 +111,9 @@
       "weight": 10,
       "reveal": "tap",
       "beats": [
-        { "role": "setup", "label": "🤥 TRUE OR LIE?", "react": "proud-puff" },
-        { "role": "reveal", "label": "😜 THE TRUTH", "react": "wink" },
-        { "role": "prompt", "label": "🗣️ YOUR TURN", "react": "lean-in" }
+        { "role": "setup", "label": "🤥 SILLY LIE", "react": "lean-in" },
+        { "role": "reveal", "label": "😎 100% TRUE!", "react": "proud-puff" },
+        { "role": "prompt", "label": "🤔 TRUE OR LIE?", "react": "wink" }
       ]
     },
     {
@@ -121,8 +121,8 @@
       "weight": 10,
       "reveal": "auto",
       "beats": [
-        { "role": "setup", "label": "👩‍🏫 TEACHER CHALLENGE", "react": "lean-in" },
-        { "role": "prompt", "label": "🎬 GO!", "react": "proud-puff" }
+        { "role": "setup", "label": "🎯 TEACHER CHALLENGE", "react": "lean-in" },
+        { "role": "prompt", "label": "🎬 GO!", "react": "wink" }
       ]
     },
     {

@@ -2096,5 +2096,350 @@
         { "en": "What would your dance tell other people?", "ko": "여러분의 춤은 다른 사람들에게 뭘 알려줄까요?" }
       ] }
     ]
+  },
+  {
+    "sourceId": "SECRET-0001",
+    "category": "absurd-secret",
+    "engine": "Secret",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "Psst… can you keep a secret? Come closer.", "ko": "쉿… 비밀 지킬 수 있어요? 더 가까이 와 봐요." }
+      ] },
+      { "role": "reveal", "lines": [
+        { "en": "I sleep inside a sock drawer. The socks don't know.", "ko": "저는 양말 서랍 안에서 자요. 양말들은 몰라요." }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "Your turn! Make up a silly secret about you.", "ko": "이제 여러분 차례예요! 여러분에 대한 엉뚱한 비밀을 하나 지어내 보세요." }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "SECRET-0002",
+    "category": "absurd-secret",
+    "engine": "Secret",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "I've never told anyone this before…", "ko": "이건 아무한테도 말한 적 없는데요…" }
+      ] },
+      { "role": "reveal", "lines": [
+        { "en": "Every night, I sing to the moon. The moon sings back, but very quietly.", "ko": "저는 매일 밤 달한테 노래를 불러요. 달도 따라 불러요. 아주 조용히요." }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "What song would you sing to the moon?", "ko": "여러분이라면 달한테 무슨 노래를 불러 줄 거예요?" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "SECRET-0003",
+    "category": "absurd-secret",
+    "engine": "Secret",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "Don't laugh, okay? Promise?", "ko": "웃으면 안 돼요, 알았죠? 약속해요?" }
+      ] },
+      { "role": "reveal", "lines": [
+        { "en": "I'm scared of ducks. They look at me like they know something.", "ko": "저는 오리가 무서워요. 오리들이 뭔가 아는 것처럼 저를 쳐다봐요." }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "What's a silly thing that scares you?", "ko": "여러분은 좀 엉뚱하게 무서운 게 있어요? 뭐예요?" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "SECRET-0004",
+    "category": "absurd-secret",
+    "engine": "Secret",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "Shh… this one is top secret.", "ko": "쉿… 이건 일급비밀이에요." }
+      ] },
+      { "role": "reveal", "lines": [
+        { "en": "My belly button is really a doorbell. But nobody ever visits.", "ko": "제 배꼽은 사실 초인종이에요. 그런데 아무도 놀러 안 와요." }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "If you visited me, what would you bring?", "ko": "여러분이 저한테 놀러 온다면 뭘 가져올 거예요?" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "SECRET-0005",
+    "category": "absurd-secret",
+    "engine": "Secret",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "Can I tell you something strange?", "ko": "이상한 거 하나 말해 줘도 돼요?" }
+      ] },
+      { "role": "reveal", "lines": [
+        { "en": "I have a pet cloud. Its name is Steve, and it rains when it's sad.", "ko": "저는 구름을 키워요. 이름은 스티브인데, 슬프면 비가 와요." }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "If you had a pet cloud, what would you call it? Why?", "ko": "여러분이 구름을 키운다면 이름을 뭐라고 지을 거예요? 왜요?" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "LIE-0001",
+    "category": "silly-lie",
+    "engine": "Lie",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "Did you know I'm a little bit famous?", "ko": "제가 좀 유명하다는 거 알아요?" }
+      ] },
+      { "role": "reveal", "lines": [
+        { "en": "I won a gold medal in sleeping. I slept for nine days!", "ko": "저는 잠자기 대회에서 금메달을 땄어요. 9일 동안 잤거든요!" }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "True or lie? Now tell me your silliest lie!", "ko": "진짜일까요, 거짓말일까요? 이제 여러분의 가장 엉뚱한 거짓말을 들려줘요!" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "LIE-0002",
+    "category": "silly-lie",
+    "engine": "Lie",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "I'm very, very strong. Want to know how strong?", "ko": "저는 아주아주 힘이 세요. 얼마나 센지 알고 싶어요?" }
+      ] },
+      { "role": "reveal", "lines": [
+        { "en": "This morning, I picked up a whole elephant with one finger.", "ko": "오늘 아침에 손가락 하나로 코끼리를 통째로 들어 올렸어요." }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "Do you believe me? What's the heaviest thing you can lift?", "ko": "믿어요? 여러분이 들 수 있는 가장 무거운 건 뭐예요?" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "LIE-0003",
+    "category": "silly-lie",
+    "engine": "Lie",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "Guess what I did last weekend!", "ko": "제가 지난 주말에 뭘 했는지 맞혀 봐요!" }
+      ] },
+      { "role": "reveal", "lines": [
+        { "en": "I flew to the moon on a banana. It was a bit slippery.", "ko": "바나나를 타고 달에 다녀왔어요. 좀 미끄러웠어요." }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "Is that true? Where would you fly on a banana?", "ko": "그게 진짜일까요? 여러분은 바나나를 타고 어디로 날아가고 싶어요?" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "LIE-0004",
+    "category": "silly-lie",
+    "engine": "Lie",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "I can speak a secret language.", "ko": "저는 비밀 언어를 할 줄 알아요." }
+      ] },
+      { "role": "reveal", "lines": [
+        { "en": "I speak perfect Cat. Last night, I talked to a cat about fish for three hours.", "ko": "저는 고양이 말을 아주 잘해요. 어젯밤에 고양이랑 생선 얘기를 세 시간이나 했어요." }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "True or lie? Which animal would you like to talk to?", "ko": "진짜일까요, 거짓말일까요? 여러분은 어떤 동물이랑 이야기해 보고 싶어요?" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "LIE-0005",
+    "category": "silly-lie",
+    "engine": "Lie",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "I'm the best cook in the whole world.", "ko": "저는 세상에서 요리를 제일 잘해요." }
+      ] },
+      { "role": "reveal", "lines": [
+        { "en": "My best dish is ice cream soup with crunchy socks on top.", "ko": "제 최고 요리는 바삭한 양말을 올린 아이스크림 수프예요." }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "Would you eat it? What's the strangest food you can invent?", "ko": "먹어 볼래요? 여러분이 만들 수 있는 가장 이상한 음식은 뭐예요?" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "WRONG-0001",
+    "category": "wrong-claim",
+    "engine": "WrongClaim",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "I know everything about animals. Fish fly in the sky, and birds live underwater!", "ko": "저는 동물에 대해 다 알아요. 물고기는 하늘을 날고, 새는 물속에 살아요!" }
+      ] },
+      { "role": "reveal", "lines": [
+        { "en": "Wait… why is everyone laughing? Did I mix them up?", "ko": "잠깐만요… 왜 다들 웃어요? 제가 헷갈렸나요?" }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "Help me! Where do fish and birds really live?", "ko": "도와줘요! 물고기랑 새는 진짜 어디에 살아요?" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "WRONG-0002",
+    "category": "wrong-claim",
+    "engine": "WrongClaim",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "Here's a fact: cows say \"quack,\" and ducks say \"moo.\"", "ko": "사실을 알려 줄게요. 소는 \"꽥꽥\" 하고, 오리는 \"음매\" 해요." }
+      ] },
+      { "role": "reveal", "lines": [
+        { "en": "Hmm… that sounded strange, even to me.", "ko": "음… 제가 말하고도 좀 이상하네요." }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "What do cows and ducks really say? Can you make the sounds?", "ko": "소랑 오리는 진짜 뭐라고 울어요? 소리를 흉내 내 볼래요?" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "WRONG-0003",
+    "category": "wrong-claim",
+    "engine": "WrongClaim",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "I'm very clever. The sun comes out at night, and the moon comes out in the morning.", "ko": "저는 아주 똑똑해요. 해는 밤에 뜨고, 달은 아침에 떠요." }
+      ] },
+      { "role": "reveal", "lines": [
+        { "en": "Oh no. Is that why I'm always so sleepy?", "ko": "어머나. 그래서 제가 맨날 졸린 걸까요?" }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "Can you fix my fact? When do we see the sun and the moon?", "ko": "제 말을 고쳐 줄래요? 해랑 달은 언제 볼 수 있어요?" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "WRONG-0004",
+    "category": "wrong-claim",
+    "engine": "WrongClaim",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "Everyone knows this: snow is hot, and fire is cold.", "ko": "이건 다 아는 거예요. 눈은 뜨겁고, 불은 차가워요." }
+      ] },
+      { "role": "reveal", "lines": [
+        { "en": "Wait… then why are my mittens melting?", "ko": "잠깐만요… 그럼 제 벙어리장갑은 왜 녹고 있죠?" }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "What's the real answer? What do you wear when it snows?", "ko": "진짜 정답은 뭐예요? 눈이 오면 여러분은 뭘 입어요?" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "WRONG-0005",
+    "category": "wrong-claim",
+    "engine": "WrongClaim",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "I counted very carefully. Spiders have two legs, and people have eight!", "ko": "아주 꼼꼼하게 세어 봤어요. 거미는 다리가 두 개고, 사람은 여덟 개예요!" }
+      ] },
+      { "role": "reveal", "lines": [
+        { "en": "Hmm. My arms are very short, so counting is hard.", "ko": "음. 제 팔이 너무 짧아서 세기가 어려워요." }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "Can you count for me? How many legs do spiders and people really have?", "ko": "저 대신 세어 줄래요? 거미랑 사람은 다리가 진짜 몇 개예요?" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "TEACHER-0001",
+    "category": "teacher-challenge",
+    "engine": "TeacherChallenge",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "I bet your teacher can't say \"She sells seashells\" three times really fast.", "ko": "여러분 선생님은 \"She sells seashells\"를 세 번 아주 빨리 말하지 못할걸요." }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "Dare them! Then you try too. Who was faster?", "ko": "선생님께 도전해 봐요! 그다음엔 여러분도 해 봐요. 누가 더 빨랐어요?" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "TEACHER-0002",
+    "category": "teacher-challenge",
+    "engine": "TeacherChallenge",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "I wonder… what did your teacher want to be when they were little?", "ko": "궁금해요… 여러분 선생님은 어렸을 때 뭐가 되고 싶었을까요?" }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "Guess first, then find out! Were you right?", "ko": "먼저 맞혀 보고, 그다음에 알아봐요! 맞았어요?" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "TEACHER-0003",
+    "category": "teacher-challenge",
+    "engine": "TeacherChallenge",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "Can your teacher name five fruits in ten seconds? I'm not sure…", "ko": "여러분 선생님은 10초 안에 과일 다섯 개를 말할 수 있을까요? 잘 모르겠어요…" }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "You count the seconds! Then can you beat their score?", "ko": "여러분이 시간을 세어 줘요! 그다음에 선생님 기록을 깰 수 있어요?" }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "TEACHER-0004",
+    "category": "teacher-challenge",
+    "engine": "TeacherChallenge",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "I bet your teacher does a great animal sound. Maybe a monkey? Maybe a chicken?", "ko": "여러분 선생님은 동물 소리를 엄청 잘 낼 거예요. 원숭이일까요? 닭일까요?" }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "Pick an animal for them! Then show me your best one too.", "ko": "선생님께 동물을 하나 골라 줘요! 그리고 여러분의 최고 동물 소리도 들려줘요." }
+      ] }
+    ]
+  },
+  {
+    "sourceId": "TEACHER-0005",
+    "category": "teacher-challenge",
+    "engine": "TeacherChallenge",
+    "level": "A1",
+    "lifecycleState": "Generated",
+    "beats": [
+      { "role": "setup", "lines": [
+        { "en": "Big question: does your teacher like pineapple on pizza?", "ko": "중요한 질문! 여러분 선생님은 피자에 파인애플 올리는 걸 좋아할까요?" }
+      ] },
+      { "role": "prompt", "lines": [
+        { "en": "Guess their answer first. Do you agree with them? Why?", "ko": "먼저 선생님 대답을 맞혀 봐요. 여러분도 같은 생각이에요? 왜요?" }
+      ] }
+    ]
   }
 ]
