@@ -571,14 +571,156 @@ const VectorPupu = (() => {
   // The canvas is bigger than the stage, so PUPU can grow, melt, inflate
   // and fly without being cut off at its edges: PAD is the extra room on
   // each side, as a fraction of the stage size (style.css .pupu-vector
-  // must match: left/right -25%, top -60%, width 150%, height 180%).
-  const PAD = { l: 0.25, r: 0.25, t: 0.6, b: 0.2 };
+  // must match: left/right -25%, top -92%, width 150%, height 212%).
+  const PAD = { l: 0.25, r: 0.25, t: 0.92, b: 0.2 };
   function toArtwork(event) {
     const rect = canvas.getBoundingClientRect();
     return {
       x: ((event.clientX - rect.left) / rect.width) * 1024 * (1 + PAD.l + PAD.r) - PAD.l * 1024,
       y: ((event.clientY - rect.top) / rect.height) * 1024 * (1 + PAD.t + PAD.b) - PAD.t * 1024,
     };
+  }
+
+  // ---------- Rubber-band drag ----------
+  // Grab PUPU and pull: his body stretches towards your finger like a
+  // rubber toy (up to 2.5x his size, pinned on the side facing away from
+  // the pull) while his visor leans towards it. Let go and the stretch
+  // is handed to a spring with very little damping, so he snaps back,
+  // overshoots into a squash, wobbles and settles. A creaky tension sound
+  // rises in pitch as you pull; a twang plays on release (audio.js).
+  const DRAG_START_PX = 6;      // movement before a press becomes a drag
+  const STRETCH_MAX = 1.5;      // extra length: 1 + 1.5 = 2.5x
+  const STRETCH_REACH = 380;    // artwork px of pull for ~63% of the max
+  const stretch = spring(0, 260, 5); // signed extra length along `axis` (< 0 = squashed)
+  const axis = { ux: 0, uy: -1, px: BODY.cx, py: BODY.cy + BODY.bottom }; // pull direction + pinned point
+  let drag = null; // { id, start: {x, y}, startPx: {x, y}, active }
+  let stretchLimit = STRETCH_MAX;
+
+  // Points around his outline (arms and feet included), for keeping the
+  // stretched body inside the canvas.
+  const OUTLINE_SAMPLES = Array.from({ length: 32 }, (_, i) => {
+    const a = (i / 32) * Math.PI * 2;
+    const sn = Math.sin(a);
+    return [BODY.cx + Math.cos(a) * 445, BODY.cy + sn * (sn < 0 ? 375 : 340)];
+  });
+  const stretchScales = (amount) => {
+    const along = amount >= 0 ? 1 + amount : 1 / (1 - amount);
+    return [along, 1 / Math.sqrt(along)];
+  };
+  function stretchPoint([x, y], amount) {
+    const [along, across] = stretchScales(amount);
+    const dx = x - axis.px;
+    const dy = y - axis.py;
+    const a = dx * axis.ux + dy * axis.uy;
+    const cx = dx - a * axis.ux;
+    const cy = dy - a * axis.uy;
+    return [axis.px + a * along * axis.ux + cx * across, axis.py + a * along * axis.uy + cy * across];
+  }
+  // The biggest stretch along the current axis that keeps him on the
+  // canvas, in his pose right now (squash, tilt, hop and size included).
+  function maxStretchForAxis() {
+    const margin = 40; // outline width and cheek shine
+    const minX = -PAD.l * 1024 + margin;
+    const maxX = 1024 * (1 + PAD.r) - margin;
+    const minY = -PAD.t * 1024 + margin;
+    const maxY = 1024 * (1 + PAD.b) - margin;
+    const sy = (1 + body.squash.value) * body.pop.value;
+    const sx = body.pop.value / (1 + body.squash.value);
+    const cos = Math.cos(body.tilt.value);
+    const sin = Math.sin(body.tilt.value);
+    const posed = OUTLINE_SAMPLES.map(([x, y]) => {
+      const dx = (x - ANCHOR.x) * sx;
+      const dy = (y - ANCHOR.y) * sy;
+      return [ANCHOR.x + dx * cos - dy * sin, ANCHOR.y + body.hop.value + dx * sin + dy * cos];
+    });
+    const fits = (amount) => posed.every((pt) => {
+      const [x, y] = stretchPoint(pt, amount);
+      return x >= minX && x <= maxX && y >= minY && y <= maxY;
+    });
+    let lo = 0;
+    let hi = STRETCH_MAX;
+    if (fits(hi)) return hi;
+    for (let i = 0; i < 14; i++) {
+      const mid = (lo + hi) / 2;
+      fits(mid) ? (lo = mid) : (hi = mid);
+    }
+    return lo;
+  }
+  // Point the axis along the pull and pin the far side of his body.
+  function aimAxis(dx, dy) {
+    const len = Math.hypot(dx, dy) || 1;
+    axis.ux = dx / len;
+    axis.uy = dy / len;
+    const ry = axis.uy < 0 ? BODY.bottom : BODY.top;
+    const r = 1 / Math.hypot(axis.ux / BODY.rx, axis.uy / ry);
+    axis.px = BODY.cx - axis.ux * r;
+    axis.py = BODY.cy - axis.uy * r;
+    stretchLimit = maxStretchForAxis();
+  }
+  function dragTarget() {
+    const dx = pointer.x - drag.start.x;
+    const dy = pointer.y - drag.start.y;
+    const len = Math.hypot(dx, dy);
+    if (len < 1) return 0;
+    aimAxis(dx, dy);
+    const amount = STRETCH_MAX * (1 - Math.exp(-len / STRETCH_REACH)) * (reducedMotion ? 0.4 : 1);
+    return Math.min(amount, stretchLimit);
+  }
+  function stretchSound(level) {
+    if (typeof PupuAudio !== "undefined" && PupuAudio.stretch) PupuAudio.stretch(level);
+  }
+  function startDrag(event, at) {
+    drag = { id: event.pointerId, start: at, startPx: { x: event.clientX, y: event.clientY }, active: false };
+  }
+  function moveDrag(event) {
+    if (!drag || event.pointerId !== drag.id) return;
+    if (!drag.active && Math.hypot(event.clientX - drag.startPx.x, event.clientY - drag.startPx.y) >= DRAG_START_PX) {
+      drag.active = true;
+    }
+  }
+  function endDrag(event) {
+    if (!drag || (event && event.pointerId !== drag.id)) return;
+    const was = drag.active;
+    drag = null;
+    if (!was) return;
+    stretchSound(null);
+    // Release: the spring takes over from the stretched shape (and the
+    // speed it was moving at), plus a wobble kick for the rebound.
+    const amount = stretch.value;
+    stretch.target = 0;
+    body.tilt.velocity += -axis.ux * amount * 5 * motionScale;
+    body.squash.velocity += amount * 2.5 * motionScale;
+    face.lidL.velocity += 8;
+    face.lidR.velocity += 8;
+    if (amount > 0.05 && typeof PupuAudio !== "undefined" && PupuAudio.sfx) PupuAudio.sfx("rubber-snap", Math.min(1, amount / STRETCH_MAX));
+  }
+  // Called every frame from update().
+  function stepStretch(dt) {
+    if (drag && drag.active) {
+      const target = dragTarget();
+      const before = stretch.value;
+      stretch.value += (target - stretch.value) * Math.min(1, dt * 30); // follows the finger closely
+      stretch.velocity = dt > 0 ? (stretch.value - before) / dt : 0;
+      stretch.target = target;
+      stretchSound(Math.min(1, stretch.value / STRETCH_MAX));
+    }
+  }
+
+  // ---------- The chest button ----------
+  // Only a tap within BUTTON_HIT_PX (screen pixels) of the centre of the
+  // round arrow button on his chest is a "press" (app.js starts a card
+  // from it); everywhere else on him only grabs and stretches him. The
+  // centre is where the button was last drawn -- wherever he has moved,
+  // squashed or stretched to.
+  const BUTTON_HIT_PX = 35;
+  function isOnButton(event) {
+    if (!canvas || !buttonMatrix) return false;
+    const rect = canvas.getBoundingClientRect();
+    if (!rect.width || !rect.height) return false;
+    const centre = buttonMatrix.transformPoint(new DOMPoint(BUTTON.x, BUTTON.y)); // canvas pixels
+    const buttonX = rect.left + (centre.x / canvas.width) * rect.width;
+    const buttonY = rect.top + (centre.y / canvas.height) * rect.height;
+    return Math.hypot(event.clientX - buttonX, event.clientY - buttonY) <= BUTTON_HIT_PX;
   }
 
   // ---------- Per-frame update ----------
@@ -593,6 +735,7 @@ const VectorPupu = (() => {
     // A copy, so a stunt can override parts of the pose for this frame.
     const p = { ...((active && active.pose) || {}) };
     stuntFrame(now, p);
+    if (drag && drag.active) p.face = { lid: -0.25, pupil: 0.6, mouth: stretch.value > 0.6 ? "shout" : "oh" };
     const pf = p.face || (active && active.face) || {};
     const t = now / 1000;
 
@@ -660,9 +803,16 @@ const VectorPupu = (() => {
     let dt = Math.min((now - lastFrame) / 1000, 1 / 20);
     lastFrame = now;
     leftover += dt;
+    stepStretch(dt);
+    const dragging = drag && drag.active;
     while (leftover >= STEP) {
       ALL_SPRINGS.forEach((s) => stepSpring(s, STEP));
+      if (!dragging) stepSpring(stretch, STEP);
       leftover -= STEP;
+    }
+    if (Math.abs(stretch.value) > 0.002 || dragging) {
+      stretchLimit = maxStretchForAxis();
+      stretch.value = Math.max(-0.9, Math.min(stretchLimit, stretch.value));
     }
     // Keep the physics sane even after a huge kick.
     body.squash.value = Math.max(-0.35, Math.min(0.35, body.squash.value));
@@ -1359,6 +1509,7 @@ const VectorPupu = (() => {
   }
 
   let deviceScale = 1; // device pixels per artwork unit
+  let buttonMatrix = null; // artwork space -> canvas pixels where the chest button was last drawn
   let baseMatrix = null; // artwork space -> canvas pixels, before PUPU's own moves
   function draw() {
     const dpr = Math.min(window.devicePixelRatio || 1, 3);
@@ -1378,6 +1529,7 @@ const VectorPupu = (() => {
     ctx.clearRect(0, 0, w, h);
     ctx.setTransform(scale, 0, 0, scale, PAD.l * 1024 * scale, PAD.t * 1024 * scale);
     baseMatrix = ctx.getTransform();
+    buttonMatrix = null;
     const t = lastFrame / 1000;
     const s = stuntNow;
 
@@ -1397,6 +1549,16 @@ const VectorPupu = (() => {
       const jy = s.jitter ? (Math.random() - 0.5) * 2 * s.jitter : 0;
       ctx.save();
       ctx.globalAlpha *= clamp01(1 - (-s.rocketY - 300) / 500); // fades out as he blasts off the top
+      if (Math.abs(stretch.value) > 0.002) {
+        // rubber-band stretch: scale along the pull axis about the pinned point
+        const [along, across] = stretchScales(stretch.value);
+        const angle = Math.atan2(axis.uy, axis.ux);
+        ctx.translate(axis.px, axis.py);
+        ctx.rotate(angle);
+        ctx.scale(along, across);
+        ctx.rotate(-angle);
+        ctx.translate(-axis.px, -axis.py);
+      }
       ctx.translate(ANCHOR.x + jx, ANCHOR.y + body.hop.value + s.rocketY + jy);
       ctx.rotate(body.tilt.value);
       ctx.scale(scaleX * size, scaleY * size);
@@ -1421,6 +1583,7 @@ const VectorPupu = (() => {
       ctx.ellipse(602, 196, 32, 13, 0.25, 0, Math.PI * 2);
       ctx.fill();
       if (body.mech.value > 0.01) drawMechPanels(clamp01(body.mech.value));
+      buttonMatrix = ctx.getTransform(); // for isOnButton()
       drawButton();
       ctx.restore();
       const ooze = Math.max(0, body.ooze.value);
@@ -1437,7 +1600,8 @@ const VectorPupu = (() => {
       const melt = Math.max(-0.25, Math.min(1, body.melt.value));
       const drop = (ANCHOR.y - 340) * (1 - meltY) * 0.85 + Math.sin(t * 4) * 8 * Math.max(0, melt);
       ctx.translate(BODY.cx, 340 + lagY + drop);
-      ctx.rotate(lagTilt + Math.sin(t * 3) * 0.06 * Math.max(0, melt));
+      const lean = Math.max(-0.35, Math.min(0.35, axis.ux * Math.max(0, stretch.value) * 0.3)); // visor leans into a pull
+      ctx.rotate(lagTilt + lean + Math.sin(t * 3) * 0.06 * Math.max(0, melt));
       ctx.scale(1 + 0.2 * melt, 1 - 0.1 * melt);
       ctx.translate(-BODY.cx, -340);
       drawVisorBand();
@@ -1711,12 +1875,31 @@ const VectorPupu = (() => {
     window.addEventListener("pointerdown", follow, { passive: true });
     // The canvas itself lets touches through (it is bigger than PUPU, see
     // PAD); `parts.hit` -- the stage -- is what you press.
-    (parts.hit || canvas).addEventListener("pointerdown", (event) => {
+    const hit = parts.hit || canvas;
+    hit.addEventListener("pointerdown", (event) => {
       if (!event.isPrimary || (event.pointerType === "mouse" && event.button !== 0)) return;
       const at = toArtwork(event);
       pointer = { ...at, at: performance.now() };
-      poke(at.x);
+      if (isOnButton(event)) {
+        poke(at.x); // a button press (app.js starts the card): instant squish, no grab
+        return;
+      }
+      // anywhere else on him is only a grab: moving before letting go stretches him
+      startDrag(event, at);
+      try {
+        hit.setPointerCapture(event.pointerId); // keep the drag when the finger leaves the stage
+      } catch (error) {
+        /* not supported -- the drag just ends at the stage edge */
+      }
     });
+    hit.addEventListener("pointermove", (event) => {
+      moveDrag(event);
+      // pointer over the button, open hand over the rest of him
+      if (event.pointerType === "mouse" && !drag) hit.style.cursor = isOnButton(event) ? "pointer" : "";
+    });
+    hit.addEventListener("pointerup", endDrag);
+    hit.addEventListener("pointercancel", endDrag);
+    hit.addEventListener("lostpointercapture", endDrag);
     document.addEventListener("visibilitychange", () => (document.hidden ? stop() : start()));
     start();
   }
@@ -1736,6 +1919,8 @@ const VectorPupu = (() => {
       particles: particles.map((p) => p.kind),
       stunt: stunt && stunt.name,
       stuntNow: { ...stuntNow },
+      drag: drag && { active: drag.active },
+      stretch: { value: stretch.value, velocity: stretch.velocity, limit: stretchLimit, axis: { ...axis } },
     };
   }
 
@@ -1753,5 +1938,5 @@ const VectorPupu = (() => {
     ];
   }
 
-  return { mount, react, poke, debugState, glyphSamplePoints, REACTIONS, STUNTS: Object.keys(STUNT_MS), PAD };
+  return { mount, react, poke, isOnButton, debugState, glyphSamplePoints, REACTIONS, STUNTS: Object.keys(STUNT_MS), PAD };
 })();

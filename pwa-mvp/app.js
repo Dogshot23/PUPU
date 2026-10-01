@@ -2373,9 +2373,12 @@ if (activeRenderer === "vector") {
     hit: stageEl,
   });
   // Same instant press as the PNG belly (see the pointerdown handler
-  // below); PUPU squishes himself on the same touch.
+  // below), but only within 35px of the centre of the round arrow
+  // button on his chest (VectorPupu.isOnButton): the rest of him is only
+  // for grabbing and stretching (vector-pupu.js), never a card.
   stageEl.addEventListener("pointerdown", (event) => {
     if (!event.isPrimary || (event.pointerType === "mouse" && event.button !== 0)) return;
+    if (!VectorPupu.isOnButton(event)) return;
     event.preventDefault();
     handleBellyPress();
   });

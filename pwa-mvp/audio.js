@@ -310,6 +310,11 @@ const PupuAudio = (() => {
       for (let i = 0; i < 5; i++) tone("sine", rand(1800, 3000), rand(3000, 4500), t + 0.6 + i * 0.06, 0.08, 0.06);
       tone("sine", 2600, 0, t + 0.95, 0.4, 0.12, { steps: 1 });
     },
+    "rubber-snap"(t, strength = 1) { // the band lets go: a crack and a wobbly twang
+      hiss(t, 0.04, 0.12 + 0.25 * strength, "highpass", 2500);
+      tone("triangle", 200 + 520 * strength, 85, t, 0.55, 0.08 + 0.2 * strength, { wobble: { rate: 24, rateTo: 5, depth: 25 + 45 * strength } });
+      tone("sine", 70 + 60 * strength, 45, t, 0.25, 0.1 + 0.15 * strength);
+    },
     "hyper-spin"(t) { // whoosh-whoosh pitch-bend up and back down
       tone("triangle", 200, 1200, t, 0.65, 0.12, { wobble: { rate: 8, rateTo: 30, depth: 60 }, attack: 0.05 });
       tone("triangle", 1200, 200, t + 0.65, 0.6, 0.12, { wobble: { rate: 30, rateTo: 8, depth: 60 } });
@@ -319,22 +324,73 @@ const PupuAudio = (() => {
   };
 
   let sfxBus = null;
-  // Plays a made-up sound effect; returns true if `name` has one.
-  function sfx(name) {
-    const recipe = SFX[name];
-    if (!recipe || !ctx || !isRunning()) return false;
+  function ensureSfxBus() {
     if (!sfxBus) {
       sfxBus = ctx.createGain();
       sfxBus.gain.value = 0.8;
       sfxBus.connect(master);
     }
+  }
+  // Plays a made-up sound effect; returns true if `name` has one.
+  // `strength` (0..1) scales the ones that take it (rubber-snap).
+  function sfx(name, strength) {
+    const recipe = SFX[name];
+    if (!recipe || !ctx || !isRunning()) return false;
+    ensureSfxBus();
     try {
-      recipe(ctx.currentTime + 0.01);
+      recipe(ctx.currentTime + 0.01, strength);
     } catch (error) {
       console.warn(`PUPU MVP: sound effect "${name}" failed`, error);
     }
     return true;
   }
 
-  return { play, playRandom, preload, unlock, sfx, SFX_NAMES: Object.keys(SFX) };
+  // Rubber-band tension while PUPU is being stretched (vector-pupu.js):
+  // a quiet, creaky tone whose pitch, brightness and volume rise with
+  // `level` (0..1). Call it every frame of the pull; stretch(null) fades
+  // it out on release.
+  let tension = null;
+  function stretch(level) {
+    if (!ctx) return;
+    const now = ctx.currentTime;
+    if (level === null) {
+      if (tension) {
+        tension.gain.gain.cancelScheduledValues(now);
+        tension.gain.gain.setTargetAtTime(0.0001, now, 0.02);
+        tension.osc.stop(now + 0.15);
+        tension.lfo.stop(now + 0.15);
+        tension = null;
+      }
+      return;
+    }
+    if (!isRunning()) return;
+    if (!tension) {
+      ensureSfxBus();
+      const osc = ctx.createOscillator();
+      osc.type = "sawtooth";
+      const lfo = ctx.createOscillator(); // the creak: a fast, shallow wobble
+      lfo.frequency.value = 11;
+      const depth = ctx.createGain();
+      depth.gain.value = 5;
+      lfo.connect(depth);
+      depth.connect(osc.frequency);
+      const filter = ctx.createBiquadFilter();
+      filter.type = "lowpass";
+      filter.Q.value = 5;
+      const gain = ctx.createGain();
+      gain.gain.value = 0.0001;
+      osc.connect(filter);
+      filter.connect(gain);
+      gain.connect(sfxBus);
+      osc.start(now);
+      lfo.start(now);
+      tension = { osc, lfo, filter, gain };
+    }
+    const k = Math.max(0, Math.min(1, level));
+    tension.osc.frequency.setTargetAtTime(90 + 560 * k, now, 0.04);
+    tension.filter.frequency.setTargetAtTime(500 + 2600 * k, now, 0.04);
+    tension.gain.gain.setTargetAtTime(0.015 + 0.075 * k, now, 0.04);
+  }
+
+  return { play, playRandom, preload, unlock, sfx, stretch, SFX_NAMES: Object.keys(SFX) };
 })();

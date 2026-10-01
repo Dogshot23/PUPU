@@ -374,7 +374,7 @@ body {
 /* ---------- Renderer: PNG layers or vector canvas ----------
    Only one is shown (see "Renderer choice" in app.js). The PNG layers
    cover the stage box. The canvas is bigger -- an extra quarter of the
-   stage on each side, 60% above and 20% below (vector-pupu.js PAD must
+   stage on each side, 92% above and 20% below (vector-pupu.js PAD must
    match) -- so PUPU can inflate, melt and fly without being cut off.
    It lets touches through; the stage itself is what you press. */
 .pupu-png {
@@ -385,19 +385,23 @@ body {
 .pupu-vector {
   position: absolute;
   left: -25%;
-  top: -60%;
+  top: -92%;
   width: 150%;
-  height: 180%;
+  height: 212%;
   display: block;
   pointer-events: none;
 }
 
 .pupu-stage-vector {
-  cursor: pointer;
-  touch-action: manipulation;
+  cursor: grab;
+  touch-action: none; /* a finger on PUPU drags him, it doesn't scroll the page */
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
   user-select: none;
+}
+
+.pupu-stage-vector:active {
+  cursor: grabbing;
 }
 
 .pupu-vector[hidden],
