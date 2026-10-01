@@ -1489,7 +1489,6 @@ function startTypingSection(section) {
   bubbleSequence.lineEls = lineEls;
   bubbleSequence.lineIndex = 0;
   bubbleSequence.charIndex = 0;
-  updateLanguageToggleEnabled(); // inert while typing -- see setLanguage()
   resetTypeSoundCounter();
 
   typeNextChar();
@@ -1536,12 +1535,10 @@ function finishTypingSection() {
   const isLastSection = bubbleSequence.stageIndex >= bubbleSequence.sections.length - 1;
   if (isLastSection) {
     bubbleSequence.phase = "done";
-    updateLanguageToggleEnabled();
     return;
   }
 
   bubbleSequence.phase = "waiting";
-  updateLanguageToggleEnabled();
   bubbleEl.classList.add("bubble-waiting"); // subtle pulse hinting the bubble can be tapped
 
   if (bubbleSequence.category.reveal === "tap") {
@@ -1684,18 +1681,38 @@ function languageInfo(code) {
 
 // Small bits of bubble UI text; a language without an entry shows English.
 const UI_TEXT = {
-  tapToReveal: { en: "💬 TAP TO REVEAL", zh: "💬 点一下揭晓" }
+  tapToReveal: { en: "💬 TAP TO REVEAL", zh: "💬 点一下揭晓" },
+  pressBelly: {
+    en: "Press PUPU's belly to hear a thought.",
+    ko: "PUPU의 배를 눌러서 생각을 들어 보세요.",
+    zh: "按一下 PUPU 的肚子，听听他在想什么。"
+  }
 };
 
 function uiText(key, lang = currentLanguage) {
   return UI_TEXT[key][lang] || UI_TEXT[key].en;
 }
 
-// Resets to "en" at the start of every renderCard() (a new output
-// always starts in English); otherwise only changed by the student
-// tapping the toggle. Not persisted (no localStorage) -- this app has
-// no existing settings mechanism to extend, per the brief.
-let currentLanguage = "en";
+// Sticky: only ever changed by tapping a language tab. It stays through
+// reveals, next beats and new cards, and is remembered in this browser
+// (localStorage) so a reload keeps it too.
+const LANGUAGE_STORAGE_KEY = "pupu-language";
+function loadLanguage() {
+  try {
+    const saved = localStorage.getItem(LANGUAGE_STORAGE_KEY);
+    return SUPPORTED_LANGUAGES.some((lang) => lang.code === saved) ? saved : "en";
+  } catch (error) {
+    return "en"; // storage blocked: English, this visit only
+  }
+}
+function saveLanguage(lang) {
+  try {
+    localStorage.setItem(LANGUAGE_STORAGE_KEY, lang);
+  } catch (error) {
+    /* storage blocked -- still sticky for this visit */
+  }
+}
+let currentLanguage = loadLanguage();
 
 // The beats a card shows, in its category's order, each with its box
 // label (English `label` plus optional `labels` per language), reaction
@@ -1738,61 +1755,65 @@ function localizeLines(beatLines, lang) {
   return beatLines.map((line) => line[lang] || line.en);
 }
 
-// Reflects which language is currently active on the toggle buttons
-// themselves (bold/filled pill -- see .lang-active in style.css).
+// Marks the active tab (filled, bold -- see .lang-active in style.css).
 function updateLanguageToggleUI() {
-  const btn = languageToggleEl.querySelector(".lang-btn");
-  if (!btn) return;
-  const current = languageInfo(currentLanguage);
-  const next = nextLanguage();
-  btn.textContent = `${current.short} · ${current.label}`;
-  btn.dataset.lang = current.code;
-  btn.setAttribute("aria-label", `Language: ${current.label}. Tap for ${languageInfo(next).label}.`);
-}
-
-// The language after the current one: EN -> KO -> ZH -> EN.
-function nextLanguage() {
-  const i = SUPPORTED_LANGUAGES.findIndex((lang) => lang.code === currentLanguage);
-  return SUPPORTED_LANGUAGES[(i + 1) % SUPPORTED_LANGUAGES.length].code;
-}
-
-// The toggle is inert (dimmed, not clickable) while a section is
-// actively typing -- see setLanguage()'s own guard below -- so
-// switching language can never race the typewriter effect's own
-// character-by-character writes into the same .beat elements.
-function updateLanguageToggleEnabled() {
-  const disabled = !bubbleSequence || bubbleSequence.phase === "typing";
-  languageToggleEl.classList.toggle("language-toggle-disabled", disabled);
-}
-
-// One button, built once at startup: it shows the current language and
-// each tap moves to the next one (EN -> KO -> ZH -> EN). Only its text
-// changes per card (see renderCard()/updateLanguageToggleUI()).
-function buildLanguageToggle() {
-  const btn = document.createElement("button");
-  btn.type = "button";
-  btn.className = "lang-btn lang-active";
-  btn.addEventListener("click", (event) => {
-    event.stopPropagation(); // the toggle sits outside #bubble, but this keeps it inert to any future ancestor handlers too
-    setLanguage(nextLanguage());
+  languageToggleEl.querySelectorAll(".lang-btn").forEach((btn) => {
+    const active = btn.dataset.lang === currentLanguage;
+    btn.classList.toggle("lang-active", active);
+    btn.setAttribute("aria-pressed", String(active));
   });
-  languageToggleEl.appendChild(btn);
-  updateLanguageToggleUI();
-  updateLanguageToggleEnabled();
 }
 
-// Swaps the currently-displayed section(s) to `lang` in place -- same
-// text area, no re-typing, no touch of bubbleSequence's phase/timerId/
-// lineIndex/charIndex, so it can never interfere with the typing/
-// auto-advance state machine. A no-op while typing (see
-// updateLanguageToggleEnabled() above) or before any card has rendered.
+// Three mini tabs on the bubble's top edge, one per language, built once
+// at startup from SUPPORTED_LANGUAGES. Tapping one locks the app into
+// that language (see setLanguage()).
+function buildLanguageToggle() {
+  SUPPORTED_LANGUAGES.forEach((lang) => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "lang-btn";
+    btn.dataset.lang = lang.code;
+    btn.textContent = lang.short;
+    btn.lang = lang.htmlLang;
+    btn.setAttribute("aria-label", lang.label);
+    btn.addEventListener("click", (event) => {
+      event.stopPropagation(); // the tabs sit outside #bubble, but this keeps them inert to any future ancestor handlers too
+      setLanguage(lang.code);
+    });
+    languageToggleEl.appendChild(btn);
+  });
+  updateLanguageToggleUI();
+  showPlaceholderText();
+}
+
+// The "Press PUPU's belly" line shown before the first card.
+function showPlaceholderText() {
+  if (bubbleSequence) return;
+  const line = bubbleEl.querySelector(".beat");
+  if (!line) return;
+  line.textContent = uiText("pressBelly");
+  line.lang = languageInfo(currentLanguage).htmlLang;
+}
+
+// Switches everything in the bubble to `lang` at once, in place: box
+// labels, every line already shown, the "tap to reveal" hint, and -- if
+// a section is still typing -- the rest of it carries on typing in the
+// new language from about the same point. Only bubbleSequence's text
+// (and, mid-type, its charIndex) changes; its phase/timers are left
+// alone, so it can't upset the typing/auto-advance state machine.
 function setLanguage(lang) {
-  if (lang === currentLanguage) return;
-  if (!bubbleSequence || bubbleSequence.phase === "typing") return;
+  if (lang === currentLanguage || !SUPPORTED_LANGUAGES.some((entry) => entry.code === lang)) return;
 
   currentLanguage = lang;
+  saveLanguage(lang);
+  updateLanguageToggleUI();
+  if (!bubbleSequence) {
+    showPlaceholderText();
+    return;
+  }
 
   const htmlLang = languageInfo(lang).htmlLang;
+  const typing = bubbleSequence.phase === "typing";
   const sectionEls = bubbleEl.querySelectorAll(".bubble-section:not(.bubble-reveal-hint)");
   sectionEls.forEach((sectionEl, i) => {
     const section = bubbleSequence.sections[i];
@@ -1800,16 +1821,32 @@ function setLanguage(lang) {
     section.lines = localizedLines; // keep in sync so a later advance/tap types the right language too
     const labelEl = sectionEl.querySelector(".bubble-label");
     if (labelEl) labelEl.textContent = beatLabel(section, lang);
-    const lineEls = sectionEl.querySelectorAll(".beat");
-    lineEls.forEach((el, j) => {
-      el.textContent = localizedLines[j] || "";
+    const typingThis = typing && i === bubbleSequence.stageIndex;
+    sectionEl.querySelectorAll(".beat").forEach((el, j) => {
       el.lang = htmlLang;
+      if (!typingThis) el.textContent = localizedLines[j] || "";
     });
   });
+  if (typing) {
+    // the section being typed: finished lines in full, the current line
+    // up to the same proportion of its new text, later lines still empty
+    const { lineEls, lineIndex, charIndex } = bubbleSequence;
+    const lines = bubbleSequence.sections[bubbleSequence.stageIndex].lines;
+    lineEls.forEach((entry, j) => {
+      const oldLength = entry.text.length;
+      entry.text = lines[j] || "";
+      if (j < lineIndex) {
+        entry.el.textContent = entry.text;
+      } else if (j === lineIndex) {
+        bubbleSequence.charIndex = Math.min(entry.text.length, Math.round((oldLength ? charIndex / oldLength : 0) * entry.text.length));
+        entry.el.textContent = entry.text.slice(0, bubbleSequence.charIndex);
+      } else {
+        entry.el.textContent = "";
+      }
+    });
+  }
   const hintLabel = bubbleEl.querySelector(".bubble-reveal-hint .bubble-label");
   if (hintLabel) hintLabel.textContent = uiText("tapToReveal", lang);
-
-  updateLanguageToggleUI();
 }
 
 // renderCard() itself stays a plain (non-async) function that returns
@@ -1821,9 +1858,7 @@ function renderCard(card, mission) {
   bubbleEl.classList.remove("bubble-waiting");
   bubbleEl.innerHTML = "";
 
-  currentLanguage = "en"; // a new output always starts in English
-  updateLanguageToggleUI();
-
+  // (currentLanguage is kept: the language tabs are sticky)
   const category = categoryOf(card);
   const sections = getCardBeats(card, mission).map((beat) => ({
     ...beat,

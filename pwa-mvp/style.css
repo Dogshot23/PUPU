@@ -252,65 +252,68 @@ body {
   color: #8b7fd9;
 }
 
-/* ---------- Language toggle ----------
-   Small pill attached to the bubble's top-right corner, sitting
-   slightly on top of it like a tab -- deliberately tiny/quiet so it
-   reads as part of the card rather than a separate tool. Built once at
-   startup from SUPPORTED_LANGUAGES in app.js (see buildLanguageToggle())
-   -- adding a language later is a data change there, not a style change
-   here, since every button shares these same rules regardless of which
-   language it represents. */
+/* ---------- Language tabs ----------
+   Three mini tabs (EN / KO / ZH) on the bubble's top edge, near its
+   right corner, like folder tabs. The active one is filled in the
+   bubble's own colour, bold, and joins the bubble (it covers the
+   bubble's top border), so it is obvious which language is showing.
+   Built at startup from SUPPORTED_LANGUAGES in app.js
+   (buildLanguageToggle()); a new language needs no change here. */
+.bubble-wrap {
+  padding-top: 24px; /* room for the tabs above the bubble */
+}
+
 .language-toggle {
   position: absolute;
-  top: -10px;
-  right: 10px;
+  top: 0;
+  right: 18px;
+  height: 25.5px; /* 24px of tab + overlaps the bubble's 1.5px border */
   display: flex;
-  align-items: center;
-  gap: 5px;
-  background: #ffffff;
-  border: 1.5px solid #b8e8d6;
-  border-radius: 999px;
-  padding: 3px 6px;
-  box-shadow: 0 2px 6px rgba(120, 100, 160, 0.12);
+  align-items: flex-end;
+  gap: 3px;
   z-index: 1;
 }
 
 .lang-btn {
   font: inherit;
-  font-size: 0.66rem;
-  font-weight: 700;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
   line-height: 1;
-  color: #9a9a9a;
-  background: none;
-  border: none;
-  border-radius: 999px;
-  padding: 3px 6px;
+  color: #8f9a96;
+  background: #f4f8f6;
+  border: 1.5px solid #cfe9df;
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+  min-width: 36px;
+  height: 21px;
+  padding: 0 8px;
   cursor: pointer;
   white-space: nowrap;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 0.15s ease, color 0.15s ease;
 }
 
 .lang-btn:hover {
-  color: #5fae8f;
-}
-
-/* The active language is the one visibly "on" -- filled pill, darker
-   text -- so it's obvious at a glance which version is showing. */
-.lang-btn.lang-active {
-  background: #e8fff2;
   color: #3f8a6d;
 }
 
-.lang-sep {
-  color: #cccccc;
-  font-size: 0.6rem;
+.lang-btn:focus-visible {
+  outline: 2px solid #8b7fd9;
+  outline-offset: 1px;
 }
 
-/* Inert (not hidden) while a section is actively typing, so switching
-   language can never race the typewriter effect -- see setLanguage()
-   in app.js. */
-.language-toggle.language-toggle-disabled {
-  opacity: 0.45;
-  pointer-events: none;
+/* Active: taller, bubble-coloured, bold, and drawn over the bubble's
+   top border so tab and bubble read as one piece. */
+.lang-btn.lang-active {
+  height: 25.5px;
+  padding-bottom: 1.5px;
+  font-weight: 800;
+  color: #2f7a5c;
+  background: #eefcf5;
+  border-color: #b8e8d6;
+  box-shadow: inset 0 2px 0 #7fd0b0;
 }
 
 /* Restored from the main app's .speech-bubble.pupu-inflate reaction --
