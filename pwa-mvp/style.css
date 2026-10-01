@@ -5,7 +5,14 @@
   padding: 0;
 }
 
-html, body {
+html, /* With overflow set here, body's own overflow-x applies to the body box
+   instead of passing up to the page, so the phone's layout viewport never
+   widens to fit the vector canvas. */
+html {
+  overflow-x: hidden;
+}
+
+body {
   height: 100%;
 }
 
@@ -17,6 +24,11 @@ body {
   justify-content: center;
   min-height: 100vh;
   padding: 24px;
+  /* the vector PUPU canvas reaches past the stage's sides: never let it
+     make a narrow phone scroll sideways (see html below; clip where
+     supported, as it doesn't stop position: sticky working) */
+  overflow-x: hidden;
+  overflow-x: clip;
 
   /* ---------- Retro CRT pastel background ----------
      Same four static, CSS-only layers as the main PUPU app's
@@ -357,18 +369,27 @@ body {
 }
 
 /* ---------- Renderer: PNG layers or vector canvas ----------
-   Only one is shown (see "Renderer choice" in app.js). The canvas covers
-   the same stage box, so both versions sit in exactly the same place. */
-.pupu-png,
-.pupu-vector {
+   Only one is shown (see "Renderer choice" in app.js). The PNG layers
+   cover the stage box. The canvas is bigger -- an extra quarter of the
+   stage on each side, 60% above and 20% below (vector-pupu.js PAD must
+   match) -- so PUPU can inflate, melt and fly without being cut off.
+   It lets touches through; the stage itself is what you press. */
+.pupu-png {
   position: absolute;
   inset: 0;
 }
 
 .pupu-vector {
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  left: -25%;
+  top: -60%;
+  width: 150%;
+  height: 180%;
   display: block;
+  pointer-events: none;
+}
+
+.pupu-stage-vector {
   cursor: pointer;
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
@@ -382,6 +403,11 @@ body {
 }
 
 .pupu-vector:focus-visible {
+  outline: none;
+}
+
+/* the focus ring goes round the stage, not the (bigger) canvas */
+.pupu-stage-vector:focus-within {
   outline: 2.5px solid #b8e8d6;
   outline-offset: 6px;
   border-radius: 50%;

@@ -397,7 +397,7 @@
     "engine": "Moment",
     "lifecycleState": "Generated",
     "beats": [
-      { "role": "setup", "lines": [
+      { "role": "setup", "react": "melt", "lines": [
         { "en": "PUPU has made a terrible decision.", "ko": "푸푸가 아주 잘못된 결정을 내렸어요.", "zh": "PUPU 做了一个很糟糕的决定。" }
       ] },
       { "role": "reveal", "lines": [
@@ -901,7 +901,7 @@
     "engine": "Moment",
     "lifecycleState": "Generated",
     "beats": [
-      { "role": "setup", "lines": [
+      { "role": "setup", "react": "low-battery", "lines": [
         { "en": "PUPU is very quiet.", "ko": "푸푸가 아주 조용해요.", "zh": "PUPU 非常安静。" }
       ] },
       { "role": "reveal", "lines": [
@@ -1162,7 +1162,7 @@
     "topicTags": ["Animals"],
     "lifecycleState": "Generated",
     "beats": [
-      { "role": "setup", "lines": [
+      { "role": "setup", "react": "hyper-spin", "lines": [
         { "en": "Owls cannot move their eyes. They turn their whole head instead.", "ko": "부엉이는 눈을 움직이지 못해요. 대신 머리 전체를 돌려요.", "zh": "猫头鹰不能转动眼睛，所以它们转动整个头。" },
         { "en": "I just tried it. My neck is not happy.", "ko": "저도 방금 해봤는데, 목이 별로 안 좋아하네요.", "zh": "我刚试了一下。我的脖子不太开心。" }
       ] },
@@ -1422,7 +1422,7 @@
     "topicTags": ["Nature"],
     "lifecycleState": "Generated",
     "beats": [
-      { "role": "setup", "lines": [
+      { "role": "setup", "react": "shatter", "lines": [
         { "en": "Lightning is about five times hotter than the surface of the Sun.", "ko": "번개는 태양 표면보다 다섯 배 정도 더 뜨거워요.", "zh": "闪电的温度大约是太阳表面的五倍。" },
         { "en": "I have decided to stay inside forever.", "ko": "저는 이제부터 평생 집 안에만 있기로 했어요.", "zh": "我决定永远待在室内了。" }
       ] },
@@ -1633,7 +1633,7 @@
       { "role": "setup", "lines": [
         { "en": "I'm very, very strong. Want to know how strong?", "ko": "저는 아주아주 힘이 세요. 얼마나 센지 알고 싶어요?", "zh": "我力气非常非常大。想知道有多大吗？" }
       ] },
-      { "role": "reveal", "lines": [
+      { "role": "reveal", "react": "mech-shift", "lines": [
         { "en": "This morning, I picked up a whole elephant with one finger.", "ko": "오늘 아침에 손가락 하나로 코끼리를 통째로 들어 올렸어요.", "zh": "今天早上，我用一根手指举起了一整头大象。" }
       ] },
       { "role": "prompt", "lines": [
@@ -1651,7 +1651,7 @@
       { "role": "setup", "lines": [
         { "en": "Guess what I did last weekend!", "ko": "제가 지난 주말에 뭘 했는지 맞혀 봐요!", "zh": "猜猜我上个周末做了什么！" }
       ] },
-      { "role": "reveal", "lines": [
+      { "role": "reveal", "react": "rocket-thrust", "lines": [
         { "en": "I flew to the moon on a banana. It was a bit slippery.", "ko": "바나나를 타고 달에 다녀왔어요. 좀 미끄러웠어요.", "zh": "我骑着一根香蕉飞到了月亮上。有点滑。" }
       ] },
       { "role": "prompt", "lines": [
@@ -1834,7 +1834,7 @@
       { "role": "setup", "lines": [
         { "en": "I kept a piece of cheese in my sock for three days. To keep it safe.", "ko": "치즈 한 조각을 양말 속에 사흘 동안 넣어 뒀어요. 안전하게 지키려고요.", "zh": "我把一块奶酪放在袜子里放了三天。为了保护它。" }
       ] },
-      { "role": "reveal", "lines": [
+      { "role": "reveal", "react": "melt", "lines": [
         { "en": "Now it tastes like feet. Is that delicious? I can't decide.", "ko": "이제 발 맛이 나요. 맛있는 걸까요? 잘 모르겠어요.", "zh": "现在它吃起来像脚的味道。好吃吗？我决定不了。" }
       ] },
       { "role": "prompt", "lines": [
@@ -1870,7 +1870,7 @@
       { "role": "setup", "lines": [
         { "en": "I found something under my bed this morning.", "ko": "오늘 아침에 침대 밑에서 뭔가를 찾았어요.", "zh": "今天早上我在床底下找到了一样东西。" }
       ] },
-      { "role": "reveal", "lines": [
+      { "role": "reveal", "react": "eyeball-pop", "lines": [
         { "en": "A very old sandwich. It was green and fluffy. I think it said hello.", "ko": "아주 오래된 샌드위치요. 초록색이고 털이 보송보송했어요. 저한테 인사한 것 같아요.", "zh": "一个很旧很旧的三明治。它是绿色的，毛茸茸的。我觉得它跟我打了招呼。" }
       ] },
       { "role": "prompt", "lines": [
@@ -1924,7 +1924,7 @@
       { "role": "setup", "lines": [
         { "en": "I didn't brush my teeth for one week. As a test.", "ko": "실험으로 일주일 동안 이를 안 닦았어요.", "zh": "我一个星期没刷牙。当作实验。" }
       ] },
-      { "role": "reveal", "lines": [
+      { "role": "reveal", "react": "acid-burp", "lines": [
         { "en": "Now my breath can open doors. And close them.", "ko": "이제 제 입 냄새로 문을 열 수 있어요. 닫을 수도 있고요.", "zh": "现在我的口气能把门打开。还能把门关上。" }
       ] },
       { "role": "prompt", "lines": [
@@ -1942,7 +1942,7 @@
       { "role": "setup", "lines": [
         { "en": "Here's a real fact: your mouth makes about one litre of spit every day.", "ko": "진짜 사실이에요. 사람 입은 하루에 침을 약 1리터나 만들어요.", "zh": "真的冷知识：你的嘴巴每天会产生大约一升口水。" }
       ] },
-      { "role": "reveal", "lines": [
+      { "role": "reveal", "react": "slime-drip", "lines": [
         { "en": "One litre! I am saving mine in a bucket.", "ko": "1리터요! 저는 제 침을 양동이에 모으고 있어요.", "zh": "一升！我把我的口水存在一个桶里。" }
       ] },
       { "role": "prompt", "lines": [
@@ -1975,7 +1975,7 @@
     "level": "A1",
     "lifecycleState": "Generated",
     "beats": [
-      { "role": "setup", "lines": [
+      { "role": "setup", "react": "mech-shift", "lines": [
         { "en": "If money doesn't grow on trees, why do banks have so many plants? Something is fishy.", "ko": "돈이 나무에서 안 자란다면, 은행에는 왜 화분이 그렇게 많을까요? 뭔가 수상해요.", "zh": "如果钱不是长在树上的，那为什么银行里有那么多植物？有点可疑。" }
       ] },
       { "role": "prompt", "lines": [
@@ -2005,7 +2005,7 @@
     "level": "A1",
     "lifecycleState": "Generated",
     "beats": [
-      { "role": "setup", "lines": [
+      { "role": "setup", "react": "over-inflate", "lines": [
         { "en": "If I eat myself, will I get twice as big, or will I disappear?", "ko": "제가 저를 먹으면 두 배로 커질까요, 아니면 사라질까요?", "zh": "如果我把自己吃掉，我会变成两倍大，还是会消失？" }
       ] },
       { "role": "prompt", "lines": [
@@ -2035,7 +2035,7 @@
     "level": "A1",
     "lifecycleState": "Generated",
     "beats": [
-      { "role": "setup", "lines": [
+      { "role": "setup", "react": "pixel-deconstruct", "lines": [
         { "en": "Nobody has ever seen me sleep. Maybe I never sleep. Maybe YOU are my dream.", "ko": "아무도 제가 자는 걸 본 적이 없어요. 저는 안 자는 걸지도 몰라요. 어쩌면 여러분이 제 꿈일지도요.", "zh": "从来没有人见过我睡觉。也许我从来不睡觉。也许你才是我的梦。" }
       ] },
       { "role": "prompt", "lines": [
@@ -2050,7 +2050,7 @@
     "level": "A1",
     "lifecycleState": "Generated",
     "beats": [
-      { "role": "setup", "lines": [
+      { "role": "setup", "react": "hyper-spin", "lines": [
         { "en": "Socks always disappear in the washing machine. I think they escape to start a new life.", "ko": "양말은 세탁기에서 항상 사라져요. 제 생각엔 새 인생을 시작하려고 도망치는 것 같아요.", "zh": "袜子总是在洗衣机里消失。我觉得它们是逃走去开始新生活了。" }
       ] },
       { "role": "prompt", "lines": [
@@ -2065,7 +2065,7 @@
     "level": "A1",
     "lifecycleState": "Generated",
     "beats": [
-      { "role": "setup", "lines": [
+      { "role": "setup", "react": "rocket-thrust", "lines": [
         { "en": "In space, nobody can hear you shout. So space is the best place to sing badly.", "ko": "우주에서는 소리를 질러도 아무도 못 들어요. 그러니까 우주는 노래를 못 불러도 되는 최고의 장소예요.", "zh": "在太空里，你大喊也没人听得见。所以太空是唱歌跑调的最佳地点。" }
       ] },
       { "role": "prompt", "lines": [
@@ -2080,7 +2080,7 @@
     "level": "A1",
     "lifecycleState": "Generated",
     "beats": [
-      { "role": "setup", "lines": [
+      { "role": "setup", "react": "low-battery", "lines": [
         { "en": "Cats sleep about fifteen hours a day. Cats are not lazy. Cats are geniuses.", "ko": "고양이는 하루에 15시간쯤 자요. 고양이는 게으른 게 아니에요. 천재예요.", "zh": "猫每天大约睡十五个小时。猫不是懒，猫是天才。" }
       ] },
       { "role": "prompt", "lines": [
@@ -2530,7 +2530,7 @@
     "level": "A1",
     "lifecycleState": "Generated",
     "beats": [
-      { "role": "setup", "react": "puff", "lines": [
+      { "role": "setup", "react": "over-inflate", "lines": [
         { "en": "I'm holding my breath until you tell me your top three favourite smells. Hurry!", "ko": "여러분이 제일 좋아하는 냄새 세 가지를 말해 줄 때까지 숨 참을 거예요. 빨리요!", "zh": "我要一直憋气，直到你说出你最喜欢的三种气味。快点！" }
       ] },
       { "role": "prompt", "lines": [
@@ -2608,7 +2608,7 @@
       { "role": "setup", "lines": [
         { "en": "Promise you won't tell anyone?", "ko": "아무한테도 말 안 한다고 약속해요?", "zh": "保证不告诉任何人？" }
       ] },
-      { "role": "reveal", "lines": [
+      { "role": "reveal", "react": "slime-drip", "lines": [
         { "en": "I have never washed my belly button. Never. Something lives in there now.", "ko": "저는 배꼽을 한 번도 안 씻었어요. 한 번도요. 지금은 거기 뭔가가 살아요.", "zh": "我从来没洗过我的肚脐。从来没有。现在里面住着什么东西。" }
       ] },
       { "role": "prompt", "lines": [
@@ -2644,7 +2644,7 @@
       { "role": "setup", "lines": [
         { "en": "Fact: if you eat a carrot, you can see through walls.", "ko": "사실: 당근을 먹으면 벽 너머를 볼 수 있어요.", "zh": "事实：吃了胡萝卜，你就能看穿墙壁。" }
       ] },
-      { "role": "reveal", "lines": [
+      { "role": "reveal", "react": "eyeball-pop", "lines": [
         { "en": "I ate fifty carrots. Now I can only see orange.", "ko": "당근을 50개 먹었어요. 이제 주황색밖에 안 보여요.", "zh": "我吃了五十根胡萝卜。现在我眼里只有橙色。" }
       ] },
       { "role": "prompt", "lines": [
@@ -2662,7 +2662,7 @@
       { "role": "setup", "lines": [
         { "en": "Everybody knows: if you swallow gum, it stays in your tummy for seven years.", "ko": "다들 알잖아요. 껌을 삼키면 배 속에 7년 동안 남아 있어요.", "zh": "大家都知道：吞下去的口香糖会在你肚子里待七年。" }
       ] },
-      { "role": "reveal", "lines": [
+      { "role": "reveal", "react": "over-inflate", "lines": [
         { "en": "So I am 40% gum. Wait… maybe that isn't true.", "ko": "그러니까 저는 40%가 껌이에요. 잠깐만요… 그거 사실이 아닐 수도 있겠네요.", "zh": "所以我是百分之四十的口香糖。等等……也许这不是真的。" }
       ] },
       { "role": "prompt", "lines": [

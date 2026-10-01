@@ -286,6 +286,103 @@ const PupuMotion = (() => {
     { offset: 1, transform: "translateX(0) skewX(0deg)", filter: "grayscale(0) brightness(1)" },
   ];
 
+  // Chaos stunts (vector-pupu.js draws the full versions: melting,
+  // eyeballs on stalks, robot panels, pixels, shards...). These are the
+  // PNG version's take on each, with the same duration.
+  KEYFRAMES["melt"] = [ // slumps into a wide puddle, wobbles, springs back up
+    { offset: 0, transform: "scale(1, 1) translateY(0)" },
+    { offset: 0.25, transform: "scale(1.9, 0.25) translateY(0)" },
+    { offset: 0.45, transform: "scale(2.1, 0.18) translateY(20px)" },
+    { offset: 0.6, transform: "scale(1.95, 0.22) translateY(10px)" },
+    { offset: 0.75, transform: "scale(0.8, 1.25) translateY(-12px)" },
+    { offset: 0.88, transform: "scale(1.08, 0.94) translateY(4px)" },
+    { offset: 1, transform: "scale(1, 1) translateY(0)" },
+  ];
+  KEYFRAMES["slime-drip"] = [ // sags and oozes, then snaps back
+    { offset: 0, transform: "scale(1, 1) translateY(0)", filter: "hue-rotate(0deg)" },
+    { offset: 0.3, transform: "scale(1.14, 0.86) translateY(12px) skewX(3deg)", filter: "hue-rotate(60deg) saturate(1.2)" },
+    { offset: 0.55, transform: "scale(1.18, 0.84) translateY(16px) skewX(-3deg)", filter: "hue-rotate(60deg) saturate(1.2)" },
+    { offset: 0.7, transform: "scale(0.9, 1.12) translateY(-8px)", filter: "hue-rotate(20deg)" },
+    { offset: 1, transform: "scale(1, 1) translateY(0)", filter: "hue-rotate(0deg)" },
+  ];
+  KEYFRAMES["acid-burp"] = [ // swells up neon green, BURP
+    { offset: 0, transform: "scale(1) rotate(0deg)", filter: "hue-rotate(0deg)" },
+    { offset: 0.25, transform: "scale(1.16, 1.08) rotate(0deg)", filter: "hue-rotate(110deg) saturate(2.2) brightness(1.1)" },
+    { offset: 0.38, transform: "scale(1.04) translateY(-10px) rotate(-6deg)", filter: "hue-rotate(110deg) saturate(2.2) brightness(1.1)" },
+    { offset: 0.6, transform: "scale(1.06) rotate(3deg)", filter: "hue-rotate(110deg) saturate(2)" },
+    { offset: 1, transform: "scale(1) rotate(0deg)", filter: "hue-rotate(0deg)" },
+  ];
+  KEYFRAMES["eyeball-pop"] = [ // a startled jump and a springy wobble
+    { offset: 0, transform: "scale(1) translateY(0)" },
+    { offset: 0.12, transform: "scale(0.9, 1.15) translateY(-22px)" },
+    { offset: 0.3, transform: "scale(1.06, 0.95) translateY(0)" },
+    { offset: 0.45, transform: "scale(0.97, 1.04) rotate(4deg)" },
+    { offset: 0.6, transform: "scale(1.02, 0.98) rotate(-3deg)" },
+    { offset: 0.8, transform: "scale(1) rotate(1deg)" },
+    { offset: 1, transform: "scale(1) rotate(0deg)" },
+  ];
+  KEYFRAMES["mech-shift"] = [ // clunky robot steps, cold metal colours
+    { offset: 0, transform: "rotate(0deg) translateY(0)", filter: "grayscale(0) brightness(1)" },
+    { offset: 0.12, transform: "rotate(-5deg) translateY(-6px)", filter: "grayscale(0.85) brightness(1.1) contrast(1.2)" },
+    { offset: 0.3, transform: "rotate(5deg) translateY(0)", filter: "grayscale(0.85) brightness(1.1) contrast(1.2)" },
+    { offset: 0.48, transform: "rotate(-5deg) translateY(-6px)", filter: "grayscale(0.85) brightness(1.1) contrast(1.2)" },
+    { offset: 0.66, transform: "rotate(5deg) translateY(0)", filter: "grayscale(0.85) brightness(1.1) contrast(1.2)" },
+    { offset: 0.8, transform: "rotate(0deg) translateY(0)", filter: "grayscale(0.4) brightness(1.05)" },
+    { offset: 1, transform: "rotate(0deg) translateY(0)", filter: "grayscale(0) brightness(1)" },
+  ];
+  KEYFRAMES["pixel-deconstruct"] = [ // jerky, blurry 8-bit break-up (easing "steps(1)")
+    { offset: 0, transform: "translate(0, 0) scale(1)", filter: "blur(0px) contrast(1)" },
+    { offset: 0.1, transform: "translate(6px, -8px) scale(1.04)", filter: "blur(1.5px) contrast(1.6)" },
+    { offset: 0.25, transform: "translate(-8px, -14px) scale(1.08)", filter: "blur(2.5px) contrast(1.8)" },
+    { offset: 0.4, transform: "translate(8px, -18px) scale(1.1)", filter: "blur(3px) contrast(1.8)" },
+    { offset: 0.55, transform: "translate(-4px, -10px) scale(1.05)", filter: "blur(2px) contrast(1.5)" },
+    { offset: 0.7, transform: "translate(2px, -2px) scale(0.98)", filter: "blur(0.5px) contrast(1.2)" },
+    { offset: 1, transform: "translate(0, 0) scale(1)", filter: "blur(0px) contrast(1)" },
+  ];
+  KEYFRAMES["low-battery"] = [ // droops, dims and flickers, crashes, reboots
+    { offset: 0, transform: "scale(1) translateY(0)", filter: "grayscale(0) brightness(1)" },
+    { offset: 0.15, transform: "scale(1.03, 0.95) translateY(6px)", filter: "grayscale(0.9) brightness(0.55)" },
+    { offset: 0.35, transform: "scale(1.04, 0.94) translateY(8px)", filter: "grayscale(0.9) brightness(0.3)" },
+    { offset: 0.4, transform: "scale(1.04, 0.94) translateY(8px)", filter: "grayscale(0.9) brightness(0.7)" },
+    { offset: 0.6, transform: "scale(1.05, 0.93) translateY(10px)", filter: "grayscale(1) brightness(0.35)" },
+    { offset: 0.72, transform: "translateX(5px) scale(1.05, 0.93) translateY(10px)", filter: "grayscale(1) brightness(0.15) contrast(2)" },
+    { offset: 0.82, transform: "scale(0.96, 1.06) translateY(-8px)", filter: "grayscale(0) brightness(1.4)" },
+    { offset: 1, transform: "scale(1) translateY(0)", filter: "grayscale(0) brightness(1)" },
+  ];
+  KEYFRAMES["rocket-thrust"] = [ // crouch, blast off the top of the screen, fall back, crash
+    { offset: 0, transform: "scale(1) translateY(0)" },
+    { offset: 0.12, transform: "scale(1.12, 0.86) translateY(8px)" },
+    { offset: 0.2, transform: "scale(0.9, 1.15) translateY(-60px)", easing: "ease-in" },
+    { offset: 0.55, transform: "scale(0.9, 1.1) translateY(-900px)", easing: "ease-in" },
+    { offset: 0.84, transform: "scale(0.95, 1.05) translateY(0)" },
+    { offset: 0.9, transform: "scale(1.3, 0.7) translateY(10px)" },
+    { offset: 1, transform: "scale(1) translateY(0)" },
+  ];
+  KEYFRAMES["over-inflate"] = [ // swells, shakes, POPS (vanishes), pops back in
+    { offset: 0, transform: "scale(1) translateX(0)", opacity: 1 },
+    { offset: 0.35, transform: "scale(1.25) translateX(0)", opacity: 1 },
+    { offset: 0.5, transform: "scale(1.38) translateX(-4px)", opacity: 1 },
+    { offset: 0.6, transform: "scale(1.45) translateX(5px)", opacity: 1 },
+    { offset: 0.69, transform: "scale(1.55) translateX(-5px)", opacity: 1 },
+    { offset: 0.7, transform: "scale(1.8)", opacity: 0 },
+    { offset: 0.86, transform: "scale(0.1)", opacity: 0 },
+    { offset: 0.94, transform: "scale(1.1)", opacity: 1 },
+    { offset: 1, transform: "scale(1)", opacity: 1 },
+  ];
+  KEYFRAMES["shatter"] = [ // a hard crack: shudder, flash, pieces back together
+    { offset: 0, transform: "scale(1) rotate(0deg)", filter: "brightness(1)" },
+    { offset: 0.08, transform: "scale(1.1) rotate(-6deg)", filter: "brightness(1.8)" },
+    { offset: 0.2, transform: "scale(0.85) rotate(8deg)", filter: "brightness(0.8) contrast(1.4)" },
+    { offset: 0.38, transform: "scale(0.9) rotate(-4deg)", filter: "brightness(0.9)" },
+    { offset: 0.6, transform: "scale(1.05) rotate(2deg)", filter: "brightness(1.1)" },
+    { offset: 1, transform: "scale(1) rotate(0deg)", filter: "brightness(1)" },
+  ];
+  KEYFRAMES["hyper-spin"] = [ // four full turns, fast in the middle
+    { offset: 0, transform: "rotate(0deg) scale(1)", filter: "blur(0px)" },
+    { offset: 0.5, transform: "rotate(720deg) scale(1.08, 0.92)", filter: "blur(2px)" },
+    { offset: 1, transform: "rotate(1440deg) scale(1)", filter: "blur(0px)" },
+  ];
+
   // ---------- Motions ----------
   // name -> duration (ms), default easing, optional iterations, and
   // which KEYFRAMES each part plays. Names match the `animation` /
@@ -322,7 +419,27 @@ const PupuMotion = (() => {
     "fart": { duration: 750, easing: "ease-out", body: "fart", armLeft: "arm-flick-left", armRight: "arm-flick-right" },
     "burp": { duration: 650, easing: "ease-out", body: "burp" },
     "glitch": { duration: 700, easing: "steps(1)", body: "glitch" },
+    // Chaos stunts (durations = vector-pupu.js STUNT_MS)
+    "melt": { duration: 1800, easing: "ease-in-out", body: "melt", armLeft: "arm-down-left", armRight: "arm-down-right" },
+    "slime-drip": { duration: 1700, easing: "ease-in-out", body: "slime-drip", armLeft: "arm-down-left", armRight: "arm-down-right" },
+    "acid-burp": { duration: 1300, easing: "ease-out", body: "acid-burp", armLeft: "arm-flick-left", armRight: "arm-flick-right" },
+    "eyeball-pop": { duration: 1600, easing: "ease-out", body: "eyeball-pop", armLeft: "arm-up-left", armRight: "arm-up-right" },
+    "mech-shift": { duration: 1800, easing: "steps(1)", body: "mech-shift" },
+    "pixel-deconstruct": { duration: 1700, easing: "steps(1)", body: "pixel-deconstruct" },
+    "low-battery": { duration: 2200, easing: "ease-in-out", body: "low-battery", armLeft: "arm-down-left", armRight: "arm-down-right" },
+    "rocket-thrust": { duration: 2000, easing: "ease-out", body: "rocket-thrust", armLeft: "arm-up-left", armRight: "arm-up-right" },
+    "over-inflate": { duration: 2000, easing: "ease-in", body: "over-inflate" },
+    "shatter": { duration: 1500, easing: "ease-out", body: "shatter", armLeft: "arm-flick-left", armRight: "arm-flick-right" },
+    "hyper-spin": { duration: 1300, easing: "cubic-bezier(0.65, 0, 0.35, 1)", body: "hyper-spin" },
   };
+
+  // The chaos stunts: what a hard hit, a broken button or (rarely) a
+  // card or an idle moment can set off (see app.js).
+  const CHAOS = [
+    "melt", "slime-drip", "acid-burp", "eyeball-pop",
+    "mech-shift", "pixel-deconstruct", "low-battery", "rocket-thrust",
+    "over-inflate", "shatter", "hyper-spin",
+  ];
 
   function framesFor(keyframesName, defaultEasing) {
     return KEYFRAMES[keyframesName].map((frame) => ({ ...frame, easing: frame.easing || defaultEasing }));
@@ -353,6 +470,8 @@ const PupuMotion = (() => {
       if (name) console.warn(`PUPU MVP: unknown motion "${name}"`);
       return NO_MOTION;
     }
+    // Stunts have their own made-up sound effects (audio.js PupuAudio.sfx).
+    if (CHAOS.includes(name) && typeof PupuAudio !== "undefined" && PupuAudio.sfx) PupuAudio.sfx(name);
     if (!supported) return NO_MOTION;
 
     const timing = {
@@ -485,5 +604,5 @@ const PupuMotion = (() => {
     rafId = requestAnimationFrame(faceFrame);
   }
 
-  return { play, stopAll, MOTIONS };
+  return { play, stopAll, MOTIONS, CHAOS };
 })();

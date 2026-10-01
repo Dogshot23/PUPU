@@ -77,7 +77,19 @@ const MOUTH_BY_ANIMATION = {
   wink: "tongue",
   fart: "closedSmile", // smug
   burp: "wide",
-  glitch: "shout"
+  glitch: "shout",
+  // Chaos stunts (motion.js CHAOS)
+  melt: "sad",
+  "slime-drip": "tongue",
+  "acid-burp": "wide",
+  "eyeball-pop": "oh",
+  "mech-shift": "closedSmile",
+  "pixel-deconstruct": "shout",
+  "low-battery": "sad",
+  "rocket-thrust": "shout",
+  "over-inflate": "blow",
+  shatter: "oh",
+  "hyper-spin": "wide"
 };
 
 // Sets the mouth artwork for a given expression; anything
@@ -127,8 +139,30 @@ const EYES_BY_ANIMATION = {
   wink: "smiling",
   fart: "smiling",
   burp: "slits",
-  glitch: "circles"
+  glitch: "circles",
+  melt: "slits",
+  "slime-drip": "slits",
+  "acid-burp": "slits",
+  "eyeball-pop": "circles",
+  "mech-shift": "dots",
+  "pixel-deconstruct": "circles",
+  "low-battery": "slits",
+  "rocket-thrust": "circles",
+  "over-inflate": "circles",
+  shatter: "circles",
+  "hyper-spin": "dots"
 };
+
+// Chaos stunts (melting, eyeballs on stalks, robot mode, rocket boots...;
+// motion.js CHAOS, drawn in full by vector-pupu.js) now and then replace
+// an ordinary reaction: between card beats, during idle moments, and as
+// the broken-button payoff. A hard burst of belly taps also sets one off
+// (vector-pupu.js). Each has its own made-up sound (audio.js sfx).
+const CHAOS_BUBBLE_CHANCE = 0.15; // a beat with no reaction of its own
+const CHAOS_PAYOFF_CHANCE = 0.5;  // the broken-button payoff
+function pickChaosMotion() {
+  return pickRandomFrom(PupuMotion.CHAOS);
+}
 
 // Overlay effect shown with a card-category reaction (same layer system
 // as the BUBBLE_REACTIONS/EVENTS `effect` field).
@@ -971,6 +1005,19 @@ function gestureWobble() {
 // original's idle gesture system, since no existing system there did a
 // CSS filter pulse. Kept small and self-contained (see
 // "idle-brightness-pulse" in motion.js).
+// A rare surprise while idle: one random chaos stunt, with its face.
+function gestureChaos() {
+  const name = pickChaosMotion();
+  PupuMotion.play(name);
+  setMouth(MOUTH_BY_ANIMATION[name]);
+  setEyes(EYES_BY_ANIMATION[name]);
+  setTimeout(() => {
+    setMouth("normal");
+    setEyes("normal");
+    idleGestureActive = false;
+  }, PupuMotion.MOTIONS[name].duration);
+}
+
 function gestureBrightnessPulse() {
   PupuMotion.play("idle-brightness-pulse");
   setTimeout(() => {
@@ -986,12 +1033,15 @@ function gestureBrightnessPulse() {
 // than changing the overall IDLE_GESTURE_SKIP_CHANCE above -- so the
 // total rate of "something happens" during an idle check is unchanged,
 // only the mix of what that something can be.
+// gestureChaos (~4%) took its slice from wobble, blink, smile and
+// content smile (1% each).
 const IDLE_GESTURES = [
-  { upTo: 0.35, gesture: gestureWobble },
-  { upTo: 0.60, gesture: gestureBlink },
-  { upTo: 0.80, gesture: gestureSmile },
-  { upTo: 0.95, gesture: gestureContentSmile },
-  { upTo: 1.00, gesture: gestureBrightnessPulse }
+  { upTo: 0.34, gesture: gestureWobble },
+  { upTo: 0.58, gesture: gestureBlink },
+  { upTo: 0.77, gesture: gestureSmile },
+  { upTo: 0.91, gesture: gestureContentSmile },
+  { upTo: 0.96, gesture: gestureBrightnessPulse },
+  { upTo: 1.00, gesture: gestureChaos }
 ];
 
 // Called right after an idle sound plays. ~50% chance of doing
@@ -1560,7 +1610,9 @@ function playBubbleReaction(reactionName) {
   const reaction =
     reactionName && PupuMotion.MOTIONS[reactionName]
       ? reactionFromMotion(reactionName, 0)
-      : pickBubbleReaction(bubbleSequence && bubbleSequence.category);
+      : Math.random() < CHAOS_BUBBLE_CHANCE
+        ? reactionFromMotion(pickChaosMotion(), 0)
+        : pickBubbleReaction(bubbleSequence && bubbleSequence.category);
 
   clearBehaviourAnimations();
   PupuMotion.play(reaction.animation);
@@ -2046,6 +2098,10 @@ const BROKEN_BUTTON_PAYOFF_VARIANTS = [
 ];
 
 function pickBrokenButtonPayoffVariant() {
+  if (Math.random() < CHAOS_PAYOFF_CHANCE) {
+    const motion = pickChaosMotion();
+    return { motion, durationMs: PupuMotion.MOTIONS[motion].duration };
+  }
   const roll = Math.random();
   return BROKEN_BUTTON_PAYOFF_VARIANTS.find((variant) => roll < variant.upTo);
 }
@@ -2267,6 +2323,10 @@ const vectorCanvasEl = document.getElementById("pupu-vector");
 const activeRenderer = chooseRenderer() === "vector" && vectorCanvasEl.getContext ? "vector" : "png";
 
 if (activeRenderer === "vector") {
+  // The canvas is bigger than the stage (room to grow/melt/fly without
+  // being cut off) and lets touches through; the stage is what you press.
+  const stageEl = vectorCanvasEl.closest(".pupu-stage");
+  stageEl.classList.add("pupu-stage-vector");
   document.getElementById("pupu-png").hidden = true;
   vectorCanvasEl.hidden = false;
   VectorPupu.mount(vectorCanvasEl, {
@@ -2275,10 +2335,11 @@ if (activeRenderer === "vector") {
     button: pupuButton,
     effect: effectEl,
     ghostWatch: bodyEl,
+    hit: stageEl,
   });
   // Same instant press as the PNG belly (see the pointerdown handler
-  // below); the canvas squishes itself on the same touch.
-  vectorCanvasEl.addEventListener("pointerdown", (event) => {
+  // below); PUPU squishes himself on the same touch.
+  stageEl.addEventListener("pointerdown", (event) => {
     if (!event.isPrimary || (event.pointerType === "mouse" && event.button !== 0)) return;
     event.preventDefault();
     handleBellyPress();
